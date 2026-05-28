@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+node_modules/
+output/
+
+Administration/.env
+Administration/data/
+test_map.png
+
+# Local Netlify folder
+.netlify
+
+.vercel

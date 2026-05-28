@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#e7eef2"/>
+      <stop offset="1" stop-color="#a5b4c1"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#edf7fb"/>
+      <stop offset=".55" stop-color="#9eb1c2"/>
+      <stop offset="1" stop-color="#657686"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="915" cy="126" r="48" fill="#fff3c4" opacity=".66"/>
+  <path d="M0 510c190-55 329-60 508-25 221 43 390 13 692-86v276H0z" fill="#71808c" opacity=".34"/>
+  <g fill="url(#glass)" stroke="#566574" stroke-width="7" stroke-linejoin="round">
+    <path d="M498 590h204l38-480H460z"/>
+    <path d="M450 590h300v42H450z"/>
+    <path d="M514 110h172l-30-60H544z"/>
+    <path d="M548 50h104l-18-30h-68z"/>
+  </g>
+  <g stroke="#f4fbff" stroke-width="3" opacity=".56">
+    <path d="M487 175h226M482 242h236M477 309h246M472 376h256M467 443h266M462 510h276"/>
+    <path d="M540 112v470M600 112v470M660 112v470"/>
+  </g>
+  <path d="M410 590h380" stroke="#d59a32" stroke-width="10" opacity=".6"/>
+</svg>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Coruscant City Map Editor</title>
+  <script defer src="./assets/city-map-Bp1wJycB.js"></script>
+  <link rel="stylesheet" href="./assets/city-map-DVdsJqAo.css">
+</head>
+
+<body>
+  <main id="app">
+    <div id="cityMap" aria-label="Coruscant 2D Karte"></div>
+
+    <section class="search-shell" aria-label="Gebäudesuche">
+      <div class="search-box">
+        <span class="search-icon" aria-hidden="true"></span>
+        <input id="buildingSearch" type="search" autocomplete="off" placeholder="Gebäude suchen" />
+      </div>
+      <div id="searchResults" class="search-results" role="listbox" hidden></div>
+    </section>
+
+    <aside class="map-legend" aria-label="Gebäudearten">
+      <div><span class="legend-swatch state" aria-hidden="true"></span>Staatlich</div>
+      <div><span class="legend-swatch commercial" aria-hidden="true"></span>Privatwirtschaftlich</div>
+      <div><span class="legend-swatch private" aria-hidden="true"></span>Privat</div>
+    </aside>
+
+    <aside id="buildingSheet" class="building-sheet" aria-label="Gebäudeinformationen bearbeiten" aria-hidden="true">
+      <button id="sheetClose" class="sheet-close" type="button" aria-label="Gebäudeinformationen schließen"></button>
+      <button id="sheetHandle" class="sheet-handle" type="button" aria-label="Gebäudeinformationen ziehen"></button>
+      <div class="sheet-content">
+        <div class="sheet-kicker" id="sheetId">Gebäude</div>
+        <h1 id="sheetName">Unbenanntes Gebäude</h1>
+        <div id="publicBuildingInfo" class="public-building-info" hidden></div>
+        <div class="info-grid">
+          <label class="wide">
+            <span>Name</span>
+            <input id="infoName" value="" placeholder="Noch nicht benannt" />
+          </label>
+          <div class="image-editor wide">
+            <div class="image-toolbar">
+              <span>Gebäudebild</span>
+              <div class="image-actions">
+                <label class="file-button" for="infoImageInput">Bild hinzufügen</label>
+                <button id="removeImageBtn" type="button">Entfernen</button>
+              </div>
+            </div>
+            <input id="infoImageInput" type="file" accept="image/*" />
+            <label class="image-url-field" for="infoImageUrl">
+              <span>Bild-URL</span>
+              <input id="infoImageUrl" type="url" placeholder="https://... oder ./assets/..." autocomplete="off" />
+            </label>
+            <div id="imagePreview" class="image-preview">
+              <span>Kein Bild hinterlegt</span>
+              <label for="infoImageInput">Bild auswählen</label>
+            </div>
+          </div>
+          <label>
+            <span>Art</span>
+            <select id="infoType">
+              <option>Staatlich</option>
+              <option>Privatwirtschaftlich</option>
+              <option>Privat</option>
+            </select>
+          </label>
+          <label class="wide">
+            <span>Beschreibung</span>
+            <textarea id="infoDescription" placeholder="Beschreibung folgt später"></textarea>
+          </label>
+        </div>
+        <div class="editor-footer">
+          <div id="saveState" class="save-state">Automatisch gespeichert</div>
+          <button id="exportDataBtn" class="export-data-button" type="button">Daten exportieren</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+</body>
+
+</html>

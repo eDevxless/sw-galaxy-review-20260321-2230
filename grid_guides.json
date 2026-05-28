@@ -1,0 +1,32 @@
+{
+  "guides": [
+    {
+      "id": "grid-guide-001",
+      "kind": "line-grid",
+      "horizontal_line": {
+        "start_px": [
+          0.0,
+          157.0
+        ],
+        "end_px": [
+          6000.0,
+          157.0
+        ]
+      },
+      "vertical_line": {
+        "start_px": [
+          285.5,
+          0.0
+        ],
+        "end_px": [
+          285.5,
+          5388.0
+        ]
+      },
+      "copies_x": 21,
+      "copies_y": 19,
+      "spacing_x_px": 259.91,
+      "spacing_y_px": 261.11
+    }
+  ]
+}

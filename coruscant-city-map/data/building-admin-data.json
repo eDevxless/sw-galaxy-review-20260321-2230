@@ -1,0 +1,32 @@
+{
+  "10845": {
+    "name": "Jedi-Tempel",
+    "kind": "Staatlich",
+    "description": "Hauptquartier des Jedi-Ordens im Federal District von Coruscant.",
+    "imageDataUrl": "./Coruscant_Pictures/Jeditempel.webp"
+  },
+  "59149": {
+    "name": "Galaktisches Senatsgebaeude",
+    "kind": "Staatlich",
+    "description": "Politisches Zentrum der Republik mit dem grossen Senatskomplex.",
+    "imageDataUrl": "./Coruscant_Pictures/Senatsgebäude.jpg"
+  },
+  "65558": {
+    "name": "Senatsbuero Gebaeude",
+    "kind": "Staatlich",
+    "description": "Verwaltungs- und Buerokomplex des republikanischen Senats.",
+    "imageDataUrl": "./Coruscant_Pictures/Senatsbürogebäude.webp"
+  },
+  "55653": {
+    "name": "COMPOR-Zentrale",
+    "kind": "Staatlich",
+    "description": "Sitz der Commission for the Protection of the Republic.",
+    "imageDataUrl": "./Coruscant_Pictures/COMPOR_Zentrale.avif"
+  },
+  "40470": {
+    "name": "Republikanischer Militaerkomplex",
+    "kind": "Staatlich",
+    "description": "Republikanischer Sicherheits- und Militaerkomplex im Federal District.",
+    "imageDataUrl": "./Coruscant_Pictures/Republikanischer_Militärkomplex.webp"
+  }
+}

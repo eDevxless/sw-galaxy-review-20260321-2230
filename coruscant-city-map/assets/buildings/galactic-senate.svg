@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#e9f0f4"/>
+      <stop offset="1" stop-color="#a4b4c3"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#f6f1de"/>
+      <stop offset="1" stop-color="#9faab5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#sky)"/>
+  <path d="M0 485c200-34 363-40 535-12 208 34 379 8 665-88v290H0z" fill="#7f8c99" opacity=".33"/>
+  <ellipse cx="600" cy="438" rx="430" ry="105" fill="#7a8795" opacity=".34"/>
+  <g fill="url(#metal)" stroke="#62707c" stroke-width="7">
+    <ellipse cx="600" cy="410" rx="390" ry="105"/>
+    <path d="M225 407c55-128 200-213 375-213s320 85 375 213c-75 60-222 95-375 95s-300-35-375-95z"/>
+    <ellipse cx="600" cy="394" rx="265" ry="62" fill="#d2d8dc"/>
+    <path d="M429 346c43-70 100-106 171-106s128 36 171 106c-45 22-102 35-171 35s-126-13-171-35z"/>
+  </g>
+  <g stroke="#edf4f8" stroke-width="4" opacity=".65">
+    <path d="M293 387c86 45 187 68 307 68s221-23 307-68"/>
+    <path d="M356 340c64 32 145 49 244 49s180-17 244-49"/>
+  </g>
+</svg>

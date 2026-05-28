@@ -1,0 +1,5 @@
+discord.py>=2.4,<3
+Pillow>=10,<12
+
+# Optional: improves SVG rendering quality if Cairo is available on the host.
+cairosvg>=2.7,<3

@@ -1,0 +1,46 @@
+{
+  "entities": {},
+  "accounts": {},
+  "stocks": {},
+  "stock_history": {},
+  "market_categories": [
+    "raw_resources",
+    "consumer_goods",
+    "food_and_beverages",
+    "arts_and_culture",
+    "entertainment_media",
+    "information_technology",
+    "mobility_transport",
+    "energy_utilities",
+    "heavy_industry",
+    "military",
+    "healthcare_medical",
+    "public_state_offers",
+    "real_estate",
+    "finance_insurance"
+  ],
+  "products": {},
+  "contracts": {},
+  "salaries": {},
+  "settings": {
+    "entrepreneur_role_id": null,
+    "employer_role_id": null,
+    "state_chief_role_id": null,
+    "states": [],
+    "currency": {
+      "code": "ECO",
+      "name": "Economicon",
+      "symbol": "ECO",
+      "emoji": "",
+      "image_url": ""
+    }
+  },
+  "company_forums": {},
+  "holdings": {},
+  "transactions": [],
+  "next_ids": {
+    "entity": 1,
+    "account": 1,
+    "tx": 1
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "Ecke B2 oben links": {
+    "x": 0.0477,
+    "y": 0.0293,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ecke B20 unten links": {
+    "x": 0.0477,
+    "y": 0.9501,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ecke B20 oben rechts": {
+    "x": 0.0916,
+    "y": 0.9011,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ecke W21 unten rechts": {
+    "x": 1.0,
+    "y": 0.9999,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ecke W21 oben links": {
+    "x": 0.96,
+    "y": 0.95,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ecke V1 unten rechts": {
+    "x": 0.96,
+    "y": 0.0294,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ecke V2 unten rechts": {
+    "x": 0.96,
+    "y": 0.0787,
+    "grid": "?",
+    "region": "?"
+  }
+}

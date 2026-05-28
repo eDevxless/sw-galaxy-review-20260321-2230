@@ -1,0 +1,279 @@
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 8, 14, 0.8);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.admin-modal-card {
+  background: rgba(11, 22, 36, 0.96);
+  border: 1px solid rgba(109, 227, 215, 0.28);
+  border-radius: 18px;
+  padding: 1.4rem 1.6rem;
+  width: min(420px, 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  color: #f5f9ff;
+  font-size: 0.9rem;
+}
+
+.admin-modal-card h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.12rem;
+  letter-spacing: 0.04em;
+}
+
+.admin-modal-card p {
+  margin: 0 0 1rem;
+  color: rgba(220, 230, 245, 0.7);
+}
+
+.admin-modal-card label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(180, 200, 220, 0.7);
+  margin-bottom: 0.3rem;
+}
+
+.admin-modal-card input[type="password"],
+.admin-modal-card input[type="text"] {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  font-size: 0.92rem;
+  margin-bottom: 0.95rem;
+  font-family: inherit;
+}
+
+.admin-modal-card .admin-modal-actions {
+  display: flex;
+  gap: 0.55rem;
+  justify-content: flex-end;
+}
+
+.admin-modal-card button {
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(109, 227, 215, 0.4);
+  background: rgba(109, 227, 215, 0.1);
+  color: #6de3d7;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.admin-modal-card button.secondary {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(220, 230, 245, 0.7);
+}
+
+.admin-modal-error {
+  color: #ff6b8a;
+  font-size: 0.78rem;
+  margin: -0.4rem 0 0.7rem;
+  min-height: 1em;
+}
+
+.admin-status-pill {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 102, 124, 0.16);
+  border: 1px solid rgba(255, 102, 124, 0.45);
+  color: #ffb1be;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-status-pill.is-active {
+  background: rgba(108, 189, 255, 0.16);
+  border-color: rgba(108, 189, 255, 0.55);
+  color: #b6dcff;
+}
+
+.admin-status-pill button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 0.72rem;
+  cursor: pointer;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  padding: 0;
+}
+
+.admin-edit-panel {
+  margin-top: 0.85rem;
+  padding: 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(108, 189, 255, 0.32);
+  background: rgba(19, 38, 60, 0.55);
+  display: grid;
+  gap: 0.65rem;
+}
+
+.admin-edit-panel h3 {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(182, 220, 255, 0.85);
+}
+
+.admin-edit-panel label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(180, 200, 220, 0.7);
+  margin-bottom: 0.25rem;
+}
+
+.admin-edit-panel input,
+.admin-edit-panel select,
+.admin-edit-panel textarea {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  font-size: 0.86rem;
+  font-family: inherit;
+}
+
+.admin-edit-panel input.is-compact-image-value {
+  color: #ffe0b8;
+  border-color: rgba(255, 178, 92, 0.36);
+  background: rgba(255, 138, 36, 0.08);
+}
+
+.admin-edit-panel textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.admin-edit-panel .field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.admin-event-editor {
+  display: grid;
+  gap: 0.48rem;
+  padding: 0.62rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 135, 78, 0.25);
+  background: rgba(255, 135, 78, 0.07);
+}
+
+.admin-edit-panel .actions {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 0.2rem;
+}
+
+.admin-edit-panel button {
+  padding: 0.42rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(108, 189, 255, 0.45);
+  background: rgba(108, 189, 255, 0.12);
+  color: #b6dcff;
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+.admin-edit-panel button.danger {
+  border-color: rgba(255, 102, 124, 0.5);
+  background: rgba(255, 102, 124, 0.12);
+  color: #ffb1be;
+}
+
+.admin-edit-panel button.secondary {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: rgba(220, 230, 245, 0.7);
+}
+
+.admin-edit-panel button[disabled] {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.admin-edit-feedback {
+  font-size: 0.75rem;
+  color: rgba(180, 200, 220, 0.85);
+  min-height: 1em;
+}
+
+.admin-edit-feedback.error {
+  color: #ff8aa1;
+}
+
+.admin-image-preview {
+  position: relative;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  padding: 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.admin-image-preview img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.admin-image-preview .preview-meta {
+  font-size: 0.74rem;
+  color: rgba(220, 230, 245, 0.75);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: normal;
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-image-preview button {
+  align-self: flex-start;
+}
+
+.admin-edit-panel .file-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px dashed rgba(108, 189, 255, 0.5);
+  cursor: pointer;
+  font-size: 0.78rem;
+  color: #b6dcff;
+}
+
+.admin-edit-panel input[type="file"] {
+  display: none;
+}

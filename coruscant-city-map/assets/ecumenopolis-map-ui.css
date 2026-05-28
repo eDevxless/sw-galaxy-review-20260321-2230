@@ -1,0 +1,248 @@
+.planet-view-toggle {
+  position: fixed;
+  top: max(16px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+  z-index: 30;
+  display: inline-flex;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid rgba(93, 119, 144, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 14px 34px rgba(27, 43, 56, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.planet-view-toggle button {
+  min-width: 54px;
+  height: 38px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: #405266;
+  font: 600 14px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.planet-view-toggle button.is-active {
+  border-color: rgba(65, 118, 255, 0.3);
+  background: rgba(72, 126, 255, 0.14);
+  color: #1d5cff;
+}
+
+.planet-globe-pane {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(72, 142, 184, 0.14), transparent 40%),
+    radial-gradient(circle at 20% 20%, rgba(255, 210, 120, 0.1), transparent 24%),
+    #050912;
+}
+
+.planet-globe-pane[hidden] {
+  display: none;
+}
+
+#planetGlobeCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+.planet-globe-hud {
+  position: fixed;
+  left: max(18px, env(safe-area-inset-left));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 31;
+  max-width: min(420px, calc(100vw - 36px));
+  padding: 16px 18px;
+  border: 1px solid rgba(162, 196, 224, 0.24);
+  border-radius: 8px;
+  background: rgba(7, 13, 24, 0.68);
+  color: #eff7ff;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(20px);
+}
+
+.planet-globe-kicker {
+  margin: 0 0 6px;
+  color: #8db9d7;
+  font: 700 11px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.planet-globe-title {
+  margin: 0 0 4px;
+  color: #ffffff;
+  font: 800 clamp(22px, 3vw, 36px)/1.05 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.planet-globe-meta {
+  margin: 0;
+  color: #bfd0dd;
+  font: 500 13px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.planet-globe-zoom {
+  position: fixed;
+  left: max(18px, env(safe-area-inset-left));
+  top: max(18px, env(safe-area-inset-top));
+  z-index: 31;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(162, 196, 224, 0.22);
+  border-radius: 999px;
+  background: rgba(7, 13, 24, 0.58);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.planet-globe-zoom button {
+  width: 40px;
+  height: 38px;
+  border: 1px solid rgba(190, 218, 240, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #eff8ff;
+  font: 800 16px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.planet-globe-zoom button[data-planet-zoom="reset"] {
+  width: 52px;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.planet-globe-zoom button:hover {
+  border-color: rgba(148, 213, 255, 0.52);
+  background: rgba(105, 176, 255, 0.2);
+}
+
+.planet-globe-detail {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 32;
+  width: min(390px, calc(100vw - 36px));
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(177, 213, 238, 0.28);
+  border-radius: 8px;
+  background: rgba(8, 15, 28, 0.78);
+  color: #f3f8ff;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(20px);
+}
+
+.planet-globe-detail[hidden] {
+  display: none;
+}
+
+.planet-globe-detail-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(190, 218, 240, 0.24);
+  border-radius: 999px;
+  background:
+    linear-gradient(45deg, transparent 47%, #d8e7f5 48%, #d8e7f5 54%, transparent 55%),
+    linear-gradient(-45deg, transparent 47%, #d8e7f5 48%, #d8e7f5 54%, transparent 55%),
+    rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.planet-globe-detail-kicker {
+  margin: 0 38px 8px 0;
+  color: #8fbddd;
+  font: 800 11px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.planet-globe-detail h2 {
+  margin: 0 38px 10px 0;
+  color: #ffffff;
+  font: 800 23px/1.1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.planet-globe-detail-description {
+  margin: 0 0 14px;
+  color: #d8e5ef;
+  font: 500 13px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.planet-globe-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.planet-globe-detail-meta span {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 5px 9px;
+  border: 1px solid rgba(178, 211, 235, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #dbeaf5;
+  font: 700 12px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body.is-globe-mode #cityMap,
+body.is-globe-mode .search-shell,
+body.is-globe-mode .map-legend,
+body.is-globe-mode #buildingSheet {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .planet-view-toggle {
+    right: 12px;
+    top: 12px;
+  }
+
+  .planet-view-toggle button {
+    min-width: 48px;
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .planet-globe-hud {
+    padding: 14px 15px;
+  }
+
+  .planet-globe-zoom {
+    top: auto;
+    bottom: 18px;
+    left: 12px;
+  }
+
+  .planet-globe-zoom button {
+    width: 38px;
+    height: 36px;
+  }
+
+  .planet-globe-detail {
+    top: 64px;
+    right: 12px;
+    bottom: auto;
+    left: 12px;
+    width: auto;
+    padding: 15px 15px 14px;
+  }
+
+  .planet-globe-detail h2 {
+    font-size: 20px;
+  }
+}

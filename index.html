@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star Wars Galaxy Map</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta name="description"
+    content="Interaktive Star-Wars-Galaxiekarte mit Planetenpunkten, Koordinaten und Vektor-Layern." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Star Wars Galaxy Map" />
+  <meta property="og:title" content="Star Wars Galaxy Map" />
+  <meta property="og:description"
+    content="Interaktive Star-Wars-Galaxiekarte mit Planetenpunkten, Hyperraumrouten und Fraktionen. Suche, Reiserechner und 3D-Ansicht inklusive." />
+  <meta property="og:url" content="https://star-wars-galaxy-map-alpha.vercel.app/" />
+  <meta property="og:image" content="https://star-wars-galaxy-map-alpha.vercel.app/assets/og-preview.jpg" />
+  <meta property="og:image:width" content="900" />
+  <meta property="og:image:height" content="600" />
+  <meta property="og:image:alt" content="Coruscant bei Nacht — Skyline mit Mond am Horizont" />
+  <meta property="og:locale" content="de_DE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Star Wars Galaxy Map" />
+  <meta name="twitter:description"
+    content="Interaktive Star-Wars-Galaxiekarte mit Planetenpunkten, Hyperraumrouten und Fraktionen." />
+  <meta name="twitter:image" content="https://star-wars-galaxy-map-alpha.vercel.app/assets/og-preview.jpg" />
+  <meta name="theme-color" content="#0a1422" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.21.1/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="styles.css?v=coruscant-city-map-14" />
+  <link rel="stylesheet" href="admin.css?v=coruscant-city-map-14" />
+</head>
+
+<body class="intro-active">
+  <div id="landingIntro" class="landing-intro" aria-hidden="false">
+    <canvas id="landingStarfield" class="landing-starfield"></canvas>
+    <div class="landing-intro-vignette" aria-hidden="true"></div>
+    <div class="landing-intro-copy">
+      <p class="landing-intro-kicker">Galaxy approach</p>
+      <div class="landing-intro-prompt-wrap">
+        <span id="landingPromptVerb" class="landing-intro-prompt">scrollen</span>
+        <span class="landing-intro-prompt-arrow" aria-hidden="true"></span>
+      </div>
+      <p id="landingPromptHint" class="landing-intro-hint">um die Sternenkarte freizulegen</p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const intro = document.getElementById("landingIntro");
+      if (!intro || !document.body) return;
+
+      let progress = 0;
+      let touchLastY = 0;
+      let active = true;
+
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const setProgress = (next) => {
+        progress = clamp(Number(next) || 0, 0, 0.985);
+        document.body.style.setProperty("--intro-progress", progress.toFixed(4));
+        window.__landingIntroBootstrap.progress = progress;
+      };
+      const nudge = (delta) => {
+        if (!active) return;
+        const change = Number(delta) || 0;
+        if (!change) return;
+        setProgress(progress + change);
+      };
+
+      const onWheel = (event) => {
+        if (!active) return;
+        event.preventDefault();
+        nudge(clamp(event.deltaY / Math.max(window.innerHeight * 1.24, 620), -0.1, 0.14));
+      };
+      const onTouchStart = (event) => {
+        if (!active) return;
+        const touch = event.touches && event.touches[0];
+        touchLastY = touch ? touch.clientY : 0;
+      };
+      const onTouchMove = (event) => {
+        if (!active) return;
+        const touch = event.touches && event.touches[0];
+        if (!touch) return;
+        const previousY = touchLastY || touch.clientY;
+        touchLastY = touch.clientY;
+        const delta = clamp((previousY - touch.clientY) / Math.max(window.innerHeight * 3.4, 1100), -0.04, 0.06);
+        if (!delta) return;
+        event.preventDefault();
+        nudge(delta);
+      };
+      const onTouchEnd = () => {
+        touchLastY = 0;
+      };
+      const onKeyDown = (event) => {
+        if (!active) return;
+        if (event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
+          event.preventDefault();
+          nudge(0.08);
+        } else if (event.key === "ArrowUp" || event.key === "PageUp") {
+          event.preventDefault();
+          nudge(-0.07);
+        }
+      };
+
+      intro.addEventListener("wheel", onWheel, { passive: false });
+      intro.addEventListener("touchstart", onTouchStart, { passive: true });
+      intro.addEventListener("touchmove", onTouchMove, { passive: false });
+      intro.addEventListener("touchend", onTouchEnd, { passive: true });
+      window.addEventListener("keydown", onKeyDown);
+
+      window.__landingIntroBootstrap = {
+        progress,
+        detach() {
+          if (!active) return;
+          active = false;
+          intro.removeEventListener("wheel", onWheel);
+          intro.removeEventListener("touchstart", onTouchStart);
+          intro.removeEventListener("touchmove", onTouchMove);
+          intro.removeEventListener("touchend", onTouchEnd);
+          window.removeEventListener("keydown", onKeyDown);
+        },
+      };
+    })();
+  </script>
+  <main class="app-shell">
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-route" viewBox="0 0 24 24">
+        <path d="M6 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+        <path d="M18 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+        <path d="M8.5 16h4.2a3.3 3.3 0 0 0 0-6.6H11" />
+      </symbol>
+      <symbol id="icon-fleet" viewBox="0 0 24 24">
+        <path d="M12 3 4.8 20.2l7.2-3 7.2 3Z" />
+        <path d="M12 3v14.2" />
+        <path d="M8.6 18.6 12 10l3.4 8.6" />
+      </symbol>
+      <symbol id="icon-news" viewBox="0 0 24 24">
+        <path d="M5 6.8v10.4l9-2.7V9.5Z" />
+        <path d="M14 9.5c2-.7 3.7-1.9 5-3.5v12c-1.3-1.6-3-2.8-5-3.5" />
+        <path d="m7 17.2 1.5 3" />
+      </symbol>
+      <symbol id="icon-planet" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5.3" />
+        <path d="M3.2 14.6c2.2 1.4 5.8 1.5 9.5.2 3.9-1.3 6.8-3.8 7.1-6" />
+        <path d="M20.8 9.4c-2.2-1.4-5.8-1.5-9.5-.2-3.9 1.3-6.8 3.8-7.1 6" />
+      </symbol>
+      <symbol id="icon-filter" viewBox="0 0 24 24">
+        <path d="M4 6h16" />
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+        <circle cx="9" cy="6" r="2" />
+        <circle cx="15" cy="12" r="2" />
+        <circle cx="11" cy="18" r="2" />
+      </symbol>
+      <symbol id="icon-faction" viewBox="0 0 24 24">
+        <path d="M6 4v17" />
+        <path d="M7 5h11l-2.2 4L18 13H7Z" />
+        <path d="M10 8h4" />
+      </symbol>
+    </svg>
+    <header class="topbar">
+      <div class="brand">
+        <p class="eyebrow">Galaxy Map</p>
+        <h1>Star Wars Galaxy Map</h1>
+      </div>
+
+      <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="Planet, Fraktion oder Route suchen..." autocomplete="off" />
+        <ul id="searchResults" class="search-dropdown"></ul>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <div class="desktop-panel-dock" id="desktopPanelDock" aria-label="Funktionspanels">
+        <button type="button" class="desktop-panel-launcher" data-window-open="travel">
+          <svg class="menu-icon" aria-hidden="true">
+            <use href="#icon-route"></use>
+          </svg>
+          <span class="menu-label">Reiserechner</span>
+        </button>
+        <button type="button" class="desktop-panel-launcher" data-window-open="fleet">
+          <svg class="menu-icon" aria-hidden="true">
+            <use href="#icon-fleet"></use>
+          </svg>
+          <span class="menu-label">Flotten</span>
+        </button>
+        <button type="button" class="desktop-panel-launcher has-badge" data-window-open="news">
+          <svg class="menu-icon" aria-hidden="true">
+            <use href="#icon-news"></use>
+          </svg>
+          <span class="menu-label">News</span>
+          <span id="newsUnreadDockBadge" class="menu-badge hidden">0</span>
+        </button>
+        <button type="button" class="desktop-panel-launcher" data-window-open="planetDetail">
+          <svg class="menu-icon" aria-hidden="true">
+            <use href="#icon-planet"></use>
+          </svg>
+          <span class="menu-label">Planeten</span>
+        </button>
+        <button type="button" class="desktop-panel-launcher" data-window-open="mapTools">
+          <svg class="menu-icon" aria-hidden="true">
+            <use href="#icon-filter"></use>
+          </svg>
+          <span class="menu-label">Filter u Legende</span>
+        </button>
+        <button type="button" class="desktop-panel-launcher" data-window-open="detail">
+          <svg class="menu-icon" aria-hidden="true">
+            <use href="#icon-faction"></use>
+          </svg>
+          <span class="menu-label">Fraktion</span>
+        </button>
+      </div>
+      <button type="button" id="viewModeToggleButton" class="view-mode-fab" aria-label="Zu 3D wechseln"
+        aria-pressed="false">2d</button>
+      <button type="button" id="mapModeToggleButton" class="map-mode-fab" aria-label="Map-Ansicht wechseln"
+        aria-pressed="false" title="Zur Underworld-Ansicht wechseln">Underworld</button>
+
+      <aside class="sidebar sidebar-left" id="sidebarLeft">
+        <section class="panel-card travel-card collapsible-card desktop-floating-window" data-window-key="travel">
+          <div class="desktop-window-head">
+            <div class="window-drag-handle window-drag-handle-inline" data-window-handle="travel"
+              aria-label="Reiserechner verschieben">
+              <span class="window-drag-handle-bar" aria-hidden="true"></span>
+            </div>
+            <div class="window-controls">
+              <button type="button" class="window-maximize" data-window-maximize="travel"
+                aria-label="Reiserechner maximieren" title="Maximieren"></button>
+              <button type="button" class="window-close" data-window-close="travel"
+                aria-label="Reiserechner schließen">&times;</button>
+            </div>
+          </div>
+          <div class="mobile-screen-head">
+            <div class="mobile-screen-copy">
+              <span class="mobile-screen-eyebrow">Menü</span>
+              <span class="mobile-screen-title">Hyperraumberechnung</span>
+            </div>
+            <button type="button" class="mobile-screen-close" data-mobile-close="menu"
+              aria-label="Mobile Ansicht schließen">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <button type="button" class="section-toggle" data-panel-toggle="travel" aria-controls="travelPanelBody"
+            aria-expanded="true">
+            <span class="section-toggle-main">
+              <span class="section-toggle-title">Reiserechner</span>
+              <span id="travelModeChip" class="pill muted">Grid</span>
+            </span>
+            <span class="section-toggle-arrow" aria-hidden="true"></span>
+          </button>
+
+          <div id="travelPanelBody" class="panel-body">
+            <div class="travel-form">
+              <label class="field-label" for="travelStartInput">Startplanet</label>
+              <input type="text" id="travelStartInput" list="travelPlanetOptions" placeholder="Planetenname eingeben"
+                autocomplete="off" />
+
+              <div class="travel-swap-row">
+                <button type="button" id="travelSwapButton" class="ghost-button">Start/Ziel tauschen</button>
+              </div>
+
+              <label class="field-label" for="travelTargetInput">Zielplanet</label>
+              <input type="text" id="travelTargetInput" list="travelPlanetOptions" placeholder="Planetenname eingeben"
+                autocomplete="off" />
+
+              <label class="field-label" for="travelHyperdriveInput">Hyperantrieb Klasse</label>
+              <input type="number" id="travelHyperdriveInput" min="0.5" max="10" step="0.1" value="1"
+                inputmode="decimal" />
+
+              <label class="field-label" for="travelFleetSelect">Flotte</label>
+              <select id="travelFleetSelect" autocomplete="off">
+                <option value="">Keine Flotte</option>
+              </select>
+
+              <div class="travel-submit-row">
+                <button type="button" id="travelRunButton" class="accent-button">Start</button>
+                <button type="button" id="travelClearButton" class="ghost-button">Alles leeren</button>
+              </div>
+            </div>
+
+            <div id="travelSummary" class="travel-summary">
+              Start- und Zielplanet wählen und dann auf Start klicken, um die Route zu berechnen.
+            </div>
+
+            <div id="travelResult" class="travel-result hidden">
+              <div class="travel-stat-grid">
+                <div class="travel-stat">
+                  <span>Grid-Distanz</span>
+                  <strong id="travelGridDistance">0</strong>
+                </div>
+                <div class="travel-stat">
+                  <span>Reisezeit</span>
+                  <strong id="travelTime">-</strong>
+                </div>
+              </div>
+
+              <div class="travel-meta-lines">
+                <div class="meta-line"><strong>Wegtyp:</strong> <span id="travelModeText">-</span></div>
+                <div class="meta-line"><strong>Flotte:</strong> <span id="travelFleetMeta">-</span></div>
+                <div class="meta-line"><strong>Route:</strong> <span id="travelRouteNames">-</span></div>
+                <div class="meta-line"><strong>Start/Ziel:</strong> <span id="travelEndpointGrids">-</span></div>
+              </div>
+
+              <div class="travel-grid-sequence-wrap">
+                <div class="field-label compact">Grid-Folge</div>
+                <div id="travelGridSequence" class="travel-grid-sequence"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-card fleet-card collapsible-card desktop-floating-window" data-window-key="fleet">
+          <div class="desktop-window-head">
+            <div class="window-drag-handle window-drag-handle-inline" data-window-handle="fleet"
+              aria-label="Flottenfenster verschieben">
+              <span class="window-drag-handle-bar" aria-hidden="true"></span>
+            </div>
+            <div class="window-controls">
+              <button type="button" class="window-maximize" data-window-maximize="fleet"
+                aria-label="Flottenfenster maximieren" title="Maximieren"></button>
+              <button type="button" class="window-close" data-window-close="fleet"
+                aria-label="Flottenfenster schließen">&times;</button>
+            </div>
+          </div>
+          <div class="mobile-screen-head">
+            <div class="mobile-screen-copy">
+              <span class="mobile-screen-eyebrow">Menü</span>
+              <span class="mobile-screen-title">Flotten</span>
+            </div>
+            <button type="button" class="mobile-screen-close" data-mobile-close="menu"
+              aria-label="Mobile Ansicht schließen">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <button type="button" class="section-toggle" data-panel-toggle="fleet" aria-controls="fleetPanelBody"
+            aria-expanded="true">
+            <span class="section-toggle-main">
+              <span class="section-toggle-title">Flotten</span>
+              <span id="fleetSummaryChip" class="pill muted">0 Flotten</span>
+            </span>
+            <span class="section-toggle-arrow" aria-hidden="true"></span>
+          </button>
+
+          <div id="fleetPanelBody" class="panel-body">
+            <div class="fleet-block fleet-account-row">
+              <div class="fleet-account-head">
+                <span class="field-label">Account</span>
+                <span id="fleetAccountStatus" class="pill muted">Lokal</span>
+              </div>
+              <div class="fleet-account-fields">
+                <input type="text" id="fleetUsernameInput" placeholder="Benutzername" autocomplete="username" />
+                <input type="password" id="fleetPasswordInput" placeholder="Passwort" autocomplete="current-password" />
+              </div>
+              <div class="fleet-actions">
+                <button type="button" id="fleetLoginButton" class="accent-button">Einloggen</button>
+                <button type="button" id="fleetRegisterButton" class="ghost-button">Registrieren</button>
+                <button type="button" id="fleetLogoutButton" class="ghost-button">Abmelden</button>
+                <button type="button" id="fleetSyncButton" class="ghost-button">Sync</button>
+              </div>
+              <div id="fleetAccountFeedback" class="small-copy"></div>
+            </div>
+
+            <div id="fleetAdminBlock" class="fleet-block fleet-admin-block hidden">
+              <div class="fleet-account-head">
+                <span class="field-label">Admin Zugriff</span>
+                <span id="fleetAdminStatus" class="pill muted">nicht geladen</span>
+              </div>
+              <select id="fleetAdminUserSelect" autocomplete="off" aria-label="Admin-Benutzer auswählen"></select>
+              <div class="fleet-actions">
+                <button type="button" id="fleetAdminLoadButton" class="ghost-button">Alle User laden</button>
+                <button type="button" id="fleetAdminExitButton" class="ghost-button">Eigene Ansicht</button>
+              </div>
+              <div id="fleetAdminFeedback" class="small-copy"></div>
+            </div>
+
+            <div class="fleet-block fleet-profile-row">
+              <label class="field-label" for="fleetProfileSelect">Kommandoprofil</label>
+              <select id="fleetProfileSelect" autocomplete="off"></select>
+              <input type="text" id="fleetProfileNameInput" placeholder="Kommandoname" autocomplete="off" />
+              <div class="fleet-actions">
+                <button type="button" id="fleetProfileSaveButton" class="ghost-button">Profil speichern</button>
+                <button type="button" id="fleetProfileCreateButton" class="ghost-button">Neues Profil</button>
+              </div>
+            </div>
+
+            <div class="fleet-stat-grid" aria-label="Flottenuebersicht">
+              <div class="fleet-stat">
+                <span>Flotten</span>
+                <strong id="fleetCountStat">0</strong>
+              </div>
+              <div class="fleet-stat">
+                <span>Schiffe</span>
+                <strong id="fleetShipCountStat">0</strong>
+              </div>
+              <div class="fleet-stat">
+                <span>Katalog</span>
+                <strong id="fleetCatalogCountStat">0</strong>
+              </div>
+            </div>
+
+            <div class="fleet-block sector-army-entry">
+              <div class="fleet-account-head">
+                <span class="field-label">Militaerische Lage</span>
+                <span class="pill muted">OOC-Layer</span>
+              </div>
+              <div class="small-copy">
+                Sektorarmeen, freie Reserven und strategische Sonderassets als gemeinsame Lagekarte.
+              </div>
+              <div class="fleet-actions">
+                <button type="button" id="sectorArmyFleetButton" class="accent-button">Militaerische Lage</button>
+              </div>
+            </div>
+
+            <div class="fleet-block">
+              <div class="fleet-form-grid">
+                <label class="field-label" for="fleetNameInput">Name</label>
+                <input type="text" id="fleetNameInput" placeholder="z.B. 7. Sektorflotte" autocomplete="off" />
+
+                <label class="field-label" for="fleetFactionInput">Fraktion</label>
+                <select id="fleetFactionInput" autocomplete="off">
+                  <option value="republic">Republik</option>
+                  <option value="separatist">KUS</option>
+                </select>
+              </div>
+              <div class="fleet-actions">
+                <button type="button" id="fleetSaveButton" class="accent-button">Flotte erstellen</button>
+                <button type="button" id="fleetNewButton" class="ghost-button">Neu</button>
+                <button type="button" id="fleetDeleteButton" class="danger-button">Loeschen</button>
+              </div>
+            </div>
+
+            <div class="fleet-layout">
+              <div class="fleet-column">
+                <div class="field-label compact">Deine Flotten</div>
+                <div id="fleetList" class="fleet-list"></div>
+              </div>
+
+              <div class="fleet-column fleet-active">
+                <div id="fleetEmptyState" class="detail-empty">
+                  Erstelle eine Flotte oder waehle eine vorhandene aus.
+                </div>
+                <div id="fleetActiveBody" class="fleet-active-body hidden">
+                  <div class="fleet-active-head">
+                    <div>
+                      <div id="fleetActiveTitle" class="detail-name"></div>
+                      <div id="fleetActiveMeta" class="detail-region"></div>
+                    </div>
+                    <div id="fleetActiveStats" class="fleet-active-stats"></div>
+                  </div>
+
+                  <div class="fleet-ship-picker">
+                    <label class="field-label" for="fleetShipSearchInput">Schiff hinzufuegen</label>
+                    <input type="text" id="fleetShipSearchInput" list="fleetShipOptions"
+                      placeholder="Schiffsklasse suchen" autocomplete="off" />
+                    <div class="fleet-ship-controls">
+                      <select id="fleetShipFactionFilter" autocomplete="off" aria-label="Schiffe nach Fraktion filtern">
+                        <option value="all">Alle</option>
+                        <option value="republic">Republik</option>
+                        <option value="separatist">KUS</option>
+                      </select>
+                      <label class="field-label sr-only" for="fleetShipQuantityInput">Anzahl einzelner Schiffe</label>
+                      <input type="number" id="fleetShipQuantityInput" min="1" step="1" value="1" inputmode="numeric" />
+                      <button type="button" id="fleetShipAddButton" class="accent-button">Hinzufuegen</button>
+                    </div>
+                    <div id="fleetShipCatalogCount" class="small-copy"></div>
+                  </div>
+
+                  <div id="fleetShipList" class="fleet-ship-list"></div>
+                  <div id="fleetShipDetail" class="fleet-ship-detail hidden"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-card news-card collapsible-card desktop-floating-window" data-window-key="news">
+          <div class="desktop-window-head">
+            <div class="window-drag-handle window-drag-handle-inline" data-window-handle="news"
+              aria-label="Newsfenster verschieben">
+              <span class="window-drag-handle-bar" aria-hidden="true"></span>
+            </div>
+            <div class="window-controls">
+              <button type="button" class="window-maximize" data-window-maximize="news"
+                aria-label="Newsfenster maximieren" title="Maximieren"></button>
+              <button type="button" class="window-close" data-window-close="news"
+                aria-label="Newsfenster schließen">&times;</button>
+            </div>
+          </div>
+          <div class="mobile-screen-head">
+            <div class="mobile-screen-copy">
+              <span class="mobile-screen-eyebrow">Menü</span>
+              <span class="mobile-screen-title">News</span>
+            </div>
+            <button type="button" class="mobile-screen-close" data-mobile-close="menu"
+              aria-label="Mobile Ansicht schließen">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <button type="button" class="section-toggle" data-panel-toggle="news" aria-controls="newsPanelBody"
+            aria-expanded="true">
+            <span class="section-toggle-main">
+              <span class="section-toggle-title">News</span>
+              <span id="newsSummaryChip" class="pill muted">0 Meldungen</span>
+            </span>
+            <span class="section-toggle-arrow" aria-hidden="true"></span>
+          </button>
+
+          <div id="newsPanelBody" class="panel-body">
+            <div id="newsUnreadHint" class="news-unread-hint hidden"></div>
+
+            <div id="newsAdminBlock" class="news-admin-block hidden">
+              <div class="fleet-account-head">
+                <span class="field-label">Admin Ankuendigung</span>
+                <span id="newsAdminStatus" class="pill muted">bereit</span>
+              </div>
+              <input type="text" id="newsTitleInput" placeholder="Titel der Ankuendigung" autocomplete="off" />
+              <textarea id="newsBodyInput" placeholder="Text für den News-Channel"></textarea>
+              <input type="text" id="newsImageUrlInput" placeholder="Bild-URL oder Upload nutzen" autocomplete="off" />
+              <div class="fleet-actions">
+                <label class="file-pick news-file-pick" for="newsImageFileInput">Bild hochladen</label>
+                <input type="file" id="newsImageFileInput" accept="image/*" />
+                <button type="button" id="newsPublishButton" class="accent-button">Ankuendigen</button>
+              </div>
+              <div id="newsAdminFeedback" class="small-copy"></div>
+            </div>
+
+            <div id="newsList" class="news-list"></div>
+          </div>
+        </section>
+
+        <section class="panel-card detail-card planet-detail-card collapsible-card desktop-floating-window"
+          data-window-key="planetDetail">
+          <div class="desktop-window-head">
+            <div class="window-drag-handle window-drag-handle-inline" data-window-handle="planetDetail"
+              aria-label="Planetenfenster verschieben">
+              <span class="window-drag-handle-bar" aria-hidden="true"></span>
+            </div>
+            <div class="window-controls">
+              <button type="button" class="window-maximize" data-window-maximize="planetDetail"
+                aria-label="Planetenfenster maximieren" title="Maximieren"></button>
+              <button type="button" class="window-close" data-window-close="planetDetail"
+                aria-label="Planetenfenster schließen">&times;</button>
+            </div>
+          </div>
+          <div class="mobile-screen-head">
+            <div class="mobile-screen-copy">
+              <span class="mobile-screen-eyebrow">Menü</span>
+              <span class="mobile-screen-title">Planeteninfos</span>
+            </div>
+            <button type="button" class="mobile-screen-close" data-mobile-close="menu"
+              aria-label="Mobile Ansicht schließen">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="section-header with-clear">
+            <button type="button" id="planetDetailClearButton" class="section-clear hidden"
+              aria-label="Planeten-Fraktion loeschen">
+              ×
+            </button>
+            <button type="button" class="section-toggle" data-panel-toggle="planetDetail"
+              aria-controls="planetDetailPanelBody" aria-expanded="true">
+              <span class="section-toggle-main">
+                <span class="section-toggle-title">Planeten-Info</span>
+                <span id="planetDetailKind" class="pill muted">leer</span>
+              </span>
+              <span class="section-toggle-arrow" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div id="planetDetailPanelBody" class="panel-body">
+            <div id="planetDetailEmpty" class="detail-empty">
+              Einen Planeten oder eine Hyperraumroute auf der Karte oder in der Liste auswählen.
+            </div>
+            <div id="planetDetailBody" class="detail-body hidden">
+              <div id="planetDetailMedia" class="detail-media hidden">
+                <div class="detail-media-card">
+                  <div class="detail-media-title">Orbit-Ansicht</div>
+                  <div id="planetDetailOrbitSlot" class="detail-media-slot"></div>
+                </div>
+                <div class="detail-media-card">
+                  <div class="detail-media-title">Planetenkarte</div>
+                  <div id="planetDetailMapSlot" class="detail-media-slot"></div>
+                </div>
+              </div>
+              <div class="detail-summary">
+                <div class="detail-grid" id="planetDetailGrid"></div>
+                <div class="detail-name" id="planetDetailName"></div>
+                <div class="detail-region" id="planetDetailRegion"></div>
+                <div class="detail-desc" id="planetDetailDesc"></div>
+              </div>
+              <div id="planetDetailActions" class="detail-actions hidden">
+                <button type="button" id="planetDetailSetTravelStartButton" class="ghost-button">Als Start</button>
+                <button type="button" id="planetDetailSetTravelTargetButton" class="ghost-button">Als Ziel</button>
+              </div>
+              <dl id="planetDetailFacts" class="detail-facts">
+                <div>
+                  <dt id="planetDetailFactionLabel">Fraktion</dt>
+                  <dd id="planetDetailFaction"></dd>
+                </div>
+                <div>
+                  <dt id="planetDetailPositionLabel">Position</dt>
+                  <dd id="planetDetailPosition"></dd>
+                </div>
+                <div>
+                  <dt id="planetDetailClimateLabel">Klima &amp; Terrain</dt>
+                  <dd id="planetDetailClimate"></dd>
+                </div>
+                <div>
+                  <dt id="planetDetailSpeciesLabel">Spezies &amp; Bevoelkerung</dt>
+                  <dd id="planetDetailSpecies"></dd>
+                </div>
+                <div>
+                  <dt id="planetDetailSourceLabel">Quelle</dt>
+                  <dd id="planetDetailSource"></dd>
+                </div>
+                <div>
+                  <dt id="planetDetailWikiLabel">Wiki</dt>
+                  <dd id="planetDetailWiki"></dd>
+                </div>
+              </dl>
+              <div id="planetDetailEvent" class="planet-event-card hidden"></div>
+              <div id="planetDetailNotes" class="detail-notes"></div>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <section class="viewer-column">
+        <section class="panel-card viewer-tools-card collapsible-card desktop-floating-window"
+          data-window-key="mapTools">
+          <div class="desktop-window-head">
+            <div class="window-drag-handle window-drag-handle-inline" data-window-handle="mapTools"
+              aria-label="Filterfenster verschieben">
+              <span class="window-drag-handle-bar" aria-hidden="true"></span>
+            </div>
+            <div class="window-controls">
+              <button type="button" class="window-maximize" data-window-maximize="mapTools"
+                aria-label="Filterfenster maximieren" title="Maximieren"></button>
+              <button type="button" class="window-close" data-window-close="mapTools"
+                aria-label="Filterfenster schließen">&times;</button>
+            </div>
+          </div>
+          <div class="mobile-screen-head">
+            <div class="mobile-screen-copy">
+              <span class="mobile-screen-eyebrow">Menü</span>
+              <span class="mobile-screen-title">Filter</span>
+            </div>
+            <button type="button" class="mobile-screen-close" data-mobile-close="menu"
+              aria-label="Mobile Ansicht schließen">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <button type="button" class="section-toggle" data-panel-toggle="mapTools" aria-controls="mapToolsPanelBody"
+            aria-expanded="true">
+            <span class="section-toggle-main">
+              <span class="section-toggle-title" id="mapToolsTitle">Filter &amp; Legende</span>
+              <span id="mapToolsSummaryChip" class="pill muted">Alle sichtbar</span>
+            </span>
+            <span class="section-toggle-arrow" aria-hidden="true"></span>
+          </button>
+
+          <div id="mapToolsPanelBody" class="panel-body">
+            <div class="viewer-tools-intro">
+              Fraktionen, Hyperraumrouten und Planeten mit Profil koennen hier direkt ein- oder ausgeblendet werden.
+            </div>
+
+            <div class="filter-toolbar" role="group" aria-label="Kartenfilter">
+              <button type="button" class="filter-chip" data-filter-key="republic" aria-pressed="true">Republik</button>
+              <button type="button" class="filter-chip" data-filter-key="separatist"
+                aria-pressed="true">Separatisten</button>
+              <button type="button" class="filter-chip filter-chip-hidden" data-filter-key="blacksun"
+                aria-pressed="true">Black Sun</button>
+              <button type="button" class="filter-chip filter-chip-hidden" data-filter-key="hutt"
+                aria-pressed="true">Hutten</button>
+              <button type="button" class="filter-chip filter-chip-hidden" data-filter-key="pyke"
+                aria-pressed="true">Pyke</button>
+              <button type="button" class="filter-chip filter-chip-hidden" data-filter-key="ohnaka"
+                aria-pressed="true">Hondo Ohnaka</button>
+              <button type="button" class="filter-chip" data-filter-key="routes" aria-pressed="true">Routen</button>
+              <button type="button" class="filter-chip" data-filter-key="profiledOnly" aria-pressed="false">Nur mit
+                Profil</button>
+              <button type="button" class="filter-chip military" data-filter-key="sectorArmies"
+                aria-pressed="false">Sektorarmeen &amp; Flottenlage</button>
+            </div>
+
+            <div class="legend-grid" aria-label="Kartenlegende">
+              <article class="legend-item">
+                <span class="legend-swatch planet" aria-hidden="true"></span>
+                <div class="legend-copy">
+                  <strong>Planet</strong>
+                  <span>Kalibrierter Kartenpunkt mit Planetendetails.</span>
+                </div>
+              </article>
+
+              <article class="legend-item">
+                <span class="legend-swatch republic" aria-hidden="true"></span>
+                <div class="legend-copy">
+                  <strong>Republik</strong>
+                  <span>Banner der Republik; waehlt die Fraktion ueber den aeusseren Kreis.</span>
+                </div>
+              </article>
+
+              <article class="legend-item">
+                <span class="legend-swatch separatist" aria-hidden="true"></span>
+                <div class="legend-copy">
+                  <strong>Separatisten</strong>
+                  <span>Banner der KUS; waehlt die Fraktion ueber die aeussere Hexagon-Kante.</span>
+                </div>
+              </article>
+
+              <article class="legend-item">
+                <span class="legend-swatch route" aria-hidden="true"></span>
+                <div class="legend-copy">
+                  <strong>Hyperraumroute</strong>
+                  <span>Direkt klickbare Route mit eigenem Infofenster.</span>
+                </div>
+              </article>
+
+              <article class="legend-item">
+                <span class="legend-swatch selection" aria-hidden="true"></span>
+                <div class="legend-copy">
+                  <strong>Fraktion</strong>
+                  <span>Aktive Fraktion wird auf der Karte mit Ring und Label markiert.</span>
+                </div>
+              </article>
+
+              <article class="legend-item">
+                <span class="legend-swatch sector-army" aria-hidden="true"></span>
+                <div class="legend-copy">
+                  <strong>Sektorarmee</strong>
+                  <span>OOC-Flottenlage mit Gebiet, Reserve und Detailpanel.</span>
+                </div>
+              </article>
+            </div>
+
+            <div id="sectorArmyEditorMount" class="sector-army-editor-mount hidden"></div>
+
+            <div class="viewer-tools-note">
+              Tipp: Die Suche oben respektiert die aktiven Filter und zeigt Planeten, Fraktionen und Routen.
+            </div>
+          </div>
+        </section>
+
+        <div class="viewer-frame">
+          <div id="osdViewer" class="osd-viewer"></div>
+          <div id="threeViewer" class="three-viewer" aria-hidden="true"></div>
+          <div id="threeTransitionOverlay" class="three-transition-overlay" aria-hidden="true">
+            <canvas id="threeTransitionStarfield" class="three-transition-starfield"></canvas>
+            <div class="three-transition-vignette" aria-hidden="true"></div>
+          </div>
+          <div id="threeViewerHint" class="three-viewer-hint hidden">
+            3D-Modus: Ziehen dreht die Galaxie, Mausrad zoomt zur Mausposition, Klick waehlt Planeten, Fraktionen und
+            Routen.
+          </div>
+          <div id="threeHoverLabel" class="three-hover-label hidden" aria-hidden="true"></div>
+          <div id="threeRimHud" class="three-rim-hud hidden" aria-hidden="true"></div>
+          <div id="threeTravelFlash" class="three-travel-flash hidden" aria-hidden="true"></div>
+          <div id="threeNavHud" class="three-nav-hud hidden" aria-live="polite"></div>
+          <div id="threeJumpHud" class="three-jump-hud hidden"></div>
+          <div id="threeNavArrows" class="three-nav-arrows hidden" aria-label="Naechste Planeten">
+            <button type="button" id="threePrevPlanetButton" class="three-nav-arrow is-left"
+              aria-label="Vorheriger Planet">
+              <span aria-hidden="true">←</span>
+            </button>
+            <button type="button" id="threeNextPlanetButton" class="three-nav-arrow is-right"
+              aria-label="Naechster Planet">
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+          <div id="threeOrbitHud" class="three-orbit-hud hidden" aria-live="polite">
+            <div id="threeOrbitTitle" class="three-orbit-title"></div>
+            <div id="threeOrbitSubtitle" class="three-orbit-subtitle"></div>
+          </div>
+          <div id="threeOrbitCompass" class="three-orbit-compass hidden" aria-hidden="true"></div>
+          <div class="mobile-floating-controls" aria-label="Mobile Steuerung">
+            <button type="button" id="mobileTravelButton" class="mobile-travel-toggle" aria-label="Reiserechner">
+              <span class="mobile-travel-ship" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="statusbar" id="statusBar" aria-live="polite">Galaxie wird vorbereitet...</div>
+        </div>
+      </section>
+
+      <aside class="sidebar sidebar-right" id="sidebarRight">
+        <section class="panel-card detail-card faction-detail-card collapsible-card desktop-floating-window"
+          data-window-key="detail">
+          <div class="desktop-window-head">
+            <div class="window-drag-handle window-drag-handle-inline" data-window-handle="detail"
+              aria-label="Fraktionsfenster verschieben">
+              <span class="window-drag-handle-bar" aria-hidden="true"></span>
+            </div>
+            <div class="window-controls">
+              <button type="button" class="window-maximize" data-window-maximize="detail"
+                aria-label="Fraktionsfenster maximieren" title="Maximieren"></button>
+              <button type="button" class="window-close" data-window-close="detail"
+                aria-label="Fraktionsfenster schließen">&times;</button>
+            </div>
+          </div>
+          <div class="mobile-screen-head">
+            <div class="mobile-screen-copy">
+              <span class="mobile-screen-eyebrow">Menü</span>
+              <span class="mobile-screen-title">Fraktionsinfos</span>
+            </div>
+            <button type="button" class="mobile-screen-close" data-mobile-close="menu"
+              aria-label="Mobile Ansicht schließen">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="section-header with-clear">
+            <button type="button" id="detailClearButton" class="section-clear hidden" aria-label="Fraktion loeschen">
+              ×
+            </button>
+            <button type="button" class="section-toggle" data-panel-toggle="detail" aria-controls="detailPanelBody"
+              aria-expanded="true">
+              <span class="section-toggle-main">
+                <span class="section-toggle-title">Fraktion</span>
+                <span id="detailKind" class="pill muted">leer</span>
+              </span>
+              <span class="section-toggle-arrow" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div id="detailPanelBody" class="panel-body">
+            <div id="detailEmpty" class="detail-empty">
+              Ein Fraktionsbanner auf der Karte auswählen.
+            </div>
+            <div id="detailBody" class="detail-body hidden">
+              <div class="detail-grid" id="detailGrid"></div>
+              <div class="detail-name" id="detailName"></div>
+              <div class="detail-region" id="detailRegion"></div>
+              <div class="detail-desc" id="detailDesc"></div>
+              <div id="detailMedia" class="detail-media hidden">
+                <div class="detail-media-card">
+                  <div class="detail-media-title">Orbit-Ansicht</div>
+                  <div id="detailOrbitSlot" class="detail-media-slot"></div>
+                </div>
+                <div class="detail-media-card">
+                  <div class="detail-media-title">Planetenkarte</div>
+                  <div id="detailMapSlot" class="detail-media-slot"></div>
+                </div>
+              </div>
+              <div id="detailActions" class="detail-actions hidden">
+                <button type="button" id="detailSetTravelStartButton" class="ghost-button">Als Start</button>
+                <button type="button" id="detailSetTravelTargetButton" class="ghost-button">Als Ziel</button>
+              </div>
+              <dl class="detail-facts">
+                <div>
+                  <dt id="detailFactionLabel">Fraktion</dt>
+                  <dd id="detailFaction"></dd>
+                </div>
+                <div>
+                  <dt id="detailPositionLabel">Position</dt>
+                  <dd id="detailPosition"></dd>
+                </div>
+                <div>
+                  <dt id="detailClimateLabel">Klima &amp; Terrain</dt>
+                  <dd id="detailClimate"></dd>
+                </div>
+                <div>
+                  <dt id="detailSpeciesLabel">Spezies &amp; Bevoelkerung</dt>
+                  <dd id="detailSpecies"></dd>
+                </div>
+                <div>
+                  <dt id="detailSourceLabel">Quelle</dt>
+                  <dd id="detailSource"></dd>
+                </div>
+                <div>
+                  <dt id="detailWikiLabel">Wiki</dt>
+                  <dd id="detailWiki"></dd>
+                </div>
+              </dl>
+              <div id="detailNotes" class="detail-notes"></div>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <div id="mobileMenuSheet" class="mobile-menu-sheet" aria-label="Mobiles Menü">
+    <button type="button" id="mobileMenuHandle" class="mobile-menu-handle"
+      aria-label="Mobiles Menü öffnen oder schließen">
+      <span class="mobile-menu-grip" aria-hidden="true"></span>
+      <span class="mobile-menu-label">Menü</span>
+      <span class="mobile-menu-hint">Nach oben wischen</span>
+    </button>
+    <div class="mobile-menu-grid" role="group" aria-label="Mobile Optionen">
+      <button type="button" class="mobile-menu-tile" data-mobile-open="filters">
+        <svg class="menu-icon" aria-hidden="true">
+          <use href="#icon-filter"></use>
+        </svg>
+        <span class="menu-label">Filter</span>
+      </button>
+      <button type="button" class="mobile-menu-tile" data-mobile-open="travel">
+        <svg class="menu-icon" aria-hidden="true">
+          <use href="#icon-route"></use>
+        </svg>
+        <span class="menu-label">Hyperraum</span>
+      </button>
+      <button type="button" class="mobile-menu-tile" data-mobile-open="fleet">
+        <svg class="menu-icon" aria-hidden="true">
+          <use href="#icon-fleet"></use>
+        </svg>
+        <span class="menu-label">Flotten</span>
+      </button>
+      <button type="button" class="mobile-menu-tile has-badge" data-mobile-open="news">
+        <svg class="menu-icon" aria-hidden="true">
+          <use href="#icon-news"></use>
+        </svg>
+        <span class="menu-label">News</span>
+        <span id="newsUnreadMobileBadge" class="menu-badge hidden">0</span>
+      </button>
+      <button type="button" class="mobile-menu-tile" data-mobile-open="planetDetail">
+        <svg class="menu-icon" aria-hidden="true">
+          <use href="#icon-planet"></use>
+        </svg>
+        <span class="menu-label">Planeteninfos</span>
+      </button>
+      <button type="button" class="mobile-menu-tile" data-mobile-open="detail">
+        <svg class="menu-icon" aria-hidden="true">
+          <use href="#icon-faction"></use>
+        </svg>
+        <span class="menu-label">Fraktionsinfos</span>
+      </button>
+    </div>
+  </div>
+
+  <datalist id="travelPlanetOptions"></datalist>
+  <datalist id="fleetShipOptions"></datalist>
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/openseadragon@5.0.1/build/openseadragon/openseadragon.min.js"></script>
+  <script defer src="https://openseadragon.github.io/html-overlay/openseadragon-html-overlay.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="three-loader.js"></script>
+  <script defer src="config.js"></script>
+  <script defer src="planets.js"></script>
+  <script defer src="data/sector-armies.js?v=1"></script>
+  <script defer src="data/sector-army-territories.js?v=1"></script>
+  <script defer src="script.js?v=planet-world-profile-1"></script>
+  <script defer src="planet-map-system.js?v=readonly-map-access-1"></script>
+  <script defer src="admin.js?v=readonly-map-access-1"></script>
+</body>
+
+</html>

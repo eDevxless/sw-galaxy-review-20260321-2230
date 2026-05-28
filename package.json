@@ -1,0 +1,22 @@
+{
+  "name": "files",
+  "version": "1.0.0",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "powershell -ExecutionPolicy Bypass -File scripts/serve-local.ps1",
+    "serve": "npx http-server Website -p 8080 --silent"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.58.2"
+  },
+  "dependencies": {
+    "@vercel/blob": "^0.27.0",
+    "playwright-core": "^1.58.2",
+    "redis": "^4.7.0"
+  },
+  "description": ""
+}

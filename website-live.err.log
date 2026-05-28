@@ -1,0 +1,46 @@
+127.0.0.1 - - [28/May/2026 00:36:05] "GET /index.html?sectorEditor=1&sectorTest=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:36:05] "GET /styles.css?v=coruscant-city-map-14 HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:36:05] "GET /data/sector-armies.js?v=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:36:05] "GET /data/sector-army-territories.js?v=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:36:05] "GET /script.js?v=planet-world-profile-1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:36:05] "GET /planet-map-system.js?v=readonly-map-access-1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:36:05] "GET /admin.js?v=readonly-map-access-1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:36:07] "GET /calibrated_planets.json HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:36:07] "GET /rim_curves.json HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:36:07] code 404, message File not found
+127.0.0.1 - - [28/May/2026 00:36:07] "GET /underworld_factions.json HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:36:07] "GET /api/planets/overrides HTTP/1.1" 404 -
+127.0.0.1 - - [28/May/2026 00:36:07] "GET /api/news HTTP/1.1" 301 -
+127.0.0.1 - - [28/May/2026 00:36:07] "GET /planet_profiles.json HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:36:07] "GET /api/news/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:36:07] code 404, message File not found
+127.0.0.1 - - [28/May/2026 00:36:07] "GET /api/planets/image-proxy?url=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fstarwars%2Fimages%2F8%2F84%2FCoruscantGlobeE1.png%2Frevision%2Flatest%3Fcb%3D20240513175137 HTTP/1.1" 404 -
+127.0.0.1 - - [28/May/2026 00:36:10] code 404, message File not found
+127.0.0.1 - - [28/May/2026 00:36:10] "GET /api/planets/image-proxy?url=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fstarwars%2Fimages%2F8%2F84%2FCoruscantGlobeE1.png%2Frevision%2Flatest%3Fcb%3D20240513175137 HTTP/1.1" 404 -
+127.0.0.1 - - [28/May/2026 00:38:40] code 404, message File not found
+127.0.0.1 - - [28/May/2026 00:38:40] "GET /api/planets/image-proxy?url=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fstarwars%2Fimages%2F8%2F84%2FCoruscantGlobeE1.png%2Frevision%2Flatest%3Fcb%3D20240513175137 HTTP/1.1" 404 -
+127.0.0.1 - - [28/May/2026 00:39:47] "GET /index.html?sectorEditor=1&sectorTest=1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:39:48] "GET /styles.css?v=coruscant-city-map-14 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:39:48] "GET /data/sector-armies.js?v=1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:39:48] "GET /data/sector-army-territories.js?v=1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:39:48] "GET /script.js?v=planet-world-profile-1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:39:49] code 404, message File not found
+127.0.0.1 - - [28/May/2026 00:39:49] "GET /api/planets/overrides HTTP/1.1" 404 -
+127.0.0.1 - - [28/May/2026 00:39:49] "GET /api/news HTTP/1.1" 301 -
+127.0.0.1 - - [28/May/2026 00:39:49] "GET /api/news/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:41:19] "GET /index.html?sectorEditor=1&sectorTest=1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:41:19] "GET /styles.css?v=coruscant-city-map-14 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:41:19] "GET /script.js?v=planet-world-profile-1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:41:20] code 404, message File not found
+127.0.0.1 - - [28/May/2026 00:41:20] "GET /api/planets/overrides HTTP/1.1" 404 -
+127.0.0.1 - - [28/May/2026 00:41:20] "GET /api/news HTTP/1.1" 301 -
+127.0.0.1 - - [28/May/2026 00:41:20] "GET /api/news/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:44:35] "GET /index.html?sectorEditor=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:44:35] "GET /styles.css?v=coruscant-city-map-14 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:44:35] "GET /data/sector-armies.js?v=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/May/2026 00:44:35] "GET /data/sector-army-territories.js?v=1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:44:35] "GET /script.js?v=planet-world-profile-1 HTTP/1.1" 304 -
+127.0.0.1 - - [28/May/2026 00:44:36] code 404, message File not found
+127.0.0.1 - - [28/May/2026 00:44:36] "GET /api/planets/overrides HTTP/1.1" 404 -
+127.0.0.1 - - [28/May/2026 00:44:36] "GET /api/news HTTP/1.1" 301 -
+127.0.0.1 - - [28/May/2026 00:44:36] "GET /api/news/ HTTP/1.1" 200 -

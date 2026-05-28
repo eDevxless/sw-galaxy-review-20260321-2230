@@ -1,0 +1,7 @@
+
+Lokaler Server startet...
+Root-URL:            http://127.0.0.1:4179/
+Aktueller Build:     http://127.0.0.1:4179/Website/Version 8/
+Regel: Immer Root-URL oder den Wert aus [build].publish in netlify.toml verwenden.
+Beenden: Ctrl + C
+

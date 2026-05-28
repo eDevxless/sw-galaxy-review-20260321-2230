@@ -1,0 +1,12560 @@
+{
+  "Coruscant": {
+    "x": 0.4816,
+    "y": 0.4165,
+    "grid": "L-9",
+    "region": "Deep Core"
+  },
+  "Tython": {
+    "x": 0.4837,
+    "y": 0.4543,
+    "grid": "L-9",
+    "region": "Deep Core"
+  },
+  "Carratos": {
+    "x": 0.4451,
+    "y": 0.3574,
+    "grid": "?",
+    "region": "?"
+  },
+  "Relatta": {
+    "x": 0.5797,
+    "y": 0.3611,
+    "grid": "?",
+    "region": "?"
+  },
+  "Odik": {
+    "x": 0.4503,
+    "y": 0.4688,
+    "grid": "?",
+    "region": "?"
+  },
+  "Prakith": {
+    "x": 0.4642,
+    "y": 0.4591,
+    "grid": "J-11",
+    "region": "Deep Core"
+  },
+  "Christophsis": {
+    "x": 0.7322,
+    "y": 0.7454,
+    "grid": "L-10",
+    "region": "Outer Rim"
+  },
+  "Doldur": {
+    "x": 0.6705,
+    "y": 0.6713,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mon Gazza": {
+    "x": 0.7084,
+    "y": 0.7152,
+    "grid": "?",
+    "region": "?"
+  },
+  "Terminus": {
+    "x": 0.448,
+    "y": 0.9465,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kinooine": {
+    "x": 0.3963,
+    "y": 0.9717,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kal'Shebbol": {
+    "x": 0.5508,
+    "y": 0.9618,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yag'Dhul": {
+    "x": 0.5174,
+    "y": 0.6538,
+    "grid": "?",
+    "region": "?"
+  },
+  "Foless": {
+    "x": 0.5298,
+    "y": 0.6083,
+    "grid": "?",
+    "region": "?"
+  },
+  "Columnex": {
+    "x": 0.7752,
+    "y": 0.2596,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xerton": {
+    "x": 0.4188,
+    "y": 0.0945,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zeta": {
+    "x": 0.4482,
+    "y": 0.0594,
+    "grid": "?",
+    "region": "?"
+  },
+  "Malagarr": {
+    "x": 0.917,
+    "y": 0.3389,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quellor": {
+    "x": 0.5833,
+    "y": 0.5207,
+    "grid": "?",
+    "region": "?"
+  },
+  "Antar": {
+    "x": 0.6048,
+    "y": 0.5182,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reytha": {
+    "x": 0.6249,
+    "y": 0.5149,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cona": {
+    "x": 0.6236,
+    "y": 0.4745,
+    "grid": "?",
+    "region": "?"
+  },
+  "Parcelus": {
+    "x": 0.6221,
+    "y": 0.5418,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lorell": {
+    "x": 0.6321,
+    "y": 0.4105,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shedu Maad": {
+    "x": 0.6379,
+    "y": 0.3824,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eriadu": {
+    "x": 0.5469,
+    "y": 0.8175,
+    "grid": "?",
+    "region": "?"
+  },
+  "Byss": {
+    "x": 0.4631,
+    "y": 0.5035,
+    "grid": "K-11",
+    "region": "Deep Core"
+  },
+  "Vobati": {
+    "x": 0.4023,
+    "y": 0.4628,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zemiah's Den": {
+    "x": 0.4143,
+    "y": 0.5191,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kalist": {
+    "x": 0.4776,
+    "y": 0.513,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kampe": {
+    "x": 0.4998,
+    "y": 0.5093,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eclipse": {
+    "x": 0.5243,
+    "y": 0.5023,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jakku": {
+    "x": 0.3806,
+    "y": 0.5854,
+    "grid": "L-19",
+    "region": "Outer Rim"
+  },
+  "Batuu": {
+    "x": 0.3137,
+    "y": 0.6983,
+    "grid": "G-15",
+    "region": "Outer Rim"
+  },
+  "Codia": {
+    "x": 0.3328,
+    "y": 0.6701,
+    "grid": "?",
+    "region": "?"
+  },
+  "Odessen": {
+    "x": 0.2895,
+    "y": 0.6517,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bormter": {
+    "x": 0.31,
+    "y": 0.6402,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gannaria": {
+    "x": 0.317,
+    "y": 0.6809,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gwar": {
+    "x": 0.3416,
+    "y": 0.6919,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nopsin": {
+    "x": 0.3684,
+    "y": 0.6998,
+    "grid": "?",
+    "region": "?"
+  },
+  "Taloraan": {
+    "x": 0.3781,
+    "y": 0.6642,
+    "grid": "?",
+    "region": "?"
+  },
+  "O'reen": {
+    "x": 0.3037,
+    "y": 0.597,
+    "grid": "?",
+    "region": "?"
+  },
+  "Giaca": {
+    "x": 0.2178,
+    "y": 0.6082,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shree": {
+    "x": 0.1111,
+    "y": 0.7327,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aduba": {
+    "x": 0.8841,
+    "y": 0.4735,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kesh": {
+    "x": 0.9066,
+    "y": 0.4242,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eadu": {
+    "x": 0.8716,
+    "y": 0.4355,
+    "grid": "N-14",
+    "region": "Outer Rim"
+  },
+  "Usk": {
+    "x": 0.8411,
+    "y": 0.4586,
+    "grid": "?",
+    "region": "?"
+  },
+  "Droxu": {
+    "x": 0.8672,
+    "y": 0.4871,
+    "grid": "?",
+    "region": "?"
+  },
+  "Du Hutta": {
+    "x": 0.7917,
+    "y": 0.5009,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nal Hutta": {
+    "x": 0.7884,
+    "y": 0.5171,
+    "grid": "S-13",
+    "region": "Outer Rim"
+  },
+  "Nar Shaddaa": {
+    "x": 0.792,
+    "y": 0.5241,
+    "grid": "S-12",
+    "region": "Hutt Space"
+  },
+  "Rinn": {
+    "x": 0.8831,
+    "y": 0.5198,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gamorr": {
+    "x": 0.8455,
+    "y": 0.6263,
+    "grid": "?",
+    "region": "?"
+  },
+  "Near Pando": {
+    "x": 0.8198,
+    "y": 0.6172,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bothawui": {
+    "x": 0.7537,
+    "y": 0.6276,
+    "grid": "R-8",
+    "region": "Mid Rim"
+  },
+  "Roon": {
+    "x": 0.7856,
+    "y": 0.6996,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tangrene": {
+    "x": 0.6349,
+    "y": 0.1724,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bogano": {
+    "x": 0.6015,
+    "y": 0.1139,
+    "grid": "?",
+    "region": "?"
+  },
+  "Agamar": {
+    "x": 0.5449,
+    "y": 0.2148,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Cestus": {
+    "x": 0.6275,
+    "y": 0.2262,
+    "grid": "?",
+    "region": "?"
+  },
+  "Endor": {
+    "x": 0.3328,
+    "y": 0.7475,
+    "grid": "H-16",
+    "region": "Outer Rim"
+  },
+  "Ponemah": {
+    "x": 0.3492,
+    "y": 0.7401,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cerea": {
+    "x": 0.3773,
+    "y": 0.7392,
+    "grid": "?",
+    "region": "?"
+  },
+  "Houche": {
+    "x": 0.33,
+    "y": 0.7204,
+    "grid": "?",
+    "region": "?"
+  },
+  "Firrerre": {
+    "x": 0.3226,
+    "y": 0.7341,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zonju": {
+    "x": 0.4232,
+    "y": 0.9754,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shiva": {
+    "x": 0.4909,
+    "y": 0.9611,
+    "grid": "?",
+    "region": "?"
+  },
+  "Askaj": {
+    "x": 0.5322,
+    "y": 0.9319,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vestar": {
+    "x": 0.5922,
+    "y": 0.934,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corva Yag": {
+    "x": 0.5755,
+    "y": 0.9174,
+    "grid": "?",
+    "region": "?"
+  },
+  "Utapau": {
+    "x": 0.5679,
+    "y": 0.8928,
+    "grid": "P-19",
+    "region": "Outer Rim"
+  },
+  "Subterrel": {
+    "x": 0.4853,
+    "y": 0.9473,
+    "grid": "?",
+    "region": "?"
+  },
+  "Besberra": {
+    "x": 0.4969,
+    "y": 0.9237,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tosste": {
+    "x": 0.4941,
+    "y": 0.8966,
+    "grid": "?",
+    "region": "?"
+  },
+  "Novarro": {
+    "x": 0.467,
+    "y": 0.9262,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rutan": {
+    "x": 0.4836,
+    "y": 0.9094,
+    "grid": "?",
+    "region": "?"
+  },
+  "Manpha": {
+    "x": 0.4445,
+    "y": 0.9082,
+    "grid": "?",
+    "region": "?"
+  },
+  "Imynusoph": {
+    "x": 0.4336,
+    "y": 0.9615,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kashyyyk": {
+    "x": 0.6891,
+    "y": 0.4113,
+    "grid": "P-9",
+    "region": "Mid Rim"
+  },
+  "Charros": {
+    "x": 0.7498,
+    "y": 0.3819,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zirulast": {
+    "x": 0.6586,
+    "y": 0.4696,
+    "grid": "?",
+    "region": "?"
+  },
+  "Commenor": {
+    "x": 0.5817,
+    "y": 0.4658,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zeltros": {
+    "x": 0.6356,
+    "y": 0.4498,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dorin": {
+    "x": 0.4197,
+    "y": 0.324,
+    "grid": "R-10",
+    "region": "Outer Rim"
+  },
+  "Namadii": {
+    "x": 0.3904,
+    "y": 0.2658,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kinoss": {
+    "x": 0.1993,
+    "y": 0.3578,
+    "grid": "?",
+    "region": "?"
+  },
+  "Riette": {
+    "x": 0.2126,
+    "y": 0.2652,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quethold": {
+    "x": 0.3026,
+    "y": 0.2291,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mytus": {
+    "x": 0.8014,
+    "y": 0.0951,
+    "grid": "?",
+    "region": "?"
+  },
+  "Naos": {
+    "x": 0.8128,
+    "y": 0.8101,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ryloth": {
+    "x": 0.7709,
+    "y": 0.7853,
+    "grid": "O-10",
+    "region": "Outer Rim"
+  },
+  "Excarga": {
+    "x": 0.8377,
+    "y": 0.7375,
+    "grid": "?",
+    "region": "?"
+  },
+  "Socorro": {
+    "x": 0.7032,
+    "y": 0.7884,
+    "grid": "?",
+    "region": "?"
+  },
+  "Skynara": {
+    "x": 0.6894,
+    "y": 0.8669,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shogun": {
+    "x": 0.6491,
+    "y": 0.8477,
+    "grid": "?",
+    "region": "?"
+  },
+  "Svivren": {
+    "x": 0.6355,
+    "y": 0.8736,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rhand": {
+    "x": 0.127,
+    "y": 0.4728,
+    "grid": "?",
+    "region": "?"
+  },
+  "Baros": {
+    "x": 0.893,
+    "y": 0.2999,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mykapo": {
+    "x": 0.871,
+    "y": 0.2885,
+    "grid": "?",
+    "region": "?"
+  },
+  "Florn": {
+    "x": 0.8331,
+    "y": 0.2048,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ton-Falk": {
+    "x": 0.8426,
+    "y": 0.2166,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pakuuni": {
+    "x": 0.851,
+    "y": 0.2303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trogan": {
+    "x": 0.7736,
+    "y": 0.2807,
+    "grid": "?",
+    "region": "?"
+  },
+  "Euceron": {
+    "x": 0.7416,
+    "y": 0.3131,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anzat": {
+    "x": 0.779,
+    "y": 0.3152,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jabiim": {
+    "x": 0.8092,
+    "y": 0.3085,
+    "grid": "O-13",
+    "region": "Outer Rim"
+  },
+  "Murkhana": {
+    "x": 0.8008,
+    "y": 0.2618,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pergitor": {
+    "x": 0.55,
+    "y": 0.9408,
+    "grid": "?",
+    "region": "?"
+  },
+  "Swellen": {
+    "x": 0.5208,
+    "y": 0.9061,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kabal": {
+    "x": 0.5806,
+    "y": 0.8287,
+    "grid": "?",
+    "region": "?"
+  },
+  "Omwat": {
+    "x": 0.5778,
+    "y": 0.8054,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alui": {
+    "x": 0.6166,
+    "y": 0.7702,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dolla": {
+    "x": 0.4906,
+    "y": 0.8268,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cyphar": {
+    "x": 0.4872,
+    "y": 0.7781,
+    "grid": "?",
+    "region": "?"
+  },
+  "Medth": {
+    "x": 0.5467,
+    "y": 0.7701,
+    "grid": "?",
+    "region": "?"
+  },
+  "Crait": {
+    "x": 0.5928,
+    "y": 0.816,
+    "grid": "L-19",
+    "region": "Outer Rim"
+  },
+  "Cantonica": {
+    "x": 0.7898,
+    "y": 0.143,
+    "grid": "S-4",
+    "region": "Outer Rim"
+  },
+  "Dantooine": {
+    "x": 0.481,
+    "y": 0.1477,
+    "grid": "O-11",
+    "region": "Outer Rim"
+  },
+  "Korriban": {
+    "x": 0.7499,
+    "y": 0.1924,
+    "grid": "R-5",
+    "region": "Outer Rim"
+  },
+  "Devaron": {
+    "x": 0.5326,
+    "y": 0.6013,
+    "grid": "P-11",
+    "region": "Outer Rim"
+  },
+  "Carlac": {
+    "x": 0.4379,
+    "y": 0.2101,
+    "grid": "N-11",
+    "region": "Outer Rim"
+  },
+  "Florrum": {
+    "x": 0.7747,
+    "y": 0.2148,
+    "grid": "P-7",
+    "region": "Outer Rim"
+  },
+  "Ord Mantell": {
+    "x": 0.4823,
+    "y": 0.2956,
+    "grid": "L-9",
+    "region": "Mid Rim"
+  },
+  "Felucia": {
+    "x": 0.7771,
+    "y": 0.2346,
+    "grid": "Q-12",
+    "region": "Outer Rim"
+  },
+  "Iridonia": {
+    "x": 0.4317,
+    "y": 0.2758,
+    "grid": "Q-11",
+    "region": "Outer Rim"
+  },
+  "Mapuzo": {
+    "x": 0.5305,
+    "y": 0.2986,
+    "grid": "L-14",
+    "region": "Outer Rim"
+  },
+  "Shili": {
+    "x": 0.5099,
+    "y": 0.3245,
+    "grid": "Q-10",
+    "region": "Outer Rim"
+  },
+  "Saleucami": {
+    "x": 0.7993,
+    "y": 0.3371,
+    "grid": "Q-9",
+    "region": "Outer Rim"
+  },
+  "Csilla": {
+    "x": 0.2241,
+    "y": 0.3582,
+    "grid": "G-2",
+    "region": "Unknown Regions"
+  },
+  "Bracca": {
+    "x": 0.6678,
+    "y": 0.3735,
+    "grid": "O-15",
+    "region": "Outer Rim"
+  },
+  "Chandrila": {
+    "x": 0.505,
+    "y": 0.4012,
+    "grid": "L-9",
+    "region": "Core Worlds"
+  },
+  "Umbara": {
+    "x": 0.657,
+    "y": 0.4247,
+    "grid": "N-13",
+    "region": "Outer Rim"
+  },
+  "Cato Neimoidia": {
+    "x": 0.5748,
+    "y": 0.4843,
+    "grid": "N-11",
+    "region": "Colonies"
+  },
+  "Toydaria": {
+    "x": 0.7744,
+    "y": 0.4999,
+    "grid": "S-11",
+    "region": "Hutt Space"
+  },
+  "Corellia": {
+    "x": 0.5518,
+    "y": 0.507,
+    "grid": "M-11",
+    "region": "Core Worlds"
+  },
+  "Abregado-rae": {
+    "x": 0.4789,
+    "y": 0.5692,
+    "grid": "L-11",
+    "region": "Colonies"
+  },
+  "Seelos": {
+    "x": 0.6067,
+    "y": 0.7258,
+    "grid": "P-16",
+    "region": "Outer Rim"
+  },
+  "Thyferra": {
+    "x": 0.5092,
+    "y": 0.6302,
+    "grid": "M-11",
+    "region": "Inner Rim"
+  },
+  "Kamino": {
+    "x": 0.791,
+    "y": 0.6735,
+    "grid": "S-20",
+    "region": "Outer Rim"
+  },
+  "Scarif": {
+    "x": 0.7978,
+    "y": 0.6833,
+    "grid": "Q-20",
+    "region": "Outer Rim"
+  },
+  "Takodana": {
+    "x": 0.3837,
+    "y": 0.7315,
+    "grid": "J-9",
+    "region": "Mid Rim"
+  },
+  "Rodia": {
+    "x": 0.7428,
+    "y": 0.7403,
+    "grid": "Q-13",
+    "region": "Mid Rim"
+  },
+  "Tatooine": {
+    "x": 0.758,
+    "y": 0.742,
+    "grid": "R-16",
+    "region": "Outer Rim"
+  },
+  "Geonosis": {
+    "x": 0.7596,
+    "y": 0.7441,
+    "grid": "R-17",
+    "region": "Outer Rim"
+  },
+  "Naboo": {
+    "x": 0.628,
+    "y": 0.7602,
+    "grid": "O-17",
+    "region": "Mid Rim"
+  },
+  "Sullust": {
+    "x": 0.5473,
+    "y": 0.7943,
+    "grid": "R-19",
+    "region": "Outer Rim"
+  },
+  "Bespin": {
+    "x": 0.4399,
+    "y": 0.8264,
+    "grid": "K-18",
+    "region": "Outer Rim"
+  },
+  "Hoth": {
+    "x": 0.4398,
+    "y": 0.831,
+    "grid": "K-18",
+    "region": "Outer Rim"
+  },
+  "Dagobah": {
+    "x": 0.5507,
+    "y": 0.8759,
+    "grid": "M-21",
+    "region": "Outer Rim"
+  },
+  "Mustafar": {
+    "x": 0.4871,
+    "y": 0.894,
+    "grid": "R-17",
+    "region": "Outer Rim"
+  },
+  "Hosnian Prime": {
+    "x": 0.503,
+    "y": 0.4025,
+    "grid": "L-9",
+    "region": "Core Worlds"
+  },
+  "Carida": {
+    "x": 0.5469,
+    "y": 0.3892,
+    "grid": "M-10",
+    "region": "Core Worlds"
+  },
+  "Malastare": {
+    "x": 0.5714,
+    "y": 0.749,
+    "grid": "J-13",
+    "region": "Expansion Region"
+  },
+  "Kessel": {
+    "x": 0.8438,
+    "y": 0.4264,
+    "grid": "R-16",
+    "region": "Outer Rim"
+  },
+  "Mandalore": {
+    "x": 0.6391,
+    "y": 0.2859,
+    "grid": "O-7",
+    "region": "Outer Rim"
+  },
+  "Sorgan": {
+    "x": 0.5053,
+    "y": 0.7518,
+    "grid": "L-16",
+    "region": "Outer Rim"
+  },
+  "Ossus": {
+    "x": 0.7851,
+    "y": 0.2643,
+    "grid": "R-7",
+    "region": "Outer Rim"
+  },
+  "Kalee": {
+    "x": 0.4105,
+    "y": 0.1431,
+    "grid": "T-8",
+    "region": "Outer Rim"
+  },
+  "Wobani": {
+    "x": 0.7566,
+    "y": 0.336,
+    "grid": "O-16",
+    "region": "Outer Rim"
+  },
+  "Kintan": {
+    "x": 0.8234,
+    "y": 0.5576,
+    "grid": "S-12",
+    "region": "Hutt Space"
+  },
+  "Kijimi": {
+    "x": 0.7711,
+    "y": 0.321,
+    "grid": "G-6",
+    "region": "Outer Rim"
+  },
+  "Boz Pity": {
+    "x": 0.7906,
+    "y": 0.388,
+    "grid": "S-9",
+    "region": "Mid Rim"
+  },
+  "Bahalian": {
+    "x": 0.6862,
+    "y": 0.8092,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tartaglia": {
+    "x": 0.5431,
+    "y": 0.2864,
+    "grid": "?",
+    "region": "?"
+  },
+  "Roundtree": {
+    "x": 0.5393,
+    "y": 0.6413,
+    "grid": "?",
+    "region": "?"
+  },
+  "Capella": {
+    "x": 0.7224,
+    "y": 0.2374,
+    "grid": "?",
+    "region": "?"
+  },
+  "Empress": {
+    "x": 0.4838,
+    "y": 0.4416,
+    "grid": "?",
+    "region": "?"
+  },
+  "Abraxas": {
+    "x": 0.4619,
+    "y": 0.7811,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corbett": {
+    "x": 0.3788,
+    "y": 0.7622,
+    "grid": "?",
+    "region": "?"
+  },
+  "Enferm": {
+    "x": 0.5646,
+    "y": 0.2955,
+    "grid": "?",
+    "region": "?"
+  },
+  "Primus": {
+    "x": 0.4991,
+    "y": 0.4343,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chroma Zed": {
+    "x": 0.7078,
+    "y": 0.5541,
+    "grid": "?",
+    "region": "?"
+  },
+  "Keskin": {
+    "x": 0.4071,
+    "y": 0.8494,
+    "grid": "?",
+    "region": "?"
+  },
+  "Moonus Mandel": {
+    "x": 0.7527,
+    "y": 0.6148,
+    "grid": "?",
+    "region": "?"
+  },
+  "Panna": {
+    "x": 0.8181,
+    "y": 0.2476,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pirin": {
+    "x": 0.6499,
+    "y": 0.3617,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pybus": {
+    "x": 0.8054,
+    "y": 0.4833,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fest": {
+    "x": 0.5157,
+    "y": 0.2051,
+    "grid": "?",
+    "region": "?"
+  },
+  "Concord Dawn": {
+    "x": 0.6341,
+    "y": 0.2965,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kalla": {
+    "x": 0.8029,
+    "y": 0.1343,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dromund Kaas": {
+    "x": 0.7582,
+    "y": 0.1836,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gand": {
+    "x": 0.8584,
+    "y": 0.3333,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tyed Kant": {
+    "x": 0.5455,
+    "y": 0.43,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ganath": {
+    "x": 0.7809,
+    "y": 0.5239,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sump": {
+    "x": 0.3884,
+    "y": 0.8487,
+    "grid": "?",
+    "region": "?"
+  },
+  "Berrol's Donn": {
+    "x": 0.443,
+    "y": 0.8632,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kath": {
+    "x": 0.5557,
+    "y": 0.7605,
+    "grid": "?",
+    "region": "?"
+  },
+  "Elshandruu Pica": {
+    "x": 0.6473,
+    "y": 0.8406,
+    "grid": "?",
+    "region": "?"
+  },
+  "Secundus Ando": {
+    "x": 0.7144,
+    "y": 0.7028,
+    "grid": "?",
+    "region": "?"
+  },
+  "Polis Massa": {
+    "x": 0.4665,
+    "y": 0.9366,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Cantrell": {
+    "x": 0.4747,
+    "y": 0.236,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nicht Ka": {
+    "x": 0.7456,
+    "y": 0.1828,
+    "grid": "?",
+    "region": "?"
+  },
+  "Glee Anselm": {
+    "x": 0.4033,
+    "y": 0.3025,
+    "grid": "?",
+    "region": "?"
+  },
+  "Klasse Ephemora": {
+    "x": 0.2376,
+    "y": 0.387,
+    "grid": "?",
+    "region": "?"
+  },
+  "Red Nebula": {
+    "x": 0.3039,
+    "y": 0.966,
+    "grid": "?",
+    "region": "?"
+  },
+  "Feswe Prime": {
+    "x": 0.6604,
+    "y": 0.2164,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jovan": {
+    "x": 0.6908,
+    "y": 0.2349,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anaxes": {
+    "x": 0.4996,
+    "y": 0.405,
+    "grid": "L-10",
+    "region": "Core Worlds"
+  },
+  "Norval": {
+    "x": 0.8551,
+    "y": 0.3958,
+    "grid": "?",
+    "region": "?"
+  },
+  "Port Haven": {
+    "x": 0.4972,
+    "y": 0.2269,
+    "grid": "?",
+    "region": "?"
+  },
+  "Runaway Prince": {
+    "x": 0.7646,
+    "y": 0.485,
+    "grid": "?",
+    "region": "?"
+  },
+  "Coachelle": {
+    "x": 0.6996,
+    "y": 0.4325,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dor Nameth": {
+    "x": 0.488,
+    "y": 0.2916,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ottethan": {
+    "x": 0.5269,
+    "y": 0.2524,
+    "grid": "?",
+    "region": "?"
+  },
+  "Glom Tho": {
+    "x": 0.6522,
+    "y": 0.6798,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tantive": {
+    "x": 0.7093,
+    "y": 0.135,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gerrard": {
+    "x": 0.4797,
+    "y": 0.5597,
+    "grid": "?",
+    "region": "?"
+  },
+  "Golden Nyss": {
+    "x": 0.5012,
+    "y": 0.3242,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xa Fel": {
+    "x": 0.4418,
+    "y": 0.4012,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mek va Ulis": {
+    "x": 0.6487,
+    "y": 0.5652,
+    "grid": "?",
+    "region": "?"
+  },
+  "Noris": {
+    "x": 0.2376,
+    "y": 0.3393,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sharb": {
+    "x": 0.2426,
+    "y": 0.3401,
+    "grid": "?",
+    "region": "?"
+  },
+  "Brentaal": {
+    "x": 0.5085,
+    "y": 0.4007,
+    "grid": "L-10",
+    "region": "Core Worlds"
+  },
+  "T'surr": {
+    "x": 0.672,
+    "y": 0.5337,
+    "grid": "?",
+    "region": "?"
+  },
+  "Torolis": {
+    "x": 0.743,
+    "y": 0.6081,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alba": {
+    "x": 0.6439,
+    "y": 0.2605,
+    "grid": "O-6",
+    "region": "Outer Rim"
+  },
+  "Corus": {
+    "x": 0.7878,
+    "y": 0.1479,
+    "grid": "M-14",
+    "region": "Outer Rim"
+  },
+  "Athiss": {
+    "x": 0.7494,
+    "y": 0.1632,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trian": {
+    "x": 0.7786,
+    "y": 0.1129,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bavva": {
+    "x": 0.4591,
+    "y": 0.8231,
+    "grid": "?",
+    "region": "?"
+  },
+  "Verisin": {
+    "x": 0.6648,
+    "y": 0.8145,
+    "grid": "?",
+    "region": "?"
+  },
+  "Masgen": {
+    "x": 0.394,
+    "y": 0.2799,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wistril": {
+    "x": 0.4595,
+    "y": 0.2328,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yashuvu": {
+    "x": 0.2506,
+    "y": 0.385,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hynah": {
+    "x": 0.654,
+    "y": 0.2118,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ferrix": {
+    "x": 0.7197,
+    "y": 0.1296,
+    "grid": "?",
+    "region": "?"
+  },
+  "Berri": {
+    "x": 0.58,
+    "y": 0.3842,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ota": {
+    "x": 0.7071,
+    "y": 0.433,
+    "grid": "?",
+    "region": "?"
+  },
+  "G'rho": {
+    "x": 0.2306,
+    "y": 0.7449,
+    "grid": "F-16",
+    "region": "Wild Space"
+  },
+  "Lasan": {
+    "x": 0.4123,
+    "y": 0.2087,
+    "grid": "F-16",
+    "region": "Wild Space"
+  },
+  "Concordia": {
+    "x": 0.6388,
+    "y": 0.2967,
+    "grid": "O-7",
+    "region": "Outer Rim"
+  },
+  "Corvus": {
+    "x": 0.7827,
+    "y": 0.148,
+    "grid": "M-14",
+    "region": "Outer Rim"
+  },
+  "Brentaal IV": {
+    "x": 0.5088,
+    "y": 0.4033,
+    "grid": "L-10",
+    "region": "Core Worlds"
+  },
+  "Nigel": {
+    "x": 0.6125,
+    "y": 0.7122,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pegg": {
+    "x": 0.7426,
+    "y": 0.1506,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rafa": {
+    "x": 0.858,
+    "y": 0.3463,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tala": {
+    "x": 0.5734,
+    "y": 0.3873,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hull's Star": {
+    "x": 0.8106,
+    "y": 0.1102,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zenox Cluster": {
+    "x": 0.4501,
+    "y": 0.5926,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ladarra": {
+    "x": 0.6789,
+    "y": 0.2181,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gizer": {
+    "x": 0.6608,
+    "y": 0.3598,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nexus Ortai": {
+    "x": 0.7222,
+    "y": 0.6376,
+    "grid": "?",
+    "region": "?"
+  },
+  "Teya": {
+    "x": 0.5396,
+    "y": 0.3123,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ator": {
+    "x": 0.5284,
+    "y": 0.4528,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quas Killam": {
+    "x": 0.6766,
+    "y": 0.4184,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yorn Skot": {
+    "x": 0.5726,
+    "y": 0.6241,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Antalaha": {
+    "x": 0.4928,
+    "y": 0.3669,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nar Haaska": {
+    "x": 0.8618,
+    "y": 0.4898,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cattamascar": {
+    "x": 0.2604,
+    "y": 0.7433,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Thoden": {
+    "x": 0.4191,
+    "y": 0.1336,
+    "grid": "?",
+    "region": "?"
+  },
+  "Neelgaimon": {
+    "x": 0.7282,
+    "y": 0.116,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pallaxides": {
+    "x": 0.5741,
+    "y": 0.2754,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shalyvane": {
+    "x": 0.8169,
+    "y": 0.2124,
+    "grid": "S-5",
+    "region": "Outer Rim"
+  },
+  "Toola": {
+    "x": 0.8202,
+    "y": 0.1945,
+    "grid": "?",
+    "region": "?"
+  },
+  "Almania": {
+    "x": 0.7935,
+    "y": 0.1797,
+    "grid": "?",
+    "region": "?"
+  },
+  "Folende": {
+    "x": 0.7997,
+    "y": 0.2247,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rudrig": {
+    "x": 0.8268,
+    "y": 0.2307,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shaylin": {
+    "x": 0.8546,
+    "y": 0.2328,
+    "grid": "?",
+    "region": "?"
+  },
+  "Argoon": {
+    "x": 0.8233,
+    "y": 0.2261,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cholganna": {
+    "x": 0.8368,
+    "y": 0.1886,
+    "grid": "?",
+    "region": "?"
+  },
+  "Estaria": {
+    "x": 0.8053,
+    "y": 0.2071,
+    "grid": "?",
+    "region": "?"
+  },
+  "Abraxin": {
+    "x": 0.8127,
+    "y": 0.2272,
+    "grid": "?",
+    "region": "?"
+  },
+  "Omman": {
+    "x": 0.8031,
+    "y": 0.2258,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corlax": {
+    "x": 0.8065,
+    "y": 0.2346,
+    "grid": "?",
+    "region": "?"
+  },
+  "Endregaad": {
+    "x": 0.812,
+    "y": 0.2164,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dalos": {
+    "x": 0.8237,
+    "y": 0.2047,
+    "grid": "?",
+    "region": "?"
+  },
+  "Raxus": {
+    "x": 0.8158,
+    "y": 0.2198,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tion": {
+    "x": 0.8189,
+    "y": 0.2214,
+    "grid": "?",
+    "region": "?"
+  },
+  "Drongar": {
+    "x": 0.8572,
+    "y": 0.2079,
+    "grid": "?",
+    "region": "?"
+  },
+  "Crseih": {
+    "x": 0.8569,
+    "y": 0.2229,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quermia": {
+    "x": 0.8117,
+    "y": 0.1942,
+    "grid": "?",
+    "region": "?"
+  },
+  "Makem Te": {
+    "x": 0.807,
+    "y": 0.2016,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ank Ki'Shor": {
+    "x": 0.8034,
+    "y": 0.2097,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jandoral Mizar": {
+    "x": 0.8021,
+    "y": 0.213,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kanaver": {
+    "x": 0.7978,
+    "y": 0.2213,
+    "grid": "?",
+    "region": "?"
+  },
+  "Livien": {
+    "x": 0.7952,
+    "y": 0.2235,
+    "grid": "?",
+    "region": "?"
+  },
+  "Desevro": {
+    "x": 0.7954,
+    "y": 0.2267,
+    "grid": "?",
+    "region": "?"
+  },
+  "Turkana": {
+    "x": 0.8588,
+    "y": 0.2346,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lorrad": {
+    "x": 0.7929,
+    "y": 0.2309,
+    "grid": "?",
+    "region": "?"
+  },
+  "Barseg": {
+    "x": 0.7915,
+    "y": 0.2342,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lianna": {
+    "x": 0.7876,
+    "y": 0.2387,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arcan": {
+    "x": 0.786,
+    "y": 0.2414,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ren Var": {
+    "x": 0.7682,
+    "y": 0.2468,
+    "grid": "M-10",
+    "region": "Core Worlds"
+  },
+  "Tirahnn": {
+    "x": 0.5964,
+    "y": 0.3589,
+    "grid": "N-8",
+    "region": "Mid Rim"
+  },
+  "Porus Vida": {
+    "x": 0.6494,
+    "y": 0.3982,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jendorn": {
+    "x": 0.6306,
+    "y": 0.3253,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dalcretti": {
+    "x": 0.6184,
+    "y": 0.36,
+    "grid": "?",
+    "region": "?"
+  },
+  "Asrat": {
+    "x": 0.6001,
+    "y": 0.3405,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alpheridies": {
+    "x": 0.637,
+    "y": 0.3269,
+    "grid": "?",
+    "region": "?"
+  },
+  "Taanab": {
+    "x": 0.6356,
+    "y": 0.3628,
+    "grid": "?",
+    "region": "?"
+  },
+  "Phateem": {
+    "x": 0.5742,
+    "y": 0.3271,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eshan": {
+    "x": 0.57,
+    "y": 0.342,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gravan": {
+    "x": 0.6298,
+    "y": 0.3388,
+    "grid": "?",
+    "region": "?"
+  },
+  "Colla": {
+    "x": 0.5873,
+    "y": 0.3711,
+    "grid": "?",
+    "region": "?"
+  },
+  "Filordis": {
+    "x": 0.5863,
+    "y": 0.3447,
+    "grid": "?",
+    "region": "?"
+  },
+  "Korda": {
+    "x": 0.6247,
+    "y": 0.3457,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pengalan": {
+    "x": 0.6271,
+    "y": 0.3521,
+    "grid": "?",
+    "region": "?"
+  },
+  "Levian": {
+    "x": 0.5951,
+    "y": 0.3233,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cartao": {
+    "x": 0.6447,
+    "y": 0.3494,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tierfon": {
+    "x": 0.6246,
+    "y": 0.3154,
+    "grid": "?",
+    "region": "?"
+  },
+  "Obroa-skai": {
+    "x": 0.6093,
+    "y": 0.332,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ktil": {
+    "x": 0.6068,
+    "y": 0.3741,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chazwa": {
+    "x": 0.5691,
+    "y": 0.3646,
+    "grid": "?",
+    "region": "?"
+  },
+  "Berchest": {
+    "x": 0.5731,
+    "y": 0.3542,
+    "grid": "?",
+    "region": "?"
+  },
+  "Carcel": {
+    "x": 0.6426,
+    "y": 0.3624,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sermeria": {
+    "x": 0.6459,
+    "y": 0.3621,
+    "grid": "?",
+    "region": "?"
+  },
+  "Paonid": {
+    "x": 0.6217,
+    "y": 0.336,
+    "grid": "?",
+    "region": "?"
+  },
+  "Carest": {
+    "x": 0.6095,
+    "y": 0.3251,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kroctar": {
+    "x": 0.5847,
+    "y": 0.3167,
+    "grid": "?",
+    "region": "?"
+  },
+  "Telerath": {
+    "x": 0.5793,
+    "y": 0.3147,
+    "grid": "?",
+    "region": "?"
+  },
+  "Comkin": {
+    "x": 0.5747,
+    "y": 0.3114,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alderaan": {
+    "x": 0.5386,
+    "y": 0.4211,
+    "grid": "M-10",
+    "region": "Core Worlds"
+  },
+  "Nevarro": {
+    "x": 0.4612,
+    "y": 0.9171,
+    "grid": "O-8",
+    "region": "Outer Rim"
+  },
+  "Ithor": {
+    "x": 0.5287,
+    "y": 0.2597,
+    "grid": "N-8",
+    "region": "Mid Rim"
+  },
+  "Lothal": {
+    "x": 0.8928,
+    "y": 0.2906,
+    "grid": "P-17",
+    "region": "Outer Rim"
+  },
+  "Mygeeto": {
+    "x": 0.4583,
+    "y": 0.1782,
+    "grid": "S-5",
+    "region": "Outer Rim"
+  },
+  "Dathomir": {
+    "x": 0.6181,
+    "y": 0.2429,
+    "grid": "O-7",
+    "region": "Outer Rim"
+  },
+  "Brochiib": {
+    "x": 0.7914,
+    "y": 0.1095,
+    "grid": "?",
+    "region": "?"
+  },
+  "Paulking": {
+    "x": 0.8887,
+    "y": 0.3507,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chalacta": {
+    "x": 0.7678,
+    "y": 0.4265,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rattatak": {
+    "x": 0.319,
+    "y": 0.7126,
+    "grid": "?",
+    "region": "?"
+  },
+  "Delacrix": {
+    "x": 0.8502,
+    "y": 0.3765,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oba Diah": {
+    "x": 0.8531,
+    "y": 0.4272,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lazerian": {
+    "x": 0.5895,
+    "y": 0.7065,
+    "grid": "?",
+    "region": "?"
+  },
+  "Farstine": {
+    "x": 0.6609,
+    "y": 0.7612,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shinbone": {
+    "x": 0.8421,
+    "y": 0.7737,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cantras Gola": {
+    "x": 0.4142,
+    "y": 0.1721,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gibbela": {
+    "x": 0.495,
+    "y": 0.1939,
+    "grid": "?",
+    "region": "?"
+  },
+  "Celdaru": {
+    "x": 0.3772,
+    "y": 0.3303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vardoss": {
+    "x": 0.3967,
+    "y": 0.3271,
+    "grid": "?",
+    "region": "?"
+  },
+  "Drearia": {
+    "x": 0.517,
+    "y": 0.3465,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kesmere": {
+    "x": 0.4925,
+    "y": 0.1474,
+    "grid": "?",
+    "region": "?"
+  },
+  "New Bakstre": {
+    "x": 0.4761,
+    "y": 0.2078,
+    "grid": "?",
+    "region": "?"
+  },
+  "Barison": {
+    "x": 0.7162,
+    "y": 0.2237,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belshar Othachuu": {
+    "x": 0.3997,
+    "y": 0.2962,
+    "grid": "?",
+    "region": "?"
+  },
+  "Voltare": {
+    "x": 0.4437,
+    "y": 0.3514,
+    "grid": "?",
+    "region": "?"
+  },
+  "Palanhi": {
+    "x": 0.4531,
+    "y": 0.3696,
+    "grid": "?",
+    "region": "?"
+  },
+  "Danteel": {
+    "x": 0.5316,
+    "y": 0.5447,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shi'kar Straits": {
+    "x": 0.6918,
+    "y": 0.1544,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pinperu": {
+    "x": 0.8836,
+    "y": 0.2575,
+    "grid": "?",
+    "region": "?"
+  },
+  "Erilnar": {
+    "x": 0.8555,
+    "y": 0.3476,
+    "grid": "?",
+    "region": "?"
+  },
+  "Daalang": {
+    "x": 0.729,
+    "y": 0.549,
+    "grid": "?",
+    "region": "?"
+  },
+  "Atzerri": {
+    "x": 0.5635,
+    "y": 0.607,
+    "grid": "?",
+    "region": "?"
+  },
+  "Abridon": {
+    "x": 0.4208,
+    "y": 0.8467,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Dorlass": {
+    "x": 0.6337,
+    "y": 0.7165,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vortex": {
+    "x": 0.4425,
+    "y": 0.3108,
+    "grid": "?",
+    "region": "?"
+  },
+  "Schesa": {
+    "x": 0.2387,
+    "y": 0.3364,
+    "grid": "?",
+    "region": "?"
+  },
+  "Copero": {
+    "x": 0.2336,
+    "y": 0.3724,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rhigar": {
+    "x": 0.2196,
+    "y": 0.3764,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chaf": {
+    "x": 0.2293,
+    "y": 0.3849,
+    "grid": "?",
+    "region": "?"
+  },
+  "Csaus": {
+    "x": 0.2289,
+    "y": 0.3743,
+    "grid": "?",
+    "region": "?"
+  },
+  "Clewis": {
+    "x": 0.2538,
+    "y": 0.3653,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cormit": {
+    "x": 0.2391,
+    "y": 0.3632,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cioral": {
+    "x": 0.2254,
+    "y": 0.3613,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shihor": {
+    "x": 0.2131,
+    "y": 0.3637,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oyokal": {
+    "x": 0.2083,
+    "y": 0.3654,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bogo Rai": {
+    "x": 0.1899,
+    "y": 0.3672,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thearterra": {
+    "x": 0.2122,
+    "y": 0.3512,
+    "grid": "?",
+    "region": "?"
+  },
+  "Avidich": {
+    "x": 0.2171,
+    "y": 0.359,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ool": {
+    "x": 0.2121,
+    "y": 0.3608,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jamiron": {
+    "x": 0.2259,
+    "y": 0.352,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rentor": {
+    "x": 0.2277,
+    "y": 0.356,
+    "grid": "?",
+    "region": "?"
+  },
+  "Savarchi": {
+    "x": 0.2354,
+    "y": 0.3695,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ornfra": {
+    "x": 0.2394,
+    "y": 0.3434,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cam'co": {
+    "x": 0.2245,
+    "y": 0.3327,
+    "grid": "?",
+    "region": "?"
+  },
+  "Naporar": {
+    "x": 0.2289,
+    "y": 0.3444,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sposia": {
+    "x": 0.2244,
+    "y": 0.3481,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tandun": {
+    "x": 0.67,
+    "y": 0.1989,
+    "grid": "?",
+    "region": "?"
+  },
+  "Serenno": {
+    "x": 0.6594,
+    "y": 0.1939,
+    "grid": "N-5",
+    "region": "Outer Rim"
+  },
+  "Sorrus": {
+    "x": 0.6517,
+    "y": 0.2154,
+    "grid": "?",
+    "region": "?"
+  },
+  "Simpla": {
+    "x": 0.6556,
+    "y": 0.2087,
+    "grid": "?",
+    "region": "?"
+  },
+  "Toprawa": {
+    "x": 0.6591,
+    "y": 0.2037,
+    "grid": "?",
+    "region": "?"
+  },
+  "Marrovia": {
+    "x": 0.6831,
+    "y": 0.2121,
+    "grid": "?",
+    "region": "?"
+  },
+  "Krylon": {
+    "x": 0.6735,
+    "y": 0.2237,
+    "grid": "?",
+    "region": "?"
+  },
+  "Feswe Corridor": {
+    "x": 0.6678,
+    "y": 0.2188,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yavin": {
+    "x": 0.6811,
+    "y": 0.2254,
+    "grid": "?",
+    "region": "?"
+  },
+  "Glade": {
+    "x": 0.6959,
+    "y": 0.2174,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vaal": {
+    "x": 0.6936,
+    "y": 0.225,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tertiary Feswe": {
+    "x": 0.6575,
+    "y": 0.2273,
+    "grid": "?",
+    "region": "?"
+  },
+  "Selitan": {
+    "x": 0.6629,
+    "y": 0.2301,
+    "grid": "?",
+    "region": "?"
+  },
+  "Junction": {
+    "x": 0.6473,
+    "y": 0.2211,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thesme": {
+    "x": 0.6407,
+    "y": 0.2211,
+    "grid": "?",
+    "region": "?"
+  },
+  "Celanon": {
+    "x": 0.6424,
+    "y": 0.2303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tierrel": {
+    "x": 0.6394,
+    "y": 0.2352,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hijado": {
+    "x": 0.637,
+    "y": 0.2385,
+    "grid": "?",
+    "region": "?"
+  },
+  "Steergard": {
+    "x": 0.6345,
+    "y": 0.2429,
+    "grid": "?",
+    "region": "?"
+  },
+  "Botajef": {
+    "x": 0.6316,
+    "y": 0.2479,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mepha'as": {
+    "x": 0.628,
+    "y": 0.253,
+    "grid": "?",
+    "region": "?"
+  },
+  "Harloen": {
+    "x": 0.6245,
+    "y": 0.2573,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bandomeer": {
+    "x": 0.6195,
+    "y": 0.2611,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gorm": {
+    "x": 0.6195,
+    "y": 0.2646,
+    "grid": "?",
+    "region": "?"
+  },
+  "Irmenu": {
+    "x": 0.6319,
+    "y": 0.264,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vanquo": {
+    "x": 0.6195,
+    "y": 0.2709,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vispil": {
+    "x": 0.6524,
+    "y": 0.2519,
+    "grid": "?",
+    "region": "?"
+  },
+  "Syndaar": {
+    "x": 0.6625,
+    "y": 0.2543,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bakkah": {
+    "x": 0.6758,
+    "y": 0.2571,
+    "grid": "?",
+    "region": "?"
+  },
+  "Malrev IV": {
+    "x": 0.6635,
+    "y": 0.2607,
+    "grid": "?",
+    "region": "?"
+  },
+  "Phindar": {
+    "x": 0.6646,
+    "y": 0.2716,
+    "grid": "?",
+    "region": "?"
+  },
+  "Drackmar": {
+    "x": 0.6272,
+    "y": 0.2372,
+    "grid": "?",
+    "region": "?"
+  },
+  "Far Indosa": {
+    "x": 0.6693,
+    "y": 0.2454,
+    "grid": "?",
+    "region": "?"
+  },
+  "Near Indosa": {
+    "x": 0.6729,
+    "y": 0.2408,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trinovat": {
+    "x": 0.6798,
+    "y": 0.2408,
+    "grid": "?",
+    "region": "?"
+  },
+  "Presbalin": {
+    "x": 0.663,
+    "y": 0.2405,
+    "grid": "?",
+    "region": "?"
+  },
+  "Denarii": {
+    "x": 0.6656,
+    "y": 0.2351,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pinoora": {
+    "x": 0.6691,
+    "y": 0.233,
+    "grid": "?",
+    "region": "?"
+  },
+  "Torque": {
+    "x": 0.6822,
+    "y": 0.2338,
+    "grid": "?",
+    "region": "?"
+  },
+  "Durgen's Star": {
+    "x": 0.6866,
+    "y": 0.2442,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xochtl": {
+    "x": 0.6929,
+    "y": 0.2425,
+    "grid": "?",
+    "region": "?"
+  },
+  "Povanaria": {
+    "x": 0.6963,
+    "y": 0.2458,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bronsoon": {
+    "x": 0.6971,
+    "y": 0.2408,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gilvitch": {
+    "x": 0.7008,
+    "y": 0.24,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arkuda": {
+    "x": 0.7025,
+    "y": 0.2378,
+    "grid": "?",
+    "region": "?"
+  },
+  "Maridun": {
+    "x": 0.7036,
+    "y": 0.2464,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chirrion": {
+    "x": 0.7081,
+    "y": 0.2556,
+    "grid": "?",
+    "region": "?"
+  },
+  "Korphir": {
+    "x": 0.7081,
+    "y": 0.2398,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tenara": {
+    "x": 0.7107,
+    "y": 0.2425,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cometwash": {
+    "x": 0.7107,
+    "y": 0.2354,
+    "grid": "?",
+    "region": "?"
+  },
+  "Usta": {
+    "x": 0.7127,
+    "y": 0.2282,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arda": {
+    "x": 0.7236,
+    "y": 0.233,
+    "grid": "?",
+    "region": "?"
+  },
+  "Feena": {
+    "x": 0.721,
+    "y": 0.2199,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kalishik": {
+    "x": 0.7209,
+    "y": 0.228,
+    "grid": "?",
+    "region": "?"
+  },
+  "Little Capella": {
+    "x": 0.7255,
+    "y": 0.2425,
+    "grid": "?",
+    "region": "?"
+  },
+  "Feldwes": {
+    "x": 0.7328,
+    "y": 0.2325,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pygorix": {
+    "x": 0.7363,
+    "y": 0.2304,
+    "grid": "?",
+    "region": "?"
+  },
+  "Spintir": {
+    "x": 0.7403,
+    "y": 0.2295,
+    "grid": "?",
+    "region": "?"
+  },
+  "Karsten's World": {
+    "x": 0.738,
+    "y": 0.2348,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vorzyd": {
+    "x": 0.7492,
+    "y": 0.2521,
+    "grid": "?",
+    "region": "?"
+  },
+  "Stenos": {
+    "x": 0.7509,
+    "y": 0.2203,
+    "grid": "?",
+    "region": "?"
+  },
+  "Elom": {
+    "x": 0.7565,
+    "y": 0.2143,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tandankin": {
+    "x": 0.7737,
+    "y": 0.2266,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tharkos": {
+    "x": 0.7805,
+    "y": 0.2291,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thanium": {
+    "x": 0.784,
+    "y": 0.2319,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mossak": {
+    "x": 0.7773,
+    "y": 0.2394,
+    "grid": "?",
+    "region": "?"
+  },
+  "Galidraan": {
+    "x": 0.7776,
+    "y": 0.2452,
+    "grid": "?",
+    "region": "?"
+  },
+  "Draukyze": {
+    "x": 0.7727,
+    "y": 0.2492,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oor": {
+    "x": 0.7912,
+    "y": 0.2538,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chandaar": {
+    "x": 0.7902,
+    "y": 0.2499,
+    "grid": "?",
+    "region": "?"
+  },
+  "Janilis": {
+    "x": 0.7878,
+    "y": 0.2474,
+    "grid": "?",
+    "region": "?"
+  },
+  "Spinax": {
+    "x": 0.7934,
+    "y": 0.243,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cadinth": {
+    "x": 0.7998,
+    "y": 0.2439,
+    "grid": "?",
+    "region": "?"
+  },
+  "Desargorr": {
+    "x": 0.8049,
+    "y": 0.2416,
+    "grid": "?",
+    "region": "?"
+  },
+  "Voss": {
+    "x": 0.811,
+    "y": 0.2413,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jaminere": {
+    "x": 0.8144,
+    "y": 0.2391,
+    "grid": "?",
+    "region": "?"
+  },
+  "Argai": {
+    "x": 0.8219,
+    "y": 0.2391,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corlass": {
+    "x": 0.8208,
+    "y": 0.2453,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kismaano": {
+    "x": 0.8012,
+    "y": 0.2499,
+    "grid": "?",
+    "region": "?"
+  },
+  "Derellium": {
+    "x": 0.8164,
+    "y": 0.2528,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arramannx": {
+    "x": 0.8059,
+    "y": 0.2554,
+    "grid": "?",
+    "region": "?"
+  },
+  "Soruus": {
+    "x": 0.7968,
+    "y": 0.2558,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fortan Tutha": {
+    "x": 0.7874,
+    "y": 0.2588,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belderone": {
+    "x": 0.776,
+    "y": 0.267,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kintoni": {
+    "x": 0.8196,
+    "y": 0.2671,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nam Chorios": {
+    "x": 0.7581,
+    "y": 0.2707,
+    "grid": "?",
+    "region": "?"
+  },
+  "Antemeridias": {
+    "x": 0.7661,
+    "y": 0.2766,
+    "grid": "?",
+    "region": "?"
+  },
+  "Centares": {
+    "x": 0.7616,
+    "y": 0.2861,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jomark": {
+    "x": 0.7768,
+    "y": 0.2892,
+    "grid": "?",
+    "region": "?"
+  },
+  "The Wheel": {
+    "x": 0.7572,
+    "y": 0.2929,
+    "grid": "?",
+    "region": "?"
+  },
+  "Abhean": {
+    "x": 0.7522,
+    "y": 0.3002,
+    "grid": "?",
+    "region": "?"
+  },
+  "New Holstice": {
+    "x": 0.7677,
+    "y": 0.3062,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ringo VInda": {
+    "x": 0.756,
+    "y": 0.3103,
+    "grid": "?",
+    "region": "?"
+  },
+  "PM-6986": {
+    "x": 0.7633,
+    "y": 0.2998,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sy Myrth": {
+    "x": 0.7848,
+    "y": 0.2984,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kile": {
+    "x": 0.79,
+    "y": 0.3044,
+    "grid": "?",
+    "region": "?"
+  },
+  "Handooine": {
+    "x": 0.8004,
+    "y": 0.2979,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wyndigal": {
+    "x": 0.8131,
+    "y": 0.277,
+    "grid": "?",
+    "region": "?"
+  },
+  "Altratonne": {
+    "x": 0.8209,
+    "y": 0.2888,
+    "grid": "?",
+    "region": "?"
+  },
+  "Agon": {
+    "x": 0.8323,
+    "y": 0.2959,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iego": {
+    "x": 0.8389,
+    "y": 0.2972,
+    "grid": "?",
+    "region": "?"
+  },
+  "Batonn": {
+    "x": 0.8511,
+    "y": 0.295,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cophrigin": {
+    "x": 0.8407,
+    "y": 0.2905,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nyny": {
+    "x": 0.8449,
+    "y": 0.2866,
+    "grid": "?",
+    "region": "?"
+  },
+  "Taskeed": {
+    "x": 0.8118,
+    "y": 0.3183,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dennogra": {
+    "x": 0.8193,
+    "y": 0.328,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jubilar": {
+    "x": 0.8359,
+    "y": 0.3125,
+    "grid": "?",
+    "region": "?"
+  },
+  "OHS1782-03": {
+    "x": 0.8324,
+    "y": 0.3049,
+    "grid": "?",
+    "region": "?"
+  },
+  "Toong'l": {
+    "x": 0.8649,
+    "y": 0.3091,
+    "grid": "?",
+    "region": "?"
+  },
+  "Atollon": {
+    "x": 0.8724,
+    "y": 0.3058,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chiron": {
+    "x": 0.8685,
+    "y": 0.2967,
+    "grid": "?",
+    "region": "?"
+  },
+  "Solay": {
+    "x": 0.8809,
+    "y": 0.2843,
+    "grid": "?",
+    "region": "?"
+  },
+  "Poseidenna": {
+    "x": 0.8718,
+    "y": 0.2788,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sanctuary": {
+    "x": 0.881,
+    "y": 0.2784,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kamdon": {
+    "x": 0.8846,
+    "y": 0.2811,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dornea": {
+    "x": 0.8909,
+    "y": 0.2857,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oon": {
+    "x": 0.8902,
+    "y": 0.293,
+    "grid": "?",
+    "region": "?"
+  },
+  "Garel": {
+    "x": 0.8934,
+    "y": 0.2953,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hinakuu": {
+    "x": 0.8941,
+    "y": 0.2729,
+    "grid": "?",
+    "region": "?"
+  },
+  "Neew Heurkea": {
+    "x": 0.8794,
+    "y": 0.2709,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mantan": {
+    "x": 0.8767,
+    "y": 0.2682,
+    "grid": "?",
+    "region": "?"
+  },
+  "Krinemonen": {
+    "x": 0.8913,
+    "y": 0.2642,
+    "grid": "?",
+    "region": "?"
+  },
+  "Buchich": {
+    "x": 0.8965,
+    "y": 0.2616,
+    "grid": "?",
+    "region": "?"
+  },
+  "Damendine": {
+    "x": 0.8832,
+    "y": 0.2492,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ruisto": {
+    "x": 0.871,
+    "y": 0.2561,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dac": {
+    "x": 0.8739,
+    "y": 0.259,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pammant": {
+    "x": 0.8761,
+    "y": 0.2616,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dellalt": {
+    "x": 0.8406,
+    "y": 0.2647,
+    "grid": "?",
+    "region": "?"
+  },
+  "Minntooine": {
+    "x": 0.8703,
+    "y": 0.2638,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eridicon": {
+    "x": 0.8598,
+    "y": 0.2562,
+    "grid": "?",
+    "region": "?"
+  },
+  "Caluula": {
+    "x": 0.837,
+    "y": 0.2593,
+    "grid": "?",
+    "region": "?"
+  },
+  "Saheelindeel": {
+    "x": 0.8302,
+    "y": 0.2626,
+    "grid": "?",
+    "region": "?"
+  },
+  "Brigia": {
+    "x": 0.8354,
+    "y": 0.2524,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mullan": {
+    "x": 0.8379,
+    "y": 0.2479,
+    "grid": "?",
+    "region": "?"
+  },
+  "Refnar": {
+    "x": 0.8501,
+    "y": 0.2414,
+    "grid": "?",
+    "region": "?"
+  },
+  "Munto Codru": {
+    "x": 0.8688,
+    "y": 0.2404,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reginard": {
+    "x": 0.8694,
+    "y": 0.2447,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hast": {
+    "x": 0.8841,
+    "y": 0.2314,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gbu": {
+    "x": 0.8464,
+    "y": 0.2367,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eredenn": {
+    "x": 0.8318,
+    "y": 0.2437,
+    "grid": "?",
+    "region": "?"
+  },
+  "Clariv": {
+    "x": 0.8285,
+    "y": 0.2375,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kaon": {
+    "x": 0.8255,
+    "y": 0.2406,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nuswatta": {
+    "x": 0.8247,
+    "y": 0.2462,
+    "grid": "?",
+    "region": "?"
+  },
+  "Orion": {
+    "x": 0.8314,
+    "y": 0.2538,
+    "grid": "?",
+    "region": "?"
+  },
+  "Algor": {
+    "x": 0.8266,
+    "y": 0.2582,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eibon": {
+    "x": 0.8208,
+    "y": 0.2555,
+    "grid": "?",
+    "region": "?"
+  },
+  "Junkfort": {
+    "x": 0.8301,
+    "y": 0.3397,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dagelin": {
+    "x": 0.8425,
+    "y": 0.344,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oseon": {
+    "x": 0.8532,
+    "y": 0.3457,
+    "grid": "?",
+    "region": "?"
+  },
+  "Scillal": {
+    "x": 0.8563,
+    "y": 0.3498,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dela": {
+    "x": 0.8593,
+    "y": 0.3491,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lekua": {
+    "x": 0.8595,
+    "y": 0.3518,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ringneldia": {
+    "x": 0.8675,
+    "y": 0.3437,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dilonexa": {
+    "x": 0.876,
+    "y": 0.3442,
+    "grid": "?",
+    "region": "?"
+  },
+  "Uaua": {
+    "x": 0.8808,
+    "y": 0.346,
+    "grid": "?",
+    "region": "?"
+  },
+  "Renatasia": {
+    "x": 0.8743,
+    "y": 0.3586,
+    "grid": "?",
+    "region": "?"
+  },
+  "ThonBoka": {
+    "x": 0.8784,
+    "y": 0.3563,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hosrel": {
+    "x": 0.8829,
+    "y": 0.3533,
+    "grid": "?",
+    "region": "?"
+  },
+  "Douglas": {
+    "x": 0.8904,
+    "y": 0.3543,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tund": {
+    "x": 0.8934,
+    "y": 0.349,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pluthan": {
+    "x": 0.8992,
+    "y": 0.3411,
+    "grid": "?",
+    "region": "?"
+  },
+  "Baummu": {
+    "x": 0.8786,
+    "y": 0.3332,
+    "grid": "?",
+    "region": "?"
+  },
+  "Skeebo": {
+    "x": 0.8805,
+    "y": 0.3321,
+    "grid": "?",
+    "region": "?"
+  },
+  "Toshara": {
+    "x": 0.8701,
+    "y": 0.3236,
+    "grid": "?",
+    "region": "?"
+  },
+  "Maldra": {
+    "x": 0.884,
+    "y": 0.3253,
+    "grid": "?",
+    "region": "?"
+  },
+  "Targon": {
+    "x": 0.8968,
+    "y": 0.3159,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dagary": {
+    "x": 0.5668,
+    "y": 0.328,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sifuct": {
+    "x": 0.5521,
+    "y": 0.2984,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nentan": {
+    "x": 0.4516,
+    "y": 0.3052,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kidiet Olgo": {
+    "x": 0.4841,
+    "y": 0.387,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belnar": {
+    "x": 0.5358,
+    "y": 0.3881,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aaeton": {
+    "x": 0.4544,
+    "y": 0.4092,
+    "grid": "?",
+    "region": "?"
+  },
+  "Besero": {
+    "x": 0.505,
+    "y": 0.4348,
+    "grid": "?",
+    "region": "?"
+  },
+  "Goorla": {
+    "x": 0.5494,
+    "y": 0.5049,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chokan": {
+    "x": 0.7098,
+    "y": 0.5765,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shador": {
+    "x": 0.7177,
+    "y": 0.5694,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thokosia": {
+    "x": 0.721,
+    "y": 0.5651,
+    "grid": "?",
+    "region": "?"
+  },
+  "Makeb": {
+    "x": 0.729,
+    "y": 0.5688,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dractu": {
+    "x": 0.7403,
+    "y": 0.5812,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nooli": {
+    "x": 0.7313,
+    "y": 0.5956,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dressel": {
+    "x": 0.7358,
+    "y": 0.6018,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bresnia": {
+    "x": 0.7253,
+    "y": 0.6143,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zakuul": {
+    "x": 0.1652,
+    "y": 0.5963,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iokath": {
+    "x": 0.1953,
+    "y": 0.6291,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gryskar": {
+    "x": 0.1499,
+    "y": 0.531,
+    "grid": "?",
+    "region": "?"
+  },
+  "Agbui": {
+    "x": 0.1632,
+    "y": 0.5062,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kilju": {
+    "x": 0.1505,
+    "y": 0.4972,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rapacc": {
+    "x": 0.182,
+    "y": 0.4717,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nikardun": {
+    "x": 0.2151,
+    "y": 0.4876,
+    "grid": "?",
+    "region": "?"
+  },
+  "Primea": {
+    "x": 0.2239,
+    "y": 0.456,
+    "grid": "?",
+    "region": "?"
+  },
+  "Urch": {
+    "x": 0.2027,
+    "y": 0.4417,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lehon": {
+    "x": 0.2824,
+    "y": 0.5041,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hilak": {
+    "x": 0.2532,
+    "y": 0.5066,
+    "grid": "?",
+    "region": "?"
+  },
+  "Malata": {
+    "x": 0.2428,
+    "y": 0.5162,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tulpaa": {
+    "x": 0.255,
+    "y": 0.522,
+    "grid": "?",
+    "region": "?"
+  },
+  "Griwstrick": {
+    "x": 0.2516,
+    "y": 0.53,
+    "grid": "?",
+    "region": "?"
+  },
+  "Makatak": {
+    "x": 0.2744,
+    "y": 0.5354,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fitomp": {
+    "x": 0.272,
+    "y": 0.5174,
+    "grid": "?",
+    "region": "?"
+  },
+  "Crakull": {
+    "x": 0.2626,
+    "y": 0.4359,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nettehi": {
+    "x": 0.2742,
+    "y": 0.4044,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trancet": {
+    "x": 0.7176,
+    "y": 0.2881,
+    "grid": "?",
+    "region": "?"
+  },
+  "Garos": {
+    "x": 0.6779,
+    "y": 0.2972,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kromus": {
+    "x": 0.6865,
+    "y": 0.3013,
+    "grid": "?",
+    "region": "?"
+  },
+  "Persavi": {
+    "x": 0.7129,
+    "y": 0.3759,
+    "grid": "?",
+    "region": "?"
+  },
+  "D'kee": {
+    "x": 0.1376,
+    "y": 0.7126,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wurrif": {
+    "x": 0.1226,
+    "y": 0.7155,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sh'ner": {
+    "x": 0.1324,
+    "y": 0.7348,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lwhekk": {
+    "x": 0.1293,
+    "y": 0.7276,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dalisor": {
+    "x": 0.4494,
+    "y": 0.7867,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rrulinn": {
+    "x": 0.4434,
+    "y": 0.7902,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quaensan": {
+    "x": 0.4364,
+    "y": 0.7857,
+    "grid": "?",
+    "region": "?"
+  },
+  "Porchello": {
+    "x": 0.4184,
+    "y": 0.7888,
+    "grid": "?",
+    "region": "?"
+  },
+  "Almak": {
+    "x": 0.4123,
+    "y": 0.7754,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hi rsi": {
+    "x": 0.4263,
+    "y": 0.769,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lorta": {
+    "x": 0.436,
+    "y": 0.7946,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quamar": {
+    "x": 0.4507,
+    "y": 0.8029,
+    "grid": "?",
+    "region": "?"
+  },
+  "Javin": {
+    "x": 0.4467,
+    "y": 0.8099,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mugaar": {
+    "x": 0.4471,
+    "y": 0.8073,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shuldene": {
+    "x": 0.4317,
+    "y": 0.8168,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mijos": {
+    "x": 0.4401,
+    "y": 0.819,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gerrenthum": {
+    "x": 0.4426,
+    "y": 0.8221,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ruhnuk": {
+    "x": 0.3139,
+    "y": 0.4729,
+    "grid": "?",
+    "region": "?"
+  },
+  "NaJedha": {
+    "x": 0.344,
+    "y": 0.4539,
+    "grid": "M-13",
+    "region": "Outer Rim"
+  },
+  "Iol": {
+    "x": 0.3166,
+    "y": 0.4344,
+    "grid": "?",
+    "region": "?"
+  },
+  "Denon": {
+    "x": 0.5799,
+    "y": 0.5693,
+    "grid": "?",
+    "region": "?"
+  },
+  "Perithal": {
+    "x": 0.5866,
+    "y": 0.5764,
+    "grid": "?",
+    "region": "?"
+  },
+  "Froswythe": {
+    "x": 0.5467,
+    "y": 0.5819,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belazura": {
+    "x": 0.5396,
+    "y": 0.5691,
+    "grid": "?",
+    "region": "?"
+  },
+  "Havricus": {
+    "x": 0.5726,
+    "y": 0.5606,
+    "grid": "?",
+    "region": "?"
+  },
+  "Genon": {
+    "x": 0.5896,
+    "y": 0.5895,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pencael": {
+    "x": 0.5681,
+    "y": 0.5534,
+    "grid": "?",
+    "region": "?"
+  },
+  "Humbarine": {
+    "x": 0.5643,
+    "y": 0.4663,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aleen": {
+    "x": 0.5623,
+    "y": 0.5916,
+    "grid": "?",
+    "region": "?"
+  },
+  "Azbrian": {
+    "x": 0.5089,
+    "y": 0.5554,
+    "grid": "?",
+    "region": "?"
+  },
+  "Balosar": {
+    "x": 0.5112,
+    "y": 0.5402,
+    "grid": "?",
+    "region": "?"
+  },
+  "Stewjon": {
+    "x": 0.5423,
+    "y": 0.563,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kuar": {
+    "x": 0.4828,
+    "y": 0.4379,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lankashiir": {
+    "x": 0.5833,
+    "y": 0.5118,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eamus": {
+    "x": 0.4836,
+    "y": 0.5637,
+    "grid": "?",
+    "region": "?"
+  },
+  "Exodeen": {
+    "x": 0.5671,
+    "y": 0.5201,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sanjin": {
+    "x": 0.5301,
+    "y": 0.571,
+    "grid": "?",
+    "region": "?"
+  },
+  "Andara": {
+    "x": 0.5241,
+    "y": 0.5708,
+    "grid": "?",
+    "region": "?"
+  },
+  "Epica": {
+    "x": 0.5072,
+    "y": 0.6778,
+    "grid": "?",
+    "region": "?"
+  },
+  "Calus": {
+    "x": 0.5097,
+    "y": 0.6708,
+    "grid": "?",
+    "region": "?"
+  },
+  "Moorja": {
+    "x": 0.5132,
+    "y": 0.6645,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sukkult": {
+    "x": 0.5201,
+    "y": 0.6569,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xeron": {
+    "x": 0.5381,
+    "y": 0.6483,
+    "grid": "?",
+    "region": "?"
+  },
+  "Renillis Xeron": {
+    "x": 0.5191,
+    "y": 0.6476,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wroona": {
+    "x": 0.5229,
+    "y": 0.6658,
+    "grid": "?",
+    "region": "?"
+  },
+  "Droecil": {
+    "x": 0.5273,
+    "y": 0.672,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mechis": {
+    "x": 0.521,
+    "y": 0.6417,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tauber": {
+    "x": 0.5126,
+    "y": 0.6376,
+    "grid": "?",
+    "region": "?"
+  },
+  "Laertos Renillis": {
+    "x": 0.5052,
+    "y": 0.6476,
+    "grid": "?",
+    "region": "?"
+  },
+  "Stobar": {
+    "x": 0.5414,
+    "y": 0.6821,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arkam": {
+    "x": 0.5416,
+    "y": 0.6444,
+    "grid": "?",
+    "region": "?"
+  },
+  "Roona": {
+    "x": 0.5072,
+    "y": 0.6809,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tregillis": {
+    "x": 0.5266,
+    "y": 0.6826,
+    "grid": "?",
+    "region": "?"
+  },
+  "Borkyne": {
+    "x": 0.5033,
+    "y": 0.6857,
+    "grid": "?",
+    "region": "?"
+  },
+  "Harrin": {
+    "x": 0.5157,
+    "y": 0.6588,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ukatis": {
+    "x": 0.4966,
+    "y": 0.6668,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quesaya": {
+    "x": 0.4954,
+    "y": 0.6762,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cortina": {
+    "x": 0.455,
+    "y": 0.5509,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thracior": {
+    "x": 0.4758,
+    "y": 0.5502,
+    "grid": "?",
+    "region": "?"
+  },
+  "Daupherm": {
+    "x": 0.4732,
+    "y": 0.5455,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dulvoyinn": {
+    "x": 0.4815,
+    "y": 0.5348,
+    "grid": "?",
+    "region": "?"
+  },
+  "Crystan": {
+    "x": 0.4889,
+    "y": 0.5346,
+    "grid": "?",
+    "region": "?"
+  },
+  "Khomm": {
+    "x": 0.4886,
+    "y": 0.5387,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lujo": {
+    "x": 0.5015,
+    "y": 0.5436,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thomork": {
+    "x": 0.4891,
+    "y": 0.5443,
+    "grid": "?",
+    "region": "?"
+  },
+  "Botor": {
+    "x": 0.4796,
+    "y": 0.5472,
+    "grid": "?",
+    "region": "?"
+  },
+  "Frego": {
+    "x": 0.4939,
+    "y": 0.5647,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sestria": {
+    "x": 0.527,
+    "y": 0.5649,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lansono": {
+    "x": 0.5244,
+    "y": 0.5523,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gama": {
+    "x": 0.5185,
+    "y": 0.5372,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shumogi": {
+    "x": 0.5319,
+    "y": 0.5326,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lialic": {
+    "x": 0.476,
+    "y": 0.5251,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zamael": {
+    "x": 0.477,
+    "y": 0.5187,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hemei": {
+    "x": 0.5265,
+    "y": 0.5231,
+    "grid": "?",
+    "region": "?"
+  },
+  "Karvoss": {
+    "x": 0.5335,
+    "y": 0.5174,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tinnel": {
+    "x": 0.5561,
+    "y": 0.5213,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chasin": {
+    "x": 0.5504,
+    "y": 0.5385,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chamm": {
+    "x": 0.5278,
+    "y": 0.5391,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kobaria": {
+    "x": 0.5293,
+    "y": 0.5467,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hosnian": {
+    "x": 0.5476,
+    "y": 0.5504,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gandeal": {
+    "x": 0.5451,
+    "y": 0.556,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cbndular": {
+    "x": 0.5487,
+    "y": 0.5456,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arat Fraca": {
+    "x": 0.5577,
+    "y": 0.5489,
+    "grid": "?",
+    "region": "?"
+  },
+  "Loronar": {
+    "x": 0.5609,
+    "y": 0.5398,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bylbos": {
+    "x": 0.5648,
+    "y": 0.5476,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aquilae": {
+    "x": 0.5749,
+    "y": 0.5461,
+    "grid": "?",
+    "region": "?"
+  },
+  "Koensayr": {
+    "x": 0.5723,
+    "y": 0.5362,
+    "grid": "?",
+    "region": "?"
+  },
+  "Besnia": {
+    "x": 0.5715,
+    "y": 0.5314,
+    "grid": "?",
+    "region": "?"
+  },
+  "Herzob": {
+    "x": 0.5696,
+    "y": 0.5257,
+    "grid": "?",
+    "region": "?"
+  },
+  "Boudolayz": {
+    "x": 0.5684,
+    "y": 0.5226,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ailon": {
+    "x": 0.5937,
+    "y": 0.5342,
+    "grid": "?",
+    "region": "?"
+  },
+  "Atapap": {
+    "x": 0.5916,
+    "y": 0.537,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vanjervalis": {
+    "x": 0.5714,
+    "y": 0.5125,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jaciprus": {
+    "x": 0.5633,
+    "y": 0.4982,
+    "grid": "?",
+    "region": "?"
+  },
+  "Voktunma": {
+    "x": 0.5639,
+    "y": 0.5017,
+    "grid": "?",
+    "region": "?"
+  },
+  "Talasea": {
+    "x": 0.5787,
+    "y": 0.4945,
+    "grid": "?",
+    "region": "?"
+  },
+  "Deko Neimoidia": {
+    "x": 0.5801,
+    "y": 0.5008,
+    "grid": "?",
+    "region": "?"
+  },
+  "Darek": {
+    "x": 0.5889,
+    "y": 0.4904,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vladet": {
+    "x": 0.5741,
+    "y": 0.4812,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hensara": {
+    "x": 0.5762,
+    "y": 0.4874,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belassa": {
+    "x": 0.5615,
+    "y": 0.492,
+    "grid": "?",
+    "region": "?"
+  },
+  "Barboo": {
+    "x": 0.5606,
+    "y": 0.4893,
+    "grid": "?",
+    "region": "?"
+  },
+  "Loretto": {
+    "x": 0.5589,
+    "y": 0.4821,
+    "grid": "?",
+    "region": "?"
+  },
+  "Recopia": {
+    "x": 0.5485,
+    "y": 0.4782,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rendili": {
+    "x": 0.5529,
+    "y": 0.4858,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sayugi": {
+    "x": 0.5636,
+    "y": 0.4762,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mawan": {
+    "x": 0.5552,
+    "y": 0.4721,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trellen": {
+    "x": 0.5536,
+    "y": 0.4665,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sarapin": {
+    "x": 0.545,
+    "y": 0.465,
+    "grid": "?",
+    "region": "?"
+  },
+  "Perma": {
+    "x": 0.5404,
+    "y": 0.4698,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thoadeye": {
+    "x": 0.5329,
+    "y": 0.4715,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lolnar": {
+    "x": 0.5422,
+    "y": 0.4747,
+    "grid": "?",
+    "region": "?"
+  },
+  "Columus": {
+    "x": 0.5401,
+    "y": 0.481,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ebaq": {
+    "x": 0.5275,
+    "y": 0.486,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hakassi": {
+    "x": 0.5303,
+    "y": 0.4906,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ottabesk": {
+    "x": 0.5301,
+    "y": 0.4939,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ojom": {
+    "x": 0.5286,
+    "y": 0.4954,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lettow": {
+    "x": 0.5368,
+    "y": 0.4888,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rehemsa": {
+    "x": 0.5466,
+    "y": 0.4916,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sedratis": {
+    "x": 0.5477,
+    "y": 0.4964,
+    "grid": "?",
+    "region": "?"
+  },
+  "Samaria": {
+    "x": 0.5553,
+    "y": 0.5,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rydonni": {
+    "x": 0.5492,
+    "y": 0.5018,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nubia": {
+    "x": 0.5522,
+    "y": 0.5103,
+    "grid": "?",
+    "region": "?"
+  },
+  "Duro": {
+    "x": 0.5506,
+    "y": 0.5129,
+    "grid": "?",
+    "region": "?"
+  },
+  "New Plympto": {
+    "x": 0.5491,
+    "y": 0.5101,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sacorria": {
+    "x": 0.549,
+    "y": 0.5078,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chorax": {
+    "x": 0.5744,
+    "y": 0.4746,
+    "grid": "?",
+    "region": "?"
+  },
+  "Damoria": {
+    "x": 0.5781,
+    "y": 0.4708,
+    "grid": "?",
+    "region": "?"
+  },
+  "Koru Neimoidia": {
+    "x": 0.5798,
+    "y": 0.4685,
+    "grid": "?",
+    "region": "?"
+  },
+  "Faro": {
+    "x": 0.5913,
+    "y": 0.4524,
+    "grid": "?",
+    "region": "?"
+  },
+  "Foundry": {
+    "x": 0.5699,
+    "y": 0.4546,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pria": {
+    "x": 0.5577,
+    "y": 0.4585,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ruul": {
+    "x": 0.5513,
+    "y": 0.4617,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kuat": {
+    "x": 0.5618,
+    "y": 0.448,
+    "grid": "?",
+    "region": "?"
+  },
+  "Neimoidia": {
+    "x": 0.5639,
+    "y": 0.448,
+    "grid": "?",
+    "region": "?"
+  },
+  "Balmorra": {
+    "x": 0.5629,
+    "y": 0.4456,
+    "grid": "?",
+    "region": "?"
+  },
+  "Raxxa": {
+    "x": 0.555,
+    "y": 0.4446,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fedalle": {
+    "x": 0.5426,
+    "y": 0.4446,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trantor": {
+    "x": 0.5463,
+    "y": 0.45,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vuma": {
+    "x": 0.5308,
+    "y": 0.4465,
+    "grid": "?",
+    "region": "?"
+  },
+  "Leria Kerlsil": {
+    "x": 0.5363,
+    "y": 0.458,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dremulae": {
+    "x": 0.5242,
+    "y": 0.4533,
+    "grid": "?",
+    "region": "?"
+  },
+  "Had Abbadon": {
+    "x": 0.5131,
+    "y": 0.4548,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cambria": {
+    "x": 0.5207,
+    "y": 0.4463,
+    "grid": "?",
+    "region": "?"
+  },
+  "Adana": {
+    "x": 0.5048,
+    "y": 0.4446,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vulpter": {
+    "x": 0.5069,
+    "y": 0.4409,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xorth": {
+    "x": 0.5187,
+    "y": 0.432,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aaghra": {
+    "x": 0.5236,
+    "y": 0.4355,
+    "grid": "?",
+    "region": "?"
+  },
+  "Demophon": {
+    "x": 0.5341,
+    "y": 0.434,
+    "grid": "?",
+    "region": "?"
+  },
+  "Glinthnos": {
+    "x": 0.5374,
+    "y": 0.4387,
+    "grid": "?",
+    "region": "?"
+  },
+  "Uquine": {
+    "x": 0.5706,
+    "y": 0.4345,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kattada": {
+    "x": 0.5636,
+    "y": 0.43,
+    "grid": "?",
+    "region": "?"
+  },
+  "Parkis": {
+    "x": 0.5552,
+    "y": 0.4297,
+    "grid": "?",
+    "region": "?"
+  },
+  "Grandine": {
+    "x": 0.5556,
+    "y": 0.4156,
+    "grid": "?",
+    "region": "?"
+  },
+  "Manwess": {
+    "x": 0.5747,
+    "y": 0.4118,
+    "grid": "?",
+    "region": "?"
+  },
+  "Resht": {
+    "x": 0.58,
+    "y": 0.4301,
+    "grid": "?",
+    "region": "?"
+  },
+  "H'ratth": {
+    "x": 0.5896,
+    "y": 0.4227,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corvanni": {
+    "x": 0.5829,
+    "y": 0.4086,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dartessex": {
+    "x": 0.5948,
+    "y": 0.4381,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xobom": {
+    "x": 0.5826,
+    "y": 0.4337,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mokk": {
+    "x": 0.6063,
+    "y": 0.4416,
+    "grid": "?",
+    "region": "?"
+  },
+  "Telti": {
+    "x": 0.6076,
+    "y": 0.4196,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pavo": {
+    "x": 0.5976,
+    "y": 0.4236,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rasterous": {
+    "x": 0.6151,
+    "y": 0.4606,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fadden": {
+    "x": 0.6108,
+    "y": 0.4802,
+    "grid": "?",
+    "region": "?"
+  },
+  "Manaan": {
+    "x": 0.6196,
+    "y": 0.4865,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mattri": {
+    "x": 0.6329,
+    "y": 0.4602,
+    "grid": "?",
+    "region": "?"
+  },
+  "Celegia": {
+    "x": 0.6485,
+    "y": 0.4485,
+    "grid": "?",
+    "region": "?"
+  },
+  "Virujansi": {
+    "x": 0.6424,
+    "y": 0.442,
+    "grid": "?",
+    "region": "?"
+  },
+  "Merson": {
+    "x": 0.6414,
+    "y": 0.4332,
+    "grid": "?",
+    "region": "?"
+  },
+  "Taboon": {
+    "x": 0.6421,
+    "y": 0.4273,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ithull": {
+    "x": 0.6456,
+    "y": 0.4279,
+    "grid": "?",
+    "region": "?"
+  },
+  "The Rig": {
+    "x": 0.6286,
+    "y": 0.4257,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kamsul": {
+    "x": 0.6232,
+    "y": 0.4325,
+    "grid": "?",
+    "region": "?"
+  },
+  "Axion": {
+    "x": 0.6738,
+    "y": 0.4537,
+    "grid": "?",
+    "region": "?"
+  },
+  "New Apsolon": {
+    "x": 0.6829,
+    "y": 0.4369,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belasco": {
+    "x": 0.6478,
+    "y": 0.4827,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trammen": {
+    "x": 0.6388,
+    "y": 0.4941,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chanosant": {
+    "x": 0.6339,
+    "y": 0.4973,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tarhassan": {
+    "x": 0.6411,
+    "y": 0.5041,
+    "grid": "?",
+    "region": "?"
+  },
+  "Daroon": {
+    "x": 0.6379,
+    "y": 0.5079,
+    "grid": "?",
+    "region": "?"
+  },
+  "Truuine": {
+    "x": 0.6138,
+    "y": 0.5066,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mimban": {
+    "x": 0.6411,
+    "y": 0.5129,
+    "grid": "?",
+    "region": "?"
+  },
+  "Erai": {
+    "x": 0.6699,
+    "y": 0.4916,
+    "grid": "?",
+    "region": "?"
+  },
+  "Artesia": {
+    "x": 0.6834,
+    "y": 0.4956,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ulda Frav": {
+    "x": 0.6703,
+    "y": 0.5001,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dica": {
+    "x": 0.6814,
+    "y": 0.4754,
+    "grid": "?",
+    "region": "?"
+  },
+  "Farquar": {
+    "x": 0.7052,
+    "y": 0.4992,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sev Tok": {
+    "x": 0.7046,
+    "y": 0.5096,
+    "grid": "?",
+    "region": "?"
+  },
+  "Attahox": {
+    "x": 0.6853,
+    "y": 0.5214,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zaloriis": {
+    "x": 0.656,
+    "y": 0.5238,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nanth'ri": {
+    "x": 0.7134,
+    "y": 0.5186,
+    "grid": "?",
+    "region": "?"
+  },
+  "Morado": {
+    "x": 0.7276,
+    "y": 0.5105,
+    "grid": "?",
+    "region": "?"
+  },
+  "D'faria": {
+    "x": 0.7336,
+    "y": 0.5175,
+    "grid": "?",
+    "region": "?"
+  },
+  "Parcovey Minor": {
+    "x": 0.7259,
+    "y": 0.5235,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nixor": {
+    "x": 0.7136,
+    "y": 0.5354,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mordagon": {
+    "x": 0.6918,
+    "y": 0.529,
+    "grid": "?",
+    "region": "?"
+  },
+  "Emberlene": {
+    "x": 0.6809,
+    "y": 0.54,
+    "grid": "?",
+    "region": "?"
+  },
+  "Scardia": {
+    "x": 0.6784,
+    "y": 0.543,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Wylan": {
+    "x": 0.7437,
+    "y": 0.5318,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ruloosia": {
+    "x": 0.7556,
+    "y": 0.5439,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jilrua": {
+    "x": 0.7658,
+    "y": 0.5194,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tol Amn": {
+    "x": 0.7599,
+    "y": 0.4949,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Yndar": {
+    "x": 0.7246,
+    "y": 0.4912,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rettna": {
+    "x": 0.731,
+    "y": 0.4832,
+    "grid": "?",
+    "region": "?"
+  },
+  "Esaga": {
+    "x": 0.7533,
+    "y": 0.4793,
+    "grid": "?",
+    "region": "?"
+  },
+  "Freda": {
+    "x": 0.7359,
+    "y": 0.4754,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cygnus B": {
+    "x": 0.7481,
+    "y": 0.4707,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jante": {
+    "x": 0.7334,
+    "y": 0.4735,
+    "grid": "?",
+    "region": "?"
+  },
+  "Drogheda": {
+    "x": 0.7076,
+    "y": 0.4736,
+    "grid": "?",
+    "region": "?"
+  },
+  "Uogo'cor": {
+    "x": 0.7164,
+    "y": 0.4606,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lexrul": {
+    "x": 0.7132,
+    "y": 0.4528,
+    "grid": "?",
+    "region": "?"
+  },
+  "Deysum": {
+    "x": 0.7134,
+    "y": 0.4453,
+    "grid": "?",
+    "region": "?"
+  },
+  "Blimph": {
+    "x": 0.7199,
+    "y": 0.439,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ubrikkia": {
+    "x": 0.7424,
+    "y": 0.4481,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gavos": {
+    "x": 0.7344,
+    "y": 0.4381,
+    "grid": "?",
+    "region": "?"
+  },
+  "Katalla": {
+    "x": 0.7648,
+    "y": 0.4459,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kwenn": {
+    "x": 0.7664,
+    "y": 0.4576,
+    "grid": "?",
+    "region": "?"
+  },
+  "Keldooine": {
+    "x": 0.7688,
+    "y": 0.4589,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nar Bo Sholla": {
+    "x": 0.7803,
+    "y": 0.4632,
+    "grid": "?",
+    "region": "?"
+  },
+  "Irith": {
+    "x": 0.7883,
+    "y": 0.4801,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kleeva": {
+    "x": 0.7813,
+    "y": 0.508,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hosko": {
+    "x": 0.8047,
+    "y": 0.5056,
+    "grid": "?",
+    "region": "?"
+  },
+  "Varl": {
+    "x": 0.8159,
+    "y": 0.4926,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rorak": {
+    "x": 0.8019,
+    "y": 0.5281,
+    "grid": "?",
+    "region": "?"
+  },
+  "Diyu": {
+    "x": 0.8221,
+    "y": 0.5229,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ylesia": {
+    "x": 0.8471,
+    "y": 0.5215,
+    "grid": "?",
+    "region": "?"
+  },
+  "Poytta": {
+    "x": 0.8517,
+    "y": 0.5194,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tisht": {
+    "x": 0.849,
+    "y": 0.5036,
+    "grid": "?",
+    "region": "?"
+  },
+  "M'Hanna": {
+    "x": 0.8344,
+    "y": 0.4967,
+    "grid": "?",
+    "region": "?"
+  },
+  "Godsheart": {
+    "x": 0.8408,
+    "y": 0.4815,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cyax": {
+    "x": 0.8236,
+    "y": 0.4866,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sakidopa": {
+    "x": 0.8198,
+    "y": 0.4828,
+    "grid": "?",
+    "region": "?"
+  },
+  "Saki": {
+    "x": 0.8164,
+    "y": 0.4797,
+    "grid": "?",
+    "region": "?"
+  },
+  "Groth": {
+    "x": 0.815,
+    "y": 0.476,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kor Oktanivii": {
+    "x": 0.8069,
+    "y": 0.4787,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gos Hutta": {
+    "x": 0.8111,
+    "y": 0.4741,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kor Desilijic": {
+    "x": 0.8136,
+    "y": 0.4714,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kor Utoradii": {
+    "x": 0.8041,
+    "y": 0.4698,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nar Chunna": {
+    "x": 0.8066,
+    "y": 0.4637,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mulatan": {
+    "x": 0.8113,
+    "y": 0.4584,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kor Hestilic": {
+    "x": 0.8056,
+    "y": 0.4562,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kor Nijiladii": {
+    "x": 0.8083,
+    "y": 0.4518,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kor Besadii": {
+    "x": 0.8055,
+    "y": 0.4498,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kor Vosadii": {
+    "x": 0.8011,
+    "y": 0.4528,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kor Nasirii": {
+    "x": 0.8024,
+    "y": 0.4468,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hulloon": {
+    "x": 0.816,
+    "y": 0.4683,
+    "grid": "?",
+    "region": "?"
+  },
+  "Langoona": {
+    "x": 0.82,
+    "y": 0.4644,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shagplan": {
+    "x": 0.8242,
+    "y": 0.4615,
+    "grid": "?",
+    "region": "?"
+  },
+  "Elgit": {
+    "x": 0.8309,
+    "y": 0.4545,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zisia": {
+    "x": 0.8271,
+    "y": 0.4397,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quesh": {
+    "x": 0.8214,
+    "y": 0.4426,
+    "grid": "?",
+    "region": "?"
+  },
+  "Moralan": {
+    "x": 0.8421,
+    "y": 0.4505,
+    "grid": "?",
+    "region": "?"
+  },
+  "Saqqar": {
+    "x": 0.8494,
+    "y": 0.4829,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ziugen": {
+    "x": 0.8599,
+    "y": 0.5225,
+    "grid": "?",
+    "region": "?"
+  },
+  "Teth": {
+    "x": 0.8756,
+    "y": 0.5209,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lirra": {
+    "x": 0.8722,
+    "y": 0.5216,
+    "grid": "?",
+    "region": "?"
+  },
+  "Outland Transit": {
+    "x": 0.8685,
+    "y": 0.5223,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rampa": {
+    "x": 0.8752,
+    "y": 0.5286,
+    "grid": "?",
+    "region": "?"
+  },
+  "Riileb": {
+    "x": 0.8414,
+    "y": 0.5395,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dilbara": {
+    "x": 0.8753,
+    "y": 0.5446,
+    "grid": "?",
+    "region": "?"
+  },
+  "Clantaano": {
+    "x": 0.8744,
+    "y": 0.5493,
+    "grid": "?",
+    "region": "?"
+  },
+  "Barab": {
+    "x": 0.8717,
+    "y": 0.5606,
+    "grid": "?",
+    "region": "?"
+  },
+  "Daluuj": {
+    "x": 0.8836,
+    "y": 0.5699,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dubrava": {
+    "x": 0.8659,
+    "y": 0.5751,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tysk": {
+    "x": 0.8309,
+    "y": 0.568,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hollastin": {
+    "x": 0.8109,
+    "y": 0.5484,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xolu": {
+    "x": 0.809,
+    "y": 0.5762,
+    "grid": "?",
+    "region": "?"
+  },
+  "Affavan": {
+    "x": 0.8008,
+    "y": 0.5428,
+    "grid": "?",
+    "region": "?"
+  },
+  "Circumtore": {
+    "x": 0.79,
+    "y": 0.5355,
+    "grid": "?",
+    "region": "?"
+  },
+  "Carnovia": {
+    "x": 0.7899,
+    "y": 0.5584,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bheriz": {
+    "x": 0.8765,
+    "y": 0.4424,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pilshella": {
+    "x": 0.8614,
+    "y": 0.4311,
+    "grid": "?",
+    "region": "?"
+  },
+  "Formos": {
+    "x": 0.8685,
+    "y": 0.431,
+    "grid": "?",
+    "region": "?"
+  },
+  "Honoghr": {
+    "x": 0.8484,
+    "y": 0.4327,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zerm": {
+    "x": 0.8404,
+    "y": 0.4295,
+    "grid": "?",
+    "region": "?"
+  },
+  "The Maw": {
+    "x": 0.8454,
+    "y": 0.4237,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ulmatra": {
+    "x": 0.8265,
+    "y": 0.4255,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sleheyron": {
+    "x": 0.816,
+    "y": 0.4284,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nimban": {
+    "x": 0.7981,
+    "y": 0.4331,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nar Kreeta": {
+    "x": 0.7913,
+    "y": 0.4342,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sionia": {
+    "x": 0.7994,
+    "y": 0.4255,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cyborrea": {
+    "x": 0.8014,
+    "y": 0.4079,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ilos Minor": {
+    "x": 0.7829,
+    "y": 0.4324,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nos": {
+    "x": 0.7769,
+    "y": 0.43,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tal Nami": {
+    "x": 0.7836,
+    "y": 0.4145,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alee": {
+    "x": 0.7796,
+    "y": 0.4027,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cejansij": {
+    "x": 0.7821,
+    "y": 0.3982,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xoman": {
+    "x": 0.7891,
+    "y": 0.3854,
+    "grid": "?",
+    "region": "?"
+  },
+  "Danuta": {
+    "x": 0.7908,
+    "y": 0.3781,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bimmisaari": {
+    "x": 0.7786,
+    "y": 0.3748,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dirha": {
+    "x": 0.8094,
+    "y": 0.3795,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vodran": {
+    "x": 0.8177,
+    "y": 0.3839,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kafane": {
+    "x": 0.8193,
+    "y": 0.3928,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kibind": {
+    "x": 0.8569,
+    "y": 0.4052,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gestrex": {
+    "x": 0.8546,
+    "y": 0.3919,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lowick": {
+    "x": 0.8732,
+    "y": 0.4073,
+    "grid": "?",
+    "region": "?"
+  },
+  "Akrit'tar": {
+    "x": 0.8658,
+    "y": 0.3857,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kegen": {
+    "x": 0.8536,
+    "y": 0.375,
+    "grid": "?",
+    "region": "?"
+  },
+  "Klatooine": {
+    "x": 0.8172,
+    "y": 0.3702,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nimia": {
+    "x": 0.8199,
+    "y": 0.3694,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ques": {
+    "x": 0.8183,
+    "y": 0.3669,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yoribuunt": {
+    "x": 0.8278,
+    "y": 0.3678,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tammar": {
+    "x": 0.8294,
+    "y": 0.3627,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lant": {
+    "x": 0.8137,
+    "y": 0.3653,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sriluur": {
+    "x": 0.817,
+    "y": 0.3632,
+    "grid": "?",
+    "region": "?"
+  },
+  "Af'El": {
+    "x": 0.8187,
+    "y": 0.3619,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reibrin": {
+    "x": 0.808,
+    "y": 0.3589,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iotra": {
+    "x": 0.8062,
+    "y": 0.3633,
+    "grid": "?",
+    "region": "?"
+  },
+  "Boonta": {
+    "x": 0.8063,
+    "y": 0.346,
+    "grid": "?",
+    "region": "?"
+  },
+  "Komnor": {
+    "x": 0.8047,
+    "y": 0.3265,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tessen": {
+    "x": 0.7987,
+    "y": 0.315,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kalkovak": {
+    "x": 0.7923,
+    "y": 0.3327,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ingo": {
+    "x": 0.7811,
+    "y": 0.3371,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hurd's Moon": {
+    "x": 0.782,
+    "y": 0.3436,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zchtek": {
+    "x": 0.7795,
+    "y": 0.3505,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pusat": {
+    "x": 0.7869,
+    "y": 0.3568,
+    "grid": "?",
+    "region": "?"
+  },
+  "Peg Shar": {
+    "x": 0.7851,
+    "y": 0.3618,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ultaar": {
+    "x": 0.7648,
+    "y": 0.3429,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bryx": {
+    "x": 0.7601,
+    "y": 0.3217,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sarka": {
+    "x": 0.7398,
+    "y": 0.3425,
+    "grid": "?",
+    "region": "?"
+  },
+  "Maltoria": {
+    "x": 0.7519,
+    "y": 0.3533,
+    "grid": "?",
+    "region": "?"
+  },
+  "Diado": {
+    "x": 0.7567,
+    "y": 0.3568,
+    "grid": "?",
+    "region": "?"
+  },
+  "Stronghold": {
+    "x": 0.7429,
+    "y": 0.3661,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rathalay": {
+    "x": 0.7465,
+    "y": 0.3724,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rearqu": {
+    "x": 0.723,
+    "y": 0.365,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trasse": {
+    "x": 0.7264,
+    "y": 0.3449,
+    "grid": "?",
+    "region": "?"
+  },
+  "Orleon": {
+    "x": 0.7292,
+    "y": 0.3266,
+    "grid": "?",
+    "region": "?"
+  },
+  "Metalorn": {
+    "x": 0.7495,
+    "y": 0.33,
+    "grid": "?",
+    "region": "?"
+  },
+  "Talcene": {
+    "x": 0.7351,
+    "y": 0.3212,
+    "grid": "?",
+    "region": "?"
+  },
+  "Salvara": {
+    "x": 0.7371,
+    "y": 0.3182,
+    "grid": "?",
+    "region": "?"
+  },
+  "Constancia": {
+    "x": 0.4768,
+    "y": 0.532,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vectinia": {
+    "x": 0.5421,
+    "y": 0.2737,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sanrafsix": {
+    "x": 0.5756,
+    "y": 0.7764,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tanta Aurek": {
+    "x": 0.5592,
+    "y": 0.788,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cmaol Di": {
+    "x": 0.5582,
+    "y": 0.7908,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tshindral": {
+    "x": 0.5465,
+    "y": 0.7792,
+    "grid": "?",
+    "region": "?"
+  },
+  "Indupar": {
+    "x": 0.5422,
+    "y": 0.7714,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chryya": {
+    "x": 0.5655,
+    "y": 0.7706,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aquilaris": {
+    "x": 0.5639,
+    "y": 0.7734,
+    "grid": "?",
+    "region": "?"
+  },
+  "Darknell": {
+    "x": 0.5609,
+    "y": 0.7814,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jutrand": {
+    "x": 0.5673,
+    "y": 0.7776,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tramanos": {
+    "x": 0.5699,
+    "y": 0.7842,
+    "grid": "?",
+    "region": "?"
+  },
+  "Syned": {
+    "x": 0.5748,
+    "y": 0.7885,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arbra": {
+    "x": 0.6011,
+    "y": 0.7882,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sharlissia": {
+    "x": 0.6032,
+    "y": 0.8115,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shadda-Bi Boran": {
+    "x": 0.6191,
+    "y": 0.8061,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sanbra": {
+    "x": 0.6201,
+    "y": 0.7831,
+    "grid": "?",
+    "region": "?"
+  },
+  "D'Qar": {
+    "x": 0.6336,
+    "y": 0.792,
+    "grid": "?",
+    "region": "?"
+  },
+  "Verdanth": {
+    "x": 0.5975,
+    "y": 0.7725,
+    "grid": "?",
+    "region": "?"
+  },
+  "Samhar": {
+    "x": 0.578,
+    "y": 0.774,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nuvar": {
+    "x": 0.5756,
+    "y": 0.7621,
+    "grid": "?",
+    "region": "?"
+  },
+  "Old Mankoo": {
+    "x": 0.5881,
+    "y": 0.7581,
+    "grid": "?",
+    "region": "?"
+  },
+  "Karlinus": {
+    "x": 0.6226,
+    "y": 0.7533,
+    "grid": "?",
+    "region": "?"
+  },
+  "Enarc": {
+    "x": 0.6309,
+    "y": 0.7646,
+    "grid": "?",
+    "region": "?"
+  },
+  "ZeHeth": {
+    "x": 0.5733,
+    "y": 0.7406,
+    "grid": "?",
+    "region": "?"
+  },
+  "Demos": {
+    "x": 0.5777,
+    "y": 0.7341,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pax": {
+    "x": 0.5761,
+    "y": 0.7182,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nuralee": {
+    "x": 0.5877,
+    "y": 0.7236,
+    "grid": "?",
+    "region": "?"
+  },
+  "Umgul": {
+    "x": 0.5947,
+    "y": 0.743,
+    "grid": "?",
+    "region": "?"
+  },
+  "Haruun Kal": {
+    "x": 0.559,
+    "y": 0.7603,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vogel": {
+    "x": 0.5533,
+    "y": 0.7453,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vondarc": {
+    "x": 0.545,
+    "y": 0.753,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lanthe": {
+    "x": 0.5424,
+    "y": 0.7451,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alakatha": {
+    "x": 0.5414,
+    "y": 0.7367,
+    "grid": "?",
+    "region": "?"
+  },
+  "Daeman": {
+    "x": 0.5388,
+    "y": 0.7248,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trevi": {
+    "x": 0.5977,
+    "y": 0.7677,
+    "grid": "?",
+    "region": "?"
+  },
+  "Strangereal": {
+    "x": 0.6009,
+    "y": 0.7343,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alassa": {
+    "x": 0.6289,
+    "y": 0.7316,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Zeuol": {
+    "x": 0.6249,
+    "y": 0.7367,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kalinda": {
+    "x": 0.6232,
+    "y": 0.7193,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sedesia": {
+    "x": 0.6269,
+    "y": 0.712,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ank Kit'aar": {
+    "x": 0.6335,
+    "y": 0.7031,
+    "grid": "?",
+    "region": "?"
+  },
+  "Roldalna": {
+    "x": 0.6061,
+    "y": 0.7113,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kira": {
+    "x": 0.5906,
+    "y": 0.7085,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ropagi": {
+    "x": 0.5899,
+    "y": 0.7109,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arrgaw": {
+    "x": 0.577,
+    "y": 0.7098,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jurzan": {
+    "x": 0.5637,
+    "y": 0.7028,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tyus Cluster": {
+    "x": 0.5716,
+    "y": 0.7273,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kerkoidia": {
+    "x": 0.6029,
+    "y": 0.6998,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cerenia": {
+    "x": 0.6078,
+    "y": 0.6981,
+    "grid": "?",
+    "region": "?"
+  },
+  "M'haeli": {
+    "x": 0.5738,
+    "y": 0.6965,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ramordia": {
+    "x": 0.5788,
+    "y": 0.6868,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bimin": {
+    "x": 0.5832,
+    "y": 0.6918,
+    "grid": "?",
+    "region": "?"
+  },
+  "Brevost": {
+    "x": 0.6189,
+    "y": 0.6911,
+    "grid": "?",
+    "region": "?"
+  },
+  "Majoor": {
+    "x": 0.58,
+    "y": 0.6798,
+    "grid": "?",
+    "region": "?"
+  },
+  "Momansi": {
+    "x": 0.6252,
+    "y": 0.6835,
+    "grid": "?",
+    "region": "?"
+  },
+  "Krann": {
+    "x": 0.6271,
+    "y": 0.6788,
+    "grid": "?",
+    "region": "?"
+  },
+  "Opiteihr": {
+    "x": 0.5612,
+    "y": 0.7336,
+    "grid": "?",
+    "region": "?"
+  },
+  "Woostri": {
+    "x": 0.5365,
+    "y": 0.7148,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vandelhelm": {
+    "x": 0.5326,
+    "y": 0.7005,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nakadia": {
+    "x": 0.5301,
+    "y": 0.6929,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lohopa": {
+    "x": 0.5486,
+    "y": 0.6894,
+    "grid": "?",
+    "region": "?"
+  },
+  "Atrakus": {
+    "x": 0.5621,
+    "y": 0.6755,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ragith": {
+    "x": 0.5806,
+    "y": 0.6718,
+    "grid": "?",
+    "region": "?"
+  },
+  "Derra": {
+    "x": 0.5692,
+    "y": 0.6687,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mikaster": {
+    "x": 0.5711,
+    "y": 0.6636,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gacerian": {
+    "x": 0.5812,
+    "y": 0.6647,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aguarl": {
+    "x": 0.5975,
+    "y": 0.6684,
+    "grid": "?",
+    "region": "?"
+  },
+  "Coonee": {
+    "x": 0.6304,
+    "y": 0.6683,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sika": {
+    "x": 0.6306,
+    "y": 0.6645,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cheku": {
+    "x": 0.6272,
+    "y": 0.6608,
+    "grid": "?",
+    "region": "?"
+  },
+  "Selsor": {
+    "x": 0.6255,
+    "y": 0.6554,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nivek": {
+    "x": 0.6321,
+    "y": 0.6517,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vernet": {
+    "x": 0.5969,
+    "y": 0.6488,
+    "grid": "?",
+    "region": "?"
+  },
+  "Baroli": {
+    "x": 0.5821,
+    "y": 0.6486,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vendaxa": {
+    "x": 0.6199,
+    "y": 0.6374,
+    "grid": "?",
+    "region": "?"
+  },
+  "Milagro": {
+    "x": 0.6371,
+    "y": 0.6346,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thaere": {
+    "x": 0.6474,
+    "y": 0.6472,
+    "grid": "?",
+    "region": "?"
+  },
+  "New Cov": {
+    "x": 0.6587,
+    "y": 0.6569,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kalabra": {
+    "x": 0.6584,
+    "y": 0.6681,
+    "grid": "?",
+    "region": "?"
+  },
+  "Monor": {
+    "x": 0.6681,
+    "y": 0.679,
+    "grid": "?",
+    "region": "?"
+  },
+  "Triffis": {
+    "x": 0.6496,
+    "y": 0.6872,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bannistar": {
+    "x": 0.6493,
+    "y": 0.6946,
+    "grid": "?",
+    "region": "?"
+  },
+  "Druckenwell": {
+    "x": 0.6732,
+    "y": 0.6757,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lelmra": {
+    "x": 0.6764,
+    "y": 0.652,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sanza": {
+    "x": 0.6753,
+    "y": 0.6365,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cularin": {
+    "x": 0.6581,
+    "y": 0.6347,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bacrana": {
+    "x": 0.6468,
+    "y": 0.6415,
+    "grid": "?",
+    "region": "?"
+  },
+  "Paqwepor": {
+    "x": 0.6798,
+    "y": 0.686,
+    "grid": "?",
+    "region": "?"
+  },
+  "Falleen": {
+    "x": 0.6902,
+    "y": 0.686,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kabray": {
+    "x": 0.6868,
+    "y": 0.6927,
+    "grid": "?",
+    "region": "?"
+  },
+  "Algara": {
+    "x": 0.6921,
+    "y": 0.6988,
+    "grid": "?",
+    "region": "?"
+  },
+  "Andosha": {
+    "x": 0.6971,
+    "y": 0.7051,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arbular": {
+    "x": 0.7001,
+    "y": 0.703,
+    "grid": "?",
+    "region": "?"
+  },
+  "Horos": {
+    "x": 0.7022,
+    "y": 0.7063,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ando": {
+    "x": 0.7128,
+    "y": 0.7076,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thape": {
+    "x": 0.7147,
+    "y": 0.6985,
+    "grid": "?",
+    "region": "?"
+  },
+  "Linuri": {
+    "x": 0.6961,
+    "y": 0.6818,
+    "grid": "?",
+    "region": "?"
+  },
+  "Haseria": {
+    "x": 0.6972,
+    "y": 0.6681,
+    "grid": "?",
+    "region": "?"
+  },
+  "Monastery": {
+    "x": 0.7054,
+    "y": 0.6571,
+    "grid": "?",
+    "region": "?"
+  },
+  "Masterra": {
+    "x": 0.7174,
+    "y": 0.6413,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reigalius": {
+    "x": 0.7383,
+    "y": 0.6627,
+    "grid": "?",
+    "region": "?"
+  },
+  "Leritor": {
+    "x": 0.7356,
+    "y": 0.6761,
+    "grid": "?",
+    "region": "?"
+  },
+  "Blenjeel": {
+    "x": 0.7284,
+    "y": 0.6929,
+    "grid": "?",
+    "region": "?"
+  },
+  "Womrik": {
+    "x": 0.7379,
+    "y": 0.6876,
+    "grid": "?",
+    "region": "?"
+  },
+  "Blathar": {
+    "x": 0.7524,
+    "y": 0.6664,
+    "grid": "?",
+    "region": "?"
+  },
+  "Filve": {
+    "x": 0.7631,
+    "y": 0.6683,
+    "grid": "?",
+    "region": "?"
+  },
+  "Somov Rit": {
+    "x": 0.7574,
+    "y": 0.6764,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lahasbane": {
+    "x": 0.7609,
+    "y": 0.6833,
+    "grid": "?",
+    "region": "?"
+  },
+  "Grakouine": {
+    "x": 0.7637,
+    "y": 0.7016,
+    "grid": "?",
+    "region": "?"
+  },
+  "Algarian": {
+    "x": 0.7357,
+    "y": 0.7048,
+    "grid": "?",
+    "region": "?"
+  },
+  "Talay": {
+    "x": 0.7414,
+    "y": 0.7137,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Pardron": {
+    "x": 0.7672,
+    "y": 0.708,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iskalon": {
+    "x": 0.7609,
+    "y": 0.7217,
+    "grid": "?",
+    "region": "?"
+  },
+  "Koiogra": {
+    "x": 0.7711,
+    "y": 0.7157,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xorrn": {
+    "x": 0.7936,
+    "y": 0.7199,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hypori": {
+    "x": 0.7941,
+    "y": 0.7295,
+    "grid": "?",
+    "region": "?"
+  },
+  "Piroket": {
+    "x": 0.7661,
+    "y": 0.7267,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pii": {
+    "x": 0.7474,
+    "y": 0.7304,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ooo-temiuk": {
+    "x": 0.7616,
+    "y": 0.7382,
+    "grid": "?",
+    "region": "?"
+  },
+  "Herdessa": {
+    "x": 0.718,
+    "y": 0.7265,
+    "grid": "?",
+    "region": "?"
+  },
+  "Habassa": {
+    "x": 0.7161,
+    "y": 0.7295,
+    "grid": "?",
+    "region": "?"
+  },
+  "Retep": {
+    "x": 0.7144,
+    "y": 0.7349,
+    "grid": "?",
+    "region": "?"
+  },
+  "Radnor": {
+    "x": 0.7249,
+    "y": 0.7339,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ragna": {
+    "x": 0.7354,
+    "y": 0.7398,
+    "grid": "?",
+    "region": "?"
+  },
+  "Savareen": {
+    "x": 0.7323,
+    "y": 0.7492,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tythe": {
+    "x": 0.7323,
+    "y": 0.7555,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nelvaan": {
+    "x": 0.7304,
+    "y": 0.7553,
+    "grid": "?",
+    "region": "?"
+  },
+  "Llanic": {
+    "x": 0.7089,
+    "y": 0.7537,
+    "grid": "?",
+    "region": "?"
+  },
+  "New Ator": {
+    "x": 0.7505,
+    "y": 0.7529,
+    "grid": "?",
+    "region": "?"
+  },
+  "Issor": {
+    "x": 0.7486,
+    "y": 0.7564,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arkanis": {
+    "x": 0.7448,
+    "y": 0.7601,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sirpar": {
+    "x": 0.7466,
+    "y": 0.7624,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gorno": {
+    "x": 0.7479,
+    "y": 0.7649,
+    "grid": "?",
+    "region": "?"
+  },
+  "Najiba": {
+    "x": 0.7508,
+    "y": 0.7594,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vasch": {
+    "x": 0.7536,
+    "y": 0.7651,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vor Deo": {
+    "x": 0.7613,
+    "y": 0.7577,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cranan": {
+    "x": 0.7676,
+    "y": 0.7479,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vactooine": {
+    "x": 0.7682,
+    "y": 0.7557,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cirus": {
+    "x": 0.7726,
+    "y": 0.7633,
+    "grid": "?",
+    "region": "?"
+  },
+  "Siskeen": {
+    "x": 0.7829,
+    "y": 0.7577,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lok": {
+    "x": 0.7192,
+    "y": 0.7662,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ragmar": {
+    "x": 0.7087,
+    "y": 0.7744,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zhar": {
+    "x": 0.6944,
+    "y": 0.7645,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eos": {
+    "x": 0.6868,
+    "y": 0.779,
+    "grid": "?",
+    "region": "?"
+  },
+  "Orvax": {
+    "x": 0.7414,
+    "y": 0.777,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dalchon": {
+    "x": 0.7598,
+    "y": 0.7759,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ab Dalis": {
+    "x": 0.7627,
+    "y": 0.7785,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shimia": {
+    "x": 0.7588,
+    "y": 0.7833,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dom-Bradden": {
+    "x": 0.7182,
+    "y": 0.8148,
+    "grid": "?",
+    "region": "?"
+  },
+  "Daslkehnt": {
+    "x": 0.7434,
+    "y": 0.8013,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wrea": {
+    "x": 0.7884,
+    "y": 0.7996,
+    "grid": "?",
+    "region": "?"
+  },
+  "Smuggler's Run": {
+    "x": 0.7975,
+    "y": 0.8058,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gaulus": {
+    "x": 0.7993,
+    "y": 0.7926,
+    "grid": "?",
+    "region": "?"
+  },
+  "Velabri": {
+    "x": 0.7889,
+    "y": 0.8271,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lamaredd": {
+    "x": 0.8049,
+    "y": 0.8223,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rannon": {
+    "x": 0.8337,
+    "y": 0.7621,
+    "grid": "?",
+    "region": "?"
+  },
+  "Illarreen": {
+    "x": 0.8624,
+    "y": 0.7146,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kowak": {
+    "x": 0.8234,
+    "y": 0.7089,
+    "grid": "?",
+    "region": "?"
+  },
+  "Port Vlemoth": {
+    "x": 0.8141,
+    "y": 0.7406,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pzob": {
+    "x": 0.8572,
+    "y": 0.7011,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rothana": {
+    "x": 0.8509,
+    "y": 0.6866,
+    "grid": "?",
+    "region": "?"
+  },
+  "R-Duba": {
+    "x": 0.8476,
+    "y": 0.6695,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shiffrin": {
+    "x": 0.8448,
+    "y": 0.6643,
+    "grid": "?",
+    "region": "?"
+  },
+  "Smarteel": {
+    "x": 0.8901,
+    "y": 0.6493,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tammuz-an": {
+    "x": 0.8586,
+    "y": 0.6347,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shola": {
+    "x": 0.8774,
+    "y": 0.6217,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kolanda": {
+    "x": 0.8103,
+    "y": 0.633,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kemix": {
+    "x": 0.8054,
+    "y": 0.6226,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alvorine": {
+    "x": 0.8077,
+    "y": 0.6452,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lyran": {
+    "x": 0.8227,
+    "y": 0.6664,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bora Vio": {
+    "x": 0.7999,
+    "y": 0.6714,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ukio": {
+    "x": 0.7974,
+    "y": 0.6751,
+    "grid": "?",
+    "region": "?"
+  },
+  "Varristad": {
+    "x": 0.7916,
+    "y": 0.6798,
+    "grid": "?",
+    "region": "?"
+  },
+  "Molavar": {
+    "x": 0.7977,
+    "y": 0.6873,
+    "grid": "?",
+    "region": "?"
+  },
+  "Argovia": {
+    "x": 0.7904,
+    "y": 0.6486,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rotas": {
+    "x": 0.7979,
+    "y": 0.6421,
+    "grid": "?",
+    "region": "?"
+  },
+  "Far Pando": {
+    "x": 0.8133,
+    "y": 0.5962,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arami": {
+    "x": 0.8436,
+    "y": 0.6018,
+    "grid": "?",
+    "region": "?"
+  },
+  "Syvris": {
+    "x": 0.8488,
+    "y": 0.5849,
+    "grid": "?",
+    "region": "?"
+  },
+  "Unagin": {
+    "x": 0.8452,
+    "y": 0.5821,
+    "grid": "?",
+    "region": "?"
+  },
+  "Altor": {
+    "x": 0.8794,
+    "y": 0.5986,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nedij": {
+    "x": 0.7101,
+    "y": 0.8761,
+    "grid": "?",
+    "region": "?"
+  },
+  "Karazak": {
+    "x": 0.6832,
+    "y": 0.885,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alzoc": {
+    "x": 0.6712,
+    "y": 0.8728,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pantora": {
+    "x": 0.6706,
+    "y": 0.8577,
+    "grid": "?",
+    "region": "?"
+  },
+  "Maryx": {
+    "x": 0.6379,
+    "y": 0.88,
+    "grid": "?",
+    "region": "?"
+  },
+  "Silken": {
+    "x": 0.6319,
+    "y": 0.9041,
+    "grid": "?",
+    "region": "?"
+  },
+  "Suarbi": {
+    "x": 0.6469,
+    "y": 0.8589,
+    "grid": "?",
+    "region": "?"
+  },
+  "Spice Terminus": {
+    "x": 0.6687,
+    "y": 0.8468,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reuss": {
+    "x": 0.6813,
+    "y": 0.8268,
+    "grid": "?",
+    "region": "?"
+  },
+  "Drexel": {
+    "x": 0.709,
+    "y": 0.8305,
+    "grid": "?",
+    "region": "?"
+  },
+  "Andalasa": {
+    "x": 0.6836,
+    "y": 0.8183,
+    "grid": "?",
+    "region": "?"
+  },
+  "Qiaxx": {
+    "x": 0.6769,
+    "y": 0.8189,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bajic": {
+    "x": 0.6659,
+    "y": 0.8089,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vergesso": {
+    "x": 0.6691,
+    "y": 0.8043,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vohai": {
+    "x": 0.6429,
+    "y": 0.8279,
+    "grid": "?",
+    "region": "?"
+  },
+  "Parein": {
+    "x": 0.6439,
+    "y": 0.8188,
+    "grid": "?",
+    "region": "?"
+  },
+  "Turcan": {
+    "x": 0.6313,
+    "y": 0.8325,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Grovner": {
+    "x": 0.6264,
+    "y": 0.8414,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lan": {
+    "x": 0.6424,
+    "y": 0.8093,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nulan": {
+    "x": 0.6462,
+    "y": 0.806,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rugosa": {
+    "x": 0.6446,
+    "y": 0.7829,
+    "grid": "?",
+    "region": "?"
+  },
+  "Melida/Daan": {
+    "x": 0.6801,
+    "y": 0.7876,
+    "grid": "?",
+    "region": "?"
+  },
+  "Stend": {
+    "x": 0.6568,
+    "y": 0.7805,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trigalis": {
+    "x": 0.6586,
+    "y": 0.7779,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ninzam": {
+    "x": 0.6626,
+    "y": 0.7687,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kaliida": {
+    "x": 0.6443,
+    "y": 0.7694,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ryndellia": {
+    "x": 0.6469,
+    "y": 0.7594,
+    "grid": "?",
+    "region": "?"
+  },
+  "Teirasa": {
+    "x": 0.6518,
+    "y": 0.7397,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Zynthar": {
+    "x": 0.6739,
+    "y": 0.7349,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rintonne": {
+    "x": 0.6794,
+    "y": 0.7276,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zolan": {
+    "x": 0.6883,
+    "y": 0.7223,
+    "grid": "?",
+    "region": "?"
+  },
+  "Argus": {
+    "x": 0.6927,
+    "y": 0.7158,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xandil": {
+    "x": 0.6664,
+    "y": 0.7161,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cotellier": {
+    "x": 0.5974,
+    "y": 0.9195,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ma'ar Shaddam": {
+    "x": 0.5974,
+    "y": 0.9093,
+    "grid": "?",
+    "region": "?"
+  },
+  "Taroon": {
+    "x": 0.6061,
+    "y": 0.9015,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kirdo": {
+    "x": 0.5941,
+    "y": 0.8709,
+    "grid": "?",
+    "region": "?"
+  },
+  "Skustell Cluster": {
+    "x": 0.5757,
+    "y": 0.8802,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tarabba": {
+    "x": 0.5494,
+    "y": 0.8906,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sevarcos": {
+    "x": 0.5786,
+    "y": 0.8602,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dravian": {
+    "x": 0.5877,
+    "y": 0.8468,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xagobah": {
+    "x": 0.5604,
+    "y": 0.8373,
+    "grid": "?",
+    "region": "?"
+  },
+  "Clak'dor": {
+    "x": 0.5476,
+    "y": 0.8409,
+    "grid": "?",
+    "region": "?"
+  },
+  "Triton": {
+    "x": 0.5487,
+    "y": 0.8451,
+    "grid": "?",
+    "region": "?"
+  },
+  "Praesitlyn": {
+    "x": 0.5499,
+    "y": 0.8568,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bpfassh": {
+    "x": 0.5476,
+    "y": 0.8585,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sluis van": {
+    "x": 0.5502,
+    "y": 0.8596,
+    "grid": "?",
+    "region": "?"
+  },
+  "Orto": {
+    "x": 0.5508,
+    "y": 0.8632,
+    "grid": "?",
+    "region": "?"
+  },
+  "Denab": {
+    "x": 0.5476,
+    "y": 0.8678,
+    "grid": "?",
+    "region": "?"
+  },
+  "Derilyn": {
+    "x": 0.5431,
+    "y": 0.9004,
+    "grid": "?",
+    "region": "?"
+  },
+  "Korad": {
+    "x": 0.5454,
+    "y": 0.9025,
+    "grid": "?",
+    "region": "?"
+  },
+  "Coyn": {
+    "x": 0.5457,
+    "y": 0.9052,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tantra": {
+    "x": 0.5499,
+    "y": 0.9056,
+    "grid": "?",
+    "region": "?"
+  },
+  "Elrood": {
+    "x": 0.5451,
+    "y": 0.9088,
+    "grid": "?",
+    "region": "?"
+  },
+  "Skor": {
+    "x": 0.5411,
+    "y": 0.9199,
+    "grid": "?",
+    "region": "?"
+  },
+  "Adarlon": {
+    "x": 0.5499,
+    "y": 0.9268,
+    "grid": "?",
+    "region": "?"
+  },
+  "Karideph": {
+    "x": 0.5499,
+    "y": 0.9338,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kathol": {
+    "x": 0.5584,
+    "y": 0.9524,
+    "grid": "?",
+    "region": "?"
+  },
+  "Delrakkin": {
+    "x": 0.4574,
+    "y": 0.9618,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cantros": {
+    "x": 0.4137,
+    "y": 0.9335,
+    "grid": "?",
+    "region": "?"
+  },
+  "Saijo": {
+    "x": 0.4369,
+    "y": 0.928,
+    "grid": "?",
+    "region": "?"
+  },
+  "Faldos": {
+    "x": 0.4384,
+    "y": 0.9184,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ather": {
+    "x": 0.4932,
+    "y": 0.9055,
+    "grid": "?",
+    "region": "?"
+  },
+  "Barkhesh": {
+    "x": 0.4552,
+    "y": 0.8889,
+    "grid": "?",
+    "region": "?"
+  },
+  "Siluria": {
+    "x": 0.4984,
+    "y": 0.8827,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dorlo": {
+    "x": 0.4888,
+    "y": 0.8667,
+    "grid": "?",
+    "region": "?"
+  },
+  "Heriston": {
+    "x": 0.5202,
+    "y": 0.8819,
+    "grid": "?",
+    "region": "?"
+  },
+  "Atravis": {
+    "x": 0.5101,
+    "y": 0.8734,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shumavar": {
+    "x": 0.5183,
+    "y": 0.8623,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cathis": {
+    "x": 0.4749,
+    "y": 0.8615,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pendaxa": {
+    "x": 0.4718,
+    "y": 0.8587,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yunkor": {
+    "x": 0.4684,
+    "y": 0.8542,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rentean": {
+    "x": 0.4791,
+    "y": 0.855,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hiffis": {
+    "x": 0.4896,
+    "y": 0.8449,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kelrodo-Ai": {
+    "x": 0.5066,
+    "y": 0.8498,
+    "grid": "?",
+    "region": "?"
+  },
+  "Obran Cluster": {
+    "x": 0.5138,
+    "y": 0.847,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sil'Lume": {
+    "x": 0.4435,
+    "y": 0.885,
+    "grid": "?",
+    "region": "?"
+  },
+  "Togominda": {
+    "x": 0.4436,
+    "y": 0.8516,
+    "grid": "?",
+    "region": "?"
+  },
+  "Isde Naha": {
+    "x": 0.4442,
+    "y": 0.8472,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mev": {
+    "x": 0.4516,
+    "y": 0.8436,
+    "grid": "?",
+    "region": "?"
+  },
+  "Goibniu": {
+    "x": 0.5166,
+    "y": 0.8412,
+    "grid": "?",
+    "region": "?"
+  },
+  "Golh": {
+    "x": 0.5041,
+    "y": 0.8335,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sellasas": {
+    "x": 0.4865,
+    "y": 0.837,
+    "grid": "?",
+    "region": "?"
+  },
+  "Polmanar": {
+    "x": 0.4521,
+    "y": 0.8342,
+    "grid": "?",
+    "region": "?"
+  },
+  "Darlyn Boda": {
+    "x": 0.4421,
+    "y": 0.8382,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mataou": {
+    "x": 0.4418,
+    "y": 0.8347,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ione": {
+    "x": 0.4432,
+    "y": 0.8306,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anoat": {
+    "x": 0.4399,
+    "y": 0.8287,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lutrillia": {
+    "x": 0.4333,
+    "y": 0.8226,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nothoiin": {
+    "x": 0.4491,
+    "y": 0.8238,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kumru": {
+    "x": 0.4461,
+    "y": 0.8125,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dasoor": {
+    "x": 0.4739,
+    "y": 0.8128,
+    "grid": "?",
+    "region": "?"
+  },
+  "Velga": {
+    "x": 0.4889,
+    "y": 0.8104,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belsavis": {
+    "x": 0.4966,
+    "y": 0.8123,
+    "grid": "?",
+    "region": "?"
+  },
+  "Karfeddion": {
+    "x": 0.4983,
+    "y": 0.8078,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tibrin": {
+    "x": 0.5112,
+    "y": 0.8064,
+    "grid": "?",
+    "region": "?"
+  },
+  "Asmeru": {
+    "x": 0.5035,
+    "y": 0.8017,
+    "grid": "?",
+    "region": "?"
+  },
+  "Senex": {
+    "x": 0.5001,
+    "y": 0.7985,
+    "grid": "?",
+    "region": "?"
+  },
+  "Veron": {
+    "x": 0.4951,
+    "y": 0.7984,
+    "grid": "?",
+    "region": "?"
+  },
+  "Juvex": {
+    "x": 0.4934,
+    "y": 0.8054,
+    "grid": "?",
+    "region": "?"
+  },
+  "Carsanza": {
+    "x": 0.4889,
+    "y": 0.8054,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kassido": {
+    "x": 0.4903,
+    "y": 0.8,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ogem": {
+    "x": 0.4869,
+    "y": 0.7966,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jiroch": {
+    "x": 0.4499,
+    "y": 0.7959,
+    "grid": "?",
+    "region": "?"
+  },
+  "Echos": {
+    "x": 0.5216,
+    "y": 0.7995,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zhotta": {
+    "x": 0.5471,
+    "y": 0.8018,
+    "grid": "?",
+    "region": "?"
+  },
+  "Callos": {
+    "x": 0.5348,
+    "y": 0.8023,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bortras": {
+    "x": 0.5418,
+    "y": 0.8076,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dorvalla": {
+    "x": 0.5397,
+    "y": 0.8228,
+    "grid": "?",
+    "region": "?"
+  },
+  "Averam": {
+    "x": 0.5427,
+    "y": 0.8258,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vendrak": {
+    "x": 0.5263,
+    "y": 0.828,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eiattu": {
+    "x": 0.5191,
+    "y": 0.7833,
+    "grid": "?",
+    "region": "?"
+  },
+  "StarForge Nebula": {
+    "x": 0.5266,
+    "y": 0.7791,
+    "grid": "?",
+    "region": "?"
+  },
+  "Derricon": {
+    "x": 0.4971,
+    "y": 0.7727,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lethalils": {
+    "x": 0.4996,
+    "y": 0.7638,
+    "grid": "?",
+    "region": "?"
+  },
+  "Naalol": {
+    "x": 0.4914,
+    "y": 0.7607,
+    "grid": "?",
+    "region": "?"
+  },
+  "Haurgab": {
+    "x": 0.4908,
+    "y": 0.7505,
+    "grid": "?",
+    "region": "?"
+  },
+  "Amorphiia": {
+    "x": 0.5292,
+    "y": 0.7501,
+    "grid": "?",
+    "region": "?"
+  },
+  "Miztoc": {
+    "x": 0.4759,
+    "y": 0.7713,
+    "grid": "?",
+    "region": "?"
+  },
+  "Feenix": {
+    "x": 0.4812,
+    "y": 0.7753,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kaal": {
+    "x": 0.4499,
+    "y": 0.7768,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chibias": {
+    "x": 0.4522,
+    "y": 0.7651,
+    "grid": "?",
+    "region": "?"
+  },
+  "D'rinba": {
+    "x": 0.4504,
+    "y": 0.76,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kriselist": {
+    "x": 0.4543,
+    "y": 0.7555,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bomis Koori": {
+    "x": 0.4552,
+    "y": 0.7506,
+    "grid": "?",
+    "region": "?"
+  },
+  "Etorasp": {
+    "x": 0.4784,
+    "y": 0.7399,
+    "grid": "?",
+    "region": "?"
+  },
+  "Calonica": {
+    "x": 0.4635,
+    "y": 0.7344,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tar Mordon": {
+    "x": 0.465,
+    "y": 0.7311,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Ivam": {
+    "x": 0.4841,
+    "y": 0.7233,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vulcusion": {
+    "x": 0.4944,
+    "y": 0.7199,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pendarr": {
+    "x": 0.5108,
+    "y": 0.7243,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alchenaut": {
+    "x": 0.5074,
+    "y": 0.7306,
+    "grid": "?",
+    "region": "?"
+  },
+  "Qat Chrystac": {
+    "x": 0.5201,
+    "y": 0.7351,
+    "grid": "?",
+    "region": "?"
+  },
+  "Elbara": {
+    "x": 0.4296,
+    "y": 0.7729,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ichtor": {
+    "x": 0.4401,
+    "y": 0.7518,
+    "grid": "?",
+    "region": "?"
+  },
+  "Minoth": {
+    "x": 0.4218,
+    "y": 0.7584,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hendrix": {
+    "x": 0.4292,
+    "y": 0.754,
+    "grid": "?",
+    "region": "?"
+  },
+  "Balis Baurgh": {
+    "x": 0.4457,
+    "y": 0.746,
+    "grid": "?",
+    "region": "?"
+  },
+  "Barcaria": {
+    "x": 0.4444,
+    "y": 0.7418,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iast": {
+    "x": 0.4142,
+    "y": 0.795,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jiaan": {
+    "x": 0.4056,
+    "y": 0.7716,
+    "grid": "?",
+    "region": "?"
+  },
+  "Polomie": {
+    "x": 0.4296,
+    "y": 0.7328,
+    "grid": "?",
+    "region": "?"
+  },
+  "Werta": {
+    "x": 0.4266,
+    "y": 0.7382,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oriolanis": {
+    "x": 0.423,
+    "y": 0.7304,
+    "grid": "?",
+    "region": "?"
+  },
+  "Har Binade": {
+    "x": 0.4314,
+    "y": 0.723,
+    "grid": "?",
+    "region": "?"
+  },
+  "Natalon": {
+    "x": 0.4406,
+    "y": 0.721,
+    "grid": "?",
+    "region": "?"
+  },
+  "Noe'ha'on": {
+    "x": 0.4468,
+    "y": 0.7183,
+    "grid": "?",
+    "region": "?"
+  },
+  "Copperline": {
+    "x": 0.4682,
+    "y": 0.7165,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pendari": {
+    "x": 0.4776,
+    "y": 0.7141,
+    "grid": "?",
+    "region": "?"
+  },
+  "Narrant": {
+    "x": 0.4071,
+    "y": 0.7492,
+    "grid": "?",
+    "region": "?"
+  },
+  "Riflor": {
+    "x": 0.4018,
+    "y": 0.7559,
+    "grid": "?",
+    "region": "?"
+  },
+  "Koba": {
+    "x": 0.3971,
+    "y": 0.7519,
+    "grid": "?",
+    "region": "?"
+  },
+  "Meruud": {
+    "x": 0.3987,
+    "y": 0.746,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eyyon": {
+    "x": 0.4102,
+    "y": 0.736,
+    "grid": "?",
+    "region": "?"
+  },
+  "Serenity": {
+    "x": 0.3941,
+    "y": 0.7321,
+    "grid": "?",
+    "region": "?"
+  },
+  "Halm": {
+    "x": 0.4075,
+    "y": 0.723,
+    "grid": "?",
+    "region": "?"
+  },
+  "Petabys": {
+    "x": 0.4019,
+    "y": 0.7231,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tashtor Seneca": {
+    "x": 0.397,
+    "y": 0.7243,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chalcedon": {
+    "x": 0.3902,
+    "y": 0.7276,
+    "grid": "?",
+    "region": "?"
+  },
+  "Semag": {
+    "x": 0.3839,
+    "y": 0.7388,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cheelit": {
+    "x": 0.3829,
+    "y": 0.7463,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bastooine": {
+    "x": 0.3848,
+    "y": 0.775,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lanteeb": {
+    "x": 0.3679,
+    "y": 0.7798,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trenwyth": {
+    "x": 0.3554,
+    "y": 0.7546,
+    "grid": "?",
+    "region": "?"
+  },
+  "Abbaji": {
+    "x": 0.3443,
+    "y": 0.7497,
+    "grid": "?",
+    "region": "?"
+  },
+  "Annaj": {
+    "x": 0.3376,
+    "y": 0.7546,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ovise": {
+    "x": 0.3386,
+    "y": 0.7518,
+    "grid": "?",
+    "region": "?"
+  },
+  "Maya Kovel": {
+    "x": 0.3398,
+    "y": 0.7475,
+    "grid": "?",
+    "region": "?"
+  },
+  "Marzoon": {
+    "x": 0.3664,
+    "y": 0.7249,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sanyassa": {
+    "x": 0.3309,
+    "y": 0.7497,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bunduki": {
+    "x": 0.3171,
+    "y": 0.7224,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mokivj": {
+    "x": 0.3028,
+    "y": 0.7178,
+    "grid": "?",
+    "region": "?"
+  },
+  "Timora": {
+    "x": 0.3049,
+    "y": 0.7497,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bakura": {
+    "x": 0.2836,
+    "y": 0.7432,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gymelo": {
+    "x": 0.2766,
+    "y": 0.731,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kammia": {
+    "x": 0.2641,
+    "y": 0.7517,
+    "grid": "?",
+    "region": "?"
+  },
+  "B'knos": {
+    "x": 0.2434,
+    "y": 0.7322,
+    "grid": "?",
+    "region": "?"
+  },
+  "Koda": {
+    "x": 0.3581,
+    "y": 0.8089,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ryoone": {
+    "x": 0.3768,
+    "y": 0.8021,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lotho": {
+    "x": 0.3876,
+    "y": 0.8035,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lipsec": {
+    "x": 0.3592,
+    "y": 0.836,
+    "grid": "?",
+    "region": "?"
+  },
+  "Virgillia": {
+    "x": 0.3716,
+    "y": 0.8396,
+    "grid": "?",
+    "region": "?"
+  },
+  "Coveway": {
+    "x": 0.3809,
+    "y": 0.8134,
+    "grid": "?",
+    "region": "?"
+  },
+  "DSS-7122": {
+    "x": 0.3919,
+    "y": 0.83,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quintas": {
+    "x": 0.4294,
+    "y": 0.859,
+    "grid": "?",
+    "region": "?"
+  },
+  "Najarka": {
+    "x": 0.4149,
+    "y": 0.8744,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pako Ramoon": {
+    "x": 0.4189,
+    "y": 0.8815,
+    "grid": "?",
+    "region": "?"
+  },
+  "Narg": {
+    "x": 0.4253,
+    "y": 0.888,
+    "grid": "?",
+    "region": "?"
+  },
+  "Absit": {
+    "x": 0.3851,
+    "y": 0.8698,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thakwaa": {
+    "x": 0.3731,
+    "y": 0.8616,
+    "grid": "?",
+    "region": "?"
+  },
+  "Needan": {
+    "x": 0.3789,
+    "y": 0.9411,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anoth": {
+    "x": 0.4036,
+    "y": 0.9486,
+    "grid": "?",
+    "region": "?"
+  },
+  "Skye": {
+    "x": 0.3394,
+    "y": 0.8976,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mephout": {
+    "x": 0.3224,
+    "y": 0.9299,
+    "grid": "?",
+    "region": "?"
+  },
+  "Seoul": {
+    "x": 0.3126,
+    "y": 0.9375,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kobah": {
+    "x": 0.3176,
+    "y": 0.8655,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kobah Abyss": {
+    "x": 0.3157,
+    "y": 0.8691,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tanalorr": {
+    "x": 0.3113,
+    "y": 0.8683,
+    "grid": "?",
+    "region": "?"
+  },
+  "Opitha Tren": {
+    "x": 0.4027,
+    "y": 0.6931,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kafrene": {
+    "x": 0.424,
+    "y": 0.6694,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kayri": {
+    "x": 0.3925,
+    "y": 0.6673,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lahag Erli": {
+    "x": 0.4152,
+    "y": 0.6976,
+    "grid": "?",
+    "region": "?"
+  },
+  "Montitia": {
+    "x": 0.4102,
+    "y": 0.6865,
+    "grid": "?",
+    "region": "?"
+  },
+  "Solibus": {
+    "x": 0.46,
+    "y": 0.6937,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lion Nebulae": {
+    "x": 0.4783,
+    "y": 0.6853,
+    "grid": "?",
+    "region": "?"
+  },
+  "New Balosar": {
+    "x": 0.469,
+    "y": 0.7076,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gholondreine": {
+    "x": 0.4668,
+    "y": 0.7009,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kinyen": {
+    "x": 0.4875,
+    "y": 0.7047,
+    "grid": "?",
+    "region": "?"
+  },
+  "Validusia": {
+    "x": 0.4979,
+    "y": 0.6979,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nkllon": {
+    "x": 0.5055,
+    "y": 0.7158,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Vaug": {
+    "x": 0.5165,
+    "y": 0.7026,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rainos Cluster": {
+    "x": 0.5072,
+    "y": 0.6931,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dulin": {
+    "x": 0.4647,
+    "y": 0.6534,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ketal": {
+    "x": 0.4863,
+    "y": 0.6512,
+    "grid": "?",
+    "region": "?"
+  },
+  "Janara": {
+    "x": 0.4858,
+    "y": 0.6395,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pa Tho": {
+    "x": 0.4583,
+    "y": 0.6475,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trevura": {
+    "x": 0.453,
+    "y": 0.6455,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kudo": {
+    "x": 0.4632,
+    "y": 0.6364,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yn": {
+    "x": 0.466,
+    "y": 0.6218,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kiffu": {
+    "x": 0.495,
+    "y": 0.6263,
+    "grid": "?",
+    "region": "?"
+  },
+  "Beltrix": {
+    "x": 0.5312,
+    "y": 0.6276,
+    "grid": "?",
+    "region": "?"
+  },
+  "Norah": {
+    "x": 0.5128,
+    "y": 0.6206,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bestine": {
+    "x": 0.5264,
+    "y": 0.6152,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fennesa": {
+    "x": 0.4643,
+    "y": 0.6172,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jandur": {
+    "x": 0.4275,
+    "y": 0.628,
+    "grid": "?",
+    "region": "?"
+  },
+  "Korbin": {
+    "x": 0.4362,
+    "y": 0.615,
+    "grid": "?",
+    "region": "?"
+  },
+  "Phu": {
+    "x": 0.4362,
+    "y": 0.5994,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vayakaaris": {
+    "x": 0.4488,
+    "y": 0.6044,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tasariq": {
+    "x": 0.4125,
+    "y": 0.6198,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shasath": {
+    "x": 0.402,
+    "y": 0.6382,
+    "grid": "?",
+    "region": "?"
+  },
+  "K'taktaxka": {
+    "x": 0.3973,
+    "y": 0.6436,
+    "grid": "?",
+    "region": "?"
+  },
+  "Poviduze": {
+    "x": 0.4,
+    "y": 0.6549,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vanik": {
+    "x": 0.5,
+    "y": 0.6167,
+    "grid": "?",
+    "region": "?"
+  },
+  "Whelori": {
+    "x": 0.4701,
+    "y": 0.6069,
+    "grid": "?",
+    "region": "?"
+  },
+  "Laakteen": {
+    "x": 0.4845,
+    "y": 0.6013,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ophideraam": {
+    "x": 0.4775,
+    "y": 0.6059,
+    "grid": "?",
+    "region": "?"
+  },
+  "Albrae-Don": {
+    "x": 0.4884,
+    "y": 0.6093,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chorman": {
+    "x": 0.4949,
+    "y": 0.6096,
+    "grid": "?",
+    "region": "?"
+  },
+  "Walalla": {
+    "x": 0.4153,
+    "y": 0.6084,
+    "grid": "?",
+    "region": "?"
+  },
+  "Donadus": {
+    "x": 0.414,
+    "y": 0.6023,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mindabaal": {
+    "x": 0.4134,
+    "y": 0.5976,
+    "grid": "?",
+    "region": "?"
+  },
+  "Steelious": {
+    "x": 0.4726,
+    "y": 0.5729,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thebeon": {
+    "x": 0.4675,
+    "y": 0.5612,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cuvacia": {
+    "x": 0.4411,
+    "y": 0.5635,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dahrtag": {
+    "x": 0.4351,
+    "y": 0.569,
+    "grid": "?",
+    "region": "?"
+  },
+  "Illodia": {
+    "x": 0.4495,
+    "y": 0.5762,
+    "grid": "?",
+    "region": "?"
+  },
+  "Omar": {
+    "x": 0.4586,
+    "y": 0.582,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bardotta": {
+    "x": 0.4696,
+    "y": 0.587,
+    "grid": "?",
+    "region": "?"
+  },
+  "Giju": {
+    "x": 0.4833,
+    "y": 0.5889,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kooda": {
+    "x": 0.4784,
+    "y": 0.592,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cilpar": {
+    "x": 0.4833,
+    "y": 0.5952,
+    "grid": "?",
+    "region": "?"
+  },
+  "Diamal": {
+    "x": 0.4851,
+    "y": 0.5822,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vindalia": {
+    "x": 0.4883,
+    "y": 0.586,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ghilliana": {
+    "x": 0.4946,
+    "y": 0.5868,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tallaan": {
+    "x": 0.4913,
+    "y": 0.5907,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fondor": {
+    "x": 0.4931,
+    "y": 0.5959,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mirlsst": {
+    "x": 0.4946,
+    "y": 0.5995,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bassadro": {
+    "x": 0.5071,
+    "y": 0.6019,
+    "grid": "?",
+    "region": "?"
+  },
+  "Soterios": {
+    "x": 0.5048,
+    "y": 0.594,
+    "grid": "?",
+    "region": "?"
+  },
+  "Procopia": {
+    "x": 0.4988,
+    "y": 0.5911,
+    "grid": "?",
+    "region": "?"
+  },
+  "Teyr": {
+    "x": 0.5133,
+    "y": 0.6021,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vulvarch": {
+    "x": 0.5138,
+    "y": 0.6047,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trunska": {
+    "x": 0.432,
+    "y": 0.5907,
+    "grid": "?",
+    "region": "?"
+  },
+  "Candoria": {
+    "x": 0.4267,
+    "y": 0.58,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hjaff": {
+    "x": 0.4268,
+    "y": 0.5649,
+    "grid": "?",
+    "region": "?"
+  },
+  "Inysh": {
+    "x": 0.4295,
+    "y": 0.5594,
+    "grid": "?",
+    "region": "?"
+  },
+  "Questal": {
+    "x": 0.4303,
+    "y": 0.549,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iphigin": {
+    "x": 0.4998,
+    "y": 0.5751,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rakaa IV": {
+    "x": 0.4243,
+    "y": 0.5265,
+    "grid": "?",
+    "region": "?"
+  },
+  "Osssrck Nebulae": {
+    "x": 0.437,
+    "y": 0.5454,
+    "grid": "?",
+    "region": "?"
+  },
+  "Loedorvia": {
+    "x": 0.4435,
+    "y": 0.534,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kitel Phard": {
+    "x": 0.4237,
+    "y": 0.5549,
+    "grid": "?",
+    "region": "?"
+  },
+  "Plexis": {
+    "x": 0.4846,
+    "y": 0.567,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dentaal": {
+    "x": 0.479,
+    "y": 0.574,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belgaroth": {
+    "x": 0.4753,
+    "y": 0.5781,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kelada": {
+    "x": 0.5327,
+    "y": 0.5912,
+    "grid": "?",
+    "region": "?"
+  },
+  "Enisca": {
+    "x": 0.5356,
+    "y": 0.582,
+    "grid": "?",
+    "region": "?"
+  },
+  "Obulette": {
+    "x": 0.5038,
+    "y": 0.5855,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reena": {
+    "x": 0.5106,
+    "y": 0.5855,
+    "grid": "?",
+    "region": "?"
+  },
+  "Affa": {
+    "x": 0.5476,
+    "y": 0.6054,
+    "grid": "?",
+    "region": "?"
+  },
+  "Las Lagon": {
+    "x": 0.5433,
+    "y": 0.6052,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kooriva": {
+    "x": 0.5493,
+    "y": 0.6206,
+    "grid": "?",
+    "region": "?"
+  },
+  "Heptalia": {
+    "x": 0.5593,
+    "y": 0.6349,
+    "grid": "?",
+    "region": "?"
+  },
+  "Borao": {
+    "x": 0.5565,
+    "y": 0.6386,
+    "grid": "?",
+    "region": "?"
+  },
+  "Itani": {
+    "x": 0.577,
+    "y": 0.6167,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shibric": {
+    "x": 0.5827,
+    "y": 0.6279,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chardaan": {
+    "x": 0.5826,
+    "y": 0.6086,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Vaxal": {
+    "x": 0.5925,
+    "y": 0.5984,
+    "grid": "?",
+    "region": "?"
+  },
+  "Motexx": {
+    "x": 0.545,
+    "y": 0.5763,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bryexx": {
+    "x": 0.537,
+    "y": 0.5774,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sagar": {
+    "x": 0.5805,
+    "y": 0.5785,
+    "grid": "?",
+    "region": "?"
+  },
+  "Roynards": {
+    "x": 0.5808,
+    "y": 0.586,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hillindor": {
+    "x": 0.554,
+    "y": 0.5939,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tomo-Reth": {
+    "x": 0.5188,
+    "y": 0.6134,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dargulli": {
+    "x": 0.57,
+    "y": 0.6293,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iseno": {
+    "x": 0.5762,
+    "y": 0.565,
+    "grid": "?",
+    "region": "?"
+  },
+  "Babbadod": {
+    "x": 0.5823,
+    "y": 0.6127,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tynna": {
+    "x": 0.6048,
+    "y": 0.6127,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pamorjal": {
+    "x": 0.602,
+    "y": 0.6303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gamor": {
+    "x": 0.6325,
+    "y": 0.6302,
+    "grid": "?",
+    "region": "?"
+  },
+  "Merkat": {
+    "x": 0.6363,
+    "y": 0.6274,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aridus": {
+    "x": 0.639,
+    "y": 0.6196,
+    "grid": "?",
+    "region": "?"
+  },
+  "Allanteen": {
+    "x": 0.619,
+    "y": 0.6145,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tlactehon": {
+    "x": 0.6128,
+    "y": 0.6079,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tarmidia": {
+    "x": 0.6217,
+    "y": 0.6081,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rhommamool": {
+    "x": 0.6015,
+    "y": 0.5923,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bovo Yagen": {
+    "x": 0.619,
+    "y": 0.5965,
+    "grid": "?",
+    "region": "?"
+  },
+  "Altier": {
+    "x": 0.6325,
+    "y": 0.5863,
+    "grid": "?",
+    "region": "?"
+  },
+  "Surron": {
+    "x": 0.6363,
+    "y": 0.5754,
+    "grid": "?",
+    "region": "?"
+  },
+  "Terrijo": {
+    "x": 0.6204,
+    "y": 0.5583,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sarko": {
+    "x": 0.6124,
+    "y": 0.5507,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cyrillia": {
+    "x": 0.6412,
+    "y": 0.5581,
+    "grid": "?",
+    "region": "?"
+  },
+  "Prazhi": {
+    "x": 0.6446,
+    "y": 0.5453,
+    "grid": "?",
+    "region": "?"
+  },
+  "Spirana": {
+    "x": 0.592,
+    "y": 0.5831,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vaklin": {
+    "x": 0.5628,
+    "y": 0.6444,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hilo": {
+    "x": 0.6498,
+    "y": 0.605,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iktotchon": {
+    "x": 0.6307,
+    "y": 0.6138,
+    "grid": "?",
+    "region": "?"
+  },
+  "Apgar": {
+    "x": 0.6463,
+    "y": 0.5915,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kayuk": {
+    "x": 0.6585,
+    "y": 0.5776,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gruvia": {
+    "x": 0.661,
+    "y": 0.5899,
+    "grid": "?",
+    "region": "?"
+  },
+  "Charra": {
+    "x": 0.6567,
+    "y": 0.6138,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ryvellia": {
+    "x": 0.6487,
+    "y": 0.6284,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lorahns": {
+    "x": 0.68,
+    "y": 0.6229,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aikhibba": {
+    "x": 0.6877,
+    "y": 0.6079,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hoylin": {
+    "x": 0.6973,
+    "y": 0.5973,
+    "grid": "?",
+    "region": "?"
+  },
+  "Beris": {
+    "x": 0.7017,
+    "y": 0.5925,
+    "grid": "?",
+    "region": "?"
+  },
+  "Raskane": {
+    "x": 0.6789,
+    "y": 0.5815,
+    "grid": "?",
+    "region": "?"
+  },
+  "Deneba": {
+    "x": 0.7086,
+    "y": 0.5839,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lanos": {
+    "x": 0.722,
+    "y": 0.6279,
+    "grid": "?",
+    "region": "?"
+  },
+  "Spirador": {
+    "x": 0.731,
+    "y": 0.634,
+    "grid": "?",
+    "region": "?"
+  },
+  "Malthor": {
+    "x": 0.7382,
+    "y": 0.6424,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yutan": {
+    "x": 0.6612,
+    "y": 0.558,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sepan": {
+    "x": 0.6649,
+    "y": 0.567,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wann Tsir": {
+    "x": 0.6653,
+    "y": 0.5735,
+    "grid": "?",
+    "region": "?"
+  },
+  "Niro": {
+    "x": 0.6328,
+    "y": 0.5344,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fabrin": {
+    "x": 0.6413,
+    "y": 0.5303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Uridia": {
+    "x": 0.7464,
+    "y": 0.6548,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thoran": {
+    "x": 0.7588,
+    "y": 0.6426,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kothlis": {
+    "x": 0.7552,
+    "y": 0.6389,
+    "grid": "?",
+    "region": "?"
+  },
+  "Krant": {
+    "x": 0.7603,
+    "y": 0.634,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zygia": {
+    "x": 0.7667,
+    "y": 0.6463,
+    "grid": "?",
+    "region": "?"
+  },
+  "Holess": {
+    "x": 0.773,
+    "y": 0.6519,
+    "grid": "?",
+    "region": "?"
+  },
+  "Boranda": {
+    "x": 0.7755,
+    "y": 0.6544,
+    "grid": "?",
+    "region": "?"
+  },
+  "Void Station": {
+    "x": 0.7598,
+    "y": 0.6221,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tarsunt": {
+    "x": 0.7469,
+    "y": 0.6187,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dohlban": {
+    "x": 0.7795,
+    "y": 0.6062,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lannik": {
+    "x": 0.7482,
+    "y": 0.5774,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nar Kaaga": {
+    "x": 0.7877,
+    "y": 0.5779,
+    "grid": "?",
+    "region": "?"
+  },
+  "Manda": {
+    "x": 0.7801,
+    "y": 0.6614,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dennaskar": {
+    "x": 0.7868,
+    "y": 0.6639,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rishi": {
+    "x": 0.7912,
+    "y": 0.6686,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zaddja": {
+    "x": 0.3164,
+    "y": 0.6663,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iskadrell": {
+    "x": 0.3124,
+    "y": 0.6552,
+    "grid": "?",
+    "region": "?"
+  },
+  "Abanol": {
+    "x": 0.4498,
+    "y": 0.4967,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tsoss Beacon": {
+    "x": 0.4881,
+    "y": 0.4667,
+    "grid": "?",
+    "region": "?"
+  },
+  "Selvaris": {
+    "x": 0.393,
+    "y": 0.3845,
+    "grid": "?",
+    "region": "?"
+  },
+  "Batorine": {
+    "x": 0.418,
+    "y": 0.3933,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thrantin": {
+    "x": 0.4247,
+    "y": 0.3735,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reecee": {
+    "x": 0.426,
+    "y": 0.3662,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vakkar": {
+    "x": 0.44,
+    "y": 0.3691,
+    "grid": "?",
+    "region": "?"
+  },
+  "Stovax": {
+    "x": 0.4105,
+    "y": 0.4489,
+    "grid": "?",
+    "region": "?"
+  },
+  "Phracas": {
+    "x": 0.4215,
+    "y": 0.458,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kokash": {
+    "x": 0.434,
+    "y": 0.4487,
+    "grid": "?",
+    "region": "?"
+  },
+  "N'Zoth": {
+    "x": 0.4422,
+    "y": 0.444,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aradia": {
+    "x": 0.4429,
+    "y": 0.4341,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tamban": {
+    "x": 0.4404,
+    "y": 0.4392,
+    "grid": "?",
+    "region": "?"
+  },
+  "Praxlis": {
+    "x": 0.4377,
+    "y": 0.4407,
+    "grid": "?",
+    "region": "?"
+  },
+  "Galantos": {
+    "x": 0.4399,
+    "y": 0.4431,
+    "grid": "?",
+    "region": "?"
+  },
+  "J't'p'tan": {
+    "x": 0.4403,
+    "y": 0.4458,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pollillus": {
+    "x": 0.438,
+    "y": 0.448,
+    "grid": "?",
+    "region": "?"
+  },
+  "Keeara": {
+    "x": 0.4803,
+    "y": 0.4446,
+    "grid": "?",
+    "region": "?"
+  },
+  "Symbia": {
+    "x": 0.4791,
+    "y": 0.4412,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iope": {
+    "x": 0.4881,
+    "y": 0.4327,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jerrilek": {
+    "x": 0.4838,
+    "y": 0.4281,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ruan": {
+    "x": 0.4818,
+    "y": 0.4244,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kaikielius": {
+    "x": 0.4812,
+    "y": 0.4217,
+    "grid": "?",
+    "region": "?"
+  },
+  "Spira": {
+    "x": 0.4873,
+    "y": 0.4252,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yulant": {
+    "x": 0.4957,
+    "y": 0.4246,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aargau": {
+    "x": 0.4988,
+    "y": 0.4266,
+    "grid": "?",
+    "region": "?"
+  },
+  "Broest": {
+    "x": 0.5103,
+    "y": 0.4303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kailor": {
+    "x": 0.5123,
+    "y": 0.4275,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wukkar": {
+    "x": 0.5067,
+    "y": 0.4243,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vultar": {
+    "x": 0.5105,
+    "y": 0.4207,
+    "grid": "?",
+    "region": "?"
+  },
+  "Basilisk": {
+    "x": 0.5088,
+    "y": 0.4147,
+    "grid": "?",
+    "region": "?"
+  },
+  "Skako": {
+    "x": 0.5153,
+    "y": 0.4133,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ixtlar": {
+    "x": 0.4974,
+    "y": 0.419,
+    "grid": "?",
+    "region": "?"
+  },
+  "Foerost": {
+    "x": 0.4813,
+    "y": 0.4204,
+    "grid": "?",
+    "region": "?"
+  },
+  "Stasia": {
+    "x": 0.4755,
+    "y": 0.4226,
+    "grid": "?",
+    "region": "?"
+  },
+  "Palawa": {
+    "x": 0.5226,
+    "y": 0.4257,
+    "grid": "?",
+    "region": "?"
+  },
+  "Korfo": {
+    "x": 0.5321,
+    "y": 0.4151,
+    "grid": "?",
+    "region": "?"
+  },
+  "Caamas": {
+    "x": 0.529,
+    "y": 0.4144,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tepasi": {
+    "x": 0.521,
+    "y": 0.4096,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ganthel": {
+    "x": 0.5176,
+    "y": 0.407,
+    "grid": "?",
+    "region": "?"
+  },
+  "Delle": {
+    "x": 0.5185,
+    "y": 0.3923,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yabol Opa": {
+    "x": 0.5273,
+    "y": 0.387,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cal-Set": {
+    "x": 0.4491,
+    "y": 0.4341,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fresia": {
+    "x": 0.4559,
+    "y": 0.4319,
+    "grid": "?",
+    "region": "?"
+  },
+  "Galand": {
+    "x": 0.4584,
+    "y": 0.4285,
+    "grid": "?",
+    "region": "?"
+  },
+  "Worru'du": {
+    "x": 0.4641,
+    "y": 0.4265,
+    "grid": "?",
+    "region": "?"
+  },
+  "Salliche": {
+    "x": 0.4698,
+    "y": 0.4263,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alland": {
+    "x": 0.4613,
+    "y": 0.424,
+    "grid": "?",
+    "region": "?"
+  },
+  "Norkronia": {
+    "x": 0.4668,
+    "y": 0.4205,
+    "grid": "?",
+    "region": "?"
+  },
+  "Metellos": {
+    "x": 0.4749,
+    "y": 0.4166,
+    "grid": "?",
+    "region": "?"
+  },
+  "Widek": {
+    "x": 0.4465,
+    "y": 0.4203,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tzarib": {
+    "x": 0.4318,
+    "y": 0.4139,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ragoon": {
+    "x": 0.4463,
+    "y": 0.4098,
+    "grid": "?",
+    "region": "?"
+  },
+  "Voon": {
+    "x": 0.4656,
+    "y": 0.3993,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hyabb": {
+    "x": 0.4607,
+    "y": 0.4028,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dachat": {
+    "x": 0.4559,
+    "y": 0.3988,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pantolomin": {
+    "x": 0.4656,
+    "y": 0.3955,
+    "grid": "?",
+    "region": "?"
+  },
+  "Twith": {
+    "x": 0.4693,
+    "y": 0.3968,
+    "grid": "?",
+    "region": "?"
+  },
+  "Farrfn": {
+    "x": 0.4701,
+    "y": 0.3923,
+    "grid": "?",
+    "region": "?"
+  },
+  "Veöisoa": {
+    "x": 0.4838,
+    "y": 0.3997,
+    "grid": "?",
+    "region": "?"
+  },
+  "Galvpmo": {
+    "x": 0.4751,
+    "y": 0.4025,
+    "grid": "?",
+    "region": "?"
+  },
+  "Weerden": {
+    "x": 0.4753,
+    "y": 0.4082,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tanjay": {
+    "x": 0.4783,
+    "y": 0.4115,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thorgeld": {
+    "x": 0.4865,
+    "y": 0.4033,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thokos": {
+    "x": 0.484,
+    "y": 0.4088,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alsakan": {
+    "x": 0.4885,
+    "y": 0.4118,
+    "grid": "?",
+    "region": "?"
+  },
+  "Grizmallt": {
+    "x": 0.494,
+    "y": 0.4092,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rhinnal": {
+    "x": 0.5125,
+    "y": 0.3983,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ralltiir": {
+    "x": 0.5146,
+    "y": 0.3969,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eteeles": {
+    "x": 0.5105,
+    "y": 0.3993,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shawken": {
+    "x": 0.4939,
+    "y": 0.3956,
+    "grid": "?",
+    "region": "?"
+  },
+  "Challon": {
+    "x": 0.4937,
+    "y": 0.3919,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nara": {
+    "x": 0.4939,
+    "y": 0.3842,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wakeelmui": {
+    "x": 0.5051,
+    "y": 0.3822,
+    "grid": "?",
+    "region": "?"
+  },
+  "Merakai": {
+    "x": 0.4549,
+    "y": 0.3922,
+    "grid": "?",
+    "region": "?"
+  },
+  "Denevar": {
+    "x": 0.4607,
+    "y": 0.3914,
+    "grid": "?",
+    "region": "?"
+  },
+  "Borleias": {
+    "x": 0.4637,
+    "y": 0.3869,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mamendin": {
+    "x": 0.4777,
+    "y": 0.3888,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Mirit": {
+    "x": 0.4614,
+    "y": 0.3804,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mrisst": {
+    "x": 0.4572,
+    "y": 0.3823,
+    "grid": "?",
+    "region": "?"
+  },
+  "Venjagga": {
+    "x": 0.4588,
+    "y": 0.3851,
+    "grid": "?",
+    "region": "?"
+  },
+  "Noquivzor": {
+    "x": 0.4615,
+    "y": 0.3685,
+    "grid": "?",
+    "region": "?"
+  },
+  "Baradas": {
+    "x": 0.4851,
+    "y": 0.3602,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dankayo": {
+    "x": 0.5028,
+    "y": 0.3681,
+    "grid": "?",
+    "region": "?"
+  },
+  "Uviuy Exen": {
+    "x": 0.5056,
+    "y": 0.3727,
+    "grid": "?",
+    "region": "?"
+  },
+  "Doldrums": {
+    "x": 0.5168,
+    "y": 0.3756,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kiribi": {
+    "x": 0.5229,
+    "y": 0.3703,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kluistar": {
+    "x": 0.5258,
+    "y": 0.3656,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nierport": {
+    "x": 0.5078,
+    "y": 0.362,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arkania": {
+    "x": 0.5287,
+    "y": 0.3685,
+    "grid": "?",
+    "region": "?"
+  },
+  "Omonoth": {
+    "x": 0.5377,
+    "y": 0.3646,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shulstine": {
+    "x": 0.5379,
+    "y": 0.3804,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ifmix": {
+    "x": 0.5326,
+    "y": 0.3835,
+    "grid": "?",
+    "region": "?"
+  },
+  "Teardrop": {
+    "x": 0.5263,
+    "y": 0.396,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shelkonwa": {
+    "x": 0.5309,
+    "y": 0.3979,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jatir": {
+    "x": 0.5208,
+    "y": 0.3987,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corann": {
+    "x": 0.5267,
+    "y": 0.4016,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sif-Uwana": {
+    "x": 0.4523,
+    "y": 0.363,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dakshee": {
+    "x": 0.5471,
+    "y": 0.3933,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hok": {
+    "x": 0.5578,
+    "y": 0.3999,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aldraig": {
+    "x": 0.5282,
+    "y": 0.4284,
+    "grid": "?",
+    "region": "?"
+  },
+  "Raithal": {
+    "x": 0.545,
+    "y": 0.3767,
+    "grid": "?",
+    "region": "?"
+  },
+  "Castell": {
+    "x": 0.5405,
+    "y": 0.379,
+    "grid": "?",
+    "region": "?"
+  },
+  "Adari": {
+    "x": 0.5562,
+    "y": 0.3787,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vurdon Ka": {
+    "x": 0.5555,
+    "y": 0.3704,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hijarna": {
+    "x": 0.5575,
+    "y": 0.3657,
+    "grid": "?",
+    "region": "?"
+  },
+  "Joiol": {
+    "x": 0.5633,
+    "y": 0.3673,
+    "grid": "?",
+    "region": "?"
+  },
+  "Poderis": {
+    "x": 0.5602,
+    "y": 0.3589,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sochi": {
+    "x": 0.5664,
+    "y": 0.3848,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kloper": {
+    "x": 0.5721,
+    "y": 0.3986,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corroth": {
+    "x": 0.5703,
+    "y": 0.4015,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tibro": {
+    "x": 0.5707,
+    "y": 0.407,
+    "grid": "?",
+    "region": "?"
+  },
+  "Korev": {
+    "x": 0.5795,
+    "y": 0.3996,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gelviddis Cluster": {
+    "x": 0.5952,
+    "y": 0.4037,
+    "grid": "?",
+    "region": "?"
+  },
+  "Manress": {
+    "x": 0.6094,
+    "y": 0.4037,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vorsia": {
+    "x": 0.5847,
+    "y": 0.406,
+    "grid": "?",
+    "region": "?"
+  },
+  "Onderon": {
+    "x": 0.6433,
+    "y": 0.4081,
+    "grid": "P-11",
+    "region": "Inner Rim"
+  },
+  "Chosper": {
+    "x": 0.6334,
+    "y": 0.4035,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lovola": {
+    "x": 0.628,
+    "y": 0.3989,
+    "grid": "?",
+    "region": "?"
+  },
+  "Charubah": {
+    "x": 0.629,
+    "y": 0.3938,
+    "grid": "?",
+    "region": "?"
+  },
+  "k'Farri": {
+    "x": 0.639,
+    "y": 0.397,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dreena": {
+    "x": 0.6396,
+    "y": 0.387,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vena": {
+    "x": 0.6547,
+    "y": 0.3882,
+    "grid": "?",
+    "region": "?"
+  },
+  "Febrini": {
+    "x": 0.631,
+    "y": 0.3887,
+    "grid": "?",
+    "region": "?"
+  },
+  "Terephon": {
+    "x": 0.6346,
+    "y": 0.3839,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hapes": {
+    "x": 0.6346,
+    "y": 0.3908,
+    "grid": "?",
+    "region": "?"
+  },
+  "Galinore": {
+    "x": 0.6316,
+    "y": 0.3927,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nazzri": {
+    "x": 0.6693,
+    "y": 0.3824,
+    "grid": "?",
+    "region": "?"
+  },
+  "Valgauth": {
+    "x": 0.658,
+    "y": 0.3772,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iloud": {
+    "x": 0.6511,
+    "y": 0.3717,
+    "grid": "?",
+    "region": "?"
+  },
+  "Donovia": {
+    "x": 0.6514,
+    "y": 0.3679,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lantillies": {
+    "x": 0.6731,
+    "y": 0.3562,
+    "grid": "?",
+    "region": "?"
+  },
+  "Phaseera": {
+    "x": 0.6818,
+    "y": 0.3647,
+    "grid": "?",
+    "region": "?"
+  },
+  "Uyter": {
+    "x": 0.6815,
+    "y": 0.3827,
+    "grid": "?",
+    "region": "?"
+  },
+  "Avenelle": {
+    "x": 0.6746,
+    "y": 0.3822,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gogoria": {
+    "x": 0.6902,
+    "y": 0.3817,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rakhuun": {
+    "x": 0.6961,
+    "y": 0.4154,
+    "grid": "?",
+    "region": "?"
+  },
+  "Balamak": {
+    "x": 0.7273,
+    "y": 0.3955,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kwookrrr": {
+    "x": 0.7112,
+    "y": 0.4148,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sneeve": {
+    "x": 0.726,
+    "y": 0.4217,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chamble": {
+    "x": 0.7021,
+    "y": 0.424,
+    "grid": "?",
+    "region": "?"
+  },
+  "Messert": {
+    "x": 0.707,
+    "y": 0.4291,
+    "grid": "?",
+    "region": "?"
+  },
+  "Randon": {
+    "x": 0.7115,
+    "y": 0.4335,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bissillirus": {
+    "x": 0.7018,
+    "y": 0.4418,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ruusan": {
+    "x": 0.6972,
+    "y": 0.4655,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pesmenben": {
+    "x": 0.7027,
+    "y": 0.4728,
+    "grid": "?",
+    "region": "?"
+  },
+  "Terr'Skiar": {
+    "x": 0.6925,
+    "y": 0.4326,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mytaranor": {
+    "x": 0.6916,
+    "y": 0.4211,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rorgam": {
+    "x": 0.7002,
+    "y": 0.4292,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pizilis": {
+    "x": 0.6925,
+    "y": 0.4267,
+    "grid": "?",
+    "region": "?"
+  },
+  "Torn": {
+    "x": 0.6831,
+    "y": 0.4177,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tholatin": {
+    "x": 0.6907,
+    "y": 0.4174,
+    "grid": "?",
+    "region": "?"
+  },
+  "Durkteel": {
+    "x": 0.7353,
+    "y": 0.4282,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yitabo": {
+    "x": 0.7393,
+    "y": 0.4303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mauk": {
+    "x": 0.7457,
+    "y": 0.4117,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sabrash": {
+    "x": 0.7638,
+    "y": 0.4043,
+    "grid": "?",
+    "region": "?"
+  },
+  "Contruum": {
+    "x": 0.6567,
+    "y": 0.3505,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dulathia": {
+    "x": 0.6809,
+    "y": 0.3443,
+    "grid": "?",
+    "region": "?"
+  },
+  "Azure": {
+    "x": 0.6789,
+    "y": 0.3319,
+    "grid": "?",
+    "region": "?"
+  },
+  "Katarr": {
+    "x": 0.6507,
+    "y": 0.3339,
+    "grid": "?",
+    "region": "?"
+  },
+  "Von-Alai": {
+    "x": 0.6466,
+    "y": 0.3436,
+    "grid": "?",
+    "region": "?"
+  },
+  "Venaari": {
+    "x": 0.647,
+    "y": 0.3242,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kiva": {
+    "x": 0.6529,
+    "y": 0.315,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bedlam": {
+    "x": 0.6427,
+    "y": 0.309,
+    "grid": "?",
+    "region": "?"
+  },
+  "Msst": {
+    "x": 0.6595,
+    "y": 0.3037,
+    "grid": "?",
+    "region": "?"
+  },
+  "Velmor": {
+    "x": 0.6858,
+    "y": 0.3152,
+    "grid": "?",
+    "region": "?"
+  },
+  "Casfield": {
+    "x": 0.7187,
+    "y": 0.3083,
+    "grid": "?",
+    "region": "?"
+  },
+  "Romin": {
+    "x": 0.7169,
+    "y": 0.3248,
+    "grid": "?",
+    "region": "?"
+  },
+  "Low'n": {
+    "x": 0.7098,
+    "y": 0.3276,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gavryn": {
+    "x": 0.7072,
+    "y": 0.3352,
+    "grid": "?",
+    "region": "?"
+  },
+  "Roche": {
+    "x": 0.7135,
+    "y": 0.3406,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jeyell": {
+    "x": 0.7071,
+    "y": 0.3436,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Tiddell": {
+    "x": 0.725,
+    "y": 0.3087,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aargonar": {
+    "x": 0.7335,
+    "y": 0.2938,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anteevy": {
+    "x": 0.6833,
+    "y": 0.2879,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bseto": {
+    "x": 0.6711,
+    "y": 0.2925,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fenel": {
+    "x": 0.6633,
+    "y": 0.2813,
+    "grid": "?",
+    "region": "?"
+  },
+  "Atraken": {
+    "x": 0.7045,
+    "y": 0.2732,
+    "grid": "?",
+    "region": "?"
+  },
+  "Randorn": {
+    "x": 0.7114,
+    "y": 0.268,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gala": {
+    "x": 0.7177,
+    "y": 0.2731,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vjun": {
+    "x": 0.72,
+    "y": 0.2664,
+    "grid": "?",
+    "region": "?"
+  },
+  "Quell": {
+    "x": 0.723,
+    "y": 0.2619,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lucazec": {
+    "x": 0.7267,
+    "y": 0.2591,
+    "grid": "?",
+    "region": "?"
+  },
+  "Resh 9376": {
+    "x": 0.7299,
+    "y": 0.2648,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tabiid": {
+    "x": 0.7267,
+    "y": 0.2814,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gromas": {
+    "x": 0.721,
+    "y": 0.2838,
+    "grid": "?",
+    "region": "?"
+  },
+  "Indu San": {
+    "x": 0.7149,
+    "y": 0.2784,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bompreil": {
+    "x": 0.6819,
+    "y": 0.2785,
+    "grid": "?",
+    "region": "?"
+  },
+  "Althir III": {
+    "x": 0.695,
+    "y": 0.265,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zanbar": {
+    "x": 0.6478,
+    "y": 0.2788,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hrthging": {
+    "x": 0.6463,
+    "y": 0.2825,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cheravh": {
+    "x": 0.6535,
+    "y": 0.289,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ordo": {
+    "x": 0.6355,
+    "y": 0.2812,
+    "grid": "?",
+    "region": "?"
+  },
+  "Breshig": {
+    "x": 0.6413,
+    "y": 0.2899,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vorpa'ya": {
+    "x": 0.6385,
+    "y": 0.2933,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jakelia": {
+    "x": 0.6351,
+    "y": 0.2879,
+    "grid": "?",
+    "region": "?"
+  },
+  "Harswee": {
+    "x": 0.6303,
+    "y": 0.2831,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gargon": {
+    "x": 0.6202,
+    "y": 0.2778,
+    "grid": "?",
+    "region": "?"
+  },
+  "Flashpoint": {
+    "x": 0.6284,
+    "y": 0.2769,
+    "grid": "?",
+    "region": "?"
+  },
+  "Krownest": {
+    "x": 0.6332,
+    "y": 0.2734,
+    "grid": "?",
+    "region": "?"
+  },
+  "Draboon": {
+    "x": 0.6226,
+    "y": 0.2882,
+    "grid": "?",
+    "region": "?"
+  },
+  "Geris": {
+    "x": 0.6205,
+    "y": 0.3024,
+    "grid": "?",
+    "region": "?"
+  },
+  "Surcaris": {
+    "x": 0.6238,
+    "y": 0.3074,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aquaris": {
+    "x": 0.6092,
+    "y": 0.3095,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thustra": {
+    "x": 0.6117,
+    "y": 0.3057,
+    "grid": "?",
+    "region": "?"
+  },
+  "Myrkr": {
+    "x": 0.6013,
+    "y": 0.304,
+    "grid": "?",
+    "region": "?"
+  },
+  "Boordii": {
+    "x": 0.6026,
+    "y": 0.3016,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wayland": {
+    "x": 0.6001,
+    "y": 0.2975,
+    "grid": "?",
+    "region": "?"
+  },
+  "Serroco": {
+    "x": 0.5907,
+    "y": 0.2997,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vulta": {
+    "x": 0.5918,
+    "y": 0.2937,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jebble": {
+    "x": 0.5926,
+    "y": 0.286,
+    "grid": "?",
+    "region": "?"
+  },
+  "Daro": {
+    "x": 0.6023,
+    "y": 0.2832,
+    "grid": "?",
+    "region": "?"
+  },
+  "Taris": {
+    "x": 0.5991,
+    "y": 0.2767,
+    "grid": "?",
+    "region": "?"
+  },
+  "Marca": {
+    "x": 0.6077,
+    "y": 0.2687,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wrodi": {
+    "x": 0.6165,
+    "y": 0.2649,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thomquizzar": {
+    "x": 0.6132,
+    "y": 0.2586,
+    "grid": "?",
+    "region": "?"
+  },
+  "Halmad": {
+    "x": 0.6061,
+    "y": 0.2558,
+    "grid": "?",
+    "region": "?"
+  },
+  "G'wenee": {
+    "x": 0.5894,
+    "y": 0.2566,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lavisar": {
+    "x": 0.5665,
+    "y": 0.2748,
+    "grid": "?",
+    "region": "?"
+  },
+  "Null": {
+    "x": 0.5797,
+    "y": 0.2853,
+    "grid": "?",
+    "region": "?"
+  },
+  "Skoruppon": {
+    "x": 0.5795,
+    "y": 0.2933,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ploo": {
+    "x": 0.5818,
+    "y": 0.3029,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corsin": {
+    "x": 0.562,
+    "y": 0.3039,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shalam": {
+    "x": 0.5638,
+    "y": 0.3172,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nouane": {
+    "x": 0.571,
+    "y": 0.3232,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thisspias": {
+    "x": 0.6325,
+    "y": 0.332,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mantessa": {
+    "x": 0.5504,
+    "y": 0.354,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bogden": {
+    "x": 0.5291,
+    "y": 0.3303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mindor": {
+    "x": 0.541,
+    "y": 0.3452,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thyrsus": {
+    "x": 0.559,
+    "y": 0.346,
+    "grid": "?",
+    "region": "?"
+  },
+  "Almera": {
+    "x": 0.5665,
+    "y": 0.3432,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bengali": {
+    "x": 0.5641,
+    "y": 0.3464,
+    "grid": "?",
+    "region": "?"
+  },
+  "Per Lupelo": {
+    "x": 0.5207,
+    "y": 0.3418,
+    "grid": "?",
+    "region": "?"
+  },
+  "Paqualis": {
+    "x": 0.5244,
+    "y": 0.3361,
+    "grid": "?",
+    "region": "?"
+  },
+  "Champala": {
+    "x": 0.5125,
+    "y": 0.3529,
+    "grid": "?",
+    "region": "?"
+  },
+  "Barlok": {
+    "x": 0.5022,
+    "y": 0.3512,
+    "grid": "?",
+    "region": "?"
+  },
+  "Milvayne": {
+    "x": 0.5065,
+    "y": 0.342,
+    "grid": "?",
+    "region": "?"
+  },
+  "Datar": {
+    "x": 0.507,
+    "y": 0.3369,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tedel": {
+    "x": 0.517,
+    "y": 0.3295,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sljee": {
+    "x": 0.5268,
+    "y": 0.3247,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nessem": {
+    "x": 0.5308,
+    "y": 0.3267,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kidriff": {
+    "x": 0.532,
+    "y": 0.3231,
+    "grid": "?",
+    "region": "?"
+  },
+  "Viga": {
+    "x": 0.54,
+    "y": 0.3167,
+    "grid": "?",
+    "region": "?"
+  },
+  "Adin": {
+    "x": 0.5467,
+    "y": 0.3126,
+    "grid": "?",
+    "region": "?"
+  },
+  "Draria": {
+    "x": 0.5433,
+    "y": 0.3141,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jazbina": {
+    "x": 0.5458,
+    "y": 0.3221,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ejolus": {
+    "x": 0.5486,
+    "y": 0.325,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sifuchi": {
+    "x": 0.5473,
+    "y": 0.3074,
+    "grid": "?",
+    "region": "?"
+  },
+  "Asamin": {
+    "x": 0.5574,
+    "y": 0.2901,
+    "grid": "?",
+    "region": "?"
+  },
+  "Djurmo": {
+    "x": 0.5547,
+    "y": 0.2787,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corphelion": {
+    "x": 0.5314,
+    "y": 0.3195,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jestan": {
+    "x": 0.532,
+    "y": 0.3161,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belukat": {
+    "x": 0.5305,
+    "y": 0.3128,
+    "grid": "?",
+    "region": "?"
+  },
+  "Walin'or": {
+    "x": 0.5304,
+    "y": 0.3075,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tarchalia": {
+    "x": 0.5208,
+    "y": 0.305,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nicandra": {
+    "x": 0.5274,
+    "y": 0.2929,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ylix": {
+    "x": 0.5243,
+    "y": 0.2853,
+    "grid": "?",
+    "region": "?"
+  },
+  "Alderath": {
+    "x": 0.5155,
+    "y": 0.2796,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ilimardon": {
+    "x": 0.5037,
+    "y": 0.2981,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aphran": {
+    "x": 0.4415,
+    "y": 0.346,
+    "grid": "?",
+    "region": "?"
+  },
+  "Meastrinnar": {
+    "x": 0.4433,
+    "y": 0.3486,
+    "grid": "?",
+    "region": "?"
+  },
+  "Neshtab": {
+    "x": 0.4449,
+    "y": 0.3437,
+    "grid": "?",
+    "region": "?"
+  },
+  "Waymancy": {
+    "x": 0.4597,
+    "y": 0.3388,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sooncanoo": {
+    "x": 0.4738,
+    "y": 0.3392,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Lithone": {
+    "x": 0.489,
+    "y": 0.3386,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mayvitch": {
+    "x": 0.4856,
+    "y": 0.3361,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anduvia": {
+    "x": 0.4708,
+    "y": 0.333,
+    "grid": "?",
+    "region": "?"
+  },
+  "Immalia": {
+    "x": 0.4795,
+    "y": 0.3352,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yinchorr": {
+    "x": 0.4968,
+    "y": 0.3307,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sif-Alula": {
+    "x": 0.4577,
+    "y": 0.3336,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vorian": {
+    "x": 0.4607,
+    "y": 0.3306,
+    "grid": "?",
+    "region": "?"
+  },
+  "Luuq": {
+    "x": 0.4878,
+    "y": 0.3181,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gultanna": {
+    "x": 0.4757,
+    "y": 0.3213,
+    "grid": "?",
+    "region": "?"
+  },
+  "Barenth": {
+    "x": 0.4561,
+    "y": 0.3245,
+    "grid": "?",
+    "region": "?"
+  },
+  "Brightday": {
+    "x": 0.4513,
+    "y": 0.3362,
+    "grid": "?",
+    "region": "?"
+  },
+  "Upper Brightday": {
+    "x": 0.4513,
+    "y": 0.333,
+    "grid": "?",
+    "region": "?"
+  },
+  "Muzara": {
+    "x": 0.4492,
+    "y": 0.329,
+    "grid": "?",
+    "region": "?"
+  },
+  "Paig": {
+    "x": 0.4452,
+    "y": 0.323,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aramal": {
+    "x": 0.4338,
+    "y": 0.3269,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ryborea": {
+    "x": 0.4311,
+    "y": 0.3224,
+    "grid": "?",
+    "region": "?"
+  },
+  "Coth Fuuras": {
+    "x": 0.4245,
+    "y": 0.3277,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rondai": {
+    "x": 0.4287,
+    "y": 0.3334,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bilbringi": {
+    "x": 0.4317,
+    "y": 0.3391,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bengat": {
+    "x": 0.4364,
+    "y": 0.3411,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fyrth": {
+    "x": 0.4236,
+    "y": 0.3411,
+    "grid": "?",
+    "region": "?"
+  },
+  "Meglumine": {
+    "x": 0.43,
+    "y": 0.3466,
+    "grid": "?",
+    "region": "?"
+  },
+  "Manoe": {
+    "x": 0.4693,
+    "y": 0.3074,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dohu": {
+    "x": 0.4715,
+    "y": 0.2996,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jarnollen": {
+    "x": 0.4838,
+    "y": 0.3025,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anobis": {
+    "x": 0.49,
+    "y": 0.3012,
+    "grid": "?",
+    "region": "?"
+  },
+  "Korvaii": {
+    "x": 0.5011,
+    "y": 0.2868,
+    "grid": "?",
+    "region": "?"
+  },
+  "T'olan": {
+    "x": 0.4617,
+    "y": 0.3025,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thory": {
+    "x": 0.4643,
+    "y": 0.2927,
+    "grid": "?",
+    "region": "?"
+  },
+  "Baltizaar": {
+    "x": 0.455,
+    "y": 0.2837,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ipellrilla": {
+    "x": 0.4437,
+    "y": 0.2961,
+    "grid": "?",
+    "region": "?"
+  },
+  "Station 88": {
+    "x": 0.4313,
+    "y": 0.3157,
+    "grid": "?",
+    "region": "?"
+  },
+  "Abaarian": {
+    "x": 0.4411,
+    "y": 0.3163,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vicondor": {
+    "x": 0.4293,
+    "y": 0.3173,
+    "grid": "?",
+    "region": "?"
+  },
+  "Myomar": {
+    "x": 0.4273,
+    "y": 0.318,
+    "grid": "?",
+    "region": "?"
+  },
+  "Carvandir": {
+    "x": 0.4127,
+    "y": 0.3147,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vaced": {
+    "x": 0.4098,
+    "y": 0.3107,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shu-Torun": {
+    "x": 0.4209,
+    "y": 0.3059,
+    "grid": "?",
+    "region": "?"
+  },
+  "Darkon": {
+    "x": 0.4244,
+    "y": 0.2992,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fef": {
+    "x": 0.4355,
+    "y": 0.2978,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fornax": {
+    "x": 0.4378,
+    "y": 0.2903,
+    "grid": "?",
+    "region": "?"
+  },
+  "Qiilura": {
+    "x": 0.4824,
+    "y": 0.2927,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tyan": {
+    "x": 0.4802,
+    "y": 0.2736,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corthenia": {
+    "x": 0.4697,
+    "y": 0.2726,
+    "grid": "?",
+    "region": "?"
+  },
+  "Traval Pacor": {
+    "x": 0.4475,
+    "y": 0.2722,
+    "grid": "?",
+    "region": "?"
+  },
+  "Valrar": {
+    "x": 0.4299,
+    "y": 0.2855,
+    "grid": "?",
+    "region": "?"
+  },
+  "Londor": {
+    "x": 0.4178,
+    "y": 0.2872,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Tessebok": {
+    "x": 0.478,
+    "y": 0.2686,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gnomore": {
+    "x": 0.477,
+    "y": 0.2653,
+    "grid": "?",
+    "region": "?"
+  },
+  "Obredaan": {
+    "x": 0.4763,
+    "y": 0.2624,
+    "grid": "?",
+    "region": "?"
+  },
+  "Osskorn": {
+    "x": 0.4904,
+    "y": 0.266,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kwannot": {
+    "x": 0.5015,
+    "y": 0.2664,
+    "grid": "?",
+    "region": "?"
+  },
+  "Urce": {
+    "x": 0.512,
+    "y": 0.2653,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fitca": {
+    "x": 0.5182,
+    "y": 0.2649,
+    "grid": "?",
+    "region": "?"
+  },
+  "Orocco": {
+    "x": 0.5277,
+    "y": 0.2651,
+    "grid": "?",
+    "region": "?"
+  },
+  "Genassa": {
+    "x": 0.5287,
+    "y": 0.2721,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hewett": {
+    "x": 0.5473,
+    "y": 0.2651,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zongorlu": {
+    "x": 0.5601,
+    "y": 0.2659,
+    "grid": "?",
+    "region": "?"
+  },
+  "Soun": {
+    "x": 0.3953,
+    "y": 0.347,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pesitiin": {
+    "x": 0.3687,
+    "y": 0.3485,
+    "grid": "?",
+    "region": "?"
+  },
+  "Roxuli": {
+    "x": 0.3839,
+    "y": 0.3398,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kashir": {
+    "x": 0.3949,
+    "y": 0.3353,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hijo": {
+    "x": 0.4068,
+    "y": 0.3335,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belassar": {
+    "x": 0.4145,
+    "y": 0.3298,
+    "grid": "?",
+    "region": "?"
+  },
+  "Horob": {
+    "x": 0.3916,
+    "y": 0.3247,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mendicat": {
+    "x": 0.3796,
+    "y": 0.3371,
+    "grid": "?",
+    "region": "?"
+  },
+  "Geroon": {
+    "x": 0.3535,
+    "y": 0.335,
+    "grid": "?",
+    "region": "?"
+  },
+  "Utegutu Nebula": {
+    "x": 0.3572,
+    "y": 0.3267,
+    "grid": "?",
+    "region": "?"
+  },
+  "The Redoubt": {
+    "x": 0.3425,
+    "y": 0.3155,
+    "grid": "?",
+    "region": "?"
+  },
+  "Crustai": {
+    "x": 0.3253,
+    "y": 0.3436,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vagar Praxut": {
+    "x": 0.3122,
+    "y": 0.3727,
+    "grid": "?",
+    "region": "?"
+  },
+  "Murgo": {
+    "x": 0.3698,
+    "y": 0.3053,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kril'Dor": {
+    "x": 0.3777,
+    "y": 0.2968,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rago": {
+    "x": 0.3713,
+    "y": 0.2951,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reo": {
+    "x": 0.3555,
+    "y": 0.2983,
+    "grid": "?",
+    "region": "?"
+  },
+  "Crintlia": {
+    "x": 0.3913,
+    "y": 0.298,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mondress": {
+    "x": 0.3998,
+    "y": 0.3159,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hallitron": {
+    "x": 0.3985,
+    "y": 0.3077,
+    "grid": "?",
+    "region": "?"
+  },
+  "Snevu": {
+    "x": 0.3393,
+    "y": 0.2945,
+    "grid": "?",
+    "region": "?"
+  },
+  "Burska": {
+    "x": 0.3703,
+    "y": 0.2905,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yuggoy": {
+    "x": 0.3337,
+    "y": 0.2845,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sinton": {
+    "x": 0.38,
+    "y": 0.2844,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Varee": {
+    "x": 0.3975,
+    "y": 0.2903,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kalaan": {
+    "x": 0.3958,
+    "y": 0.2861,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rustibar": {
+    "x": 0.402,
+    "y": 0.279,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gilatter": {
+    "x": 0.386,
+    "y": 0.2779,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ansion": {
+    "x": 0.3923,
+    "y": 0.2728,
+    "grid": "?",
+    "region": "?"
+  },
+  "Arjarch": {
+    "x": 0.4125,
+    "y": 0.2686,
+    "grid": "?",
+    "region": "?"
+  },
+  "Keitum": {
+    "x": 0.4102,
+    "y": 0.2636,
+    "grid": "?",
+    "region": "?"
+  },
+  "Varwa": {
+    "x": 0.433,
+    "y": 0.2634,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bars Barka": {
+    "x": 0.4263,
+    "y": 0.2588,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dalron": {
+    "x": 0.4143,
+    "y": 0.2571,
+    "grid": "?",
+    "region": "?"
+  },
+  "Veroleem": {
+    "x": 0.3669,
+    "y": 0.2611,
+    "grid": "?",
+    "region": "?"
+  },
+  "Red Twins": {
+    "x": 0.374,
+    "y": 0.2738,
+    "grid": "?",
+    "region": "?"
+  },
+  "Koshaga": {
+    "x": 0.3571,
+    "y": 0.2775,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ankus": {
+    "x": 0.3688,
+    "y": 0.2809,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pesfavri": {
+    "x": 0.2961,
+    "y": 0.3264,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ilum": {
+    "x": 0.303,
+    "y": 0.2981,
+    "grid": "H-3",
+    "region": "Unknown Regions"
+  },
+  "Sunrise": {
+    "x": 0.2696,
+    "y": 0.2901,
+    "grid": "?",
+    "region": "?"
+  },
+  "Qoribu": {
+    "x": 0.3043,
+    "y": 0.2782,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lizil": {
+    "x": 0.277,
+    "y": 0.265,
+    "grid": "?",
+    "region": "?"
+  },
+  "Syca": {
+    "x": 0.3028,
+    "y": 0.2559,
+    "grid": "?",
+    "region": "?"
+  },
+  "Durace": {
+    "x": 0.323,
+    "y": 0.2425,
+    "grid": "?",
+    "region": "?"
+  },
+  "Esfandia": {
+    "x": 0.3588,
+    "y": 0.2472,
+    "grid": "?",
+    "region": "?"
+  },
+  "Frunchettan": {
+    "x": 0.3772,
+    "y": 0.2528,
+    "grid": "?",
+    "region": "?"
+  },
+  "Adumar": {
+    "x": 0.3965,
+    "y": 0.2468,
+    "grid": "?",
+    "region": "?"
+  },
+  "Troska": {
+    "x": 0.4167,
+    "y": 0.238,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aeten": {
+    "x": 0.408,
+    "y": 0.2303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cirrus": {
+    "x": 0.4265,
+    "y": 0.2493,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kariek": {
+    "x": 0.3358,
+    "y": 0.2173,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nirauan": {
+    "x": 0.3785,
+    "y": 0.2176,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oristrom": {
+    "x": 0.3468,
+    "y": 0.196,
+    "grid": "?",
+    "region": "?"
+  },
+  "Troukree": {
+    "x": 0.3195,
+    "y": 0.188,
+    "grid": "?",
+    "region": "?"
+  },
+  "Braccio": {
+    "x": 0.3692,
+    "y": 0.1867,
+    "grid": "?",
+    "region": "?"
+  },
+  "Poln": {
+    "x": 0.4029,
+    "y": 0.1954,
+    "grid": "?",
+    "region": "?"
+  },
+  "Comra": {
+    "x": 0.42,
+    "y": 0.2127,
+    "grid": "?",
+    "region": "?"
+  },
+  "Monhudle": {
+    "x": 0.4535,
+    "y": 0.2016,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yarille": {
+    "x": 0.4676,
+    "y": 0.2254,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ywllandr": {
+    "x": 0.4525,
+    "y": 0.2226,
+    "grid": "?",
+    "region": "?"
+  },
+  "Domgrin": {
+    "x": 0.4552,
+    "y": 0.2266,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Mynock": {
+    "x": 0.4481,
+    "y": 0.2328,
+    "grid": "?",
+    "region": "?"
+  },
+  "Poressi": {
+    "x": 0.4412,
+    "y": 0.237,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kemla": {
+    "x": 0.4532,
+    "y": 0.2424,
+    "grid": "?",
+    "region": "?"
+  },
+  "Smarab": {
+    "x": 0.4492,
+    "y": 0.2474,
+    "grid": "?",
+    "region": "?"
+  },
+  "Smarck": {
+    "x": 0.4536,
+    "y": 0.2509,
+    "grid": "?",
+    "region": "?"
+  },
+  "Uba": {
+    "x": 0.4345,
+    "y": 0.2546,
+    "grid": "?",
+    "region": "?"
+  },
+  "Orinda": {
+    "x": 0.4703,
+    "y": 0.2488,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lonnaw": {
+    "x": 0.4733,
+    "y": 0.2553,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tangar": {
+    "x": 0.472,
+    "y": 0.2391,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Canfre": {
+    "x": 0.4694,
+    "y": 0.2182,
+    "grid": "?",
+    "region": "?"
+  },
+  "Forsen": {
+    "x": 0.4703,
+    "y": 0.2123,
+    "grid": "?",
+    "region": "?"
+  },
+  "Isiring": {
+    "x": 0.4879,
+    "y": 0.2115,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kalki Nebula": {
+    "x": 0.4808,
+    "y": 0.2036,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cassander": {
+    "x": 0.4703,
+    "y": 0.2053,
+    "grid": "?",
+    "region": "?"
+  },
+  "Garqi": {
+    "x": 0.4633,
+    "y": 0.2025,
+    "grid": "?",
+    "region": "?"
+  },
+  "Biitu": {
+    "x": 0.4618,
+    "y": 0.1965,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anemcoro": {
+    "x": 0.4785,
+    "y": 0.1939,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Biniir": {
+    "x": 0.4812,
+    "y": 0.1916,
+    "grid": "?",
+    "region": "?"
+  },
+  "Haverling": {
+    "x": 0.4665,
+    "y": 0.1854,
+    "grid": "?",
+    "region": "?"
+  },
+  "Minashee": {
+    "x": 0.4563,
+    "y": 0.1934,
+    "grid": "?",
+    "region": "?"
+  },
+  "Borosk": {
+    "x": 0.4399,
+    "y": 0.196,
+    "grid": "?",
+    "region": "?"
+  },
+  "Prefsbelt": {
+    "x": 0.4395,
+    "y": 0.192,
+    "grid": "?",
+    "region": "?"
+  },
+  "Marquarra": {
+    "x": 0.4149,
+    "y": 0.1892,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yaga": {
+    "x": 0.4385,
+    "y": 0.1842,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ompersan": {
+    "x": 0.4388,
+    "y": 0.1871,
+    "grid": "?",
+    "region": "?"
+  },
+  "Churruma": {
+    "x": 0.4279,
+    "y": 0.1799,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ryloon": {
+    "x": 0.4236,
+    "y": 0.1782,
+    "grid": "?",
+    "region": "?"
+  },
+  "Endex": {
+    "x": 0.4322,
+    "y": 0.1756,
+    "grid": "?",
+    "region": "?"
+  },
+  "Scipio": {
+    "x": 0.462,
+    "y": 0.1773,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aris": {
+    "x": 0.467,
+    "y": 0.1767,
+    "grid": "?",
+    "region": "?"
+  },
+  "Morishim": {
+    "x": 0.4667,
+    "y": 0.1806,
+    "grid": "?",
+    "region": "?"
+  },
+  "Maelstrom": {
+    "x": 0.4756,
+    "y": 0.1804,
+    "grid": "?",
+    "region": "?"
+  },
+  "Moltok": {
+    "x": 0.4838,
+    "y": 0.1966,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vykos": {
+    "x": 0.4829,
+    "y": 0.1811,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Trasi": {
+    "x": 0.487,
+    "y": 0.17,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gwori": {
+    "x": 0.4808,
+    "y": 0.1667,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fondro": {
+    "x": 0.4735,
+    "y": 0.1635,
+    "grid": "?",
+    "region": "?"
+  },
+  "Marmoth": {
+    "x": 0.4534,
+    "y": 0.1678,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mantooine": {
+    "x": 0.5048,
+    "y": 0.1893,
+    "grid": "?",
+    "region": "?"
+  },
+  "Spefik": {
+    "x": 0.4911,
+    "y": 0.2005,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iridium": {
+    "x": 0.5061,
+    "y": 0.2036,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vuchel": {
+    "x": 0.505,
+    "y": 0.2116,
+    "grid": "?",
+    "region": "?"
+  },
+  "Fedje": {
+    "x": 0.5128,
+    "y": 0.2118,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ketaris": {
+    "x": 0.522,
+    "y": 0.2189,
+    "grid": "?",
+    "region": "?"
+  },
+  "Planet": {
+    "x": 0.533,
+    "y": 0.2142,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kebolar": {
+    "x": 0.5432,
+    "y": 0.221,
+    "grid": "?",
+    "region": "?"
+  },
+  "Paarin": {
+    "x": 0.5397,
+    "y": 0.2335,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cademimu": {
+    "x": 0.5392,
+    "y": 0.2382,
+    "grid": "?",
+    "region": "?"
+  },
+  "Phaeda": {
+    "x": 0.5053,
+    "y": 0.2404,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lenico": {
+    "x": 0.5092,
+    "y": 0.2462,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ebra": {
+    "x": 0.5097,
+    "y": 0.2539,
+    "grid": "?",
+    "region": "?"
+  },
+  "Entuur": {
+    "x": 0.508,
+    "y": 0.2571,
+    "grid": "?",
+    "region": "?"
+  },
+  "Morvis": {
+    "x": 0.5409,
+    "y": 0.2569,
+    "grid": "?",
+    "region": "?"
+  },
+  "Er'Kit": {
+    "x": 0.5573,
+    "y": 0.2565,
+    "grid": "?",
+    "region": "?"
+  },
+  "Polus": {
+    "x": 0.5453,
+    "y": 0.2458,
+    "grid": "?",
+    "region": "?"
+  },
+  "Noonar": {
+    "x": 0.5333,
+    "y": 0.2529,
+    "grid": "?",
+    "region": "?"
+  },
+  "Borgo": {
+    "x": 0.5567,
+    "y": 0.2372,
+    "grid": "?",
+    "region": "?"
+  },
+  "Targarth": {
+    "x": 0.567,
+    "y": 0.24,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hitaka": {
+    "x": 0.5621,
+    "y": 0.2281,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cowl Crucible": {
+    "x": 0.556,
+    "y": 0.2219,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Traga": {
+    "x": 0.578,
+    "y": 0.2088,
+    "grid": "?",
+    "region": "?"
+  },
+  "New Holgha": {
+    "x": 0.5854,
+    "y": 0.2049,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shaum Hii": {
+    "x": 0.5758,
+    "y": 0.1972,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vesla": {
+    "x": 0.5867,
+    "y": 0.2305,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cathan": {
+    "x": 0.6047,
+    "y": 0.2361,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vinsoth": {
+    "x": 0.6023,
+    "y": 0.2196,
+    "grid": "?",
+    "region": "?"
+  },
+  "Liinade": {
+    "x": 0.5932,
+    "y": 0.1983,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ciutric": {
+    "x": 0.5908,
+    "y": 0.1877,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corvis Minor": {
+    "x": 0.5906,
+    "y": 0.1788,
+    "grid": "?",
+    "region": "?"
+  },
+  "Argazda": {
+    "x": 0.5903,
+    "y": 0.1638,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jerne": {
+    "x": 0.584,
+    "y": 0.1615,
+    "grid": "?",
+    "region": "?"
+  },
+  "Akuria": {
+    "x": 0.5405,
+    "y": 0.1813,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gandolo": {
+    "x": 0.5482,
+    "y": 0.1909,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oplovis": {
+    "x": 0.5395,
+    "y": 0.1978,
+    "grid": "?",
+    "region": "?"
+  },
+  "Devon": {
+    "x": 0.5168,
+    "y": 0.2025,
+    "grid": "?",
+    "region": "?"
+  },
+  "Generis": {
+    "x": 0.5182,
+    "y": 0.1994,
+    "grid": "?",
+    "region": "?"
+  },
+  "Markbee's Star": {
+    "x": 0.5164,
+    "y": 0.1967,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hethar": {
+    "x": 0.521,
+    "y": 0.1959,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nam'ta": {
+    "x": 0.5182,
+    "y": 0.192,
+    "grid": "?",
+    "region": "?"
+  },
+  "Horuz": {
+    "x": 0.5121,
+    "y": 0.1897,
+    "grid": "?",
+    "region": "?"
+  },
+  "Koda's World": {
+    "x": 0.34,
+    "y": 0.1682,
+    "grid": "?",
+    "region": "?"
+  },
+  "Teptixii": {
+    "x": 0.3632,
+    "y": 0.1623,
+    "grid": "?",
+    "region": "?"
+  },
+  "Parshoone": {
+    "x": 0.403,
+    "y": 0.16,
+    "grid": "?",
+    "region": "?"
+  },
+  "Brodo Asogi": {
+    "x": 0.4052,
+    "y": 0.1619,
+    "grid": "?",
+    "region": "?"
+  },
+  "Valc": {
+    "x": 0.412,
+    "y": 0.1671,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dacturia": {
+    "x": 0.4264,
+    "y": 0.1582,
+    "grid": "?",
+    "region": "?"
+  },
+  "Entralla": {
+    "x": 0.4407,
+    "y": 0.1648,
+    "grid": "?",
+    "region": "?"
+  },
+  "Capza": {
+    "x": 0.4402,
+    "y": 0.168,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bextar": {
+    "x": 0.4313,
+    "y": 0.1678,
+    "grid": "?",
+    "region": "?"
+  },
+  "Huk": {
+    "x": 0.4008,
+    "y": 0.146,
+    "grid": "?",
+    "region": "?"
+  },
+  "Guiteica": {
+    "x": 0.4044,
+    "y": 0.1344,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oben": {
+    "x": 0.4124,
+    "y": 0.1459,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tovarskl": {
+    "x": 0.4094,
+    "y": 0.1496,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gelda": {
+    "x": 0.427,
+    "y": 0.1483,
+    "grid": "?",
+    "region": "?"
+  },
+  "Delephr": {
+    "x": 0.424,
+    "y": 0.1426,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vexta": {
+    "x": 0.4195,
+    "y": 0.1381,
+    "grid": "?",
+    "region": "?"
+  },
+  "Taspir": {
+    "x": 0.423,
+    "y": 0.1225,
+    "grid": "?",
+    "region": "?"
+  },
+  "Varvrona": {
+    "x": 0.4385,
+    "y": 0.1272,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jaemus": {
+    "x": 0.4432,
+    "y": 0.1335,
+    "grid": "?",
+    "region": "?"
+  },
+  "Endoraan": {
+    "x": 0.4413,
+    "y": 0.1576,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Sedra": {
+    "x": 0.4459,
+    "y": 0.1569,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cezith": {
+    "x": 0.4478,
+    "y": 0.1602,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kwevron": {
+    "x": 0.4655,
+    "y": 0.1571,
+    "grid": "?",
+    "region": "?"
+  },
+  "Venestria": {
+    "x": 0.4565,
+    "y": 0.1541,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bisellia": {
+    "x": 0.443,
+    "y": 0.1535,
+    "grid": "?",
+    "region": "?"
+  },
+  "Muunilinst": {
+    "x": 0.4458,
+    "y": 0.1511,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gabredor": {
+    "x": 0.461,
+    "y": 0.1418,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sinsang": {
+    "x": 0.4882,
+    "y": 0.1528,
+    "grid": "?",
+    "region": "?"
+  },
+  "Angor": {
+    "x": 0.4722,
+    "y": 0.1454,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dolis": {
+    "x": 0.4313,
+    "y": 0.119,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bescane": {
+    "x": 0.4423,
+    "y": 0.1231,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rimcee": {
+    "x": 0.4305,
+    "y": 0.1075,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sertinaynian": {
+    "x": 0.442,
+    "y": 0.1049,
+    "grid": "?",
+    "region": "?"
+  },
+  "Qonto": {
+    "x": 0.429,
+    "y": 0.096,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anorelga": {
+    "x": 0.445,
+    "y": 0.0921,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bnar": {
+    "x": 0.4564,
+    "y": 0.1121,
+    "grid": "?",
+    "region": "?"
+  },
+  "Criton's Point": {
+    "x": 0.4627,
+    "y": 0.1042,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dubrillion": {
+    "x": 0.4664,
+    "y": 0.1155,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ahakista": {
+    "x": 0.4668,
+    "y": 0.1197,
+    "grid": "?",
+    "region": "?"
+  },
+  "Equanus": {
+    "x": 0.4758,
+    "y": 0.1095,
+    "grid": "?",
+    "region": "?"
+  },
+  "Trassitan": {
+    "x": 0.4908,
+    "y": 0.0979,
+    "grid": "?",
+    "region": "?"
+  },
+  "Skara Nal": {
+    "x": 0.497,
+    "y": 0.1122,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kesmere Minor": {
+    "x": 0.4907,
+    "y": 0.1407,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anx": {
+    "x": 0.4927,
+    "y": 0.1557,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gravlex Med": {
+    "x": 0.5105,
+    "y": 0.1463,
+    "grid": "?",
+    "region": "?"
+  },
+  "Shusugaunt": {
+    "x": 0.5,
+    "y": 0.1359,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tertiary Kesmere": {
+    "x": 0.4895,
+    "y": 0.1339,
+    "grid": "?",
+    "region": "?"
+  },
+  "Plooma": {
+    "x": 0.4992,
+    "y": 0.101,
+    "grid": "?",
+    "region": "?"
+  },
+  "Veragi": {
+    "x": 0.4978,
+    "y": 0.0926,
+    "grid": "?",
+    "region": "?"
+  },
+  "Plesstil": {
+    "x": 0.4978,
+    "y": 0.0865,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sernpidal": {
+    "x": 0.5122,
+    "y": 0.0837,
+    "grid": "?",
+    "region": "?"
+  },
+  "Seline": {
+    "x": 0.5338,
+    "y": 0.0926,
+    "grid": "?",
+    "region": "?"
+  },
+  "RZ7-6113-23": {
+    "x": 0.515,
+    "y": 0.1298,
+    "grid": "?",
+    "region": "?"
+  },
+  "Asation": {
+    "x": 0.479,
+    "y": 0.0811,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lonatro": {
+    "x": 0.4827,
+    "y": 0.0806,
+    "grid": "?",
+    "region": "?"
+  },
+  "Malanose": {
+    "x": 0.481,
+    "y": 0.0765,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gree": {
+    "x": 0.4844,
+    "y": 0.0744,
+    "grid": "?",
+    "region": "?"
+  },
+  "Te Hasa": {
+    "x": 0.4787,
+    "y": 0.0727,
+    "grid": "?",
+    "region": "?"
+  },
+  "Licha In": {
+    "x": 0.4865,
+    "y": 0.0707,
+    "grid": "?",
+    "region": "?"
+  },
+  "Helska": {
+    "x": 0.5044,
+    "y": 0.0639,
+    "grid": "?",
+    "region": "?"
+  },
+  "Revyia": {
+    "x": 0.4913,
+    "y": 0.0503,
+    "grid": "?",
+    "region": "?"
+  },
+  "Belkadan": {
+    "x": 0.5079,
+    "y": 0.027,
+    "grid": "?",
+    "region": "?"
+  },
+  "Salfrem": {
+    "x": 0.453,
+    "y": 0.0637,
+    "grid": "?",
+    "region": "?"
+  },
+  "OHS3842-03": {
+    "x": 0.8315,
+    "y": 0.2872,
+    "grid": "?",
+    "region": "?"
+  },
+  "OHS4140-02": {
+    "x": 0.8376,
+    "y": 0.28,
+    "grid": "?",
+    "region": "?"
+  },
+  "OHS2132-04": {
+    "x": 0.8592,
+    "y": 0.2755,
+    "grid": "?",
+    "region": "?"
+  },
+  "Syngia": {
+    "x": 0.7805,
+    "y": 0.2011,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sembla": {
+    "x": 0.7919,
+    "y": 0.2061,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vamqpr": {
+    "x": 0.7848,
+    "y": 0.1991,
+    "grid": "?",
+    "region": "?"
+  },
+  "Yutusk": {
+    "x": 0.7846,
+    "y": 0.1965,
+    "grid": "?",
+    "region": "?"
+  },
+  "Troiken": {
+    "x": 0.8126,
+    "y": 0.1763,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nathema": {
+    "x": 0.8035,
+    "y": 0.1732,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lotide": {
+    "x": 0.7861,
+    "y": 0.176,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dakot": {
+    "x": 0.785,
+    "y": 0.1711,
+    "grid": "?",
+    "region": "?"
+  },
+  "Malachor": {
+    "x": 0.794,
+    "y": 0.1637,
+    "grid": "S-16",
+    "region": "Outer Rim"
+  },
+  "Vaynal": {
+    "x": 0.8051,
+    "y": 0.1629,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rekkiad": {
+    "x": 0.8091,
+    "y": 0.1546,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kadavo": {
+    "x": 0.8326,
+    "y": 0.1475,
+    "grid": "?",
+    "region": "?"
+  },
+  "Parthovian Cluster": {
+    "x": 0.842,
+    "y": 0.1342,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rhelg": {
+    "x": 0.7668,
+    "y": 0.1858,
+    "grid": "?",
+    "region": "?"
+  },
+  "Khar Delba": {
+    "x": 0.7688,
+    "y": 0.1789,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jaguada": {
+    "x": 0.7597,
+    "y": 0.1805,
+    "grid": "?",
+    "region": "?"
+  },
+  "Krayiss": {
+    "x": 0.7658,
+    "y": 0.1729,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nfolgai": {
+    "x": 0.7635,
+    "y": 0.1676,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bhargebba": {
+    "x": 0.7583,
+    "y": 0.1645,
+    "grid": "?",
+    "region": "?"
+  },
+  "Svolten": {
+    "x": 0.7602,
+    "y": 0.1629,
+    "grid": "?",
+    "region": "?"
+  },
+  "Iliabeth": {
+    "x": 0.7757,
+    "y": 0.164,
+    "grid": "?",
+    "region": "?"
+  },
+  "Begeren": {
+    "x": 0.7496,
+    "y": 0.1752,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ch'hodos": {
+    "x": 0.7557,
+    "y": 0.17,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ziost": {
+    "x": 0.7497,
+    "y": 0.1675,
+    "grid": "?",
+    "region": "?"
+  },
+  "Anarak": {
+    "x": 0.7746,
+    "y": 0.155,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zyggeria": {
+    "x": 0.7898,
+    "y": 0.1533,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kormoran": {
+    "x": 0.7698,
+    "y": 0.1509,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gigor": {
+    "x": 0.7552,
+    "y": 0.1487,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thosa": {
+    "x": 0.7624,
+    "y": 0.1411,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lafra": {
+    "x": 0.7721,
+    "y": 0.1455,
+    "grid": "?",
+    "region": "?"
+  },
+  "Dra III": {
+    "x": 0.7764,
+    "y": 0.1405,
+    "grid": "?",
+    "region": "?"
+  },
+  "Craci": {
+    "x": 0.7838,
+    "y": 0.1344,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jerrist": {
+    "x": 0.7929,
+    "y": 0.1361,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ammuud": {
+    "x": 0.8013,
+    "y": 0.1411,
+    "grid": "?",
+    "region": "?"
+  },
+  "Oslumpex": {
+    "x": 0.8054,
+    "y": 0.1391,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ession": {
+    "x": 0.8009,
+    "y": 0.1324,
+    "grid": "?",
+    "region": "?"
+  },
+  "Issagra": {
+    "x": 0.8088,
+    "y": 0.1318,
+    "grid": "?",
+    "region": "?"
+  },
+  "Etti": {
+    "x": 0.8007,
+    "y": 0.1303,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bonadan": {
+    "x": 0.8061,
+    "y": 0.128,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kamar": {
+    "x": 0.8154,
+    "y": 0.1267,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ocsin": {
+    "x": 0.8132,
+    "y": 0.1267,
+    "grid": "?",
+    "region": "?"
+  },
+  "Attchorb": {
+    "x": 0.8029,
+    "y": 0.1225,
+    "grid": "?",
+    "region": "?"
+  },
+  "Brosi": {
+    "x": 0.8094,
+    "y": 0.1169,
+    "grid": "?",
+    "region": "?"
+  },
+  "Farana": {
+    "x": 0.8121,
+    "y": 0.1153,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lythos": {
+    "x": 0.7932,
+    "y": 0.1249,
+    "grid": "?",
+    "region": "?"
+  },
+  "Drog": {
+    "x": 0.7831,
+    "y": 0.1293,
+    "grid": "?",
+    "region": "?"
+  },
+  "Davirien": {
+    "x": 0.7788,
+    "y": 0.129,
+    "grid": "?",
+    "region": "?"
+  },
+  "Cadomai": {
+    "x": 0.7708,
+    "y": 0.1222,
+    "grid": "?",
+    "region": "?"
+  },
+  "Reltooine": {
+    "x": 0.7769,
+    "y": 0.1226,
+    "grid": "?",
+    "region": "?"
+  },
+  "Hiit": {
+    "x": 0.7926,
+    "y": 0.1152,
+    "grid": "?",
+    "region": "?"
+  },
+  "Perin": {
+    "x": 0.7973,
+    "y": 0.1118,
+    "grid": "?",
+    "region": "?"
+  },
+  "Rypin": {
+    "x": 0.7825,
+    "y": 0.1122,
+    "grid": "?",
+    "region": "?"
+  },
+  "Koboth": {
+    "x": 0.8048,
+    "y": 0.1052,
+    "grid": "?",
+    "region": "?"
+  },
+  "Morellia": {
+    "x": 0.8148,
+    "y": 0.1043,
+    "grid": "?",
+    "region": "?"
+  },
+  "Salin": {
+    "x": 0.6015,
+    "y": 0.2136,
+    "grid": "?",
+    "region": "?"
+  },
+  "Axxila": {
+    "x": 0.6173,
+    "y": 0.2168,
+    "grid": "?",
+    "region": "?"
+  },
+  "Nez Peron": {
+    "x": 0.6305,
+    "y": 0.2151,
+    "grid": "?",
+    "region": "?"
+  },
+  "Vandyne": {
+    "x": 0.635,
+    "y": 0.2033,
+    "grid": "?",
+    "region": "?"
+  },
+  "Camden": {
+    "x": 0.6373,
+    "y": 0.1925,
+    "grid": "?",
+    "region": "?"
+  },
+  "Edusa": {
+    "x": 0.64,
+    "y": 0.1836,
+    "grid": "?",
+    "region": "?"
+  },
+  "Pho Ph'eah": {
+    "x": 0.6684,
+    "y": 0.188,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kirtania": {
+    "x": 0.6742,
+    "y": 0.1706,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thalassia": {
+    "x": 0.6725,
+    "y": 0.1586,
+    "grid": "?",
+    "region": "?"
+  },
+  "Galdar": {
+    "x": 0.6501,
+    "y": 0.1533,
+    "grid": "?",
+    "region": "?"
+  },
+  "Betha": {
+    "x": 0.6674,
+    "y": 0.1382,
+    "grid": "?",
+    "region": "?"
+  },
+  "Carosi": {
+    "x": 0.6857,
+    "y": 0.1502,
+    "grid": "?",
+    "region": "?"
+  },
+  "Birgis": {
+    "x": 0.5609,
+    "y": 0.1034,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bimmiel": {
+    "x": 0.5823,
+    "y": 0.1468,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lorrd": {
+    "x": 0.6013,
+    "y": 0.1545,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ereesus": {
+    "x": 0.5938,
+    "y": 0.1566,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kol Huro": {
+    "x": 0.6019,
+    "y": 0.1613,
+    "grid": "?",
+    "region": "?"
+  },
+  "Maltha Obex": {
+    "x": 0.6348,
+    "y": 0.1219,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ibanjji": {
+    "x": 0.6096,
+    "y": 0.1362,
+    "grid": "?",
+    "region": "?"
+  },
+  "Spawn Nebula": {
+    "x": 0.6649,
+    "y": 0.1316,
+    "grid": "?",
+    "region": "?"
+  },
+  "Eol Sha": {
+    "x": 0.6604,
+    "y": 0.1249,
+    "grid": "?",
+    "region": "?"
+  },
+  "Soullex": {
+    "x": 0.6583,
+    "y": 0.1041,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gorsh": {
+    "x": 0.6234,
+    "y": 0.0939,
+    "grid": "?",
+    "region": "?"
+  },
+  "Praadost": {
+    "x": 0.6811,
+    "y": 0.1675,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gulma": {
+    "x": 0.6589,
+    "y": 0.0913,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ventooine": {
+    "x": 0.6888,
+    "y": 0.1177,
+    "grid": "?",
+    "region": "?"
+  },
+  "Telos": {
+    "x": 0.7024,
+    "y": 0.1414,
+    "grid": "?",
+    "region": "?"
+  },
+  "Deoniphon": {
+    "x": 0.7063,
+    "y": 0.1379,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bosph": {
+    "x": 0.7079,
+    "y": 0.1038,
+    "grid": "?",
+    "region": "?"
+  },
+  "Peragus": {
+    "x": 0.7231,
+    "y": 0.1245,
+    "grid": "?",
+    "region": "?"
+  },
+  "Listehol": {
+    "x": 0.7151,
+    "y": 0.1325,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ruuria": {
+    "x": 0.7345,
+    "y": 0.1245,
+    "grid": "?",
+    "region": "?"
+  },
+  "Teagan": {
+    "x": 0.7168,
+    "y": 0.1395,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mirial": {
+    "x": 0.7188,
+    "y": 0.1449,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sagma": {
+    "x": 0.7246,
+    "y": 0.1512,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sikurd": {
+    "x": 0.7261,
+    "y": 0.1549,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ferro": {
+    "x": 0.716,
+    "y": 0.1535,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thila": {
+    "x": 0.7099,
+    "y": 0.1609,
+    "grid": "?",
+    "region": "?"
+  },
+  "Breago": {
+    "x": 0.6936,
+    "y": 0.1628,
+    "grid": "?",
+    "region": "?"
+  },
+  "Thule": {
+    "x": 0.7376,
+    "y": 0.1795,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ord Radama": {
+    "x": 0.7004,
+    "y": 0.1808,
+    "grid": "?",
+    "region": "?"
+  },
+  "Odacer-Faustin": {
+    "x": 0.7239,
+    "y": 0.1828,
+    "grid": "?",
+    "region": "?"
+  },
+  "Jagomir": {
+    "x": 0.7291,
+    "y": 0.1893,
+    "grid": "?",
+    "region": "?"
+  },
+  "Bosthirda": {
+    "x": 0.7529,
+    "y": 0.1875,
+    "grid": "?",
+    "region": "?"
+  },
+  "Korriz": {
+    "x": 0.7446,
+    "y": 0.165,
+    "grid": "?",
+    "region": "?"
+  },
+  "N'ildwab": {
+    "x": 0.7338,
+    "y": 0.1464,
+    "grid": "?",
+    "region": "?"
+  },
+  "Tiss'sharl": {
+    "x": 0.7508,
+    "y": 0.1298,
+    "grid": "?",
+    "region": "?"
+  },
+  "M'Bardi": {
+    "x": 0.6754,
+    "y": 0.1854,
+    "grid": "?",
+    "region": "?"
+  },
+  "Athus Klee": {
+    "x": 0.6901,
+    "y": 0.1854,
+    "grid": "?",
+    "region": "?"
+  },
+  "Betshish": {
+    "x": 0.6921,
+    "y": 0.2055,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kil'aar": {
+    "x": 0.6889,
+    "y": 0.2095,
+    "grid": "?",
+    "region": "?"
+  },
+  "Wetyin's Colony": {
+    "x": 0.7051,
+    "y": 0.2095,
+    "grid": "?",
+    "region": "?"
+  },
+  "B'trilla": {
+    "x": 0.7198,
+    "y": 0.2115,
+    "grid": "?",
+    "region": "?"
+  },
+  "Chenowei": {
+    "x": 0.7184,
+    "y": 0.205,
+    "grid": "?",
+    "region": "?"
+  },
+  "Elamposnia": {
+    "x": 0.7191,
+    "y": 0.1993,
+    "grid": "?",
+    "region": "?"
+  },
+  "Corbos": {
+    "x": 0.7363,
+    "y": 0.1964,
+    "grid": "?",
+    "region": "?"
+  },
+  "Atorra": {
+    "x": 0.7163,
+    "y": 0.1998,
+    "grid": "?",
+    "region": "?"
+  },
+  "Troos": {
+    "x": 0.7138,
+    "y": 0.1949,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mannova": {
+    "x": 0.7003,
+    "y": 0.2006,
+    "grid": "?",
+    "region": "?"
+  },
+  "Mogoshyn": {
+    "x": 0.6919,
+    "y": 0.1986,
+    "grid": "?",
+    "region": "?"
+  },
+  "Kushibah": {
+    "x": 0.6933,
+    "y": 0.195,
+    "grid": "?",
+    "region": "?"
+  },
+  "Xo": {
+    "x": 0.572,
+    "y": 0.0664,
+    "grid": "?",
+    "region": "?"
+  },
+  "Talravin": {
+    "x": 0.5486,
+    "y": 0.4541,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gyndine": {
+    "x": 0.6163,
+    "y": 0.5248,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ishanna": {
+    "x": 0.6381,
+    "y": 0.5199,
+    "grid": "?",
+    "region": "?"
+  },
+  "Gendrah-Narvin": {
+    "x": 0.5871,
+    "y": 0.5637,
+    "grid": "?",
+    "region": "?"
+  },
+  "Ambria": {
+    "x": 0.6431,
+    "y": 0.423,
+    "grid": "?",
+    "region": "?"
+  },
+  "Sakifwanna": {
+    "x": 0.8296,
+    "y": 0.4751,
+    "grid": "?",
+    "region": "?"
+  },
+  "Zebitrope": {
+    "x": 0.8655,
+    "y": 0.3577,
+    "grid": "?",
+    "region": "?"
+  },
+  "Aruza": {
+    "x": 0.3858,
+    "y": 0.6495,
+    "grid": "?",
+    "region": "?"
+  },
+  "Lequabis": {
+    "x": 0.3901,
+    "y": 0.646,
+    "grid": "?",
+    "region": "?"
+  }
+}

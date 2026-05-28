@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#e3ebef"/>
+      <stop offset="1" stop-color="#a7b5c0"/>
+    </linearGradient>
+    <linearGradient id="armor" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#d5dadb"/>
+      <stop offset="1" stop-color="#79848d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <path d="M0 502c157-52 334-66 526-34 224 37 401 4 674-90v297H0z" fill="#6c7b88" opacity=".36"/>
+  <g fill="url(#armor)" stroke="#586570" stroke-width="7" stroke-linejoin="round">
+    <path d="M238 565h724l-68-238H306z"/>
+    <path d="M380 327h440l-72-135H452z"/>
+    <path d="M490 192h220l-35-70H525z"/>
+    <path d="M318 565l62-238h440l62 238z" opacity=".72"/>
+    <path d="M210 565h780v58H210z"/>
+  </g>
+  <g fill="#eef4f5" opacity=".55">
+    <rect x="405" y="395" width="118" height="92"/>
+    <rect x="541" y="395" width="118" height="92"/>
+    <rect x="677" y="395" width="118" height="92"/>
+  </g>
+  <g stroke="#f6fafb" stroke-width="5" opacity=".58">
+    <path d="M338 350h524M294 440h612M266 520h668"/>
+    <path d="M600 194v367"/>
+  </g>
+</svg>
