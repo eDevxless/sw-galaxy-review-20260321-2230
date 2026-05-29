@@ -1131,9 +1131,13 @@ const state = {
     shipTableEditId: null,
     labelMode: false,
     modifyMode: false,
+    // editor mode: 'view' | 'sector' | 'vertex' | 'curve'
+    mode: "view",
     validation: [],
     exportText: "",
     dragging: null,
+    undoStack: {},
+    redoStack: {},
   },
   filters: defaultMapFilters(),
   panelExpanded: {
@@ -1415,6 +1419,17 @@ function sectorPointToTuple(point) {
   return [Number(normalized.x.toFixed(4)), Number(normalized.y.toFixed(4))];
 }
 
+function normalizeSectorCurves(curves) {
+  if (!curves || typeof curves !== "object") return {};
+  const out = {};
+  Object.entries(curves).forEach(([key, val]) => {
+    const p = normalizeSectorPoint(val);
+    if (!p) return;
+    out[String(Number(key))] = [Number(p.x.toFixed(4)), Number(p.y.toFixed(4))];
+  });
+  return out;
+}
+
 function sectorArmyFallbackCenter(index) {
   const columns = 5;
   const row = Math.floor(index / columns);
@@ -1480,6 +1495,7 @@ function normalizeSectorTerritory(entry, army = null) {
     status: String(entry.status || army?.status || ""),
     labelPosition: sectorPointToTuple(labelPosition),
     polygon: polygon.map(sectorPointToTuple),
+    curves: normalizeSectorCurves(entry.curves),
     anchorPlanets: Array.isArray(entry.anchorPlanets)
       ? entry.anchorPlanets.map((value) => String(value || "").trim()).filter(Boolean)
       : [],
@@ -2084,12 +2100,14 @@ async function requestStartSectorArmyBoundaryEdit(id) {
   if (!confirmed) return false;
   state.sectorArmyEditor.selectedId = numericId;
   state.sectorArmyEditor.enabled = true;
+  state.sectorArmyEditor.mode = "vertex";
   state.sectorArmyEditor.modifyMode = true;
   state.sectorArmyEditor.labelMode = false;
   state.filters.sectorArmies = true;
   setStatus("Grenzbearbeitung fuer diese Sektorarmee aktiv.");
   renderAll();
   persistSession();
+  addSectorEditorKeyListeners();
   return true;
 }
 
@@ -2099,9 +2117,11 @@ function stopSectorArmyBoundaryEdit() {
   state.sectorArmyEditor.labelMode = false;
   state.sectorArmyEditor.dragging = null;
   state.sectorArmyEditor.selectedPointIndex = -1;
+  state.sectorArmyEditor.mode = "view";
   setStatus("Sektorarmee-Grenzen wieder gesperrt.");
   renderAll();
   persistSession();
+  removeSectorEditorKeyListeners();
 }
 
 async function requestStartSectorArmyTableEdit(id) {
@@ -2228,7 +2248,10 @@ function pushSectorArmyEditorUndo(id) {
     const numericId = Number(id);
     if (!Number.isFinite(numericId)) return;
     state.sectorArmyEditor.undoStack = state.sectorArmyEditor.undoStack || {};
+    state.sectorArmyEditor.redoStack = state.sectorArmyEditor.redoStack || {};
     state.sectorArmyEditor.undoStack[numericId] = state.sectorArmyEditor.undoStack[numericId] || [];
+    // new action clears redo history for this territory
+    state.sectorArmyEditor.redoStack[numericId] = [];
     const currentTerritory = sectorArmyTerritoryById(numericId) || null;
     const currentArmy = sectorArmyById(numericId) || null;
     // store a deep copy of both territory and army-data draft
@@ -2252,6 +2275,17 @@ function undoSectorArmyEditorChange(id) {
       setStatus("Nichts zum Rueckgaengig machen.");
       return null;
     }
+    // push current state onto redo stack so redo is possible
+    state.sectorArmyEditor.redoStack = state.sectorArmyEditor.redoStack || {};
+    state.sectorArmyEditor.redoStack[numericId] = state.sectorArmyEditor.redoStack[numericId] || [];
+    const currentTerritory = sectorArmyTerritoryById(numericId) || null;
+    const currentArmy = sectorArmyById(numericId) || null;
+    state.sectorArmyEditor.redoStack[numericId].push(
+      JSON.parse(
+        JSON.stringify({ territory: currentTerritory, army: { ...(currentArmy || {}) } })
+      )
+    );
+
     const prev = stack.pop();
     if (!prev) return null;
     if (prev.territory) setSectorArmyTerritoryDraft(prev.territory);
@@ -2267,6 +2301,42 @@ function undoSectorArmyEditorChange(id) {
     return prev;
   } catch (_error) {
     setStatus("Undo fehlgeschlagen.");
+    return null;
+  }
+}
+
+function redoSectorArmyEditorChange(id) {
+  try {
+    const numericId = Number(id);
+    state.sectorArmyEditor.redoStack = state.sectorArmyEditor.redoStack || {};
+    const rstack = state.sectorArmyEditor.redoStack[numericId] || [];
+    if (!rstack.length) {
+      setStatus("Keine Wiederherstellung moeglich.");
+      return null;
+    }
+    // save current to undo stack
+    state.sectorArmyEditor.undoStack = state.sectorArmyEditor.undoStack || {};
+    state.sectorArmyEditor.undoStack[numericId] = state.sectorArmyEditor.undoStack[numericId] || [];
+    const currentTerritory = sectorArmyTerritoryById(numericId) || null;
+    const currentArmy = sectorArmyById(numericId) || null;
+    state.sectorArmyEditor.undoStack[numericId].push(
+      JSON.parse(JSON.stringify({ territory: currentTerritory, army: { ...(currentArmy || {}) } }))
+    );
+    // pop redo and apply
+    const next = state.sectorArmyEditor.redoStack[numericId].pop();
+    if (!next) return null;
+    if (next.territory) setSectorArmyTerritoryDraft(next.territory);
+    if (next.army) {
+      const draft = { id: numericId };
+      if (next.army.republic) draft.republic = next.army.republic;
+      if (next.army.cis) draft.cis = next.army.cis;
+      setSectorArmyDataDraft(draft);
+    }
+    renderAll();
+    setStatus("Aenderung wiederhergestellt.");
+    return next;
+  } catch (_error) {
+    setStatus("Redo fehlgeschlagen.");
     return null;
   }
 }
@@ -2351,10 +2421,68 @@ function removeSectorArmyEditorPoint(index = state.sectorArmyEditor.selectedPoin
   setStatus("Polygonpunkt entfernt.");
 }
 
+function findNearestSectorSegment(territory, point) {
+  const polygon = sectorArmyPolygonPoints(territory);
+  if (!polygon || polygon.length < 2) return { index: -1, distanceSq: Number.POSITIVE_INFINITY };
+  const closed = polygon.length > 2;
+  let bestIndex = -1;
+  let bestDist = Number.POSITIVE_INFINITY;
+  for (let i = 0; i < (closed ? polygon.length : polygon.length - 1); i += 1) {
+    const a = polygon[i];
+    const b = polygon[(i + 1) % polygon.length];
+    const vx = b.x - a.x;
+    const vy = b.y - a.y;
+    const wx = (point.x - a.x);
+    const wy = (point.y - a.y);
+    const denom = vx * vx + vy * vy;
+    const t = denom > 0 ? Math.max(0, Math.min(1, (wx * vx + wy * vy) / denom)) : 0;
+    const px = a.x + t * vx;
+    const py = a.y + t * vy;
+    const dx = point.x - px;
+    const dy = point.y - py;
+    const distSq = dx * dx + dy * dy;
+    if (distSq < bestDist) {
+      bestDist = distSq;
+      bestIndex = i;
+    }
+  }
+  return { index: bestIndex, distanceSq: bestDist };
+}
+
+function insertSectorArmyEditorPointAtSegment(index, point) {
+  const territory = selectedSectorArmyEditorTerritory();
+  if (!territory) return null;
+  const polygon = sectorArmyPolygonPoints(territory).map(sectorPointToTuple);
+  const insertIndex = Math.min(Math.max(0, Number(index) + 1), polygon.length);
+  pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
+  polygon.splice(insertIndex, 0, sectorPointToTuple(point));
+  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { polygon });
+  state.sectorArmyEditor.selectedPointIndex = insertIndex;
+  state.sectorArmyEditor.validation = [];
+  setStatus("Polygonpunkt eingefuegt.");
+  renderAll();
+  return true;
+}
+
 function beginSectorArmyEditorDrag(event, type, pointIndex = -1) {
   if (!state.sectorArmyEditor.enabled) return;
-  // Only allow dragging when explicitly in modify mode or when holding Alt.
-  if (!state.sectorArmyEditor.modifyMode && !event.altKey) return;
+  // Gate allowed drag types by explicit editor mode (or Alt to override).
+  const mode = state.sectorArmyEditor.mode || "view";
+  const allowed = new Set();
+  if (mode === "sector") {
+    allowed.add("translate");
+    allowed.add("label");
+  } else if (mode === "vertex") {
+    allowed.add("point");
+    allowed.add("label");
+    allowed.add("translate");
+  } else if (mode === "curve") {
+    allowed.add("curve");
+    allowed.add("point");
+    allowed.add("label");
+    allowed.add("translate");
+  }
+  if (!allowed.has(type) && !event.altKey) return;
   event.preventDefault();
   event.stopPropagation();
   const dragging = {
@@ -2363,7 +2491,7 @@ function beginSectorArmyEditorDrag(event, type, pointIndex = -1) {
     pointerId: event.pointerId,
   };
   // record undo snapshot at drag start to avoid polluting stack on every pointermove
-  if (type === "point" || type === "label" || type === "translate") {
+  if (type === "point" || type === "label" || type === "translate" || type === "curve") {
     pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
   }
   if (type === "translate") {
@@ -2385,6 +2513,13 @@ function updateSectorArmyEditorDrag(event) {
   if (drag.type === "label") {
     updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, {
       labelPosition: sectorPointToTuple(point),
+    });
+  } else if (drag.type === "curve") {
+    // set quadratic control point for the segment at drag.pointIndex
+    updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, (territory) => {
+      const curves = { ...(territory?.curves || {}) };
+      curves[String(drag.pointIndex)] = sectorPointToTuple(point);
+      return { curves };
     });
   } else if (drag.type === "point") {
     updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, (territory) => {
@@ -2424,14 +2559,46 @@ function finishSectorArmyEditorDrag() {
   renderAll();
 }
 
+// keyboard handlers for editor (undo/redo/delete)
+let _sectorEditorKeydownHandler = null;
+function addSectorEditorKeyListeners() {
+  if (_sectorEditorKeydownHandler) return;
+  _sectorEditorKeydownHandler = function (event) {
+    const active = document.activeElement;
+    if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) return;
+    if (event.key === "Delete") {
+      removeSectorArmyEditorPoint();
+      renderAll();
+      return;
+    }
+    if ((event.ctrlKey || event.metaKey) && String(event.key).toLowerCase() === "z") {
+      event.preventDefault();
+      if (event.shiftKey) {
+        redoSectorArmyEditorChange(state.sectorArmyEditor.selectedId);
+      } else {
+        undoSectorArmyEditorChange(state.sectorArmyEditor.selectedId);
+      }
+    }
+  };
+  document.addEventListener("keydown", _sectorEditorKeydownHandler);
+}
+
+function removeSectorEditorKeyListeners() {
+  if (!_sectorEditorKeydownHandler) return;
+  document.removeEventListener("keydown", _sectorEditorKeydownHandler);
+  _sectorEditorKeydownHandler = null;
+}
+
 function handleSectorArmyEditorCanvasClick(originalEvent) {
-  if (!state.sectorArmyEditor.enabled || !state.sectorArmyEditor.modifyMode || state.mapMode === "underworld") return false;
+  if (!state.sectorArmyEditor.enabled || state.mapMode === "underworld") return false;
   const touchPoint = originalEvent?.changedTouches?.[0] || originalEvent?.touches?.[0] || null;
   const clientX = typeof originalEvent?.clientX === "number" ? originalEvent.clientX : touchPoint?.clientX;
   const clientY = typeof originalEvent?.clientY === "number" ? originalEvent.clientY : touchPoint?.clientY;
   if (typeof clientX !== "number" || typeof clientY !== "number") return false;
   const point = clientToImageNorm(clientX, clientY);
   if (!point) return false;
+  const mode = state.sectorArmyEditor.mode || "view";
+  if (!(mode === "vertex" || mode === "curve" || state.sectorArmyEditor.labelMode || originalEvent.shiftKey)) return false;
   if (originalEvent.shiftKey || state.sectorArmyEditor.labelMode) {
     setSectorArmyEditorLabelPosition(point);
   } else {
@@ -8597,6 +8764,46 @@ function makeSectorArmyLayer(metrics) {
       if (points.length < 3) return "";
       const meta = sectorArmyStatusMeta(item.status);
       const pointText = polygonToSvgPoints(points);
+      const hasCurves = item?.territory && item.territory.curves && Object.keys(item.territory.curves).length > 0;
+      let pathD = null;
+      let curveHandlesMarkup = "";
+      if (hasCurves) {
+        const w = state.imageWidth;
+        const h = state.imageHeight;
+        const closed = points.length > 2;
+        let d = `M ${(points[0].x * w).toFixed(2)} ${(points[0].y * h).toFixed(2)}`;
+        for (let i = 0; i < (closed ? points.length : points.length - 1); i += 1) {
+          const next = points[(i + 1) % points.length];
+          const ctrl = (item.territory.curves || {})[String(i)];
+          if (ctrl && Array.isArray(ctrl) && ctrl.length >= 2) {
+            const cx = Number(ctrl[0]) * w;
+            const cy = Number(ctrl[1]) * h;
+            d += ` Q ${cx.toFixed(2)} ${cy.toFixed(2)} ${(next.x * w).toFixed(2)} ${(next.y * h).toFixed(2)}`;
+          } else {
+            d += ` L ${(next.x * w).toFixed(2)} ${(next.y * h).toFixed(2)}`;
+          }
+        }
+        if (closed) d += " Z";
+        pathD = d;
+        // build curve handles markup
+        curveHandlesMarkup = Object.entries(item.territory.curves || {})
+          .map(([k, ctrl]) => {
+            const idx = Number(k);
+            if (!Array.isArray(ctrl) || ctrl.length < 2) return "";
+            const cx = Number(ctrl[0]) * state.imageWidth;
+            const cy = Number(ctrl[1]) * state.imageHeight;
+            const a = points[idx];
+            const b = points[(idx + 1) % points.length];
+            return `
+              <g class="sector-army-curve-handle" data-sector-editor-curve="${idx}">
+                <line x1="${(a.x * state.imageWidth).toFixed(2)}" y1="${(a.y * state.imageHeight).toFixed(2)}" x2="${cx.toFixed(2)}" y2="${cy.toFixed(2)}" stroke="rgba(255,255,255,0.18)" stroke-width="1" />
+                <line x1="${(b.x * state.imageWidth).toFixed(2)}" y1="${(b.y * state.imageHeight).toFixed(2)}" x2="${cx.toFixed(2)}" y2="${cy.toFixed(2)}" stroke="rgba(255,255,255,0.18)" stroke-width="1" />
+                <circle class="sector-army-curve-control" data-sector-editor-curve="${idx}" cx="${cx.toFixed(2)}" cy="${cy.toFixed(2)}" r="6" />
+              </g>
+            `;
+          })
+          .join("");
+      }
       const labelX = item.x * state.imageWidth;
       const labelY = item.y * state.imageHeight;
       const isHovered = hovered?.nameKey === item.nameKey;
@@ -8615,12 +8822,14 @@ function makeSectorArmyLayer(metrics) {
         .join(" ");
       return `
         <g class="${classes}" data-sector-key="${escapeHtml(item.nameKey)}" style="--sector-glow:${meta.glow};">
-          <polygon
-            points="${pointText}"
-            fill="${meta.fill}"
-            stroke="${meta.stroke}"
-            stroke-width="${(isHovered || isSelected || isEditorSelected ? activeStrokeWidth : strokeWidth).toFixed(2)}"
-          />
+          ${pathD
+          ? `<path d="${pathD}" fill="${meta.fill}" stroke="${meta.stroke}" stroke-width="${(
+            isHovered || isSelected || isEditorSelected ? activeStrokeWidth : strokeWidth
+          ).toFixed(2)}" />`
+          : `<polygon points="${pointText}" fill="${meta.fill}" stroke="${meta.stroke}" stroke-width="${(
+            isHovered || isSelected || isEditorSelected ? activeStrokeWidth : strokeWidth
+          ).toFixed(2)}" />`}
+          ${curveHandlesMarkup}
           <text
             class="sector-army-number"
             x="${labelX.toFixed(2)}"
@@ -8722,9 +8931,10 @@ function bindSectorArmyLayerInteractions(svg) {
   svg.querySelectorAll("[data-sector-key]").forEach((node) => {
     // support pointerdown to start translating whole polygon when editor is enabled
     node.addEventListener("pointerdown", (event) => {
-      // Only start translate when modify mode is active (or Alt is held)
+      // Only start translate when sector/modify mode is active (or Alt is held)
       if (!state.sectorArmyEditor.enabled) return;
-      if (!state.sectorArmyEditor.modifyMode && !event.altKey) return;
+      const mode = state.sectorArmyEditor.mode || "view";
+      if (!(mode === "sector" || state.sectorArmyEditor.modifyMode) && !event.altKey) return;
       // select this territory for editing
       const key = node.getAttribute("data-sector-key");
       const item = getSelectableItemByKey(key);
@@ -8759,6 +8969,27 @@ function bindSectorArmyLayerInteractions(svg) {
       }
       selectMapItem(item);
     });
+    node.addEventListener("dblclick", (event) => {
+      // insert a point on nearest segment when in vertex/curve mode
+      if (!state.sectorArmyEditor.enabled) return;
+      const mode = state.sectorArmyEditor.mode || "view";
+      if (!(mode === "vertex" || mode === "curve")) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const clientX = event.clientX;
+      const clientY = event.clientY;
+      const pt = clientToImageNorm(clientX, clientY);
+      if (!pt) return;
+      const item = getSelectableItemByKey(node.getAttribute("data-sector-key"));
+      if (!item || item.kind !== "sectorArmy") return;
+      const territory = item.territory;
+      const nearest = findNearestSectorSegment(territory, pt);
+      // threshold in px
+      const distPx = Math.sqrt(nearest.distanceSq) * Math.max(state.imageWidth || 0, state.imageHeight || 0);
+      if (distPx <= 18) {
+        insertSectorArmyEditorPointAtSegment(nearest.index, pt);
+      }
+    });
   });
   svg.querySelectorAll("[data-sector-editor-point]").forEach((handle) => {
     const pointIndex = Number(handle.getAttribute("data-sector-editor-point"));
@@ -8770,14 +9001,23 @@ function bindSectorArmyLayerInteractions(svg) {
   });
   svg.querySelectorAll("[data-sector-editor-label]").forEach((handle) => {
     handle.addEventListener("pointerdown", (event) => {
-      if (!state.sectorArmyEditor.modifyMode && !event.altKey) return;
+      const mode = state.sectorArmyEditor.mode || "view";
+      if (!(mode === "sector" || state.sectorArmyEditor.modifyMode) && !event.altKey) return;
       beginSectorArmyEditorDrag(event, "label", -1);
     });
   });
   svg.querySelectorAll("[data-sector-editor-translate]").forEach((handle) => {
     handle.addEventListener("pointerdown", (event) => {
-      if (!state.sectorArmyEditor.modifyMode && !event.altKey) return;
+      const mode = state.sectorArmyEditor.mode || "view";
+      if (!(mode === "sector" || state.sectorArmyEditor.modifyMode) && !event.altKey) return;
       beginSectorArmyEditorDrag(event, "translate", -1);
+      renderSectorArmyEditor();
+    });
+  });
+  svg.querySelectorAll("[data-sector-editor-curve]").forEach((handle) => {
+    const segIndex = Number(handle.getAttribute("data-sector-editor-curve"));
+    handle.addEventListener("pointerdown", (event) => {
+      beginSectorArmyEditorDrag(event, "curve", segIndex);
       renderSectorArmyEditor();
     });
   });
@@ -10496,6 +10736,9 @@ function renderSectorArmyEditor() {
           <button type="button" class="ghost-button compact" data-sector-editor-action="toggle">
             ${boundaryEditing ? "Bearbeitung beenden" : "Grenzen bearbeiten"}
           </button>
+          <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "sector" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="sector" ${editDisabled}>Sektor</button>
+          <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "vertex" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="vertex" ${editDisabled}>Vertex</button>
+          <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "curve" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="curve" ${editDisabled}>Curve</button>
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.modifyMode ? "is-active" : ""}" data-sector-editor-action="modify" ${editDisabled}>
             ${state.sectorArmyEditor.modifyMode ? "Modify aus" : "Modify an"}
           </button>
@@ -10552,6 +10795,7 @@ function renderSectorArmyEditor() {
       <div class="sector-editor-actions">
         <button type="button" class="ghost-button compact" data-sector-editor-action="validate">Validieren</button>
         <button type="button" class="ghost-button compact" data-sector-editor-action="undo" ${editDisabled}>Rückgängig</button>
+        <button type="button" class="ghost-button compact" data-sector-editor-action="redo" ${editDisabled}>Wiederherstellen</button>
         <button type="button" class="ghost-button compact" data-sector-editor-action="export-selected-json">Export Sektor</button>
         <button type="button" class="ghost-button compact" data-sector-editor-action="export-json">JSON exportieren</button>
         <button type="button" class="ghost-button compact" data-sector-editor-action="export-ts">TS exportieren</button>
@@ -15264,7 +15508,10 @@ async function handleSectorArmyEditorAction(action, source) {
       renderAll();
       return;
     }
-    state.sectorArmyEditor.modifyMode = !state.sectorArmyEditor.modifyMode;
+    // legacy toggle: switch between vertex mode and sector mode
+    const nextMode = state.sectorArmyEditor.modifyMode ? "sector" : "vertex";
+    state.sectorArmyEditor.mode = nextMode;
+    state.sectorArmyEditor.modifyMode = nextMode === "vertex" || nextMode === "curve";
     setStatus(state.sectorArmyEditor.modifyMode ? "Modify-Modus aktiv." : "Modify-Modus deaktiviert.");
   } else if (action === "focus" && item) {
     focusItem(item, false);
@@ -15308,6 +15555,14 @@ async function handleSectorArmyEditorAction(action, source) {
   } else if (action === "undo") {
     if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
     undoSectorArmyEditorChange(state.sectorArmyEditor.selectedId);
+  } else if (action === "redo") {
+    if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
+    redoSectorArmyEditorChange(state.sectorArmyEditor.selectedId);
+  } else if (action === "mode") {
+    const mode = String(source?.dataset?.mode || "view");
+    state.sectorArmyEditor.mode = mode;
+    state.sectorArmyEditor.modifyMode = mode === "vertex" || mode === "curve";
+    setStatus(`Editor-Modus: ${mode}`);
   } else if (action === "export-ts") {
     state.sectorArmyEditor.exportText = exportSectorArmyTerritories("ts");
     setStatus("Sektorarmee-Grenzen als TypeScript exportiert.");

@@ -277,3 +277,117 @@
 .admin-edit-panel input[type="file"] {
   display: none;
 }
+
+/* Sector Editor styles (admin-only) */
+.sector-editor-polygon {
+  transition: fill 120ms ease, stroke 120ms ease;
+}
+.sector-editor-border {
+  pointer-events: none;
+}
+.sector-editor-vertex {
+  cursor: move;
+  pointer-events: auto;
+  transform-origin: center center;
+}
+.sector-editor-toggle {
+  font-weight: 600;
+}
+
+/* Vertex visual states */
+.sector-editor-vertex {
+  transition: transform 120ms ease, r 120ms ease, fill 120ms ease, stroke 120ms ease;
+  transform-origin: center center;
+}
+.sector-editor-vertex:hover {
+  transform: scale(1.2);
+  cursor: move;
+}
+.sector-editor-vertex.active {
+  transform: scale(1.35);
+  fill: #ffe8b2;
+  stroke: #ffb66b;
+}
+.sector-editor-polygon.selected {
+  stroke-width: 2.6;
+}
+
+/* Controls panel for sector editor */
+.sector-editor-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.sector-editor-controls button {
+  padding: 0.42rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(108, 189, 255, 0.45);
+  background: rgba(108, 189, 255, 0.12);
+  color: #b6dcff;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+.accent-button { }
+.danger-button {
+  border-color: rgba(255, 102, 124, 0.5);
+  background: rgba(255, 102, 124, 0.12);
+  color: #ffb1be;
+}
+.secondary-button {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: rgba(220, 230, 245, 0.85);
+}
+
+/* Path and handle styles for curve editing */
+.sector-editor-border {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sector-editor-handle {
+  fill: #ffd68a;
+  stroke: rgba(0,0,0,0.35);
+  stroke-width: 1;
+  cursor: grab;
+  transition: transform 80ms ease;
+}
+.sector-editor-handle:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+/* Mode indicator */
+.sector-editor-mode-indicator {
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(10,18,28,0.8);
+  border: 1px solid rgba(108,189,255,0.18);
+  color: #b6dcff;
+  font-size: 0.86rem;
+}
+
+/* Layer toggles */
+.sector-editor-layer-toggles label {
+  color: rgba(220,230,245,0.85);
+  font-size: 0.82rem;
+}
+
+/* Toasts */
+.sector-editor-toasts { display: flex; flex-direction: column-reverse; align-items: flex-end; }
+.sector-editor-toast { box-shadow: 0 8px 20px rgba(0,0,0,0.45); }
+
+/* Restore dialog */
+.sector-editor-restore-dialog {
+  font-family: inherit;
+  color: #e8f6ff;
+}
+.sector-editor-restore-dialog select {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: inherit;
+  border-radius: 8px;
+}
+.sector-editor-restore-dialog button {
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+}
