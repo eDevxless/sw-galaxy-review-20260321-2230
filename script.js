@@ -1138,6 +1138,7 @@ const state = {
     dragging: null,
     undoStack: {},
     redoStack: {},
+    snapEnabled: false,
   },
   filters: defaultMapFilters(),
   panelExpanded: {
@@ -1419,13 +1420,74 @@ function sectorPointToTuple(point) {
   return [Number(normalized.x.toFixed(4)), Number(normalized.y.toFixed(4))];
 }
 
-function normalizeSectorCurves(curves) {
+function sectorBezierFromQuadratic(start, control, end) {
+  const a = normalizeSectorPoint(start);
+  const q = normalizeSectorPoint(control);
+  const b = normalizeSectorPoint(end);
+  if (!a || !q || !b) return null;
+  return {
+    c1: sectorPointToTuple({
+      x: a.x + (2 / 3) * (q.x - a.x),
+      y: a.y + (2 / 3) * (q.y - a.y),
+    }),
+    c2: sectorPointToTuple({
+      x: b.x + (2 / 3) * (q.x - b.x),
+      y: b.y + (2 / 3) * (q.y - b.y),
+    }),
+    mode: "free",
+  };
+}
+
+function defaultSectorBezierForSegment(start, end) {
+  const a = normalizeSectorPoint(start);
+  const b = normalizeSectorPoint(end);
+  if (!a || !b) return null;
+  return {
+    c1: sectorPointToTuple({ x: a.x + (b.x - a.x) / 3, y: a.y + (b.y - a.y) / 3 }),
+    c2: sectorPointToTuple({ x: a.x + ((b.x - a.x) * 2) / 3, y: a.y + ((b.y - a.y) * 2) / 3 }),
+    mode: "free",
+  };
+}
+
+function normalizeSectorCurveEntry(value, start, end) {
+  if (!value) return null;
+  if (Array.isArray(value)) {
+    if (Array.isArray(value[0]) && Array.isArray(value[1])) {
+      const c1 = normalizeSectorPoint(value[0]);
+      const c2 = normalizeSectorPoint(value[1]);
+      if (c1 && c2) return { c1: sectorPointToTuple(c1), c2: sectorPointToTuple(c2), mode: "free" };
+    }
+    if (value.length >= 4 && value.every((part) => Number.isFinite(Number(part)))) {
+      const c1 = normalizeSectorPoint([value[0], value[1]]);
+      const c2 = normalizeSectorPoint([value[2], value[3]]);
+      if (c1 && c2) return { c1: sectorPointToTuple(c1), c2: sectorPointToTuple(c2), mode: "free" };
+    }
+    return sectorBezierFromQuadratic(start, value, end);
+  }
+  if (typeof value !== "object") return null;
+  const c1 = normalizeSectorPoint(value.c1 || value.left || value.handleOut || value.tangentOut);
+  const c2 = normalizeSectorPoint(value.c2 || value.right || value.handleIn || value.tangentIn);
+  if (c1 && c2) {
+    return {
+      c1: sectorPointToTuple(c1),
+      c2: sectorPointToTuple(c2),
+      mode: String(value.mode || "free"),
+    };
+  }
+  return sectorBezierFromQuadratic(start, value.control || value.q || value.point, end);
+}
+
+function normalizeSectorCurves(curves, polygon = []) {
   if (!curves || typeof curves !== "object") return {};
   const out = {};
   Object.entries(curves).forEach(([key, val]) => {
-    const p = normalizeSectorPoint(val);
-    if (!p) return;
-    out[String(Number(key))] = [Number(p.x.toFixed(4)), Number(p.y.toFixed(4))];
+    const index = Number(key);
+    if (!Number.isInteger(index) || index < 0) return;
+    const start = polygon[index];
+    const end = polygon.length ? polygon[(index + 1) % polygon.length] : null;
+    const curve = normalizeSectorCurveEntry(val, start, end);
+    if (!curve) return;
+    out[String(index)] = curve;
   });
   return out;
 }
@@ -1453,8 +1515,10 @@ function sectorArmyTerritoryBaseList() {
       status: String(base.status || army.status || ""),
       labelPosition: sectorPointToTuple(labelPosition),
       polygon: polygon.map(sectorPointToTuple),
+      curves: normalizeSectorCurves(base.curves, polygon),
       anchorPlanets: Array.isArray(base.anchorPlanets) ? base.anchorPlanets.map(String) : [],
       locked: Boolean(base.locked),
+      deleted: Boolean(base.deleted),
       notes: String(base.notes || ""),
     };
   });
@@ -1495,11 +1559,12 @@ function normalizeSectorTerritory(entry, army = null) {
     status: String(entry.status || army?.status || ""),
     labelPosition: sectorPointToTuple(labelPosition),
     polygon: polygon.map(sectorPointToTuple),
-    curves: normalizeSectorCurves(entry.curves),
+    curves: normalizeSectorCurves(entry.curves, polygon),
     anchorPlanets: Array.isArray(entry.anchorPlanets)
       ? entry.anchorPlanets.map((value) => String(value || "").trim()).filter(Boolean)
       : [],
     locked: Boolean(entry.locked),
+    deleted: Boolean(entry.deleted),
     notes: String(entry.notes || ""),
   };
 }
@@ -1507,7 +1572,9 @@ function normalizeSectorTerritory(entry, army = null) {
 function sectorArmyTerritories() {
   const base = sectorArmyTerritoryBaseList();
   const draftById = new Map(loadSectorArmyTerritoryDrafts().map((entry) => [Number(entry.id), entry]));
-  return base.map((entry) => normalizeSectorTerritory({ ...entry, ...(draftById.get(Number(entry.id)) || {}) }, sectorArmyById(entry.id)));
+  return base
+    .map((entry) => normalizeSectorTerritory({ ...entry, ...(draftById.get(Number(entry.id)) || {}) }, sectorArmyById(entry.id)))
+    .filter((entry) => entry && !entry.deleted);
 }
 
 function sectorArmyTerritoryById(id) {
@@ -1515,22 +1582,35 @@ function sectorArmyTerritoryById(id) {
   return sectorArmyTerritories().find((entry) => Number(entry?.id) === numericId) || null;
 }
 
-function setSectorArmyTerritoryDraft(territory) {
+function sectorArmyTerritorySnapshotById(id) {
+  const numericId = Number(id);
+  return (
+    loadSectorArmyTerritoryDrafts().find((entry) => Number(entry?.id) === numericId) ||
+    sectorArmyTerritoryBaseList().find((entry) => Number(entry?.id) === numericId) ||
+    null
+  );
+}
+
+function setSectorArmyTerritoryDraft(territory, options = {}) {
   const normalized = normalizeSectorTerritory(territory, sectorArmyById(territory?.id));
   if (!normalized) return null;
   const drafts = loadSectorArmyTerritoryDrafts().filter((entry) => Number(entry.id) !== Number(normalized.id));
   drafts.push(normalized);
   drafts.sort((left, right) => Number(left.id) - Number(right.id));
   state.sectorArmyTerritoryDrafts = drafts;
-  persistSectorArmyTerritoryDrafts();
+  if (options.persist !== false) persistSectorArmyTerritoryDrafts();
   return normalized;
 }
 
-function updateSectorArmyTerritoryDraft(id, updater) {
-  const current = sectorArmyTerritoryById(id);
+function updateSectorArmyTerritoryDraft(id, updater, options = {}) {
+  const numericId = Number(id);
+  const current =
+    sectorArmyTerritoryById(numericId) ||
+    loadSectorArmyTerritoryDrafts().find((entry) => Number(entry?.id) === numericId) ||
+    sectorArmyTerritoryBaseList().find((entry) => Number(entry?.id) === numericId);
   if (!current) return null;
   const patch = typeof updater === "function" ? updater({ ...current }) : updater;
-  return setSectorArmyTerritoryDraft({ ...current, ...(patch || {}) });
+  return setSectorArmyTerritoryDraft({ ...current, ...(patch || {}) }, options);
 }
 
 function resetSectorArmyTerritoryDrafts() {
@@ -1647,6 +1727,81 @@ function isSectorArmyLayerItem(item) {
 
 function sectorArmyPolygonPoints(territory) {
   return normalizeSectorPointList(territory?.polygon);
+}
+
+function sectorCurveForSegment(territory, segmentIndex) {
+  const polygon = sectorArmyPolygonPoints(territory);
+  if (polygon.length < 2) return null;
+  const index = Number(segmentIndex);
+  if (!Number.isInteger(index) || index < 0 || index >= polygon.length) return null;
+  return normalizeSectorCurveEntry(
+    territory?.curves?.[String(index)],
+    polygon[index],
+    polygon[(index + 1) % polygon.length]
+  );
+}
+
+function sectorArmySegmentPath(points, territory, segmentIndex, width, height) {
+  const index = Number(segmentIndex);
+  if (!points.length || index < 0 || index >= points.length) return "";
+  const start = points[index];
+  const end = points[(index + 1) % points.length];
+  const sx = start.x * width;
+  const sy = start.y * height;
+  const ex = end.x * width;
+  const ey = end.y * height;
+  const curve = sectorCurveForSegment(territory, index);
+  if (curve?.c1 && curve?.c2) {
+    const c1 = normalizeSectorPoint(curve.c1);
+    const c2 = normalizeSectorPoint(curve.c2);
+    if (c1 && c2) {
+      return `M ${sx.toFixed(2)} ${sy.toFixed(2)} C ${(c1.x * width).toFixed(2)} ${(c1.y * height).toFixed(2)} ${(
+        c2.x * width
+      ).toFixed(2)} ${(c2.y * height).toFixed(2)} ${ex.toFixed(2)} ${ey.toFixed(2)}`;
+    }
+  }
+  return `M ${sx.toFixed(2)} ${sy.toFixed(2)} L ${ex.toFixed(2)} ${ey.toFixed(2)}`;
+}
+
+function sectorArmyClosedPath(points, territory, width, height) {
+  if (!points.length) return "";
+  const first = points[0];
+  const commands = [`M ${(first.x * width).toFixed(2)} ${(first.y * height).toFixed(2)}`];
+  for (let i = 0; i < points.length; i += 1) {
+    const end = points[(i + 1) % points.length];
+    const curve = sectorCurveForSegment(territory, i);
+    if (curve?.c1 && curve?.c2) {
+      const c1 = normalizeSectorPoint(curve.c1);
+      const c2 = normalizeSectorPoint(curve.c2);
+      if (c1 && c2) {
+        commands.push(
+          `C ${(c1.x * width).toFixed(2)} ${(c1.y * height).toFixed(2)} ${(c2.x * width).toFixed(2)} ${(
+            c2.y * height
+          ).toFixed(2)} ${(end.x * width).toFixed(2)} ${(end.y * height).toFixed(2)}`
+        );
+        continue;
+      }
+    }
+    commands.push(`L ${(end.x * width).toFixed(2)} ${(end.y * height).toFixed(2)}`);
+  }
+  commands.push("Z");
+  return commands.join(" ");
+}
+
+function sectorArmyBoundingBox(points, width, height) {
+  if (!Array.isArray(points) || !points.length) return null;
+  const xs = points.map((point) => point.x * width);
+  const ys = points.map((point) => point.y * height);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  return {
+    x: minX,
+    y: minY,
+    width: Math.max(1, maxX - minX),
+    height: Math.max(1, maxY - minY),
+  };
 }
 
 function sectorFleetDataKey(factionKey) {
@@ -2252,7 +2407,7 @@ function pushSectorArmyEditorUndo(id) {
     state.sectorArmyEditor.undoStack[numericId] = state.sectorArmyEditor.undoStack[numericId] || [];
     // new action clears redo history for this territory
     state.sectorArmyEditor.redoStack[numericId] = [];
-    const currentTerritory = sectorArmyTerritoryById(numericId) || null;
+    const currentTerritory = sectorArmyTerritorySnapshotById(numericId) || null;
     const currentArmy = sectorArmyById(numericId) || null;
     // store a deep copy of both territory and army-data draft
     state.sectorArmyEditor.undoStack[numericId].push(
@@ -2278,7 +2433,7 @@ function undoSectorArmyEditorChange(id) {
     // push current state onto redo stack so redo is possible
     state.sectorArmyEditor.redoStack = state.sectorArmyEditor.redoStack || {};
     state.sectorArmyEditor.redoStack[numericId] = state.sectorArmyEditor.redoStack[numericId] || [];
-    const currentTerritory = sectorArmyTerritoryById(numericId) || null;
+    const currentTerritory = sectorArmyTerritorySnapshotById(numericId) || null;
     const currentArmy = sectorArmyById(numericId) || null;
     state.sectorArmyEditor.redoStack[numericId].push(
       JSON.parse(
@@ -2317,7 +2472,7 @@ function redoSectorArmyEditorChange(id) {
     // save current to undo stack
     state.sectorArmyEditor.undoStack = state.sectorArmyEditor.undoStack || {};
     state.sectorArmyEditor.undoStack[numericId] = state.sectorArmyEditor.undoStack[numericId] || [];
-    const currentTerritory = sectorArmyTerritoryById(numericId) || null;
+    const currentTerritory = sectorArmyTerritorySnapshotById(numericId) || null;
     const currentArmy = sectorArmyById(numericId) || null;
     state.sectorArmyEditor.undoStack[numericId].push(
       JSON.parse(JSON.stringify({ territory: currentTerritory, army: { ...(currentArmy || {}) } }))
@@ -2413,9 +2568,21 @@ function removeSectorArmyEditorPoint(index = state.sectorArmyEditor.selectedPoin
   const polygon = sectorArmyPolygonPoints(territory).map(sectorPointToTuple);
   const removeIndex = Number.isInteger(index) && index >= 0 ? index : polygon.length - 1;
   if (removeIndex < 0 || removeIndex >= polygon.length) return;
+  if (polygon.length <= 3) {
+    setStatus("Ein Polygon braucht mindestens drei Punkte.");
+    return;
+  }
   pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
+  const curves = {};
+  const previousEdge = (removeIndex - 1 + polygon.length) % polygon.length;
+  Object.entries(territory?.curves || {}).forEach(([key, curve]) => {
+    const edgeIndex = Number(key);
+    if (edgeIndex === removeIndex || edgeIndex === previousEdge) return;
+    const nextIndex = edgeIndex > removeIndex ? edgeIndex - 1 : edgeIndex;
+    curves[String(nextIndex)] = curve;
+  });
   polygon.splice(removeIndex, 1);
-  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { polygon });
+  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { polygon, curves });
   state.sectorArmyEditor.selectedPointIndex = Math.min(removeIndex, polygon.length - 1);
   state.sectorArmyEditor.validation = [];
   setStatus("Polygonpunkt entfernt.");
@@ -2455,8 +2622,15 @@ function insertSectorArmyEditorPointAtSegment(index, point) {
   const polygon = sectorArmyPolygonPoints(territory).map(sectorPointToTuple);
   const insertIndex = Math.min(Math.max(0, Number(index) + 1), polygon.length);
   pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
+  const curves = {};
+  Object.entries(territory?.curves || {}).forEach(([key, curve]) => {
+    const edgeIndex = Number(key);
+    if (edgeIndex === Number(index)) return;
+    const nextIndex = edgeIndex > Number(index) ? edgeIndex + 1 : edgeIndex;
+    curves[String(nextIndex)] = curve;
+  });
   polygon.splice(insertIndex, 0, sectorPointToTuple(point));
-  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { polygon });
+  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { polygon, curves });
   state.sectorArmyEditor.selectedPointIndex = insertIndex;
   state.sectorArmyEditor.validation = [];
   setStatus("Polygonpunkt eingefuegt.");
@@ -2464,23 +2638,19 @@ function insertSectorArmyEditorPointAtSegment(index, point) {
   return true;
 }
 
-function beginSectorArmyEditorDrag(event, type, pointIndex = -1) {
+function beginSectorArmyEditorDrag(event, type, pointIndex = -1, handleKey = "") {
   if (!state.sectorArmyEditor.enabled) return;
   // Gate allowed drag types by explicit editor mode (or Alt to override).
   const mode = state.sectorArmyEditor.mode || "view";
   const allowed = new Set();
   if (mode === "sector") {
     allowed.add("translate");
-    allowed.add("label");
   } else if (mode === "vertex") {
     allowed.add("point");
     allowed.add("label");
-    allowed.add("translate");
   } else if (mode === "curve") {
     allowed.add("curve");
-    allowed.add("point");
-    allowed.add("label");
-    allowed.add("translate");
+    allowed.add("curve-handle");
   }
   if (!allowed.has(type) && !event.altKey) return;
   event.preventDefault();
@@ -2488,10 +2658,11 @@ function beginSectorArmyEditorDrag(event, type, pointIndex = -1) {
   const dragging = {
     type,
     pointIndex,
+    handleKey,
     pointerId: event.pointerId,
   };
   // record undo snapshot at drag start to avoid polluting stack on every pointermove
-  if (type === "point" || type === "label" || type === "translate" || type === "curve") {
+  if (type === "point" || type === "label" || type === "translate" || type === "curve" || type === "curve-handle") {
     pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
   }
   if (type === "translate") {
@@ -2500,12 +2671,125 @@ function beginSectorArmyEditorDrag(event, type, pointIndex = -1) {
     dragging.startClientX = event.clientX;
     dragging.startClientY = event.clientY;
     dragging.originalPolygon = sectorArmyPolygonPoints(territory).map((p) => sectorPointToTuple(p));
+    dragging.originalCurves = JSON.parse(JSON.stringify(territory?.curves || {}));
   }
   state.sectorArmyEditor.dragging = dragging;
-  event.currentTarget.setPointerCapture?.(event.pointerId);
+  try {
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  } catch (_error) {
+    // Synthetic QA events and some SVG targets cannot always be captured.
+  }
 }
 
+function applySectorArmyEditorSnap(point, options = {}) {
+  const normalized = normalizeSectorPoint(point);
+  if (!normalized || !state.sectorArmyEditor.snapEnabled) return normalized;
+  const candidates = [];
+  const addCandidate = (candidate, kind) => {
+    const p = normalizeSectorPoint(candidate);
+    if (!p) return;
+    const dx = p.x - normalized.x;
+    const dy = p.y - normalized.y;
+    candidates.push({ ...p, kind, distanceSq: dx * dx + dy * dy });
+  };
+
+  const gridStep = 0.01;
+  addCandidate(
+    {
+      x: Math.round(normalized.x / gridStep) * gridStep,
+      y: Math.round(normalized.y / gridStep) * gridStep,
+    },
+    "grid"
+  );
+
+  const threshold = 0.006;
+  sectorArmyTerritories().forEach((territory) => {
+    const sameSector = Number(territory.id) === Number(options.ignoreSectorId);
+    const points = sectorArmyPolygonPoints(territory);
+    points.forEach((candidate, index) => {
+      if (sameSector && index === options.ignorePointIndex) return;
+      addCandidate(candidate, "point");
+    });
+    points.forEach((_candidate, index) => {
+      if (points.length < 2) return;
+      const start = points[index];
+      const end = points[(index + 1) % points.length];
+      const dx = end.x - start.x;
+      const dy = end.y - start.y;
+      const denom = dx * dx + dy * dy;
+      if (!denom) return;
+      const t = Math.max(0, Math.min(1, ((normalized.x - start.x) * dx + (normalized.y - start.y) * dy) / denom));
+      addCandidate({ x: start.x + t * dx, y: start.y + t * dy }, "line");
+    });
+  });
+
+  const best = candidates
+    .filter((candidate) => candidate.kind === "grid" || candidate.distanceSq <= threshold * threshold)
+    .sort((left, right) => left.distanceSq - right.distanceSq)[0];
+  return best ? { x: clamp01(best.x), y: clamp01(best.y) } : normalized;
+}
+
+function setSectorArmyCurveFromPull(segmentIndex, point, options = {}) {
+  const territory = selectedSectorArmyEditorTerritory();
+  const polygon = sectorArmyPolygonPoints(territory);
+  const index = Number(segmentIndex);
+  if (!territory || index < 0 || index >= polygon.length) return null;
+  const snapped = applySectorArmyEditorSnap(point, options);
+  const curve = sectorBezierFromQuadratic(polygon[index], snapped, polygon[(index + 1) % polygon.length]);
+  if (!curve) return null;
+  return updateSectorArmyTerritoryDraft(
+    state.sectorArmyEditor.selectedId,
+    (current) => ({
+      curves: { ...(current?.curves || {}), [String(index)]: curve },
+    }),
+    { persist: options.persist !== false }
+  );
+}
+
+function setSectorArmyCurveHandle(segmentIndex, handleKey, point, options = {}) {
+  const territory = selectedSectorArmyEditorTerritory();
+  const polygon = sectorArmyPolygonPoints(territory);
+  const index = Number(segmentIndex);
+  if (!territory || index < 0 || index >= polygon.length) return null;
+  const key = handleKey === "c2" ? "c2" : "c1";
+  const snapped = applySectorArmyEditorSnap(point, options);
+  const currentCurve =
+    sectorCurveForSegment(territory, index) || defaultSectorBezierForSegment(polygon[index], polygon[(index + 1) % polygon.length]);
+  if (!currentCurve) return null;
+  const nextCurve = {
+    ...currentCurve,
+    [key]: sectorPointToTuple(snapped),
+    mode: "free",
+  };
+  return updateSectorArmyTerritoryDraft(
+    state.sectorArmyEditor.selectedId,
+    (current) => ({
+      curves: { ...(current?.curves || {}), [String(index)]: nextCurve },
+    }),
+    { persist: options.persist !== false }
+  );
+}
+
+let sectorEditorDragFrame = 0;
+let sectorEditorLastPointerEvent = null;
+
 function updateSectorArmyEditorDrag(event) {
+  if (!state.sectorArmyEditor.dragging) return;
+  event.preventDefault?.();
+  sectorEditorLastPointerEvent = {
+    clientX: event.clientX,
+    clientY: event.clientY,
+  };
+  if (sectorEditorDragFrame) return;
+  sectorEditorDragFrame = requestAnimationFrame(() => {
+    sectorEditorDragFrame = 0;
+    const queued = sectorEditorLastPointerEvent;
+    sectorEditorLastPointerEvent = null;
+    if (queued) processSectorArmyEditorDrag(queued);
+  });
+}
+
+function processSectorArmyEditorDrag(event) {
   const drag = state.sectorArmyEditor.dragging;
   if (!drag) return;
   const point = clientToImageNorm(event.clientX, event.clientY);
@@ -2515,20 +2799,21 @@ function updateSectorArmyEditorDrag(event) {
       labelPosition: sectorPointToTuple(point),
     });
   } else if (drag.type === "curve") {
-    // set quadratic control point for the segment at drag.pointIndex
-    updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, (territory) => {
-      const curves = { ...(territory?.curves || {}) };
-      curves[String(drag.pointIndex)] = sectorPointToTuple(point);
-      return { curves };
-    });
+    setSectorArmyCurveFromPull(drag.pointIndex, point, { persist: false });
+  } else if (drag.type === "curve-handle") {
+    setSectorArmyCurveHandle(drag.pointIndex, drag.handleKey, point, { persist: false });
   } else if (drag.type === "point") {
+    const snappedPoint = applySectorArmyEditorSnap(point, {
+      ignoreSectorId: state.sectorArmyEditor.selectedId,
+      ignorePointIndex: drag.pointIndex,
+    });
     updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, (territory) => {
       const polygon = sectorArmyPolygonPoints(territory).map(sectorPointToTuple);
       if (drag.pointIndex >= 0 && drag.pointIndex < polygon.length) {
-        polygon[drag.pointIndex] = sectorPointToTuple(point);
+        polygon[drag.pointIndex] = sectorPointToTuple(snappedPoint);
       }
       return { polygon };
-    });
+    }, { persist: false });
     state.sectorArmyEditor.selectedPointIndex = drag.pointIndex;
   } else if (drag.type === "translate") {
     // translate the whole polygon by the pointer delta
@@ -2545,8 +2830,21 @@ function updateSectorArmyEditorDrag(event) {
           return [Number(nx.toFixed(4)), Number(ny.toFixed(4))];
         })
         .map(sectorPointToTuple);
-      return { polygon };
-    });
+      const curves = {};
+      Object.entries(drag.originalCurves || {}).forEach(([key, curve]) => {
+        const normalized = normalizeSectorCurveEntry(curve, null, null);
+        if (!normalized?.c1 || !normalized?.c2) return;
+        const c1 = normalizeSectorPoint(normalized.c1);
+        const c2 = normalizeSectorPoint(normalized.c2);
+        if (!c1 || !c2) return;
+        curves[key] = {
+          ...normalized,
+          c1: sectorPointToTuple({ x: clamp01(c1.x + deltaX), y: clamp01(c1.y + deltaY) }),
+          c2: sectorPointToTuple({ x: clamp01(c2.x + deltaX), y: clamp01(c2.y + deltaY) }),
+        };
+      });
+      return { polygon, curves };
+    }, { persist: false });
   }
   renderOverlay();
   renderSectorArmyEditor();
@@ -2554,8 +2852,18 @@ function updateSectorArmyEditorDrag(event) {
 
 function finishSectorArmyEditorDrag() {
   if (!state.sectorArmyEditor.dragging) return;
+  if (sectorEditorDragFrame) {
+    cancelAnimationFrame(sectorEditorDragFrame);
+    sectorEditorDragFrame = 0;
+  }
+  if (sectorEditorLastPointerEvent) {
+    const queued = sectorEditorLastPointerEvent;
+    sectorEditorLastPointerEvent = null;
+    processSectorArmyEditorDrag(queued);
+  }
   state.sectorArmyEditor.dragging = null;
   state.sectorArmyEditor.validation = [];
+  persistSectorArmyTerritoryDrafts();
   renderAll();
 }
 
@@ -2566,7 +2874,12 @@ function addSectorEditorKeyListeners() {
   _sectorEditorKeydownHandler = function (event) {
     const active = document.activeElement;
     if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) return;
-    if (event.key === "Delete") {
+    if (
+      event.key === "Delete" &&
+      isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId) &&
+      state.sectorArmyEditor.mode === "vertex"
+    ) {
+      event.preventDefault();
       removeSectorArmyEditorPoint();
       renderAll();
       return;
@@ -2598,7 +2911,7 @@ function handleSectorArmyEditorCanvasClick(originalEvent) {
   const point = clientToImageNorm(clientX, clientY);
   if (!point) return false;
   const mode = state.sectorArmyEditor.mode || "view";
-  if (!(mode === "vertex" || mode === "curve" || state.sectorArmyEditor.labelMode || originalEvent.shiftKey)) return false;
+  if (!(mode === "vertex" || state.sectorArmyEditor.labelMode || originalEvent.shiftKey)) return false;
   if (originalEvent.shiftKey || state.sectorArmyEditor.labelMode) {
     setSectorArmyEditorLabelPosition(point);
   } else {
@@ -8763,53 +9076,70 @@ function makeSectorArmyLayer(metrics) {
       const points = sectorArmyPolygonPoints(item.territory);
       if (points.length < 3) return "";
       const meta = sectorArmyStatusMeta(item.status);
-      const pointText = polygonToSvgPoints(points);
-      const hasCurves = item?.territory && item.territory.curves && Object.keys(item.territory.curves).length > 0;
-      let pathD = null;
-      let curveHandlesMarkup = "";
-      if (hasCurves) {
-        const w = state.imageWidth;
-        const h = state.imageHeight;
-        const closed = points.length > 2;
-        let d = `M ${(points[0].x * w).toFixed(2)} ${(points[0].y * h).toFixed(2)}`;
-        for (let i = 0; i < (closed ? points.length : points.length - 1); i += 1) {
-          const next = points[(i + 1) % points.length];
-          const ctrl = (item.territory.curves || {})[String(i)];
-          if (ctrl && Array.isArray(ctrl) && ctrl.length >= 2) {
-            const cx = Number(ctrl[0]) * w;
-            const cy = Number(ctrl[1]) * h;
-            d += ` Q ${cx.toFixed(2)} ${cy.toFixed(2)} ${(next.x * w).toFixed(2)} ${(next.y * h).toFixed(2)}`;
-          } else {
-            d += ` L ${(next.x * w).toFixed(2)} ${(next.y * h).toFixed(2)}`;
-          }
-        }
-        if (closed) d += " Z";
-        pathD = d;
-        // build curve handles markup
-        curveHandlesMarkup = Object.entries(item.territory.curves || {})
-          .map(([k, ctrl]) => {
-            const idx = Number(k);
-            if (!Array.isArray(ctrl) || ctrl.length < 2) return "";
-            const cx = Number(ctrl[0]) * state.imageWidth;
-            const cy = Number(ctrl[1]) * state.imageHeight;
-            const a = points[idx];
-            const b = points[(idx + 1) % points.length];
-            return `
-              <g class="sector-army-curve-handle" data-sector-editor-curve="${idx}">
-                <line x1="${(a.x * state.imageWidth).toFixed(2)}" y1="${(a.y * state.imageHeight).toFixed(2)}" x2="${cx.toFixed(2)}" y2="${cy.toFixed(2)}" stroke="rgba(255,255,255,0.18)" stroke-width="1" />
-                <line x1="${(b.x * state.imageWidth).toFixed(2)}" y1="${(b.y * state.imageHeight).toFixed(2)}" x2="${cx.toFixed(2)}" y2="${cy.toFixed(2)}" stroke="rgba(255,255,255,0.18)" stroke-width="1" />
-                <circle class="sector-army-curve-control" data-sector-editor-curve="${idx}" cx="${cx.toFixed(2)}" cy="${cy.toFixed(2)}" r="6" />
-              </g>
-            `;
-          })
-          .join("");
-      }
       const labelX = item.x * state.imageWidth;
       const labelY = item.y * state.imageHeight;
       const isHovered = hovered?.nameKey === item.nameKey;
       const isSelected = selected?.nameKey === item.nameKey;
       const isEditorSelected =
         state.sectorArmyEditor.enabled && Number(state.sectorArmyEditor.selectedId) === Number(item.army?.id);
+      const editorMode = state.sectorArmyEditor.mode || "view";
+      const pathD = sectorArmyClosedPath(points, item.territory, state.imageWidth, state.imageHeight);
+      const showEdgeHitboxes = isEditorSelected && (editorMode === "vertex" || editorMode === "curve");
+      const showCurveHandles = isEditorSelected && editorMode === "curve";
+      const edgeHitboxesMarkup = showEdgeHitboxes
+        ? points
+          .map(
+            (_point, idx) =>
+              `<path class="sector-army-edge-hitbox" data-sector-editor-edge="${idx}" d="${sectorArmySegmentPath(
+                points,
+                item.territory,
+                idx,
+                state.imageWidth,
+                state.imageHeight
+              )}" />`
+          )
+          .join("")
+        : "";
+      const bounds = isEditorSelected ? sectorArmyBoundingBox(points, state.imageWidth, state.imageHeight) : null;
+      const boundsMarkup = bounds
+        ? `<rect class="sector-army-editor-bounds ${editorMode === "sector" ? "is-sector-mode" : ""}" x="${bounds.x.toFixed(
+          2
+        )}" y="${bounds.y.toFixed(2)}" width="${bounds.width.toFixed(2)}" height="${bounds.height.toFixed(2)}" />`
+        : "";
+      const curveHandlesMarkup = showCurveHandles
+        ? Object.entries(item.territory.curves || {})
+          .map(([k]) => {
+            const idx = Number(k);
+            const curve = sectorCurveForSegment(item.territory, idx);
+            if (!curve?.c1 || !curve?.c2) return "";
+            const c1 = normalizeSectorPoint(curve.c1);
+            const c2 = normalizeSectorPoint(curve.c2);
+            const a = points[idx];
+            const b = points[(idx + 1) % points.length];
+            if (!c1 || !c2 || !a || !b) return "";
+            const c1x = c1.x * state.imageWidth;
+            const c1y = c1.y * state.imageHeight;
+            const c2x = c2.x * state.imageWidth;
+            const c2y = c2.y * state.imageHeight;
+            return `
+              <g class="sector-army-curve-handle" data-sector-editor-curve="${idx}">
+                <line class="sector-army-tangent-arm" x1="${(a.x * state.imageWidth).toFixed(2)}" y1="${(a.y * state.imageHeight).toFixed(
+              2
+            )}" x2="${c1x.toFixed(2)}" y2="${c1y.toFixed(2)}" />
+                <line class="sector-army-tangent-arm" x1="${(b.x * state.imageWidth).toFixed(2)}" y1="${(b.y * state.imageHeight).toFixed(
+              2
+            )}" x2="${c2x.toFixed(2)}" y2="${c2y.toFixed(2)}" />
+                <circle class="sector-army-curve-control" data-sector-editor-curve-handle="${idx}" data-handle="c1" cx="${c1x.toFixed(
+              2
+            )}" cy="${c1y.toFixed(2)}" r="${clamp(5.8 / Math.max(metrics.screenScale, 0.001), 4.5, 80).toFixed(2)}" />
+                <circle class="sector-army-curve-control" data-sector-editor-curve-handle="${idx}" data-handle="c2" cx="${c2x.toFixed(
+              2
+            )}" cy="${c2y.toFixed(2)}" r="${clamp(5.8 / Math.max(metrics.screenScale, 0.001), 4.5, 80).toFixed(2)}" />
+              </g>
+            `;
+          })
+          .join("")
+        : "";
       const classes = [
         "sector-army-region",
         `status-${String(item.status || "unknown").replace(/[^a-z0-9-]/gi, "-")}`,
@@ -8822,13 +9152,11 @@ function makeSectorArmyLayer(metrics) {
         .join(" ");
       return `
         <g class="${classes}" data-sector-key="${escapeHtml(item.nameKey)}" style="--sector-glow:${meta.glow};">
-          ${pathD
-          ? `<path d="${pathD}" fill="${meta.fill}" stroke="${meta.stroke}" stroke-width="${(
+          <path class="sector-army-region-shape" d="${pathD}" fill="${meta.fill}" stroke="${meta.stroke}" stroke-width="${(
             isHovered || isSelected || isEditorSelected ? activeStrokeWidth : strokeWidth
-          ).toFixed(2)}" />`
-          : `<polygon points="${pointText}" fill="${meta.fill}" stroke="${meta.stroke}" stroke-width="${(
-            isHovered || isSelected || isEditorSelected ? activeStrokeWidth : strokeWidth
-          ).toFixed(2)}" />`}
+          ).toFixed(2)}" />
+          ${boundsMarkup}
+          ${edgeHitboxesMarkup}
           ${curveHandlesMarkup}
           <text
             class="sector-army-number"
@@ -8879,8 +9207,12 @@ function makeSectorArmyLayer(metrics) {
     .join("");
 
   const activeTerritory = selectedSectorArmyEditorTerritory();
+  const showEditorVertices =
+    state.sectorArmyEditor.enabled &&
+    activeTerritory &&
+    (state.sectorArmyEditor.mode === "vertex" || state.sectorArmyEditor.mode === "curve");
   const editorPoints =
-    state.sectorArmyEditor.enabled && activeTerritory
+    showEditorVertices
       ? sectorArmyPolygonPoints(activeTerritory)
         .map((point, index) => {
           const x = point.x * state.imageWidth;
@@ -8894,8 +9226,12 @@ function makeSectorArmyLayer(metrics) {
         .join("")
       : "";
   const activeLabel = normalizeSectorPoint(activeTerritory?.labelPosition);
+  const showLabelHandle =
+    state.sectorArmyEditor.enabled &&
+    activeLabel &&
+    (state.sectorArmyEditor.mode === "sector" || state.sectorArmyEditor.labelMode);
   const labelHandle =
-    state.sectorArmyEditor.enabled && activeLabel
+    showLabelHandle
       ? `
         <g class="sector-army-label-handles">
           <circle class="sector-army-editor-label-handle" data-sector-editor-label="1" cx="${(activeLabel.x * state.imageWidth).toFixed(
@@ -8934,7 +9270,7 @@ function bindSectorArmyLayerInteractions(svg) {
       // Only start translate when sector/modify mode is active (or Alt is held)
       if (!state.sectorArmyEditor.enabled) return;
       const mode = state.sectorArmyEditor.mode || "view";
-      if (!(mode === "sector" || state.sectorArmyEditor.modifyMode) && !event.altKey) return;
+      if (mode !== "sector" && !event.altKey) return;
       // select this territory for editing
       const key = node.getAttribute("data-sector-key");
       const item = getSelectableItemByKey(key);
@@ -8982,6 +9318,7 @@ function bindSectorArmyLayerInteractions(svg) {
       if (!pt) return;
       const item = getSelectableItemByKey(node.getAttribute("data-sector-key"));
       if (!item || item.kind !== "sectorArmy") return;
+      if (Number(item.army?.id) !== Number(state.sectorArmyEditor.selectedId)) return;
       const territory = item.territory;
       const nearest = findNearestSectorSegment(territory, pt);
       // threshold in px
@@ -8998,26 +9335,54 @@ function bindSectorArmyLayerInteractions(svg) {
       beginSectorArmyEditorDrag(event, "point", pointIndex);
       renderSectorArmyEditor();
     });
+    handle.addEventListener("contextmenu", (event) => {
+      if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
+      if (state.sectorArmyEditor.mode !== "vertex") return;
+      event.preventDefault();
+      event.stopPropagation();
+      state.sectorArmyEditor.selectedPointIndex = pointIndex;
+      removeSectorArmyEditorPoint(pointIndex);
+      renderAll();
+    });
+  });
+  svg.querySelectorAll("[data-sector-editor-edge]").forEach((edge) => {
+    const edgeIndex = Number(edge.getAttribute("data-sector-editor-edge"));
+    edge.addEventListener("pointerdown", (event) => {
+      if (state.sectorArmyEditor.mode !== "curve") return;
+      beginSectorArmyEditorDrag(event, "curve", edgeIndex);
+      renderSectorArmyEditor();
+    });
+    edge.addEventListener("dblclick", (event) => {
+      if (!state.sectorArmyEditor.enabled) return;
+      const mode = state.sectorArmyEditor.mode || "view";
+      if (!(mode === "vertex" || mode === "curve")) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const point = clientToImageNorm(event.clientX, event.clientY);
+      if (!point) return;
+      insertSectorArmyEditorPointAtSegment(edgeIndex, point);
+    });
   });
   svg.querySelectorAll("[data-sector-editor-label]").forEach((handle) => {
     handle.addEventListener("pointerdown", (event) => {
       const mode = state.sectorArmyEditor.mode || "view";
-      if (!(mode === "sector" || state.sectorArmyEditor.modifyMode) && !event.altKey) return;
+      if (!(state.sectorArmyEditor.labelMode || event.shiftKey) && !event.altKey) return;
       beginSectorArmyEditorDrag(event, "label", -1);
     });
   });
   svg.querySelectorAll("[data-sector-editor-translate]").forEach((handle) => {
     handle.addEventListener("pointerdown", (event) => {
       const mode = state.sectorArmyEditor.mode || "view";
-      if (!(mode === "sector" || state.sectorArmyEditor.modifyMode) && !event.altKey) return;
+      if (mode !== "sector" && !event.altKey) return;
       beginSectorArmyEditorDrag(event, "translate", -1);
       renderSectorArmyEditor();
     });
   });
-  svg.querySelectorAll("[data-sector-editor-curve]").forEach((handle) => {
-    const segIndex = Number(handle.getAttribute("data-sector-editor-curve"));
+  svg.querySelectorAll("[data-sector-editor-curve-handle]").forEach((handle) => {
+    const segIndex = Number(handle.getAttribute("data-sector-editor-curve-handle"));
+    const handleKey = String(handle.getAttribute("data-handle") || "c1");
     handle.addEventListener("pointerdown", (event) => {
-      beginSectorArmyEditorDrag(event, "curve", segIndex);
+      beginSectorArmyEditorDrag(event, "curve-handle", segIndex, handleKey);
       renderSectorArmyEditor();
     });
   });
@@ -10739,6 +11104,7 @@ function renderSectorArmyEditor() {
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "sector" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="sector" ${editDisabled}>Sektor</button>
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "vertex" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="vertex" ${editDisabled}>Vertex</button>
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "curve" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="curve" ${editDisabled}>Curve</button>
+          <button type="button" class="ghost-button compact ${state.sectorArmyEditor.snapEnabled ? "is-active" : ""}" data-sector-editor-action="snap" ${editDisabled}>Snap</button>
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.modifyMode ? "is-active" : ""}" data-sector-editor-action="modify" ${editDisabled}>
             ${state.sectorArmyEditor.modifyMode ? "Modify aus" : "Modify an"}
           </button>
@@ -15529,17 +15895,20 @@ async function handleSectorArmyEditorAction(action, source) {
   } else if (action === "delete-territory") {
     if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
     const confirmed = await showSectorArmyConfirmDialog({
-      title: "Gebiet loeschen?",
+      title: "Sektor loeschen?",
       message:
-        "Dieses Gebiet wird aus der lokalen Sektorarmee-Grenze entfernt. Du kannst es spaeter ueber neue Polygonpunkte wieder aufbauen.",
-      confirmLabel: "Gebiet loeschen",
+        "Dieser Vorgang entfernt den Sektor dauerhaft aus der lokalen Kartenbearbeitung. Du kannst ihn ueber Import oder Zuruecksetzen wiederherstellen.",
+      confirmLabel: "Sektor loeschen",
     });
     if (!confirmed) return;
     pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
-    updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { polygon: [] });
+    updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { deleted: true, polygon: [], curves: {} });
     state.sectorArmyEditor.selectedPointIndex = -1;
     state.sectorArmyEditor.validation = [];
-    setStatus("Sektorarmee-Gebiet geloescht.");
+    const nextTerritory = sectorArmyTerritories()[0] || null;
+    state.sectorArmyEditor.selectedId = nextTerritory?.id || state.sectorArmyEditor.selectedId;
+    if (!nextTerritory) clearSectorArmyEditModes();
+    setStatus("Sektor geloescht.");
   } else if (action === "select-point") {
     if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
     state.sectorArmyEditor.selectedPointIndex = Number(source?.dataset?.index);
@@ -15563,6 +15932,9 @@ async function handleSectorArmyEditorAction(action, source) {
     state.sectorArmyEditor.mode = mode;
     state.sectorArmyEditor.modifyMode = mode === "vertex" || mode === "curve";
     setStatus(`Editor-Modus: ${mode}`);
+  } else if (action === "snap") {
+    state.sectorArmyEditor.snapEnabled = !state.sectorArmyEditor.snapEnabled;
+    setStatus(state.sectorArmyEditor.snapEnabled ? "Snap ist aktiv." : "Snap ist aus.");
   } else if (action === "export-ts") {
     state.sectorArmyEditor.exportText = exportSectorArmyTerritories("ts");
     setStatus("Sektorarmee-Grenzen als TypeScript exportiert.");

@@ -3633,17 +3633,59 @@ body.desktop-window-dragging .window-drag-handle * {
   stroke-opacity: 0.72;
 }
 
-.sector-army-region.is-placeholder polygon {
+.sector-army-region.is-placeholder polygon,
+.sector-army-region.is-placeholder .sector-army-region-shape {
   stroke-dasharray: 10 8;
   fill-opacity: 0.48;
 }
 
 .sector-army-region.is-hovered polygon,
 .sector-army-region.is-selected polygon,
-.sector-army-region.is-editor-selected polygon {
+.sector-army-region.is-editor-selected polygon,
+.sector-army-region.is-hovered .sector-army-region-shape,
+.sector-army-region.is-selected .sector-army-region-shape,
+.sector-army-region.is-editor-selected .sector-army-region-shape {
   fill-opacity: 0.92;
   stroke-opacity: 1;
   filter: drop-shadow(0 0 10px var(--sector-glow)) drop-shadow(0 0 18px var(--sector-glow));
+}
+
+.sector-army-region-shape {
+  vector-effect: non-scaling-stroke;
+  transition:
+    stroke-width 160ms ease,
+    stroke-opacity 160ms ease,
+    fill-opacity 160ms ease,
+    filter 160ms ease;
+}
+
+.sector-army-editor-bounds {
+  pointer-events: none;
+  fill: rgba(109, 227, 215, 0.06);
+  stroke: rgba(109, 227, 215, 0.74);
+  stroke-dasharray: 10 6;
+  stroke-width: 1.4px;
+  vector-effect: non-scaling-stroke;
+}
+
+.sector-army-editor-bounds.is-sector-mode {
+  fill: rgba(246, 194, 102, 0.08);
+  stroke: rgba(246, 194, 102, 0.92);
+}
+
+.sector-army-edge-hitbox {
+  pointer-events: stroke;
+  cursor: crosshair;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 18px;
+  vector-effect: non-scaling-stroke;
+}
+
+.sector-army-edge-hitbox:hover {
+  stroke: rgba(109, 227, 215, 0.2);
 }
 
 .sector-army-number,
@@ -3699,7 +3741,7 @@ body.desktop-window-dragging .window-drag-handle * {
 .sector-army-editor-handle,
 .sector-army-editor-label-handle {
   pointer-events: auto;
-  cursor: grab;
+  cursor: move;
   vector-effect: non-scaling-stroke;
   fill: rgba(109, 227, 215, 0.92);
   stroke: rgba(3, 14, 24, 0.94);
@@ -3712,6 +3754,33 @@ body.desktop-window-dragging .window-drag-handle * {
 
 .sector-army-editor-label-handle {
   fill: rgba(246, 194, 102, 0.96);
+}
+
+.sector-army-curve-handle {
+  pointer-events: none;
+}
+
+.sector-army-tangent-arm {
+  pointer-events: none;
+  stroke: rgba(255, 255, 255, 0.32);
+  stroke-width: 1.2px;
+  stroke-dasharray: 5 4;
+  vector-effect: non-scaling-stroke;
+}
+
+.sector-army-curve-control {
+  pointer-events: auto;
+  cursor: crosshair;
+  fill: rgba(246, 194, 102, 0.98);
+  stroke: rgba(4, 12, 22, 0.96);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+
+.sector-army-curve-control:hover,
+.sector-army-editor-handle:hover {
+  filter: drop-shadow(0 0 8px rgba(109, 227, 215, 0.86));
+  stroke: rgba(255, 255, 255, 0.96);
 }
 
 .map-data-overlay .faction-fragment .faction-banner-outline,
