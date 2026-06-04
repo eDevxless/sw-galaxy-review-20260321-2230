@@ -1,4 +1,8 @@
 (function () {
+  // Legacy prototype only. The production Sektorarmee editor is integrated in
+  // script.js and started from the Infopanel after the Admin warning dialog.
+  // Do not load this file from index.html unless it is first reconciled with
+  // script.js' draft storage, admin gate, and single active editor state.
   const SVG_NS = "http://www.w3.org/2000/svg";
   const state = {
     enabled: false,

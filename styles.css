@@ -267,7 +267,6 @@ body.intro-complete .landing-intro {
   display: none;
 }
 
-#searchInput,
 #gridInput,
 #travelStartInput,
 #travelTargetInput,
@@ -374,6 +373,7 @@ body.intro-complete .landing-intro {
 #fleetShipSearchInput,
 #fleetShipFactionFilter,
 #fleetShipQuantityInput,
+#searchInput,
 #newsTitleInput,
 #newsBodyInput,
 #newsImageUrlInput {
@@ -388,11 +388,20 @@ body.intro-complete .landing-intro {
 }
 
 #searchInput {
+  min-width: 0;
+  height: 42px;
   padding-left: 2.5rem;
+  padding-right: 1rem;
+  text-overflow: ellipsis;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(237,245,255,0.72)' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 0.95rem center;
   background-size: 1rem 1rem;
+}
+
+#searchInput::placeholder {
+  color: rgba(191, 205, 222, 0.78);
+  opacity: 1;
 }
 
 #searchInput:focus,
@@ -1329,6 +1338,11 @@ body.desktop-window-dragging .window-drag-handle * {
   overflow: hidden;
 }
 
+.fleet-card,
+.section-toggle[data-panel-toggle="fleet"] {
+  display: none !important;
+}
+
 .fleet-block {
   display: grid;
   gap: 0.72rem;
@@ -2044,6 +2058,7 @@ body.desktop-window-dragging .window-drag-handle * {
 }
 
 .sector-editor-grid select,
+.sector-editor-grid input[type="text"],
 .sector-editor-wide input,
 .sector-editor-wide textarea,
 .sector-editor-export {
@@ -2072,6 +2087,63 @@ body.desktop-window-dragging .window-drag-handle * {
   gap: 0.35rem;
   max-height: 8.5rem;
   overflow: auto;
+}
+
+.sector-layer-list {
+  display: grid;
+  gap: 0.32rem;
+  max-height: 9rem;
+  overflow: auto;
+  padding: 0.36rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(3, 10, 18, 0.34);
+}
+
+.sector-layer-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.45rem;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  padding: 0.38rem 0.48rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sector-layer-row.is-active {
+  border-color: rgba(246, 194, 102, 0.48);
+  background: rgba(246, 194, 102, 0.1);
+}
+
+.sector-layer-row.is-locked {
+  color: var(--muted);
+}
+
+.sector-layer-swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: var(--layer-color, rgba(109, 227, 215, 0.86));
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.sector-layer-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.76rem;
+}
+
+.sector-layer-state {
+  color: var(--muted);
+  font-size: 0.68rem;
 }
 
 .sector-editor-point-row {
@@ -3473,7 +3545,52 @@ body.desktop-window-dragging .window-drag-handle * {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  align-items: flex-end;
   margin-bottom: 0.62rem;
+}
+
+.sector-army-name-edit,
+.sector-army-faction-edit {
+  display: grid;
+  gap: 0.26rem;
+  min-width: min(100%, 14rem);
+  flex: 1 1 14rem;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.sector-army-name-edit-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.38rem;
+  align-items: center;
+}
+
+.sector-army-name-edit input,
+.sector-army-faction-edit select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.54rem 0.68rem;
+  outline: none;
+}
+
+.sector-army-name-edit-row button {
+  min-height: 2.25rem;
+  white-space: nowrap;
+}
+
+.sector-army-name-edit input:focus,
+.sector-army-faction-edit select:focus,
+.sector-editor-grid input[type="text"]:focus,
+.sector-editor-grid select:focus,
+.sector-editor-wide input:focus,
+.sector-editor-wide textarea:focus {
+  border-color: rgba(109, 227, 215, 0.48);
+  background: rgba(109, 227, 215, 0.08);
 }
 
 .sector-army-notes {
@@ -3530,7 +3647,8 @@ body.desktop-window-dragging .window-drag-handle * {
 }
 
 .sector-anchor-chip,
-.muted-inline {
+.muted-inline,
+.sector-faction-pill {
   display: inline-flex;
   align-items: center;
   margin: 0.16rem 0.2rem 0.16rem 0;
@@ -3540,6 +3658,22 @@ body.desktop-window-dragging .window-drag-handle * {
   background: rgba(246, 194, 102, 0.08);
   color: #f6d992;
   font-size: 0.74rem;
+}
+
+.sector-faction-pill {
+  font-weight: 850;
+}
+
+.sector-faction-pill.is-republic {
+  border-color: rgba(255, 103, 127, 0.42);
+  background: rgba(205, 43, 68, 0.18);
+  color: #ffd5dc;
+}
+
+.sector-faction-pill.is-cis {
+  border-color: rgba(94, 169, 255, 0.42);
+  background: rgba(20, 91, 206, 0.18);
+  color: #d6ecff;
 }
 
 .muted-inline {
@@ -3617,26 +3751,54 @@ body.desktop-window-dragging .window-drag-handle * {
   pointer-events: none;
 }
 
-.sector-army-region,
 .strategic-asset-marker {
-  pointer-events: auto;
+  pointer-events: all;
   cursor: pointer;
 }
 
+.sector-army-region {
+  pointer-events: none;
+}
+
+.sector-army-region-shape,
+.sector-army-region-boundary,
+.sector-army-region-boundary-underlay,
 .sector-army-region polygon {
   vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
   transition:
     fill-opacity 160ms ease,
     stroke-opacity 160ms ease,
     filter 160ms ease;
-  fill-opacity: 0.8;
-  stroke-opacity: 0.72;
+}
+
+.sector-army-region-shape,
+.sector-army-region polygon {
+  pointer-events: none;
+  fill-opacity: 0.34;
+  stroke-opacity: 0.86;
+}
+
+.sector-army-region-boundary-underlay {
+  pointer-events: none;
+}
+
+.sector-army-region-boundary-underlay {
+  stroke-opacity: 0.36;
+}
+
+.sector-army-region-boundary {
+  cursor: pointer;
+  pointer-events: stroke;
+  stroke-opacity: 1;
 }
 
 .sector-army-region.is-placeholder polygon,
-.sector-army-region.is-placeholder .sector-army-region-shape {
+.sector-army-region.is-placeholder .sector-army-region-shape,
+.sector-army-region.is-placeholder .sector-army-region-boundary {
   stroke-dasharray: 10 8;
-  fill-opacity: 0.48;
+  fill-opacity: 0.22;
 }
 
 .sector-army-region.is-hovered polygon,
@@ -3644,13 +3806,18 @@ body.desktop-window-dragging .window-drag-handle * {
 .sector-army-region.is-editor-selected polygon,
 .sector-army-region.is-hovered .sector-army-region-shape,
 .sector-army-region.is-selected .sector-army-region-shape,
-.sector-army-region.is-editor-selected .sector-army-region-shape {
-  fill-opacity: 0.92;
+.sector-army-region.is-editor-selected .sector-army-region-shape,
+.sector-army-region.is-hovered .sector-army-region-boundary,
+.sector-army-region.is-selected .sector-army-region-boundary,
+.sector-army-region.is-editor-selected .sector-army-region-boundary {
+  fill-opacity: 0.46;
   stroke-opacity: 1;
   filter: drop-shadow(0 0 10px var(--sector-glow)) drop-shadow(0 0 18px var(--sector-glow));
 }
 
-.sector-army-region-shape {
+.sector-army-region-shape,
+.sector-army-region-boundary,
+.sector-army-region-boundary-underlay {
   vector-effect: non-scaling-stroke;
   transition:
     stroke-width 160ms ease,
@@ -3675,7 +3842,7 @@ body.desktop-window-dragging .window-drag-handle * {
 
 .sector-army-edge-hitbox {
   pointer-events: stroke;
-  cursor: crosshair;
+  cursor: grab;
   fill: none;
   stroke: rgba(255, 255, 255, 0);
   stroke-linecap: round;
@@ -3684,11 +3851,27 @@ body.desktop-window-dragging .window-drag-handle * {
   vector-effect: non-scaling-stroke;
 }
 
+.sector-army-edge-hitbox.is-curve-mode {
+  cursor: crosshair;
+}
+
+.sector-army-edge-hitbox.is-insert-mode {
+  cursor: copy;
+}
+
 .sector-army-edge-hitbox:hover {
   stroke: rgba(109, 227, 215, 0.2);
 }
 
-.sector-army-number,
+.sector-army-edge-hitbox.is-insert-mode:hover {
+  stroke: rgba(255, 232, 153, 0.36);
+}
+
+.sector-army-edge-hitbox.is-dragging {
+  cursor: grabbing;
+  stroke: rgba(246, 194, 102, 0.45);
+}
+
 .sector-army-label,
 .strategic-asset-marker text {
   fill: rgba(247, 251, 255, 0.96);
@@ -3704,7 +3887,7 @@ body.desktop-window-dragging .window-drag-handle * {
 .sector-army-label,
 .strategic-asset-marker text {
   font-weight: 700;
-  fill: rgba(255, 235, 176, 0.94);
+  fill: var(--sector-label, rgba(255, 235, 176, 0.94));
 }
 
 .strategic-asset-marker circle,
@@ -3748,6 +3931,21 @@ body.desktop-window-dragging .window-drag-handle * {
   stroke-width: 2px;
 }
 
+.sector-army-editor-node-hitbox {
+  pointer-events: all;
+  cursor: grab;
+  fill: transparent;
+  stroke: none;
+}
+
+.sector-army-editor-node-hitbox:active {
+  cursor: grabbing;
+}
+
+.sector-army-editor-points .sector-army-editor-handle {
+  pointer-events: none;
+}
+
 .sector-army-editor-handle.is-selected {
   fill: rgba(255, 232, 153, 0.98);
 }
@@ -3777,10 +3975,50 @@ body.desktop-window-dragging .window-drag-handle * {
   vector-effect: non-scaling-stroke;
 }
 
+.sector-army-label[data-sector-editor-translate="1"] {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.sector-army-region.is-editor-selected .sector-army-label[data-sector-editor-translate="1"] {
+  cursor: grab;
+}
+
+.sector-army-label[data-sector-editor-translate="1"]:active {
+  cursor: grabbing;
+}
+
 .sector-army-curve-control:hover,
+.sector-army-editor-node-hitbox:hover + .sector-army-editor-handle,
 .sector-army-editor-handle:hover {
   filter: drop-shadow(0 0 8px rgba(109, 227, 215, 0.86));
   stroke: rgba(255, 255, 255, 0.96);
+}
+
+.sector-ship-class-edit {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) auto;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.sector-ship-class-edit input {
+  width: 100%;
+  min-width: 0;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(3, 10, 18, 0.62);
+  color: var(--text);
+  padding: 0.36rem 0.42rem;
+  font: inherit;
+}
+
+.sector-ship-add {
+  margin-top: 0.55rem;
+}
+
+.sector-ship-remove {
+  white-space: nowrap;
 }
 
 .map-data-overlay .faction-fragment .faction-banner-outline,

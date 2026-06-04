@@ -27,7 +27,7 @@
   <meta name="theme-color" content="#0a1422" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.21.1/dist/maplibre-gl.css" />
-  <link rel="stylesheet" href="styles.css?v=coruscant-city-map-14" />
+  <link rel="stylesheet" href="styles.css?v=sector-army-factions-8" />
   <link rel="stylesheet" href="admin.css?v=coruscant-city-map-14" />
 </head>
 
@@ -177,12 +177,6 @@
           </svg>
           <span class="menu-label">Reiserechner</span>
         </button>
-        <button type="button" class="desktop-panel-launcher" data-window-open="fleet">
-          <svg class="menu-icon" aria-hidden="true">
-            <use href="#icon-fleet"></use>
-          </svg>
-          <span class="menu-label">Flotten</span>
-        </button>
         <button type="button" class="desktop-panel-launcher has-badge" data-window-open="news">
           <svg class="menu-icon" aria-hidden="true">
             <use href="#icon-news"></use>
@@ -307,7 +301,7 @@
           </div>
         </section>
 
-        <section class="panel-card fleet-card collapsible-card desktop-floating-window" data-window-key="fleet">
+        <section class="panel-card fleet-card collapsible-card desktop-floating-window" data-window-key="fleet" hidden>
           <div class="desktop-window-head">
             <div class="window-drag-handle window-drag-handle-inline" data-window-handle="fleet"
               aria-label="Flottenfenster verschieben">
@@ -396,18 +390,6 @@
               </div>
             </div>
 
-            <div class="fleet-block sector-army-entry">
-              <div class="fleet-account-head">
-                <span class="field-label">Militaerische Lage</span>
-                <span class="pill muted">OOC-Layer</span>
-              </div>
-              <div class="small-copy">
-                Sektorarmeen, freie Reserven und strategische Sonderassets als gemeinsame Lagekarte.
-              </div>
-              <div class="fleet-actions">
-                <button type="button" id="sectorArmyFleetButton" class="accent-button">Militaerische Lage</button>
-              </div>
-            </div>
 
             <div class="fleet-block">
               <div class="fleet-form-grid">
@@ -617,6 +599,7 @@
                 </div>
               </dl>
               <div id="planetDetailEvent" class="planet-event-card hidden"></div>
+              <div id="planetDetailReserve" class="detail-reserve hidden"></div>
               <div id="planetDetailNotes" class="detail-notes"></div>
             </div>
           </div>
@@ -661,6 +644,9 @@
             <div class="viewer-tools-intro">
               Fraktionen, Hyperraumrouten und Planeten mit Profil koennen hier direkt ein- oder ausgeblendet werden.
             </div>
+            <div class="viewer-tools-actions">
+              <button type="button" id="sectorArmyFleetButton" class="accent-button">Sektorarmee bearbeiten</button>
+            </div>
 
             <div class="filter-toolbar" role="group" aria-label="Kartenfilter">
               <button type="button" class="filter-chip" data-filter-key="republic" aria-pressed="true">Republik</button>
@@ -678,7 +664,7 @@
               <button type="button" class="filter-chip" data-filter-key="profiledOnly" aria-pressed="false">Nur mit
                 Profil</button>
               <button type="button" class="filter-chip military" data-filter-key="sectorArmies"
-                aria-pressed="false">Sektorarmeen &amp; Flottenlage</button>
+                aria-pressed="false">Sektorarmeen</button>
             </div>
 
             <div class="legend-grid" aria-label="Kartenlegende">
@@ -726,7 +712,7 @@
                 <span class="legend-swatch sector-army" aria-hidden="true"></span>
                 <div class="legend-copy">
                   <strong>Sektorarmee</strong>
-                  <span>OOC-Flottenlage mit Gebiet, Reserve und Detailpanel.</span>
+                  <span>Sektorarmeegebiete mit Reserve- und Detailansicht.</span>
                 </div>
               </article>
             </div>
@@ -894,12 +880,6 @@
         </svg>
         <span class="menu-label">Hyperraum</span>
       </button>
-      <button type="button" class="mobile-menu-tile" data-mobile-open="fleet">
-        <svg class="menu-icon" aria-hidden="true">
-          <use href="#icon-fleet"></use>
-        </svg>
-        <span class="menu-label">Flotten</span>
-      </button>
       <button type="button" class="mobile-menu-tile has-badge" data-mobile-open="news">
         <svg class="menu-icon" aria-hidden="true">
           <use href="#icon-news"></use>
@@ -932,11 +912,11 @@
   <script defer src="three-loader.js"></script>
   <script defer src="config.js"></script>
   <script defer src="planets.js"></script>
-  <script defer src="data/sector-armies.js?v=1"></script>
-  <script defer src="data/sector-army-territories.js?v=1"></script>
-  <script defer src="admin.js?v=readonly-map-access-1"></script>
-  <script defer src="script.js?v=planet-world-profile-1"></script>
-  <script defer src="planet-map-system.js?v=readonly-map-access-1"></script>
+  <script defer src="data/sector-armies.js?v=5-faction-editor"></script>
+  <script defer src="data/sector-army-territories.js?v=5-faction-editor"></script>
+  <script defer src="admin.js?v=readonly-map-access-3"></script>
+  <script defer src="script.js?v=sector-army-factions-8"></script>
+  <script defer src="planet-map-system.js?v=readonly-map-access-3"></script>
 </body>
 
 </html>

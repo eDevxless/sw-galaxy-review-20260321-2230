@@ -1,6 +1,6 @@
 // Admin-UI fuer die Star-Wars-Map. Wird auf jeder Seite geladen, aktiviert
-// sich aber nur, wenn ein gueltiges Token im localStorage liegt oder der
-// User die URL ?admin=1 oeffnet.
+// sich aber nur, wenn ein gueltiges Token vorliegt und der User die URL
+// ?admin=1 oeffnet.
 
 (function () {
   const TOKEN_STORAGE_KEY = "swmap_admin_token";
@@ -49,12 +49,13 @@
 
   function initialToken() {
     const token = sessionStorage.getItem(TOKEN_STORAGE_KEY) || "";
-    if (tokenLooksCurrent(token)) return token;
+    if (urlHasAdminFlag() && tokenLooksCurrent(token)) return token;
     if (token) sessionStorage.removeItem(TOKEN_STORAGE_KEY);
     return "";
   }
 
   function isAdmin() {
+    if (!urlHasAdminFlag()) return false;
     if (tokenLooksCurrent(state.token)) return true;
     if (state.token) saveToken("");
     return false;
@@ -147,15 +148,6 @@
         }
         saveToken(json.token);
         close();
-        // URL aufraeumen, damit das Passwort nicht weitergeteilt wird.
-        const params = new URLSearchParams(window.location.search);
-        params.delete(ADMIN_QUERY_FLAG);
-        const cleanQs = params.toString();
-        history.replaceState(
-          null,
-          "",
-          window.location.pathname + (cleanQs ? `?${cleanQs}` : "") + window.location.hash
-        );
       } catch (e) {
         errorEl.textContent = `Netzwerkfehler: ${e?.message || e}`;
         submitBtn.disabled = false;

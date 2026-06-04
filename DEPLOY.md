@@ -22,6 +22,7 @@ Netlify (GUI):
 
 Vercel:
 - Run `vercel` from repo root and follow prompts. `vercel.json` currently sets `outputDirectory` to `.` so it will deploy repository root; prefer to select the `Website` folder as root when deploying interactively.
+- After deployment, open the admin view at `https://star-wars-galaxy-map-alpha.vercel.app/?admin=1`.
 
 Notes:
 - This project is primarily static files. There is no build script in `package.json`.

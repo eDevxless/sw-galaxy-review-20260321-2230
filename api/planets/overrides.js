@@ -13,9 +13,8 @@ module.exports = async function handler(req, res) {
     res.setHeader("Cache-Control", "public, max-age=10, s-maxage=30");
     res.status(200).json({ overrides: data });
   } catch (e) {
-    res.status(500).json({
-      error: "Failed to load overrides",
-      detail: String(e?.message || e),
-    });
+    console.error("[planet-overrides] falling back to empty overrides:", e?.message || e);
+    res.setHeader("Cache-Control", "no-store");
+    res.status(200).json({ overrides: {}, warning: "Overrides store unavailable" });
   }
 };

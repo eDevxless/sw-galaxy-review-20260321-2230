@@ -758,7 +758,7 @@ function applyLandmassPercent(heights) {
 }
 
 function isPlanetWorldEditor() {
-  return window.location.pathname.includes("/planet-world-editor/");
+  return /(?:^|\/)planet-world-editor\/?$/i.test(window.location.pathname.replace(/\\/g, "/"));
 }
 
 function applyPlanetWorldEditorSettlements() {
@@ -840,10 +840,19 @@ function setupPlanetWorldEditorReadOnlyMode() {
 
   if (document.body.dataset.planetWorldReadOnlyReady) return;
   document.body.dataset.planetWorldReadOnlyReady = "1";
+  document.addEventListener("beforeinput", blockPlanetWorldReadOnlyEvent, true);
   document.addEventListener("click", blockPlanetWorldReadOnlyEvent, true);
   document.addEventListener("input", blockPlanetWorldReadOnlyEvent, true);
   document.addEventListener("change", blockPlanetWorldReadOnlyEvent, true);
   document.addEventListener("keydown", blockPlanetWorldReadOnlyEvent, true);
+  document.addEventListener("paste", blockPlanetWorldReadOnlyEvent, true);
+  document.addEventListener("cut", blockPlanetWorldReadOnlyEvent, true);
+  document.addEventListener("drop", blockPlanetWorldReadOnlyEvent, true);
+  document.addEventListener("dragstart", blockPlanetWorldReadOnlyEvent, true);
+  document.addEventListener("pointerdown", blockPlanetWorldReadOnlyEvent, true);
+  document.addEventListener("mousedown", blockPlanetWorldReadOnlyEvent, true);
+  document.addEventListener("dblclick", blockPlanetWorldReadOnlyEvent, true);
+  document.addEventListener("contextmenu", blockPlanetWorldReadOnlyEvent, true);
   new MutationObserver(applyPlanetWorldReadOnlyControls).observe(document.body, {childList: true, subtree: true});
 }
 
@@ -865,6 +874,19 @@ function injectPlanetWorldReadOnlyStyles() {
     body.planet-world-readonly #saveButton,
     body.planet-world-readonly #loadButton {
       display: none !important;
+    }
+
+    body.planet-world-readonly input,
+    body.planet-world-readonly select,
+    body.planet-world-readonly textarea,
+    body.planet-world-readonly slider-input,
+    body.planet-world-readonly [contenteditable="true"] {
+      cursor: not-allowed !important;
+    }
+
+    body.planet-world-readonly #map,
+    body.planet-world-readonly #viewbox {
+      cursor: default !important;
     }
 
     body.planet-world-readonly #planetWorldReadOnlyBadge {
@@ -889,16 +911,28 @@ function injectPlanetWorldReadOnlyStyles() {
 function applyPlanetWorldReadOnlyControls() {
   if (!planetWorldEditorIsReadOnly()) return;
   const protectedSelectors = [
-    "#toolsContent input", "#toolsContent select", "#toolsContent textarea", "#toolsContent button",
-    "#styleContent input", "#styleContent select", "#styleContent textarea", "#styleContent button", "#styleContent slider-input",
-    "#optionsContent input", "#optionsContent select", "#optionsContent textarea", "#optionsContent button", "#optionsContent slider-input",
-    "#customizationMenu input", "#customizationMenu select", "#customizationMenu textarea", "#customizationMenu button",
-    "#newMapButton", "#exportButton", "#saveButton", "#loadButton", "#regenerate"
+    "input",
+    "select",
+    "textarea",
+    "button",
+    "slider-input",
+    "[contenteditable='true']",
+    "[contenteditable='']",
+    "[role='button']",
+    "#mapLayers > li",
+    "#layersContent li",
+    "#layersContent .button",
+    "#layersContent .buttonoff",
+    "#burgEditor .burgFeature",
+    "#burgEditor [data-feature]",
+    "#burgEditor [id^='burg'][class*='icon-']"
   ];
   document.querySelectorAll(protectedSelectors.join(",")).forEach(element => {
-    if (element.id === "planetWorldReturnButton") return;
+    if (isPlanetWorldReadOnlyAllowedTarget(element)) return;
     element.setAttribute("aria-disabled", "true");
     if ("disabled" in element) element.disabled = true;
+    if (element.hasAttribute("contenteditable")) element.setAttribute("contenteditable", "false");
+    if (element.matches("input, textarea")) element.readOnly = true;
   });
 
   if (!document.getElementById("planetWorldReadOnlyBadge")) {
@@ -913,23 +947,44 @@ function blockPlanetWorldReadOnlyEvent(event) {
   if (!planetWorldEditorIsReadOnly()) return;
   const target = event.target;
   if (!(target instanceof Element)) return;
-  if (!isPlanetWorldReadOnlyProtectedTarget(target)) return;
+  if (!isPlanetWorldReadOnlyProtectedTarget(target, event.type)) return;
 
   event.preventDefault();
   event.stopPropagation();
+  if (typeof event.stopImmediatePropagation === "function") event.stopImmediatePropagation();
   if (typeof tip === "function" && event.type === "click") {
     tip("Zuschauer-Modus: Bearbeiten ist nur fuer Admins moeglich", false, "warn");
   }
 }
 
-function isPlanetWorldReadOnlyProtectedTarget(target) {
-  if (target.closest("#planetWorldReturnButton, #planetWorldReadOnlyBadge, #optionsHide, #optionsTrigger, #layersTab, #aboutTab, #zoomReset")) {
-    return false;
-  }
+function planetWorldReadOnlyAllowedSelector() {
+  return [
+    "#planetWorldReturnButton",
+    "#planetWorldReadOnlyBadge",
+    "#optionsHide",
+    "#optionsTrigger",
+    "#layersTab",
+    "#aboutTab",
+    "#zoomReset",
+    ".ui-dialog-titlebar-close"
+  ].join(", ");
+}
+
+function isPlanetWorldReadOnlyAllowedTarget(target) {
+  return Boolean(target.closest(planetWorldReadOnlyAllowedSelector()));
+}
+
+function isPlanetWorldReadOnlyProtectedTarget(target, eventType = "") {
+  if (isPlanetWorldReadOnlyAllowedTarget(target)) return false;
+  if (target.closest("input, select, textarea, button, slider-input, [contenteditable], [role='button']")) return true;
   if (target.closest("#toolsContent, #styleContent, #optionsContent, #customizationMenu")) return true;
+  if (target.closest("#mapLayers, #layersContent")) return true;
+  if (target.closest("#burgEditor .burgFeature, #burgEditor [data-feature], #burgEditor [id^='burg'][class*='icon-']")) return true;
+  if (target.closest(".ui-dialog, .dialog, .context-menu, .stable")) return true;
   if (target.closest("#newMapButton, #exportButton, #saveButton, #loadButton, #regenerate")) return true;
   if (target.closest("[id^='edit'], [id^='add'], [id^='regenerate']")) return true;
-  if (target.matches("input, select, textarea, slider-input") && target.closest("#options")) return true;
+  if (target.closest("[id$='Editor'], [id*='Editor'], [class*='editor'], [class*='Editor']")) return true;
+  if (["pointerdown", "mousedown", "dblclick", "contextmenu", "dragstart"].includes(eventType) && target.closest("#map, #viewbox")) return true;
   return false;
 }
 
@@ -1052,6 +1107,11 @@ function setupPlanetWorldEditorPopulationControl() {
 
 function applyPlanetWorldPopulationFromControl() {
   if (!isPlanetWorldEditor()) return;
+  if (planetWorldEditorIsReadOnly()) {
+    updatePlanetWorldPopulationOutput(null, "Zuschauer-Modus");
+    if (typeof tip === "function") tip("Zuschauer-Modus: Bearbeiten ist nur fuer Admins moeglich", false, "warn");
+    return;
+  }
 
   setupPlanetWorldEditorPopulationControl();
   const input = document.getElementById("planetWorldPopulationInput");

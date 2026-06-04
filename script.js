@@ -7,7 +7,7 @@ const PLANET_OVERRIDES_STORAGE_KEY = "sw-galaxy-map-planet-overrides-v1";
 const FLEET_DEFAULT_PROFILE_NAME = "Lokaler Kommandant";
 const FLEET_SYNC_DEBOUNCE_MS = 850;
 const NEWS_READ_STORAGE_KEY = "sw-galaxy-map-news-read-v1";
-const SECTOR_ARMY_TERRITORY_STORAGE_KEY = "sw-galaxy-map-sector-army-territories-v1";
+const SECTOR_ARMY_TERRITORY_STORAGE_KEY = "sw-galaxy-map-sector-army-territories-v3-reference-layout";
 const SECTOR_ARMY_DATA_STORAGE_KEY = "sw-galaxy-map-sector-armies-drafts-v1";
 // Remove legacy/dev URL flags that could be used to accidentally enable editor features.
 (function sanitizeDevParams() {
@@ -247,15 +247,15 @@ const FACTION_MAIN_PLANETS = {
 const SECTOR_ARMY_STATUS_META = {
   "republic-secured": {
     label: "Republik gesichert",
-    fill: "rgba(140, 198, 255, 0.19)",
-    stroke: "rgba(229, 245, 255, 0.86)",
-    glow: "rgba(119, 196, 255, 0.32)",
+    fill: "rgba(222, 52, 73, 0.2)",
+    stroke: "rgba(255, 150, 164, 0.88)",
+    glow: "rgba(255, 68, 92, 0.34)",
   },
   "republic-leaning": {
     label: "Republik-Vorteil",
-    fill: "rgba(88, 176, 255, 0.17)",
-    stroke: "rgba(120, 207, 255, 0.82)",
-    glow: "rgba(88, 176, 255, 0.26)",
+    fill: "rgba(190, 44, 72, 0.18)",
+    stroke: "rgba(255, 116, 139, 0.84)",
+    glow: "rgba(255, 70, 103, 0.28)",
   },
   contested: {
     label: "Umkämpft",
@@ -265,9 +265,9 @@ const SECTOR_ARMY_STATUS_META = {
   },
   "cis-pressure": {
     label: "KUS-Druckraum",
-    fill: "rgba(255, 91, 76, 0.16)",
-    stroke: "rgba(255, 159, 96, 0.86)",
-    glow: "rgba(255, 111, 69, 0.32)",
+    fill: "rgba(44, 121, 255, 0.18)",
+    stroke: "rgba(118, 188, 255, 0.88)",
+    glow: "rgba(60, 142, 255, 0.34)",
   },
   reserve: {
     label: "Strategische Reserve",
@@ -276,6 +276,60 @@ const SECTOR_ARMY_STATUS_META = {
     glow: "rgba(232, 189, 104, 0.36)",
   },
 };
+const SECTOR_ARMY_FACTION_LABELS = {
+  republic: "Republik",
+  cis: "KUS",
+};
+const SECTOR_ARMY_FACTION_BY_ID = {
+  1: "republic",
+  2: "republic",
+  3: "republic",
+  4: "republic",
+  5: "republic",
+  6: "republic",
+  7: "cis",
+  8: "republic",
+  9: "cis",
+  10: "cis",
+  11: "cis",
+  12: "cis",
+  13: "cis",
+  14: "cis",
+  15: "cis",
+  16: "republic",
+  17: "cis",
+  18: "cis",
+  19: "cis",
+  20: "republic",
+};
+const SECTOR_ARMY_REPUBLIC_PALETTE = [
+  { fill: "rgba(255, 35, 72, 0.56)", stroke: "rgba(255, 150, 165, 1)", glow: "rgba(255, 45, 82, 0.52)", labelFill: "rgba(255, 224, 229, 0.98)" },
+  { fill: "rgba(207, 26, 55, 0.58)", stroke: "rgba(255, 105, 132, 1)", glow: "rgba(226, 43, 74, 0.5)", labelFill: "rgba(255, 214, 222, 0.98)" },
+  { fill: "rgba(163, 31, 61, 0.6)", stroke: "rgba(237, 89, 122, 1)", glow: "rgba(196, 43, 78, 0.48)", labelFill: "rgba(255, 205, 216, 0.98)" },
+  { fill: "rgba(238, 76, 96, 0.54)", stroke: "rgba(255, 176, 186, 1)", glow: "rgba(255, 82, 105, 0.48)", labelFill: "rgba(255, 231, 235, 0.98)" },
+  { fill: "rgba(185, 18, 43, 0.59)", stroke: "rgba(255, 91, 115, 1)", glow: "rgba(224, 38, 68, 0.5)", labelFill: "rgba(255, 210, 218, 0.98)" },
+  { fill: "rgba(255, 96, 118, 0.52)", stroke: "rgba(255, 196, 202, 1)", glow: "rgba(255, 102, 123, 0.46)", labelFill: "rgba(255, 235, 238, 0.98)" },
+  { fill: "rgba(135, 28, 48, 0.62)", stroke: "rgba(218, 80, 105, 1)", glow: "rgba(177, 38, 64, 0.46)", labelFill: "rgba(255, 201, 212, 0.98)" },
+  { fill: "rgba(226, 48, 83, 0.55)", stroke: "rgba(255, 126, 154, 1)", glow: "rgba(238, 62, 96, 0.5)", labelFill: "rgba(255, 219, 227, 0.98)" },
+  { fill: "rgba(245, 44, 48, 0.54)", stroke: "rgba(255, 143, 144, 1)", glow: "rgba(255, 62, 66, 0.48)", labelFill: "rgba(255, 225, 226, 0.98)" },
+  { fill: "rgba(174, 49, 82, 0.59)", stroke: "rgba(245, 111, 145, 1)", glow: "rgba(202, 57, 94, 0.48)", labelFill: "rgba(255, 211, 225, 0.98)" },
+  { fill: "rgba(210, 65, 55, 0.55)", stroke: "rgba(255, 149, 134, 1)", glow: "rgba(232, 76, 66, 0.48)", labelFill: "rgba(255, 224, 219, 0.98)" },
+  { fill: "rgba(152, 18, 35, 0.62)", stroke: "rgba(233, 77, 100, 1)", glow: "rgba(190, 34, 58, 0.48)", labelFill: "rgba(255, 207, 215, 0.98)" },
+];
+const SECTOR_ARMY_CIS_PALETTE = [
+  { fill: "rgba(26, 104, 255, 0.56)", stroke: "rgba(132, 199, 255, 1)", glow: "rgba(48, 132, 255, 0.52)", labelFill: "rgba(216, 238, 255, 0.98)" },
+  { fill: "rgba(14, 74, 190, 0.6)", stroke: "rgba(91, 162, 255, 1)", glow: "rgba(35, 113, 230, 0.5)", labelFill: "rgba(205, 229, 255, 0.98)" },
+  { fill: "rgba(26, 136, 226, 0.56)", stroke: "rgba(133, 219, 255, 1)", glow: "rgba(42, 162, 246, 0.48)", labelFill: "rgba(218, 245, 255, 0.98)" },
+  { fill: "rgba(15, 57, 151, 0.63)", stroke: "rgba(86, 141, 230, 1)", glow: "rgba(32, 88, 202, 0.5)", labelFill: "rgba(199, 222, 255, 0.98)" },
+  { fill: "rgba(42, 156, 255, 0.53)", stroke: "rgba(164, 226, 255, 1)", glow: "rgba(64, 181, 255, 0.46)", labelFill: "rgba(224, 248, 255, 0.98)" },
+  { fill: "rgba(38, 92, 234, 0.58)", stroke: "rgba(118, 177, 255, 1)", glow: "rgba(58, 123, 255, 0.5)", labelFill: "rgba(211, 234, 255, 0.98)" },
+  { fill: "rgba(17, 115, 202, 0.59)", stroke: "rgba(99, 201, 255, 1)", glow: "rgba(35, 146, 230, 0.48)", labelFill: "rgba(206, 241, 255, 0.98)" },
+  { fill: "rgba(22, 49, 126, 0.65)", stroke: "rgba(77, 126, 214, 1)", glow: "rgba(42, 82, 184, 0.5)", labelFill: "rgba(194, 216, 255, 0.98)" },
+  { fill: "rgba(50, 128, 255, 0.55)", stroke: "rgba(145, 199, 255, 1)", glow: "rgba(72, 151, 255, 0.48)", labelFill: "rgba(219, 239, 255, 0.98)" },
+  { fill: "rgba(8, 84, 162, 0.62)", stroke: "rgba(83, 174, 242, 1)", glow: "rgba(29, 119, 210, 0.48)", labelFill: "rgba(203, 234, 255, 0.98)" },
+  { fill: "rgba(32, 174, 235, 0.52)", stroke: "rgba(155, 232, 255, 1)", glow: "rgba(48, 197, 255, 0.44)", labelFill: "rgba(225, 249, 255, 0.98)" },
+  { fill: "rgba(25, 77, 215, 0.59)", stroke: "rgba(109, 162, 255, 1)", glow: "rgba(48, 110, 240, 0.48)", labelFill: "rgba(207, 229, 255, 0.98)" },
+];
 const REPUBLIC_SECTOR_FIELD_LABELS = {
   heavyCommand: "Schwere Kommandoschiffe",
   venator: "Venator",
@@ -301,6 +355,7 @@ const SECTOR_SHIP_AVAILABILITY_FIELDS = [
   { key: "locked", label: "Gesperrt", cssClass: "is-locked" },
 ];
 const SECTOR_SHIP_AVAILABILITY_KEYS = SECTOR_SHIP_AVAILABILITY_FIELDS.map((field) => field.key);
+const SECTOR_CUSTOM_SHIP_ROWS_KEY = "__customRows";
 // Zusaetzliche Welten an denen ein Underworld-Banner erzwungen wird,
 // auch wenn sie geographisch isoliert sind. Nutzt das gleiche Anker-System
 // wie FACTION_MAIN_PLANETS — wird zusaetzlich angewandt.
@@ -981,6 +1036,7 @@ const planetDetailRefs = {
   wiki: planetDetailWiki,
   event: planetDetailEvent,
   notes: planetDetailNotes,
+  reserve: planetDetailReserve,
   media: planetDetailMedia,
   orbitSlot: planetDetailOrbitSlot,
   mapSlot: planetDetailMapSlot,
@@ -1131,6 +1187,7 @@ const state = {
     shipTableEditId: null,
     labelMode: false,
     modifyMode: false,
+    insertPointMode: false,
     // editor mode: 'view' | 'sector' | 'vertex' | 'curve'
     mode: "view",
     validation: [],
@@ -1361,13 +1418,19 @@ function rawSectorArmies() {
     const rawDraft = localStorage.getItem(SECTOR_ARMY_DATA_STORAGE_KEY);
     const drafts = rawDraft ? JSON.parse(rawDraft) : [];
     const draftById = new Map(Array.isArray(drafts) ? drafts.map((d) => [Number(d?.id), d]) : []);
-    return base.map((army) => {
+    const merged = base.map((army) => {
       const id = Number(army?.id);
       const draft = draftById.get(id);
       if (!draft) return army;
       // shallow merge republic/cis overrides
       return {
         ...army,
+        ...draft,
+        display: {
+          ...(army.display || {}),
+          ...(draft.display || {}),
+          ...(draft.name && !draft.display?.title ? { title: `${id}. Sektorarmee - ${draft.name}` } : {}),
+        },
         republic: { ...(army.republic || {}), ...(draft.republic || {}) },
         cis: { ...(army.cis || {}), ...(draft.cis || {}) },
         fleetTables: {
@@ -1376,6 +1439,28 @@ function rawSectorArmies() {
         },
       };
     });
+    const baseIds = new Set(base.map((army) => Number(army?.id)));
+    const customArmies = Array.isArray(drafts)
+      ? drafts
+        .filter((draft) => Number.isFinite(Number(draft?.id)) && !baseIds.has(Number(draft.id)) && !draft.deleted)
+        .map((draft) => ({
+          id: Number(draft.id),
+          name: String(draft.name || `Custom ${draft.id}`),
+          status: String(draft.status || "unbearbeitet"),
+          source: String(draft.source || "admin-local-draft"),
+          faction: String(draft.faction || "republic"),
+          display: {
+            numberLabel: String(draft.display?.numberLabel || draft.id),
+            title: String(draft.display?.title || `${draft.id}. Sektorarmee - ${draft.name || `Custom ${draft.id}`}`),
+            dominanceHint: String(draft.display?.dominanceHint || sectorArmyStatusMeta(draft.status).label),
+          },
+          republic: { total: 1, free: 1, ...(draft.republic || {}) },
+          cis: { total: 1, free: 1, ...(draft.cis || {}) },
+          fleetTables: { ...(draft.fleetTables || {}) },
+          notes: String(draft.notes || "Per Admin angelegte Sektorarmee."),
+        }))
+      : [];
+    return [...merged, ...customArmies].sort((left, right) => Number(left.id) - Number(right.id));
   } catch (_error) {
     return Array.isArray(window.SW_SECTOR_ARMIES) ? window.SW_SECTOR_ARMIES : [];
   }
@@ -1395,6 +1480,57 @@ function sectorArmyStatusMeta(status) {
     fill: "rgba(210, 219, 230, 0.12)",
     stroke: "rgba(210, 219, 230, 0.58)",
     glow: "rgba(210, 219, 230, 0.18)",
+  };
+}
+
+function normalizeSectorArmyFaction(value) {
+  const key = String(value || "").trim().toLowerCase();
+  if (key === "cis" || key === "kus" || key === "separatist" || key === "separatisten") return "cis";
+  if (key === "republic" || key === "republik") return "republic";
+  return "";
+}
+
+function sectorArmyFactionFromStatus(status) {
+  const key = String(status || "").trim().toLowerCase();
+  if (key.includes("cis") || key.includes("kus")) return "cis";
+  if (key.includes("republic") || key.includes("republik")) return "republic";
+  return "";
+}
+
+function sectorArmyFactionKey(army, territory = null) {
+  const explicit = normalizeSectorArmyFaction(territory?.faction || army?.faction);
+  if (explicit) return explicit;
+  const statusFaction = sectorArmyFactionFromStatus(sectorArmyTerritoryStatus(army, territory));
+  if (statusFaction) return statusFaction;
+  const mapped = SECTOR_ARMY_FACTION_BY_ID[Number(army?.id || territory?.id)];
+  if (mapped) return mapped;
+  const republicTotal = Number(army?.republic?.total || 0);
+  const cisTotal = Number(army?.cis?.total || 0);
+  return cisTotal > republicTotal ? "cis" : "republic";
+}
+
+function sectorArmyFactionLabel(army, territory = null) {
+  return SECTOR_ARMY_FACTION_LABELS[sectorArmyFactionKey(army, territory)] || "Unklar";
+}
+
+function sectorArmyFactionPaletteEntry(army, territory = null, paletteIndex = null) {
+  const faction = sectorArmyFactionKey(army, territory);
+  const palette = faction === "cis" ? SECTOR_ARMY_CIS_PALETTE : SECTOR_ARMY_REPUBLIC_PALETTE;
+  const explicitIndex = Number(paletteIndex);
+  const id = Math.max(1, Number(army?.id || territory?.id || 1));
+  const index = Number.isFinite(explicitIndex) ? Math.max(0, explicitIndex) : id - 1;
+  return {
+    faction,
+    ...palette[index % palette.length],
+  };
+}
+
+function sectorArmyVisualMeta(item) {
+  if (!item || item.kind === "strategicAsset") return sectorArmyStatusMeta(item?.status);
+  const factionMeta = sectorArmyFactionPaletteEntry(item.army, item.territory, item.factionOrdinal);
+  return {
+    ...sectorArmyStatusMeta(item.status),
+    ...factionMeta,
   };
 }
 
@@ -1513,6 +1649,11 @@ function sectorArmyTerritoryBaseList() {
       id: Number(army.id),
       name: String(base.name || army.name || `Sektorarmee ${army.id}`),
       status: String(base.status || army.status || ""),
+      faction:
+        normalizeSectorArmyFaction(base.faction || army.faction) ||
+        sectorArmyFactionFromStatus(base.status || army.status) ||
+        SECTOR_ARMY_FACTION_BY_ID[Number(army.id)] ||
+        "",
       labelPosition: sectorPointToTuple(labelPosition),
       polygon: polygon.map(sectorPointToTuple),
       curves: normalizeSectorCurves(base.curves, polygon),
@@ -1526,6 +1667,10 @@ function sectorArmyTerritoryBaseList() {
 
 function loadSectorArmyTerritoryDrafts() {
   if (Array.isArray(state.sectorArmyTerritoryDrafts)) return state.sectorArmyTerritoryDrafts;
+  if (!sectorArmyEditorAvailable()) {
+    state.sectorArmyTerritoryDrafts = [];
+    return state.sectorArmyTerritoryDrafts;
+  }
   try {
     const raw = localStorage.getItem(SECTOR_ARMY_TERRITORY_STORAGE_KEY);
     const parsed = raw ? JSON.parse(raw) : [];
@@ -1557,6 +1702,13 @@ function normalizeSectorTerritory(entry, army = null) {
     id,
     name: String(entry.name || army?.name || `Sektorarmee ${id}`),
     status: String(entry.status || army?.status || ""),
+    faction:
+      normalizeSectorArmyFaction(entry.faction) ||
+      sectorArmyFactionFromStatus(entry.status) ||
+      normalizeSectorArmyFaction(army?.faction) ||
+      sectorArmyFactionFromStatus(army?.status) ||
+      SECTOR_ARMY_FACTION_BY_ID[id] ||
+      "",
     labelPosition: sectorPointToTuple(labelPosition),
     polygon: polygon.map(sectorPointToTuple),
     curves: normalizeSectorCurves(entry.curves, polygon),
@@ -1571,6 +1723,7 @@ function normalizeSectorTerritory(entry, army = null) {
 
 function sectorArmyTerritories() {
   const base = sectorArmyTerritoryBaseList();
+  if (!sectorArmyEditorAvailable()) return base.filter((entry) => entry && !entry.deleted);
   const draftById = new Map(loadSectorArmyTerritoryDrafts().map((entry) => [Number(entry.id), entry]));
   return base
     .map((entry) => normalizeSectorTerritory({ ...entry, ...(draftById.get(Number(entry.id)) || {}) }, sectorArmyById(entry.id)))
@@ -1654,9 +1807,14 @@ function sectorArmyDisplayStatus(army, territory = null) {
   return String(army?.display?.dominanceHint || sectorArmyStatusMeta(status).label);
 }
 
+function sectorArmyTerritoryCenter(territory) {
+  const polygon = sectorArmyPolygonPoints(territory);
+  return polygonCentroidNorm(polygon) || normalizeSectorPoint(territory?.labelPosition) || { x: 0.5, y: 0.5 };
+}
+
 function sectorArmyItem(army, territory) {
   if (!army || !territory) return null;
-  const label = normalizeSectorPoint(territory.labelPosition) || polygonCentroidNorm(territory.polygon) || { x: 0.5, y: 0.5 };
+  const label = sectorArmyTerritoryCenter(territory);
   const status = sectorArmyTerritoryStatus(army, territory);
   return {
     kind: "sectorArmy",
@@ -1674,9 +1832,16 @@ function sectorArmyItem(army, territory) {
 
 function sectorArmyItems() {
   const territoryById = new Map(sectorArmyTerritories().map((entry) => [Number(entry.id), entry]));
+  const counters = {};
   return rawSectorArmies()
     .map((army) => sectorArmyItem(army, territoryById.get(Number(army.id))))
-    .filter(Boolean);
+    .filter(Boolean)
+    .map((item) => {
+      const faction = sectorArmyFactionKey(item.army, item.territory);
+      const ordinal = counters[faction] || 0;
+      counters[faction] = ordinal + 1;
+      return { ...item, factionOrdinal: ordinal };
+    });
 }
 
 function sectorArmyItemByKey(key) {
@@ -1718,7 +1883,7 @@ function visibleSectorArmyItems() {
 }
 
 function visibleStrategicFleetAssetItems() {
-  return sectorArmyLayerEnabled() ? strategicFleetAssetItems() : [];
+  return [];
 }
 
 function isSectorArmyLayerItem(item) {
@@ -1829,6 +1994,39 @@ function validateSectorAvailabilityInput(input) {
   return valid;
 }
 
+function sectorShipKeyFromLabel(label) {
+  const base = normalizeNameKey(label)
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 42);
+  return `custom-${base || createLocalId("ship-class")}`;
+}
+
+function normalizeSectorCustomShipRows(rows) {
+  if (!Array.isArray(rows)) return [];
+  const seen = new Set();
+  return rows
+    .map((row, index) => {
+      const rawLabel = String(row?.label || row?.name || row?.shipClass || "").trim();
+      const label = rawLabel || `Eigene Schiffsklasse ${index + 1}`;
+      let shipKey = String(row?.shipKey || row?.id || "").trim();
+      if (!shipKey || !shipKey.startsWith("custom-")) shipKey = sectorShipKeyFromLabel(label);
+      while (seen.has(shipKey)) shipKey = `${shipKey}-${seen.size + 1}`;
+      seen.add(shipKey);
+      const values = {};
+      SECTOR_SHIP_AVAILABILITY_KEYS.forEach((key) => {
+        values[key] = normalizeSectorAvailabilityQuantity(row?.values?.[key] ?? row?.[key]);
+      });
+      return {
+        shipKey,
+        label,
+        values,
+        isCustom: true,
+      };
+    })
+    .filter(Boolean);
+}
+
 function allocateSectorFreeCounts(entries, freeTotal) {
   const totals = entries.map((entry) => ({
     key: entry.shipKey,
@@ -1871,14 +2069,25 @@ function sectorFleetAvailabilityRows(army, factionKey) {
   const labels = sectorFleetFieldLabels(factionKey);
   const fleetData = army?.[dataKey] || {};
   const savedTable = army?.fleetTables?.[dataKey] || army?.fleetTables?.[factionKey] || {};
-  const entries = Object.entries(labels).map(([shipKey, label]) => ({
+  const standardEntries = Object.entries(labels).map(([shipKey, label]) => ({
     shipKey,
     label,
     totalBase: normalizeSectorAvailabilityQuantity(fleetData?.[shipKey]),
+    isCustom: false,
   }));
+  const customEntries = normalizeSectorCustomShipRows(savedTable?.[SECTOR_CUSTOM_SHIP_ROWS_KEY]).map((row) => ({
+    shipKey: row.shipKey,
+    label: row.label,
+    totalBase: SECTOR_SHIP_AVAILABILITY_KEYS.reduce((sum, key) => sum + normalizeSectorAvailabilityQuantity(row.values[key]), 0),
+    isCustom: true,
+  }));
+  const entries = [...standardEntries, ...customEntries];
   const freeAllocation = allocateSectorFreeCounts(entries, fleetData?.free);
   return entries.map((entry) => {
-    const saved = savedTable?.[entry.shipKey] && typeof savedTable[entry.shipKey] === "object" ? savedTable[entry.shipKey] : null;
+    const customSaved = customEntries.find((row) => row.shipKey === entry.shipKey);
+    const saved =
+      customSaved?.values ||
+      (savedTable?.[entry.shipKey] && typeof savedTable[entry.shipKey] === "object" ? savedTable[entry.shipKey] : null);
     const values = {};
     if (saved) {
       SECTOR_SHIP_AVAILABILITY_KEYS.forEach((key) => {
@@ -1921,13 +2130,23 @@ function sectorFleetAvailabilityTotals(rows) {
 
 function sectorFleetAvailabilityDraft(rows) {
   const table = {};
+  const customRows = [];
   (Array.isArray(rows) ? rows : []).forEach((row) => {
     const values = {};
     SECTOR_SHIP_AVAILABILITY_KEYS.forEach((key) => {
       values[key] = normalizeSectorAvailabilityQuantity(row?.values?.[key]);
     });
-    table[row.shipKey] = values;
+    if (row?.isCustom) {
+      customRows.push({
+        shipKey: String(row.shipKey || sectorShipKeyFromLabel(row.label)),
+        label: String(row.label || "Eigene Schiffsklasse"),
+        values,
+      });
+    } else {
+      table[row.shipKey] = values;
+    }
   });
+  if (customRows.length) table[SECTOR_CUSTOM_SHIP_ROWS_KEY] = customRows;
   return table;
 }
 
@@ -1973,6 +2192,31 @@ function sectorAvailabilityCellMarkup(id, factionKey, row, field, editable) {
   return `<span class="sector-availability-chip ${field.cssClass}">${formatFleetNumber(value)}</span>`;
 }
 
+function sectorShipClassHeaderMarkup(id, factionKey, row, editable) {
+  if (!editable || !row?.isCustom) return escapeHtml(row?.label || "");
+  return `
+    <div class="sector-ship-class-edit">
+      <input
+        type="text"
+        data-sector-ship-class-label="1"
+        data-sector-id="${Number(id)}"
+        data-sector-faction="${escapeHtml(sectorFleetDataKey(factionKey))}"
+        data-sector-ship-key="${escapeHtml(row.shipKey)}"
+        value="${escapeHtml(row.label || "")}"
+        aria-label="Schiffsklasse"
+      />
+      <button
+        type="button"
+        class="ghost-button compact sector-ship-remove"
+        data-sector-detail-action="remove-ship-class"
+        data-sector-id="${Number(id)}"
+        data-sector-faction="${escapeHtml(sectorFleetDataKey(factionKey))}"
+        data-sector-ship-key="${escapeHtml(row.shipKey)}"
+      >Entfernen</button>
+    </div>
+  `;
+}
+
 function sectorFleetAvailabilityTableMarkup(army, factionKey) {
   const id = Number(army?.id);
   const editable = isSectorArmyTableEditActive(id);
@@ -1982,7 +2226,7 @@ function sectorFleetAvailabilityTableMarkup(army, factionKey) {
     .map(
       (row) => `
         <tr>
-          <th scope="row">${escapeHtml(row.label)}</th>
+          <th scope="row">${sectorShipClassHeaderMarkup(id, factionKey, row, editable)}</th>
           ${SECTOR_SHIP_AVAILABILITY_FIELDS.map(
         (field) => `<td class="sector-availability-cell ${field.cssClass}">${sectorAvailabilityCellMarkup(id, factionKey, row, field, editable)}</td>`
       ).join("")}
@@ -2013,15 +2257,27 @@ function sectorFleetAvailabilityTableMarkup(army, factionKey) {
           </tr>
         </tfoot>
       </table>
+      ${editable
+      ? `<button type="button" class="ghost-button compact sector-ship-add" data-sector-detail-action="add-ship-class" data-sector-id="${Number(
+        id
+      )}" data-sector-faction="${escapeHtml(sectorFleetDataKey(factionKey))}">+ Schiffsklasse hinzufuegen</button>`
+      : ""}
     </div>
   `;
 }
 
-function sectorArmyDetailActionsMarkup(army) {
+function sectorArmyDetailActionsMarkup(army, territory = null) {
   if (!sectorArmyEditorAvailable()) return "";
   const id = Number(army?.id);
   const boundaryActive = isSectorArmyBoundaryEditActive(id);
   const tableActive = isSectorArmyTableEditActive(id);
+  const factionValue = sectorArmyFactionKey(army, territory);
+  const factionOptions = [
+    ["republic", "Republik"],
+    ["cis", "KUS"],
+  ]
+    .map(([key, label]) => `<option value="${key}" ${key === factionValue ? "selected" : ""}>${escapeHtml(label)}</option>`)
+    .join("");
   return `
     <div class="sector-army-admin-actions">
       <button type="button" class="ghost-button compact ${boundaryActive ? "is-active" : ""}" data-sector-detail-action="${boundaryActive ? "stop-boundary-edit" : "start-boundary-edit"
@@ -2032,13 +2288,31 @@ function sectorArmyDetailActionsMarkup(army) {
     }" data-sector-id="${id}">
         ${tableActive ? "Tabelle sperren" : "Schiffstabelle bearbeiten"}
       </button>
+      <button type="button" class="ghost-button compact" data-sector-detail-action="create-territory" data-sector-id="${id}">
+        Neues Gebiet
+      </button>
+      <div class="sector-army-name-edit">
+        <label for="sectorArmyNameInput-${id}">Name</label>
+        <div class="sector-army-name-edit-row">
+          <input id="sectorArmyNameInput-${id}" type="text" data-sector-detail-field="name" data-sector-id="${id}" value="${escapeHtml(army?.name || "")}" />
+          <button type="button" class="ghost-button compact" data-sector-detail-action="save-name" data-sector-id="${id}">
+            Speichern
+          </button>
+        </div>
+      </div>
+      <div class="sector-army-faction-edit">
+        <label for="sectorArmyFactionInput-${id}">Zugehoerigkeit</label>
+        <select id="sectorArmyFactionInput-${id}" data-sector-detail-field="faction" data-sector-id="${id}">
+          ${factionOptions}
+        </select>
+      </div>
     </div>
   `;
 }
 
 function sectorArmyDetailNotesMarkup(army, territory) {
   const notes = [territory?.notes, territory?.locked ? "Grenze ist gesperrt." : ""].filter(Boolean);
-  const actions = sectorArmyDetailActionsMarkup(army);
+  const actions = sectorArmyDetailActionsMarkup(army, territory);
   return `
     ${actions}
     ${notes.length ? `<div class="sector-army-notes">${notes.map((note) => `<p>${escapeHtml(note)}</p>`).join("")}</div>` : ""}
@@ -2090,6 +2364,43 @@ function sectorArmyBoundsPx(item) {
     width: Math.max(180, (bounds.right - bounds.left) * state.imageWidth),
     height: Math.max(180, (bounds.bottom - bounds.top) * state.imageHeight),
   };
+}
+
+function sectorArmyOverviewBoundsPx() {
+  if (!state.imageWidth || !state.imageHeight) return null;
+  // The sector-army layer is traced against the static galaxy image. Using the
+  // whole image as the overview keeps the same landscape map format on narrow
+  // portrait phones instead of letting the viewport aspect ratio create a
+  // different cropped sector-army framing.
+  return {
+    left: 0,
+    top: 0,
+    width: state.imageWidth,
+    height: state.imageHeight,
+  };
+}
+
+function focusSectorArmyOverview(immediate = true) {
+  if (!state.viewer || !state.imageWidth || !state.imageHeight) return false;
+  const tiledImage = state.viewer.world.getItemAt(0);
+  const bounds = sectorArmyOverviewBoundsPx();
+  if (!tiledImage || !bounds || typeof tiledImage.imageToViewportRectangle !== "function") return false;
+  const rect = tiledImage.imageToViewportRectangle(bounds.left, bounds.top, bounds.width, bounds.height);
+  state.viewer.viewport.fitBounds(rect, immediate);
+  scheduleOverlayRender();
+  return true;
+}
+
+function scheduleSectorArmyOverviewRefit(delays = [0, 180, 650]) {
+  sectorArmyOverviewRefitTimers.forEach((timer) => window.clearTimeout(timer));
+  sectorArmyOverviewRefitTimers = [];
+  if (!sectorArmyLayerEnabled() || state.sectorArmyEditor.enabled || state.viewMode !== "2d") return;
+  sectorArmyOverviewRefitTimers = delays.map((delay) =>
+    window.setTimeout(() => {
+      if (!sectorArmyLayerEnabled() || state.sectorArmyEditor.enabled || state.viewMode !== "2d") return;
+      if (focusSectorArmyOverview(true)) renderAll();
+    }, Math.max(0, Number(delay) || 0))
+  );
 }
 
 function sectorArmyItemAtNorm(point) {
@@ -2165,6 +2476,9 @@ function sectorArmyEditorAvailable() {
     state.sectorArmyEditor.enabled = false;
     state.sectorArmyEditor.modifyMode = false;
     state.sectorArmyEditor.labelMode = false;
+    state.sectorArmyEditor.dragging = null;
+    state.sectorArmyEditor.selectedPointIndex = -1;
+    state.sectorArmyEditor.mode = "view";
     state.sectorArmyEditor.shipTableEditId = null;
   }
   return available;
@@ -2177,6 +2491,7 @@ function clearSectorArmyEditModes() {
   state.sectorArmyEditor.dragging = null;
   state.sectorArmyEditor.selectedPointIndex = -1;
   state.sectorArmyEditor.shipTableEditId = null;
+  state.sectorArmyEditor.mode = "view";
 }
 
 function showSectorArmyConfirmDialog({ title, message, confirmLabel, cancelLabel = "Abbrechen" }) {
@@ -2240,12 +2555,17 @@ async function requestStartSectorArmyBoundaryEdit(id) {
     setStatus("Grenzbearbeitung ist nur im Adminzugang verfuegbar.");
     return false;
   }
+  if (state.viewMode === "3d") {
+    setStatus("Sektorarmee-Gebiete koennen nur im 2D-Modus bearbeitet werden.");
+    return false;
+  }
   if (state.mapMode === "underworld") {
     setStatus("Im Underworld-Modus bleibt der Sektorarmee-Layer ausgeblendet.");
     return false;
   }
   const numericId = Number(id);
-  if (!sectorArmyById(numericId)) return false;
+  const territoryId = Number.isFinite(numericId) && sectorArmyById(numericId) ? numericId : sectorArmyTerritories()[0]?.id;
+  if (!territoryId || !sectorArmyById(territoryId)) return false;
   const confirmed = await showSectorArmyConfirmDialog({
     title: "Grenzen bearbeiten?",
     message:
@@ -2253,11 +2573,12 @@ async function requestStartSectorArmyBoundaryEdit(id) {
     confirmLabel: "Bearbeitung starten",
   });
   if (!confirmed) return false;
-  state.sectorArmyEditor.selectedId = numericId;
+  state.sectorArmyEditor.selectedId = territoryId;
   state.sectorArmyEditor.enabled = true;
-  state.sectorArmyEditor.mode = "vertex";
-  state.sectorArmyEditor.modifyMode = true;
+  state.sectorArmyEditor.mode = "sector";
+  state.sectorArmyEditor.modifyMode = false;
   state.sectorArmyEditor.labelMode = false;
+  state.sectorArmyEditor.selectedPointIndex = -1;
   state.filters.sectorArmies = true;
   setStatus("Grenzbearbeitung fuer diese Sektorarmee aktiv.");
   renderAll();
@@ -2384,11 +2705,147 @@ function updateSectorArmyDataDraft(id, updater) {
       ...(next.cis || {}),
     };
   }
+  if (next.display || patch.display) {
+    next.display = {
+      ...(current.display || {}),
+      ...(existing.display || {}),
+      ...(next.display || {}),
+    };
+  }
   // save
   const filtered = drafts.filter((d) => Number(d.id) !== numericId);
   filtered.push(next);
   persistSectorArmyDataDrafts(filtered);
   return next;
+}
+
+function updateSectorArmyNameDraft(id, nameInput) {
+  const numericId = Number(id);
+  const name = String(nameInput || "").trim();
+  if (!Number.isFinite(numericId) || !name) {
+    setStatus("Name darf nicht leer sein.");
+    return null;
+  }
+  const numberLabel = String(sectorArmyById(numericId)?.display?.numberLabel || numericId);
+  updateSectorArmyTerritoryDraft(numericId, { name });
+  const draft = updateSectorArmyDataDraft(numericId, {
+    name,
+    display: {
+      numberLabel,
+      title: `${numericId}. Sektorarmee - ${name}`,
+    },
+  });
+  setStatus("Sektorarmee-Name gespeichert.");
+  return draft;
+}
+
+function updateSectorArmyFactionDraft(id, factionInput) {
+  const numericId = Number(id);
+  const faction = normalizeSectorArmyFaction(factionInput);
+  if (!Number.isFinite(numericId) || !faction) {
+    setStatus("Zugehoerigkeit muss Republik oder KUS sein.");
+    return null;
+  }
+  const label = SECTOR_ARMY_FACTION_LABELS[faction] || faction;
+  updateSectorArmyTerritoryDraft(numericId, { faction });
+  const draft = updateSectorArmyDataDraft(numericId, {
+    faction,
+    display: {
+      dominanceHint: `${label} zugeordnet`,
+    },
+  });
+  setStatus(`Sektorarmee-Zugehoerigkeit auf ${label} gesetzt.`);
+  return draft;
+}
+
+function nextSectorArmyId() {
+  const ids = [
+    ...rawSectorArmies().map((army) => Number(army?.id)),
+    ...loadSectorArmyTerritoryDrafts().map((territory) => Number(territory?.id)),
+  ].filter(Number.isFinite);
+  return ids.length ? Math.max(...ids) + 1 : 1;
+}
+
+function currentViewportCenterNorm() {
+  try {
+    if (state.viewer?.viewport && state.viewer?.world?.getItemAt(0)) {
+      const center = state.viewer.viewport.getCenter(true);
+      const imagePoint = state.viewer.viewport.viewportToImageCoordinates(center);
+      return normalizeSectorPoint({
+        x: imagePoint.x / Math.max(1, state.imageWidth),
+        y: imagePoint.y / Math.max(1, state.imageHeight),
+      });
+    }
+  } catch (_error) {
+    // Fall back to selected/current grid below.
+  }
+  const selected = selectedDetailItem();
+  if (selected && Number.isFinite(Number(selected.x)) && Number.isFinite(Number(selected.y))) {
+    return normalizeSectorPoint({ x: selected.x, y: selected.y });
+  }
+  const bounds = gridBoundsPx(state.currentGrid);
+  if (bounds && state.imageWidth && state.imageHeight) {
+    return normalizeSectorPoint({
+      x: (bounds.left + bounds.width / 2) / state.imageWidth,
+      y: (bounds.top + bounds.height / 2) / state.imageHeight,
+    });
+  }
+  return { x: 0.5, y: 0.5 };
+}
+
+function createSectorArmyStarterPolygon(center) {
+  const point = normalizeSectorPoint(center) || { x: 0.5, y: 0.5 };
+  const size = 0.035;
+  return [
+    [clamp01(point.x), clamp01(point.y - size)],
+    [clamp01(point.x + size), clamp01(point.y)],
+    [clamp01(point.x), clamp01(point.y + size)],
+    [clamp01(point.x - size), clamp01(point.y)],
+  ];
+}
+
+function createSectorArmyDraft() {
+  const id = nextSectorArmyId();
+  const center = currentViewportCenterNorm();
+  const name = `Neue Sektorarmee ${id}`;
+  const armyDraft = {
+    id,
+    name,
+    status: "unbearbeitet",
+    faction: "republic",
+    source: "admin-local-draft",
+    display: {
+      numberLabel: String(id),
+      title: `${id}. Sektorarmee - ${name}`,
+      dominanceHint: "Lage offen",
+    },
+    republic: { total: 1, free: 1 },
+    cis: { total: 1, free: 1 },
+    notes: "Per Admin angelegte Sektorarmee.",
+  };
+  setSectorArmyDataDraft(armyDraft);
+  setSectorArmyTerritoryDraft({
+    id,
+    name,
+    status: "unbearbeitet",
+    faction: "republic",
+    labelPosition: sectorPointToTuple(center),
+    polygon: createSectorArmyStarterPolygon(center),
+    curves: {},
+    anchorPlanets: [],
+    locked: false,
+    deleted: false,
+    notes: "Neues Admin-Gebiet. Punkte verschieben, Anker setzen und Status vergeben.",
+  });
+  state.filters.sectorArmies = true;
+  state.sectorArmyEditor.selectedId = id;
+  state.sectorArmyEditor.enabled = true;
+  state.sectorArmyEditor.mode = "sector";
+  state.sectorArmyEditor.modifyMode = false;
+  state.sectorArmyEditor.labelMode = false;
+  state.sectorArmyEditor.selectedPointIndex = -1;
+  state.sectorArmyEditor.validation = [];
+  return sectorArmyItemByKey(`sector-army-${id}`);
 }
 
 function resetSectorArmyDataDrafts() {
@@ -2538,7 +2995,8 @@ function setSectorArmyEditorSelectedId(id) {
 }
 
 function setSectorArmyEditorLabelPosition(point) {
-  const normalized = normalizeSectorPoint(point);
+  const territory = selectedSectorArmyEditorTerritory();
+  const normalized = sectorArmyTerritoryCenter(territory) || normalizeSectorPoint(point);
   if (!normalized) return;
   pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
   updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, {
@@ -2546,17 +3004,21 @@ function setSectorArmyEditorLabelPosition(point) {
   });
   state.sectorArmyEditor.labelMode = false;
   state.sectorArmyEditor.validation = [];
-  setStatus("Sektorarmee-Labelposition gesetzt.");
+  setStatus("Sektorarmee-Label bleibt in der Gebietsmitte.");
 }
 
 function addSectorArmyEditorPoint(point) {
   const normalized = normalizeSectorPoint(point);
   if (!normalized) return;
+  if (selectedSectorArmyEditorTerritory()?.locked) {
+    setStatus("Dieser Sektorarmee-Layer ist gesperrt.");
+    return;
+  }
   pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
   const next = updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, (territory) => {
     const polygon = sectorArmyPolygonPoints(territory).map(sectorPointToTuple);
     polygon.push(sectorPointToTuple(normalized));
-    return { polygon };
+    return { polygon, labelPosition: sectorPointToTuple(polygonCentroidNorm(polygon) || normalized) };
   });
   state.sectorArmyEditor.selectedPointIndex = Math.max(0, (next?.polygon?.length || 1) - 1);
   state.sectorArmyEditor.validation = [];
@@ -2565,6 +3027,10 @@ function addSectorArmyEditorPoint(point) {
 
 function removeSectorArmyEditorPoint(index = state.sectorArmyEditor.selectedPointIndex) {
   const territory = selectedSectorArmyEditorTerritory();
+  if (territory?.locked) {
+    setStatus("Dieser Sektorarmee-Layer ist gesperrt.");
+    return;
+  }
   const polygon = sectorArmyPolygonPoints(territory).map(sectorPointToTuple);
   const removeIndex = Number.isInteger(index) && index >= 0 ? index : polygon.length - 1;
   if (removeIndex < 0 || removeIndex >= polygon.length) return;
@@ -2582,7 +3048,11 @@ function removeSectorArmyEditorPoint(index = state.sectorArmyEditor.selectedPoin
     curves[String(nextIndex)] = curve;
   });
   polygon.splice(removeIndex, 1);
-  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { polygon, curves });
+  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, {
+    polygon,
+    curves,
+    labelPosition: sectorPointToTuple(polygonCentroidNorm(polygon) || sectorArmyTerritoryCenter(territory)),
+  });
   state.sectorArmyEditor.selectedPointIndex = Math.min(removeIndex, polygon.length - 1);
   state.sectorArmyEditor.validation = [];
   setStatus("Polygonpunkt entfernt.");
@@ -2616,9 +3086,37 @@ function findNearestSectorSegment(territory, point) {
   return { index: bestIndex, distanceSq: bestDist };
 }
 
+function findNearestSectorArmyEditorPoint(point, options = {}) {
+  const territory = options.territory || selectedSectorArmyEditorTerritory();
+  const normalized = normalizeSectorPoint(point);
+  const polygon = sectorArmyPolygonPoints(territory);
+  if (!territory || !normalized || !polygon.length) return { index: -1, distancePx: Number.POSITIVE_INFINITY };
+  const metrics = currentOverlayMetrics();
+  const scale = Math.max(metrics.screenScale || 1, 0.001);
+  const imageWidth = Math.max(state.imageWidth || 1, 1);
+  const imageHeight = Math.max(state.imageHeight || 1, 1);
+  const thresholdPx = Number.isFinite(options.thresholdPx) ? Number(options.thresholdPx) : 22;
+  let bestIndex = -1;
+  let bestDist = Number.POSITIVE_INFINITY;
+  polygon.forEach((candidate, index) => {
+    const dx = (candidate.x - normalized.x) * imageWidth * scale;
+    const dy = (candidate.y - normalized.y) * imageHeight * scale;
+    const distance = Math.hypot(dx, dy);
+    if (distance < bestDist) {
+      bestDist = distance;
+      bestIndex = index;
+    }
+  });
+  return bestDist <= thresholdPx ? { index: bestIndex, distancePx: bestDist } : { index: -1, distancePx: bestDist };
+}
+
 function insertSectorArmyEditorPointAtSegment(index, point) {
   const territory = selectedSectorArmyEditorTerritory();
   if (!territory) return null;
+  if (territory.locked) {
+    setStatus("Dieser Sektorarmee-Layer ist gesperrt.");
+    return null;
+  }
   const polygon = sectorArmyPolygonPoints(territory).map(sectorPointToTuple);
   const insertIndex = Math.min(Math.max(0, Number(index) + 1), polygon.length);
   pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
@@ -2630,7 +3128,11 @@ function insertSectorArmyEditorPointAtSegment(index, point) {
     curves[String(nextIndex)] = curve;
   });
   polygon.splice(insertIndex, 0, sectorPointToTuple(point));
-  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, { polygon, curves });
+  updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, {
+    polygon,
+    curves,
+    labelPosition: sectorPointToTuple(polygonCentroidNorm(polygon) || point),
+  });
   state.sectorArmyEditor.selectedPointIndex = insertIndex;
   state.sectorArmyEditor.validation = [];
   setStatus("Polygonpunkt eingefuegt.");
@@ -2639,38 +3141,51 @@ function insertSectorArmyEditorPointAtSegment(index, point) {
 }
 
 function beginSectorArmyEditorDrag(event, type, pointIndex = -1, handleKey = "") {
-  if (!state.sectorArmyEditor.enabled) return;
+  if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId) || state.mapMode === "underworld") return;
+  if (state.viewMode === "3d") {
+    setStatus("Sektorarmee-Gebiete koennen nur im 2D-Modus bearbeitet werden.");
+    return;
+  }
+  if (selectedSectorArmyEditorTerritory()?.locked) {
+    setStatus("Dieser Sektorarmee-Layer ist gesperrt.");
+    return;
+  }
   // Gate allowed drag types by explicit editor mode (or Alt to override).
   const mode = state.sectorArmyEditor.mode || "view";
   const allowed = new Set();
   if (mode === "sector") {
+    allowed.add("point");
     allowed.add("translate");
+    allowed.add("segment");
   } else if (mode === "vertex") {
     allowed.add("point");
+    allowed.add("segment");
     allowed.add("label");
   } else if (mode === "curve") {
+    allowed.add("point");
     allowed.add("curve");
     allowed.add("curve-handle");
   }
   if (!allowed.has(type) && !event.altKey) return;
   event.preventDefault();
   event.stopPropagation();
+  const startPoint = clientToImageNorm(event.clientX, event.clientY);
+  if (!startPoint) return;
   const dragging = {
     type,
     pointIndex,
     handleKey,
     pointerId: event.pointerId,
+    startPoint,
   };
   // record undo snapshot at drag start to avoid polluting stack on every pointermove
-  if (type === "point" || type === "label" || type === "translate" || type === "curve" || type === "curve-handle") {
+  if (type === "point" || type === "segment" || type === "label" || type === "translate" || type === "curve" || type === "curve-handle") {
     pushSectorArmyEditorUndo(state.sectorArmyEditor.selectedId);
   }
   if (type === "translate") {
-    // capture the polygon snapshot and start client position for delta calculation
     const territory = selectedSectorArmyEditorTerritory();
-    dragging.startClientX = event.clientX;
-    dragging.startClientY = event.clientY;
     dragging.originalPolygon = sectorArmyPolygonPoints(territory).map((p) => sectorPointToTuple(p));
+    dragging.originalLabel = normalizeSectorPoint(territory?.labelPosition);
     dragging.originalCurves = JSON.parse(JSON.stringify(territory?.curves || {}));
   }
   state.sectorArmyEditor.dragging = dragging;
@@ -2772,13 +3287,43 @@ function setSectorArmyCurveHandle(segmentIndex, handleKey, point, options = {}) 
 
 let sectorEditorDragFrame = 0;
 let sectorEditorLastPointerEvent = null;
+let lastSectorArmyLayerPointerAt = 0;
+let sectorArmyOverviewRefitTimers = [];
+
+function markSectorArmyLayerPointer(event) {
+  lastSectorArmyLayerPointerAt = Date.now();
+  if (event) {
+    event.__swSectorArmyLayerHandled = true;
+  }
+}
+
+function absorbSectorArmyLayerEvent(event) {
+  markSectorArmyLayerPointer(event);
+  event?.preventDefault?.();
+  event?.stopPropagation?.();
+  event?.stopImmediatePropagation?.();
+}
+
+function isRecentSectorArmyLayerPointer(originalEvent) {
+  if (originalEvent?.__swSectorArmyLayerHandled) return true;
+  return Date.now() - lastSectorArmyLayerPointerAt < 450;
+}
 
 function updateSectorArmyEditorDrag(event) {
-  if (!state.sectorArmyEditor.dragging) return;
+  if (!state.sectorArmyEditor.dragging || !isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
+  if (
+    state.sectorArmyEditor.dragging.pointerId != null &&
+    event.pointerId != null &&
+    event.pointerId !== state.sectorArmyEditor.dragging.pointerId
+  ) {
+    return;
+  }
   event.preventDefault?.();
+  event.stopPropagation?.();
   sectorEditorLastPointerEvent = {
     clientX: event.clientX,
     clientY: event.clientY,
+    pointerId: event.pointerId,
   };
   if (sectorEditorDragFrame) return;
   sectorEditorDragFrame = requestAnimationFrame(() => {
@@ -2795,9 +3340,9 @@ function processSectorArmyEditorDrag(event) {
   const point = clientToImageNorm(event.clientX, event.clientY);
   if (!point) return;
   if (drag.type === "label") {
-    updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, {
-      labelPosition: sectorPointToTuple(point),
-    });
+    updateSectorArmyTerritoryDraft(state.sectorArmyEditor.selectedId, (territory) => ({
+      labelPosition: sectorPointToTuple(sectorArmyTerritoryCenter(territory) || point),
+    }));
   } else if (drag.type === "curve") {
     setSectorArmyCurveFromPull(drag.pointIndex, point, { persist: false });
   } else if (drag.type === "curve-handle") {
@@ -2812,12 +3357,14 @@ function processSectorArmyEditorDrag(event) {
       if (drag.pointIndex >= 0 && drag.pointIndex < polygon.length) {
         polygon[drag.pointIndex] = sectorPointToTuple(snappedPoint);
       }
-      return { polygon };
+      return { polygon, labelPosition: sectorPointToTuple(polygonCentroidNorm(polygon) || snappedPoint) };
     }, { persist: false });
     state.sectorArmyEditor.selectedPointIndex = drag.pointIndex;
+  } else if (drag.type === "segment") {
+    setSectorArmyCurveFromPull(drag.pointIndex, point, { persist: false });
+    state.sectorArmyEditor.selectedPointIndex = drag.pointIndex;
   } else if (drag.type === "translate") {
-    // translate the whole polygon by the pointer delta
-    const start = clientToImageNorm(drag.startClientX, drag.startClientY);
+    const start = normalizeSectorPoint(drag.startPoint);
     if (!start || !Array.isArray(drag.originalPolygon)) return;
     const deltaX = point.x - start.x;
     const deltaY = point.y - start.y;
@@ -2843,7 +3390,15 @@ function processSectorArmyEditorDrag(event) {
           c2: sectorPointToTuple({ x: clamp01(c2.x + deltaX), y: clamp01(c2.y + deltaY) }),
         };
       });
-      return { polygon, curves };
+      const originalLabel = normalizeSectorPoint(drag.originalLabel);
+      const next = { polygon, curves };
+      if (originalLabel) {
+        next.labelPosition = sectorPointToTuple({
+          x: clamp01(originalLabel.x + deltaX),
+          y: clamp01(originalLabel.y + deltaY),
+        });
+      }
+      return next;
     }, { persist: false });
   }
   renderOverlay();
@@ -2903,7 +3458,7 @@ function removeSectorEditorKeyListeners() {
 }
 
 function handleSectorArmyEditorCanvasClick(originalEvent) {
-  if (!state.sectorArmyEditor.enabled || state.mapMode === "underworld") return false;
+  if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId) || state.mapMode === "underworld") return false;
   const touchPoint = originalEvent?.changedTouches?.[0] || originalEvent?.touches?.[0] || null;
   const clientX = typeof originalEvent?.clientX === "number" ? originalEvent.clientX : touchPoint?.clientX;
   const clientY = typeof originalEvent?.clientY === "number" ? originalEvent.clientY : touchPoint?.clientY;
@@ -4385,6 +4940,23 @@ function stopLandingIntroLoop() {
 
 function initLandingIntro() {
   if (!landingIntroEl) return;
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("admin")) {
+    if (typeof window.__landingIntroBootstrap?.detach === "function") {
+      window.__landingIntroBootstrap.detach();
+    }
+    state.intro.active = false;
+    state.intro.dataReady = true;
+    state.intro.progress = 1;
+    state.intro.targetProgress = 1;
+    document.body.style.setProperty("--intro-progress", "1.0000");
+    document.body.classList.remove("intro-active");
+    document.body.classList.add("intro-complete");
+    landingIntroEl.setAttribute("aria-hidden", "true");
+    landingIntroEl.classList.add("hidden");
+    stopLandingIntroLoop();
+    return;
+  }
   const bootstrapProgress = clamp(Number(window.__landingIntroBootstrap?.progress) || 0, 0, 0.985);
   if (typeof window.__landingIntroBootstrap?.detach === "function") {
     window.__landingIntroBootstrap.detach();
@@ -5190,6 +5762,9 @@ function updateResponsiveMode() {
     renderLandingIntroCopy();
     if (landingIntroEl && !landingIntroEl.classList.contains("hidden")) {
       rebuildLandingStars();
+    }
+    if (sectorArmyLayerEnabled() && !state.sectorArmyEditor.enabled && state.viewMode === "2d") {
+      scheduleSectorArmyOverviewRefit([0, 240, 900]);
     }
   }
   renderDesktopWindowVisibility();
@@ -7966,9 +8541,8 @@ function setSelectedDetail(item) {
       setMobilePanel(null);
     }
   } else if (item && itemHasDetails(item)) {
-    // Auf Desktop das Planeten-Fenster automatisch oeffnen damit Orbit-
-    // und Stadt-Bild direkt sichtbar sind, ohne dass der User extra den
-    // "Planeten"-Launcher anklicken muss.
+    // Auf Desktop das Planeten-/Lagefenster automatisch oeffnen damit die
+    // passende Infotabelle direkt sichtbar ist.
     setDesktopWindowVisible("planetDetail", true);
   }
   renderSidebar();
@@ -8468,6 +9042,10 @@ function renderStaticCanvasOverlay() {
       if (itemHasPlanetEvent(item)) {
         drawCanvasEventFlame(ctx, screen.x, screen.y, radius, metrics);
       }
+      const reserve = getPlanetReserveData(item);
+      if (reserve && (reserve.count != null || (Array.isArray(reserve.ships) && reserve.ships.length) || (typeof reserve.ships === "string" && String(reserve.ships).trim()))) {
+        drawPlanetReserveIcon(ctx, screen.x, screen.y, radius, reserve, metrics, screenDotStroke);
+      }
     });
 
   const labelEntries = visiblePlanetLabelItems(labelBounds, metrics);
@@ -8526,36 +9104,30 @@ function itemHasPlanetEvent(item) {
   return Boolean(String(item?.event_title || item?.event_text || item?.event_image || "").trim());
 }
 
-function drawCanvasEventFlame(ctx, x, y, radius, metrics) {
-  const size = Math.max(radius * 3.1, metrics?.dotScreenRadius ? metrics.dotScreenRadius * 4.2 : 14);
-  const ox = x + radius * 1.42;
-  const oy = y - radius * 1.76;
+function drawPlanetReserveIcon(ctx, x, y, radius, reserve, metrics, screenDotStroke) {
+  const iconRadius = Math.max(6, radius * 0.8);
+  const offset = iconRadius * 1.25;
+  const iconX = x + offset;
+  const iconY = y - offset;
   ctx.save();
-  ctx.translate(ox, oy);
   ctx.beginPath();
-  ctx.arc(0, 0, size * 0.54, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(255, 68, 34, 0.1)";
+  ctx.arc(iconX, iconY, iconRadius, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(255, 203, 64, 0.96)";
+  ctx.strokeStyle = "rgba(48, 32, 8, 0.92)";
+  ctx.lineWidth = Math.max(1, screenDotStroke * 0.8);
   ctx.fill();
-  ctx.lineWidth = Math.max(1.2, size * 0.07);
-  ctx.strokeStyle = "rgba(255, 221, 135, 0.74)";
   ctx.stroke();
-  ctx.shadowColor = "rgba(255, 88, 34, 0.92)";
-  ctx.shadowBlur = Math.max(6, size * 0.44);
-  ctx.beginPath();
-  ctx.moveTo(0, -size * 0.58);
-  ctx.bezierCurveTo(size * 0.42, -size * 0.22, size * 0.34, size * 0.28, 0, size * 0.52);
-  ctx.bezierCurveTo(-size * 0.36, size * 0.26, -size * 0.38, -size * 0.2, 0, -size * 0.58);
-  ctx.closePath();
-  ctx.fillStyle = "rgba(255, 95, 45, 0.96)";
-  ctx.fill();
-  ctx.shadowBlur = 0;
-  ctx.beginPath();
-  ctx.moveTo(size * 0.02, -size * 0.25);
-  ctx.bezierCurveTo(size * 0.22, 0, size * 0.16, size * 0.28, 0, size * 0.42);
-  ctx.bezierCurveTo(-size * 0.18, size * 0.22, -size * 0.14, -size * 0.04, size * 0.02, -size * 0.25);
-  ctx.closePath();
-  ctx.fillStyle = "rgba(255, 220, 120, 0.96)";
-  ctx.fill();
+  const reserveCount = reserve.count != null && reserve.count !== "" ? Number(reserve.count) : null;
+  const label = reserveCount != null && !Number.isNaN(reserveCount) ? formatFleetNumber(reserveCount) : "R";
+  drawCanvasText(ctx, label, iconX, iconY, {
+    fontSize: Math.max(8, iconRadius * 0.9),
+    align: "center",
+    baseline: "middle",
+    fill: "rgba(18, 18, 18, 0.96)",
+    stroke: "rgba(255, 255, 255, 0.94)",
+    strokeWidth: 2,
+    weight: 700,
+  });
   ctx.restore();
 }
 
@@ -9021,11 +9593,12 @@ function sectorArmyTooltipLines(item) {
   }
   const army = item?.army || {};
   const status = sectorArmyDisplayStatus(army, item?.territory);
+  const faction = sectorArmyFactionLabel(army, item?.territory);
   const republicSummary = sectorFleetComputedSummary(army, "republic");
   const cisSummary = sectorFleetComputedSummary(army, "cis");
   return [
     sectorArmyDisplayTitle(army),
-    status,
+    `${faction} - ${status}`,
     `Rep ${formatFleetNumber(republicSummary.total)} / frei ${formatFleetNumber(republicSummary.free)} - KUS ${formatFleetNumber(
       cisSummary.total
     )} / frei ${formatFleetNumber(cisSummary.free)}`,
@@ -9066,37 +9639,53 @@ function makeSectorArmyLayer(metrics) {
   if (!sectorArmyLayerEnabled() || !state.imageWidth || !state.imageHeight) return null;
   const hovered = hoveredItem();
   const selected = selectedDetailItem();
+  const selectedEditorId = Number(state.sectorArmyEditor.selectedId);
   const labelFontSize = clamp((state.isMobileView ? 9 : 10.5) / Math.max(metrics.screenScale, 0.001), 7, 110);
-  const numberFontSize = clamp(labelFontSize * 1.18, 8, 130);
   const strokeWidth = clamp(1.3 / Math.max(metrics.screenScale, 0.001), 0.7, 20);
   const activeStrokeWidth = clamp(2.1 / Math.max(metrics.screenScale, 0.001), 1.1, 28);
 
-  const regionMarkup = sectorArmyItems()
+  const renderItems = sectorArmyItems().slice().sort((left, right) => {
+    if (!state.sectorArmyEditor.enabled || state.mapMode === "underworld") return 0;
+    const leftSelected = Number(left?.army?.id) === selectedEditorId ? 1 : 0;
+    const rightSelected = Number(right?.army?.id) === selectedEditorId ? 1 : 0;
+    return leftSelected - rightSelected;
+  });
+
+  const regionMarkup = renderItems
     .map((item) => {
       const points = sectorArmyPolygonPoints(item.territory);
       if (points.length < 3) return "";
-      const meta = sectorArmyStatusMeta(item.status);
+      const meta = sectorArmyVisualMeta(item);
       const labelX = item.x * state.imageWidth;
       const labelY = item.y * state.imageHeight;
       const isHovered = hovered?.nameKey === item.nameKey;
       const isSelected = selected?.nameKey === item.nameKey;
-      const isEditorSelected =
-        state.sectorArmyEditor.enabled && Number(state.sectorArmyEditor.selectedId) === Number(item.army?.id);
+      const canRenderEditor =
+        state.mapMode !== "underworld" &&
+        sectorArmyEditorAvailable() &&
+        state.sectorArmyEditor.enabled &&
+        Number(state.sectorArmyEditor.selectedId) === Number(item.army?.id);
+      const isEditorSelected = canRenderEditor;
       const editorMode = state.sectorArmyEditor.mode || "view";
       const pathD = sectorArmyClosedPath(points, item.territory, state.imageWidth, state.imageHeight);
-      const showEdgeHitboxes = isEditorSelected && (editorMode === "vertex" || editorMode === "curve");
+      const activeDrag = state.sectorArmyEditor.dragging;
+      const showEdgeHitboxes = isEditorSelected && (editorMode === "sector" || editorMode === "vertex" || editorMode === "curve");
       const showCurveHandles = isEditorSelected && editorMode === "curve";
       const edgeHitboxesMarkup = showEdgeHitboxes
         ? points
           .map(
-            (_point, idx) =>
-              `<path class="sector-army-edge-hitbox" data-sector-editor-edge="${idx}" d="${sectorArmySegmentPath(
+            (_point, idx) => {
+              const isDraggingSegment = activeDrag?.type === "segment" && Number(activeDrag.pointIndex) === idx;
+              const isCurveMode = editorMode === "curve";
+              const isInsertMode = Boolean(state.sectorArmyEditor.insertPointMode);
+              return `<path class="sector-army-edge-hitbox ${isDraggingSegment ? "is-dragging" : ""} ${isCurveMode ? "is-curve-mode" : ""} ${isInsertMode ? "is-insert-mode" : ""}" data-sector-editor-edge="${idx}" d="${sectorArmySegmentPath(
                 points,
                 item.territory,
                 idx,
                 state.imageWidth,
                 state.imageHeight
-              )}" />`
+              )}" />`;
+            }
           )
           .join("")
         : "";
@@ -9143,6 +9732,7 @@ function makeSectorArmyLayer(metrics) {
       const classes = [
         "sector-army-region",
         `status-${String(item.status || "unknown").replace(/[^a-z0-9-]/gi, "-")}`,
+        `faction-${meta.faction || "unknown"}`,
         isHovered ? "is-hovered" : "",
         isSelected ? "is-selected" : "",
         isEditorSelected ? "is-editor-selected" : "",
@@ -9150,25 +9740,22 @@ function makeSectorArmyLayer(metrics) {
       ]
         .filter(Boolean)
         .join(" ");
+      const currentStrokeWidth = isHovered || isSelected || isEditorSelected ? activeStrokeWidth : strokeWidth;
+      const boundaryUnderlayWidth = currentStrokeWidth + clamp(2.8 / Math.max(metrics.screenScale, 0.001), 1.8, 34);
+      const boundaryTopWidth = currentStrokeWidth + clamp(0.7 / Math.max(metrics.screenScale, 0.001), 0.5, 12);
       return `
-        <g class="${classes}" data-sector-key="${escapeHtml(item.nameKey)}" style="--sector-glow:${meta.glow};">
-          <path class="sector-army-region-shape" d="${pathD}" fill="${meta.fill}" stroke="${meta.stroke}" stroke-width="${(
-            isHovered || isSelected || isEditorSelected ? activeStrokeWidth : strokeWidth
-          ).toFixed(2)}" />
+        <g class="${classes}" data-sector-key="${escapeHtml(item.nameKey)}" style="--sector-glow:${meta.glow}; --sector-label:${meta.labelFill || "rgba(247, 251, 255, 0.96)"};">
+          <path class="sector-army-region-shape" d="${pathD}" fill="${meta.fill}" stroke="${meta.stroke}" stroke-width="${currentStrokeWidth.toFixed(2)}" />
+          <path class="sector-army-region-boundary-underlay" d="${pathD}" fill="none" stroke="rgba(2, 8, 16, 0.86)" stroke-width="${boundaryUnderlayWidth.toFixed(2)}" />
+          <path class="sector-army-region-boundary" d="${pathD}" fill="none" stroke="${meta.stroke}" stroke-width="${boundaryTopWidth.toFixed(2)}" />
           ${boundsMarkup}
           ${edgeHitboxesMarkup}
           ${curveHandlesMarkup}
           <text
-            class="sector-army-number"
-            x="${labelX.toFixed(2)}"
-            y="${(labelY - labelFontSize * 0.38).toFixed(2)}"
-            font-size="${numberFontSize.toFixed(2)}"
-            text-anchor="middle"
-          >${escapeHtml(item.army?.display?.numberLabel || item.army?.id || "")}</text>
-          <text
             class="sector-army-label"
+            data-sector-editor-translate="1"
             x="${labelX.toFixed(2)}"
-            y="${(labelY + labelFontSize * 0.9).toFixed(2)}"
+            y="${(labelY + labelFontSize * 0.35).toFixed(2)}"
             font-size="${labelFontSize.toFixed(2)}"
             text-anchor="middle"
           >${escapeHtml(item.shortName || item.army?.name || "")}</text>
@@ -9208,9 +9795,12 @@ function makeSectorArmyLayer(metrics) {
 
   const activeTerritory = selectedSectorArmyEditorTerritory();
   const showEditorVertices =
+    state.mapMode !== "underworld" &&
+    sectorArmyEditorAvailable() &&
     state.sectorArmyEditor.enabled &&
     activeTerritory &&
-    (state.sectorArmyEditor.mode === "vertex" || state.sectorArmyEditor.mode === "curve");
+    Number(activeTerritory.id) === Number(state.sectorArmyEditor.selectedId) &&
+    (state.sectorArmyEditor.mode === "sector" || state.sectorArmyEditor.mode === "vertex" || state.sectorArmyEditor.mode === "curve");
   const editorPoints =
     showEditorVertices
       ? sectorArmyPolygonPoints(activeTerritory)
@@ -9219,14 +9809,22 @@ function makeSectorArmyLayer(metrics) {
           const y = point.y * state.imageHeight;
           const selectedPoint = index === state.sectorArmyEditor.selectedPointIndex;
           const radius = clamp((selectedPoint ? 7 : 5.4) / Math.max(metrics.screenScale, 0.001), 4, 70);
-          return `<circle class="sector-army-editor-handle ${selectedPoint ? "is-selected" : ""}" data-sector-editor-point="${index}" cx="${x.toFixed(
+          const hitRadius = clamp(18 / Math.max(metrics.screenScale, 0.001), 12, 120);
+          return `
+            <circle class="sector-army-editor-node-hitbox" data-sector-editor-point="${index}" cx="${x.toFixed(2)}" cy="${y.toFixed(
             2
-          )}" cy="${y.toFixed(2)}" r="${radius.toFixed(2)}" />`;
+          )}" r="${hitRadius.toFixed(2)}" />
+            <circle class="sector-army-editor-handle ${selectedPoint ? "is-selected" : ""}" cx="${x.toFixed(2)}" cy="${y.toFixed(
+            2
+          )}" r="${radius.toFixed(2)}" />
+          `;
         })
         .join("")
       : "";
-  const activeLabel = normalizeSectorPoint(activeTerritory?.labelPosition);
+  const activeLabel = sectorArmyTerritoryCenter(activeTerritory);
   const showLabelHandle =
+    state.mapMode !== "underworld" &&
+    sectorArmyEditorAvailable() &&
     state.sectorArmyEditor.enabled &&
     activeLabel &&
     (state.sectorArmyEditor.mode === "sector" || state.sectorArmyEditor.labelMode);
@@ -9234,7 +9832,7 @@ function makeSectorArmyLayer(metrics) {
     showLabelHandle
       ? `
         <g class="sector-army-label-handles">
-          <circle class="sector-army-editor-label-handle" data-sector-editor-label="1" cx="${(activeLabel.x * state.imageWidth).toFixed(
+          <circle class="sector-army-editor-handle sector-army-editor-label-handle" data-sector-editor-label="1" cx="${(activeLabel.x * state.imageWidth).toFixed(
         2
       )}" cy="${(activeLabel.y * state.imageHeight).toFixed(2)}" r="${clamp(7 / Math.max(metrics.screenScale, 0.001), 5, 80).toFixed(
         2
@@ -9264,13 +9862,32 @@ function makeSectorArmyLayer(metrics) {
 }
 
 function bindSectorArmyLayerInteractions(svg) {
+  svg.addEventListener(
+    "pointerdown",
+    (event) => {
+      if (
+        event.target?.closest?.(
+          ".sector-army-region, .strategic-asset-marker, [data-sector-editor-point], [data-sector-editor-edge], [data-sector-editor-label], [data-sector-editor-translate], [data-sector-editor-curve-handle]"
+        )
+      ) {
+        markSectorArmyLayerPointer(event);
+      }
+    },
+    true
+  );
   svg.querySelectorAll("[data-sector-key]").forEach((node) => {
-    // support pointerdown to start translating whole polygon when editor is enabled
     node.addEventListener("pointerdown", (event) => {
-      // Only start translate when sector/modify mode is active (or Alt is held)
-      if (!state.sectorArmyEditor.enabled) return;
+      markSectorArmyLayerPointer(event);
+      if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) {
+        absorbSectorArmyLayerEvent(event);
+        return;
+      }
+      if (state.mapMode === "underworld") return;
       const mode = state.sectorArmyEditor.mode || "view";
-      if (mode !== "sector" && !event.altKey) return;
+      if (!event.altKey || mode !== "sector") {
+        absorbSectorArmyLayerEvent(event);
+        return;
+      }
       // select this territory for editing
       const key = node.getAttribute("data-sector-key");
       const item = getSelectableItemByKey(key);
@@ -9290,8 +9907,7 @@ function bindSectorArmyLayerInteractions(svg) {
       if (!state.isMobileView) setHovered(null);
     });
     node.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
+      absorbSectorArmyLayerEvent(event);
       const item = getSelectableItemByKey(node.getAttribute("data-sector-key"));
       if (!item) return;
       if (item.kind === "sectorArmy") {
@@ -9306,17 +9922,18 @@ function bindSectorArmyLayerInteractions(svg) {
       selectMapItem(item);
     });
     node.addEventListener("dblclick", (event) => {
-      // insert a point on nearest segment when in vertex/curve mode
-      if (!state.sectorArmyEditor.enabled) return;
+      absorbSectorArmyLayerEvent(event);
+      const item = getSelectableItemByKey(node.getAttribute("data-sector-key"));
+      if (item) selectMapItem(item);
+      // Insert a point on the nearest segment in boundary editing modes.
+      if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
+      if (state.mapMode === "underworld") return;
       const mode = state.sectorArmyEditor.mode || "view";
-      if (!(mode === "vertex" || mode === "curve")) return;
-      event.preventDefault();
-      event.stopPropagation();
+      if (!(mode === "sector" || mode === "vertex" || mode === "curve")) return;
       const clientX = event.clientX;
       const clientY = event.clientY;
       const pt = clientToImageNorm(clientX, clientY);
       if (!pt) return;
-      const item = getSelectableItemByKey(node.getAttribute("data-sector-key"));
       if (!item || item.kind !== "sectorArmy") return;
       if (Number(item.army?.id) !== Number(state.sectorArmyEditor.selectedId)) return;
       const territory = item.territory;
@@ -9337,7 +9954,7 @@ function bindSectorArmyLayerInteractions(svg) {
     });
     handle.addEventListener("contextmenu", (event) => {
       if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
-      if (state.sectorArmyEditor.mode !== "vertex") return;
+      if (!(state.sectorArmyEditor.mode === "sector" || state.sectorArmyEditor.mode === "vertex")) return;
       event.preventDefault();
       event.stopPropagation();
       state.sectorArmyEditor.selectedPointIndex = pointIndex;
@@ -9348,14 +9965,35 @@ function bindSectorArmyLayerInteractions(svg) {
   svg.querySelectorAll("[data-sector-editor-edge]").forEach((edge) => {
     const edgeIndex = Number(edge.getAttribute("data-sector-editor-edge"));
     edge.addEventListener("pointerdown", (event) => {
-      if (state.sectorArmyEditor.mode !== "curve") return;
-      beginSectorArmyEditorDrag(event, "curve", edgeIndex);
+      const mode = state.sectorArmyEditor.mode || "view";
+      if (mode === "sector" || mode === "vertex" || mode === "curve") {
+        const point = clientToImageNorm(event.clientX, event.clientY);
+        if ((state.sectorArmyEditor.insertPointMode || event.ctrlKey || event.metaKey) && point) {
+          event.preventDefault();
+          event.stopPropagation();
+          insertSectorArmyEditorPointAtSegment(edgeIndex, point);
+          renderAll();
+          return;
+        }
+        const nearestPoint = findNearestSectorArmyEditorPoint(point, { thresholdPx: 24 });
+        if (nearestPoint.index >= 0) {
+          state.sectorArmyEditor.selectedPointIndex = nearestPoint.index;
+          beginSectorArmyEditorDrag(event, "point", nearestPoint.index);
+          renderSectorArmyEditor();
+          return;
+        }
+      }
+      if (mode === "curve") {
+        beginSectorArmyEditorDrag(event, "curve", edgeIndex);
+      } else if (mode === "sector" || mode === "vertex") {
+        beginSectorArmyEditorDrag(event, "segment", edgeIndex);
+      }
       renderSectorArmyEditor();
     });
     edge.addEventListener("dblclick", (event) => {
-      if (!state.sectorArmyEditor.enabled) return;
+      if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
       const mode = state.sectorArmyEditor.mode || "view";
-      if (!(mode === "vertex" || mode === "curve")) return;
+      if (!(mode === "sector" || mode === "vertex" || mode === "curve")) return;
       event.preventDefault();
       event.stopPropagation();
       const point = clientToImageNorm(event.clientX, event.clientY);
@@ -10808,6 +11446,158 @@ function renderPlanetEvent(refs, item) {
   `;
 }
 
+function getPlanetReserveData(item) {
+  if (!item || typeof item !== "object") return null;
+  if (state.planetOverrides?.[item.nameKey]?.reserve && typeof state.planetOverrides[item.nameKey].reserve === "object") {
+    return state.planetOverrides[item.nameKey].reserve;
+  }
+  if (item.reserve && typeof item.reserve === "object") return item.reserve;
+  return null;
+}
+
+function buildPlanetReserveShipsText(reserve) {
+  if (!reserve) return "";
+  if (Array.isArray(reserve.ships)) return reserve.ships.join("\n");
+  if (typeof reserve.ships === "string") return reserve.ships;
+  return "";
+}
+
+function canEditPlanetReserve() {
+  return Boolean(window.MapAdminUi?.isAdmin?.());
+}
+
+function hasPlanetReserveData(reserve) {
+  if (!reserve || typeof reserve !== "object") return false;
+  if (reserve.count != null && reserve.count !== "" && !Number.isNaN(Number(reserve.count))) return true;
+  return Boolean(buildPlanetReserveShipsText(reserve).trim());
+}
+
+function renderPlanetReserveMarkup(item) {
+  const reserve = getPlanetReserveData(item) || {};
+  const editable = canEditPlanetReserve();
+  const hasReserve = hasPlanetReserveData(reserve);
+  if (!editable && !hasReserve) return "";
+  const hasCount = reserve.count != null && reserve.count !== "";
+  const count = hasCount ? Number(reserve.count) : "";
+  const shipsText = buildPlanetReserveShipsText(reserve);
+  const shipsLines = shipsText
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const summary = hasCount
+    ? `Reserve: ${formatFleetNumber(count)} Schiffe`
+    : shipsLines.length
+    ? `Reserve vorhanden (${shipsLines.length} Klassen)`
+    : "Keine Reserve erfasst.";
+  const shipsPreview = shipsLines.length
+    ? `<div class="detail-reserve-list">${shipsLines.map((line) => `<div>${escapeHtml(line)}</div>`).join("")}</div>`
+    : editable
+    ? '<div class="muted-inline">Keine Schiffszusammensetzung eingetragen.</div>'
+    : "";
+
+  return `
+    <div class="detail-section detail-reserve-section">
+      <div class="detail-section-head"><strong>Planetare Reserve</strong></div>
+      <div class="detail-reserve-summary">${escapeHtml(summary)}</div>
+      ${editable ? `<div class="detail-reserve-editor">
+        <label class="detail-reserve-field">
+          <span>Anzahl</span>
+          <input
+            type="number"
+            min="0"
+            step="1"
+            data-planet-reserve-field="count"
+            value="${escapeHtml(count)}"
+          />
+        </label>
+        <label class="detail-reserve-field">
+          <span>Schiffe (eine Klasse pro Zeile)</span>
+          <textarea
+            rows="4"
+            data-planet-reserve-field="ships"
+            placeholder="TIE-Fighter x20\nZerstörer x3"
+          >${escapeHtml(shipsText)}</textarea>
+        </label>
+        <div class="detail-reserve-actions">
+          <button type="button" class="ghost-button compact" data-planet-reserve-action="save">Speichern</button>
+          <button type="button" class="ghost-button compact" data-planet-reserve-action="clear">Zurücksetzen</button>
+        </div>
+      </div>` : ""}
+      ${shipsPreview ? `<div class="detail-reserve-preview">${shipsPreview}</div>` : ""}
+    </div>
+  `;
+}
+
+function parsePlanetReserveShipsInput(value) {
+  return String(value || "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
+function commitPlanetReserveField(input) {
+  if (!input) return;
+  if (!canEditPlanetReserve()) {
+    setStatus("Planetare Reserven koennen nur von Admins eingetragen werden.");
+    renderAll();
+    return;
+  }
+  const item = selectedDetailItem();
+  if (!item) return;
+  const field = input.dataset?.planetReserveField;
+  if (!field) return;
+  const currentReserve = getPlanetReserveData(item) || {};
+  const nextReserve = { ...currentReserve };
+  if (field === "count") {
+    const rawValue = String(input.value || "").trim();
+    const parsed = rawValue === "" ? null : Number(rawValue);
+    if (rawValue === "" || Number.isNaN(parsed)) {
+      delete nextReserve.count;
+    } else {
+      nextReserve.count = parsed;
+    }
+  } else if (field === "ships") {
+    const ships = parsePlanetReserveShipsInput(input.value);
+    if (ships.length) {
+      nextReserve.ships = ships;
+    } else {
+      delete nextReserve.ships;
+    }
+  }
+  if (!Object.keys(nextReserve).length) {
+    setLocalPlanetOverride(item.nameKey, { reserve: null });
+    return;
+  }
+  setLocalPlanetOverride(item.nameKey, { reserve: nextReserve });
+}
+
+function commitPlanetReserveFieldsFromRefs() {
+  const item = selectedDetailItem();
+  if (!item || !planetDetailRefs.reserve) return;
+  const countInput = planetDetailRefs.reserve.querySelector('[data-planet-reserve-field="count"]');
+  const shipsInput = planetDetailRefs.reserve.querySelector('[data-planet-reserve-field="ships"]');
+  if (countInput) commitPlanetReserveField(countInput);
+  if (shipsInput) commitPlanetReserveField(shipsInput);
+}
+
+function handlePlanetReserveAction(action) {
+  const item = selectedDetailItem();
+  if (!item) return;
+  if (!canEditPlanetReserve()) {
+    setStatus("Planetare Reserven koennen nur von Admins eingetragen werden.");
+    renderAll();
+    return;
+  }
+  if (action === "save") {
+    commitPlanetReserveFieldsFromRefs();
+    return;
+  }
+  if (action === "clear") {
+    setLocalPlanetOverride(item.nameKey, { reserve: null });
+    return;
+  }
+}
+
 function renderPlanetDetail(refs, item) {
   const notes = item.profile_notes || item.review_notes || item.ocr_text || "";
   const grid = normalizeGridLabel(item.grid) || guessGridFromPoint(item.x, item.y);
@@ -10821,8 +11611,8 @@ function renderPlanetDetail(refs, item) {
     source: "Quelle",
     wiki: "Wiki",
   });
-  setDetailFactVisibility(refs, []);
-  refs.facts?.classList.add("hidden");
+  setDetailFactVisibility(refs);
+  refs.facts?.classList.remove("hidden");
   refs.grid.textContent = positionText;
   refs.name.textContent = item.name;
   refs.region.textContent = item.region || "Unknown";
@@ -10836,6 +11626,11 @@ function renderPlanetDetail(refs, item) {
   renderPlanetEvent(refs, item);
   refs.notes.textContent = notes;
   refs.notes.classList.toggle("hidden", !notes);
+  if (refs.reserve) {
+    const reserveMarkup = renderPlanetReserveMarkup(item);
+    refs.reserve.innerHTML = reserveMarkup;
+    refs.reserve.classList.toggle("hidden", !reserveMarkup.trim());
+  }
   renderDetailMedia(refs, item);
   refs.setTravelStartButton.textContent =
     selectedTravelPlanet("start")?.nameKey === item.nameKey ? "Start gesetzt" : "Als Start";
@@ -10916,26 +11711,29 @@ function renderSectorArmyDetail(refs, item) {
   const status = sectorArmyDisplayStatus(army, territory);
   const grid = normalizeGridLabel(item.grid) || guessGridFromPoint(item.x, item.y);
   const anchors = Array.isArray(territory.anchorPlanets) ? territory.anchorPlanets : [];
+  const factionKey = sectorArmyFactionKey(army, territory);
+  const factionLabel = sectorArmyFactionLabel(army, territory);
   setDetailFactLabels(refs, {
     position: "Operationsraum",
-    faction: "Lage",
-    climate: "Schiffstabelle Republik",
-    species: "Schiffstabelle KUS",
+    faction: "Fraktion & Lage",
+    climate: factionKey === "cis" ? "Schiffstabelle KUS" : "Schiffstabelle Republik",
     source: "Quelle",
     wiki: "Ankerplaneten",
   });
-  setDetailFactVisibility(refs);
+  setDetailFactVisibility(refs, ["position", "faction", "climate", "source", "wiki"]);
   refs.climate?.closest("div")?.classList.add("detail-fact-wide", "detail-fact-table");
-  refs.species?.closest("div")?.classList.add("detail-fact-wide", "detail-fact-table");
   refs.facts?.classList.remove("hidden");
   refs.grid.textContent = `Grid ${normalizeGridLabel(grid)}`;
   refs.name.textContent = sectorArmyDisplayTitle(army);
   refs.region.textContent = "Sektorarmeen & Flottenlage";
   refs.desc.textContent = army.notes || "Feste OOC-Schiffszahlen. IC-Nutzung nur mit Aufklaerung/Begruendung.";
   refs.position.textContent = `${normalizeGridLabel(grid)} - ${sectorArmyPolygonPoints(territory).length} Grenzpunkte`;
-  refs.faction.textContent = status;
-  refs.climate.innerHTML = sectorFleetAvailabilityTableMarkup(army, "republic");
-  refs.species.innerHTML = sectorFleetAvailabilityTableMarkup(army, "cis");
+  refs.faction.innerHTML = `
+    <span class="sector-faction-pill ${factionKey === "cis" ? "is-cis" : "is-republic"}">${escapeHtml(factionLabel)}</span>
+    <span class="muted-inline">${escapeHtml(status)}</span>
+  `;
+  refs.climate.innerHTML = sectorFleetAvailabilityTableMarkup(army, factionKey);
+  refs.source.textContent = detailSourceText(item);
   refs.source.textContent = detailSourceText(item);
   refs.wiki.innerHTML = anchors.length
     ? anchors.map((name) => `<span class="sector-anchor-chip">${escapeHtml(name)}</span>`).join("")
@@ -11059,11 +11857,12 @@ function renderSectorArmyEditor() {
   const territory = selectedSectorArmyEditorTerritory();
   const army = sectorArmyById(territory?.id);
   const polygon = sectorArmyPolygonPoints(territory);
-  const label = normalizeSectorPoint(territory?.labelPosition);
+  const label = sectorArmyTerritoryCenter(territory);
   const validation = state.sectorArmyEditor.validation.length
     ? state.sectorArmyEditor.validation
     : validateSectorArmyTerritory(territory);
   const statusValue = String(territory?.status || army?.status || "");
+  const factionValue = sectorArmyFactionKey(army, territory);
   const statusOptions = [
     ["unbearbeitet", "Originalstatus verwenden"],
     ...Object.entries(SECTOR_ARMY_STATUS_META).map(([key, meta]) => [key, meta.label]),
@@ -11071,6 +11870,15 @@ function renderSectorArmyEditor() {
     .map(
       ([key, labelText]) =>
         `<option value="${escapeHtml(key)}" ${key === statusValue ? "selected" : ""}>${escapeHtml(labelText)}</option>`
+    )
+    .join("");
+  const factionOptions = [
+    ["republic", "Republik"],
+    ["cis", "KUS"],
+  ]
+    .map(
+      ([key, labelText]) =>
+        `<option value="${escapeHtml(key)}" ${key === factionValue ? "selected" : ""}>${escapeHtml(labelText)}</option>`
     )
     .join("");
   const pointRows = polygon.length
@@ -11086,16 +11894,46 @@ function renderSectorArmyEditor() {
       )
       .join("")
     : '<div class="empty-state">Noch keine Polygonpunkte gesetzt.</div>';
+  const layerFactionCounters = {};
+  const layerFactionOrdinalById = new Map();
+  territories.forEach((entry) => {
+    const entryArmy = sectorArmyById(entry.id);
+    const faction = sectorArmyFactionKey(entryArmy, entry);
+    const ordinal = layerFactionCounters[faction] || 0;
+    layerFactionCounters[faction] = ordinal + 1;
+    layerFactionOrdinalById.set(Number(entry.id), ordinal);
+  });
+  const layerRows = territories
+    .map((entry) => {
+      const entryArmy = sectorArmyById(entry.id);
+      const active = Number(entry.id) === Number(state.sectorArmyEditor.selectedId);
+      const meta = sectorArmyFactionPaletteEntry(entryArmy, entry, layerFactionOrdinalById.get(Number(entry.id)));
+      return `
+        <button type="button" class="sector-layer-row ${active ? "is-active" : ""} ${entry.locked ? "is-locked" : ""}" data-sector-editor-action="select-layer" data-id="${Number(
+        entry.id
+      )}">
+          <span class="sector-layer-swatch" style="--layer-color:${escapeHtml(meta.stroke)}"></span>
+          <span class="sector-layer-name">${escapeHtml(entryArmy?.display?.numberLabel || entry.id)} ${escapeHtml(entryArmy?.name || entry.name || "")}</span>
+          <span class="sector-layer-state">${entry.locked ? "gesperrt" : "sichtbar"}</span>
+        </button>
+      `;
+    })
+    .join("");
   const exportText = state.sectorArmyEditor.exportText || "";
   const boundaryEditing = isSectorArmyBoundaryEditActive(territory?.id);
   const editDisabled = boundaryEditing ? "" : "disabled";
+  const helpText = boundaryEditing
+    ? state.sectorArmyEditor.mode === "sector"
+      ? "Ecken ziehen passt Punkte an, Linien ziehen passt nur diese Linie an. Ctrl+Klick auf Linie setzt Punkte."
+      : "Punkte bearbeiten, Linien mit Ctrl+Klick erweitern"
+    : "Grenzen sind gesperrt";
 
   sectorArmyEditorMount.innerHTML = `
     <div class="sector-army-editor ${boundaryEditing ? "is-enabled" : ""}">
       <div class="sector-editor-head">
         <div>
           <strong>Sektorarmee-Editor</strong>
-          <span>${boundaryEditing ? "Klick setzt Punkte, Shift+Klick setzt Label" : "Grenzen sind gesperrt"}</span>
+          <span>${helpText}</span>
         </div>
         <div style="display:flex; gap:0.4rem; align-items:center;">
           <button type="button" class="ghost-button compact" data-sector-editor-action="toggle">
@@ -11104,7 +11942,9 @@ function renderSectorArmyEditor() {
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "sector" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="sector" ${editDisabled}>Sektor</button>
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "vertex" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="vertex" ${editDisabled}>Vertex</button>
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.mode === "curve" ? "is-active" : ""}" data-sector-editor-action="mode" data-mode="curve" ${editDisabled}>Curve</button>
+          <button type="button" class="ghost-button compact ${state.sectorArmyEditor.insertPointMode ? "is-active" : ""}" data-sector-editor-action="insert-point-mode" ${editDisabled}>Punkt+</button>
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.snapEnabled ? "is-active" : ""}" data-sector-editor-action="snap" ${editDisabled}>Snap</button>
+          <button type="button" class="ghost-button compact" data-sector-editor-action="create-territory">Neues Gebiet</button>
           <button type="button" class="ghost-button compact ${state.sectorArmyEditor.modifyMode ? "is-active" : ""}" data-sector-editor-action="modify" ${editDisabled}>
             ${state.sectorArmyEditor.modifyMode ? "Modify aus" : "Modify an"}
           </button>
@@ -11113,7 +11953,7 @@ function renderSectorArmyEditor() {
       <div class="sector-editor-grid">
         <label>
           <span>Sektorarmee</span>
-          <select data-sector-editor-field="selectedId">
+          <select data-sector-editor-field="selectedId" ${boundaryEditing ? "disabled" : ""}>
             ${territories
       .map((entry) => {
         const entryArmy = sectorArmyById(entry.id);
@@ -11127,13 +11967,24 @@ function renderSectorArmyEditor() {
           <span>Status</span>
           <select data-sector-editor-field="status" ${editDisabled}>${statusOptions}</select>
         </label>
+        <label>
+          <span>Zugehoerigkeit</span>
+          <select data-sector-editor-field="faction">${factionOptions}</select>
+        </label>
+        <label>
+          <span>Name</span>
+          <input type="text" data-sector-editor-field="name" value="${escapeHtml(army?.name || territory?.name || "")}" />
+        </label>
       </div>
       <div class="sector-editor-lock-note">
         Schiffszahlen werden im Sektorarmee-Infopanel ueber "Schiffstabelle bearbeiten" freigeschaltet.
       </div>
+      <div class="sector-layer-list" aria-label="Sektorarmee-Layer">
+        ${layerRows}
+      </div>
       <div class="sector-editor-actions">
         <button type="button" class="ghost-button compact" data-sector-editor-action="focus">Fokussieren</button>
-        <button type="button" class="ghost-button compact ${state.sectorArmyEditor.labelMode ? "is-active" : ""}" data-sector-editor-action="label-mode" ${editDisabled}>Label setzen</button>
+        <button type="button" class="ghost-button compact" data-sector-editor-action="label-mode" ${editDisabled}>Label zentrieren</button>
         <button type="button" class="ghost-button compact" data-sector-editor-action="add-center" ${editDisabled}>Punkt am Label</button>
         <button type="button" class="danger-button compact" data-sector-editor-action="remove-point" ${editDisabled}>Punkt loeschen</button>
         <button type="button" class="danger-button compact" data-sector-editor-action="delete-territory" ${editDisabled}>Gebiet loeschen</button>
@@ -11771,6 +12622,7 @@ const PLANET_OVERRIDE_FIELDS = [
   "event_image",
   "faction",
   "underworld_faction",
+  "reserve",
 ];
 
 function isPlanetFactionOverrideField(key) {
@@ -11787,7 +12639,10 @@ function applyPlanetOverrideToState(name, fields) {
     if (profile) {
       for (const key of PLANET_OVERRIDE_FIELDS) {
         if (isPlanetFactionOverrideField(key)) continue;
-        if (fields[key] !== undefined) {
+        if (fields[key] === undefined) continue;
+        if (key === "reserve") {
+          profile[key] = fields[key] == null ? null : fields[key];
+        } else {
           profile[key] = fields[key] == null ? "" : String(fields[key]);
         }
       }
@@ -11805,7 +12660,10 @@ function applyPlanetOverrideToState(name, fields) {
         const current = { ...collection.get(nameKey) };
         for (const key of PLANET_OVERRIDE_FIELDS) {
           if (isPlanetFactionOverrideField(key)) continue;
-          if (fields[key] !== undefined) {
+          if (fields[key] === undefined) continue;
+          if (key === "reserve") {
+            current[key] = fields[key] == null ? null : fields[key];
+          } else {
             current[key] = fields[key] == null ? "" : String(fields[key]);
           }
         }
@@ -15701,17 +16559,16 @@ function findNearestRenderableItem(clientX, clientY) {
   const planetHit = findNearestPlanetItem(targetX, targetY, planetTolerance);
   const routeHit = findNearestRouteItem(target, routeTolerance);
   const strategicAssetHit = findNearestStrategicAssetItem(targetX, targetY, strategicAssetTolerance);
-  const sectorArmyHit = sectorArmyItemAtNorm(target);
 
-  if (planetHit.item && Math.sqrt(planetHit.distanceSq) <= planetTolerance * 0.92) {
+  if (planetHit.item && Math.sqrt(planetHit.distanceSq) <= planetTolerance * 0.38) {
     return planetHit.item;
   }
   if (strategicAssetHit.item && Math.sqrt(strategicAssetHit.distanceSq) <= strategicAssetTolerance * 0.9) {
     return strategicAssetHit.item;
   }
-  if (!planetHit.item && !routeHit.item) return strategicAssetHit.item || sectorArmyHit || factionHit.item;
+  if (!planetHit.item && !routeHit.item) return strategicAssetHit.item || factionHit.item;
   if (!routeHit.item) {
-    if (!planetHit.item) return strategicAssetHit.item || sectorArmyHit || factionHit.item;
+    if (!planetHit.item) return strategicAssetHit.item || factionHit.item;
     return factionHit.item ? factionHit.item : planetHit.item;
   }
   if (!planetHit.item) {
@@ -15723,7 +16580,7 @@ function findNearestRenderableItem(clientX, clientY) {
         ? factionHit.item
         : routeHit.item;
     }
-    return sectorArmyHit || routeHit.item;
+    return routeHit.item;
   }
 
   const planetDistance = Math.sqrt(planetHit.distanceSq);
@@ -15739,7 +16596,7 @@ function findNearestRenderableItem(clientX, clientY) {
     return factionHit.item;
   }
   const precise = routeScore < planetScore ? routeHit.item : planetHit.item;
-  return precise || strategicAssetHit.item || sectorArmyHit;
+  return precise || strategicAssetHit.item;
 }
 
 function renderSearchResults() {
@@ -15771,6 +16628,7 @@ function renderSearchResults() {
 
 function setMapFilter(key, value) {
   if (!(key in state.filters)) return;
+  const nextValue = Boolean(value);
   if (key === "sectorArmies" && state.mapMode === "underworld") {
     state.filters = {
       ...state.filters,
@@ -15784,7 +16642,7 @@ function setMapFilter(key, value) {
   }
   state.filters = {
     ...state.filters,
-    [key]: Boolean(value),
+    [key]: nextValue,
   };
 
   if (!mapItemVisible(hoveredItem())) {
@@ -15793,6 +16651,10 @@ function setMapFilter(key, value) {
 
   invalidateStaticOverlay();
   renderAll();
+  if (key === "sectorArmies" && nextValue && !state.sectorArmyEditor.enabled) {
+    focusSectorArmyOverview(true);
+    scheduleSectorArmyOverviewRefit([0, 120, 360, 900, 1600]);
+  }
   if (searchInput.value.trim()) {
     renderSearchResults();
   }
@@ -15807,6 +16669,11 @@ function toggleMapFilter(key) {
 function commitSectorArmyEditorField(field, target) {
   if (!field) return;
   if (field === "selectedId") {
+    if (state.sectorArmyEditor.enabled && Number(target.value) !== Number(state.sectorArmyEditor.selectedId)) {
+      setStatus("Wechsle den Sektor ueber das Infopanel und starte die Bearbeitung dort bewusst neu.");
+      renderAll();
+      return;
+    }
     setSectorArmyEditorSelectedId(target.value);
     renderAll();
     return;
@@ -15816,6 +16683,18 @@ function commitSectorArmyEditorField(field, target) {
     return;
   }
   const id = state.sectorArmyEditor.selectedId;
+  if (field === "name") {
+    updateSectorArmyNameDraft(id, target.value);
+    renderAll();
+    persistSession();
+    return;
+  }
+  if (field === "faction") {
+    updateSectorArmyFactionDraft(id, target.value);
+    renderAll();
+    persistSession();
+    return;
+  }
   if (!isSectorArmyBoundaryEditActive(id)) {
     setStatus("Grenzen sind gesperrt. Starte die Bearbeitung zuerst im Infopanel.");
     renderAll();
@@ -15881,10 +16760,17 @@ async function handleSectorArmyEditorAction(action, source) {
     setStatus(state.sectorArmyEditor.modifyMode ? "Modify-Modus aktiv." : "Modify-Modus deaktiviert.");
   } else if (action === "focus" && item) {
     focusItem(item, false);
+  } else if (action === "create-territory") {
+    const created = createSectorArmyDraft();
+    if (created) {
+      selectMapItem(created);
+      focusItem(created, false);
+      setStatus("Neue Sektorarmee angelegt. Ziehe den Mittelpunkt im Sektor-Modus, um das Gebiet zu verschieben.");
+    }
   } else if (action === "label-mode") {
     if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
-    state.sectorArmyEditor.labelMode = !state.sectorArmyEditor.labelMode;
-    setStatus(state.sectorArmyEditor.labelMode ? "Naechster Kartenklick setzt das Label." : "Labelmodus aus.");
+    state.sectorArmyEditor.labelMode = false;
+    setSectorArmyEditorLabelPosition(sectorArmyTerritoryCenter(selectedSectorArmyEditorTerritory()));
   } else if (action === "add-center") {
     if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
     const territory = selectedSectorArmyEditorTerritory();
@@ -15912,6 +16798,20 @@ async function handleSectorArmyEditorAction(action, source) {
   } else if (action === "select-point") {
     if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
     state.sectorArmyEditor.selectedPointIndex = Number(source?.dataset?.index);
+  } else if (action === "select-layer") {
+    if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
+    const nextId = Number(source?.dataset?.id);
+    if (!Number.isFinite(nextId) || nextId === Number(state.sectorArmyEditor.selectedId)) return;
+    const confirmed = await showSectorArmyConfirmDialog({
+      title: "Aktiven Layer wechseln?",
+      message: "Die aktuelle Grenzbearbeitung wird beendet. Starte die Bearbeitung des anderen Sektors danach bewusst im Infopanel.",
+      confirmLabel: "Wechseln",
+    });
+    if (!confirmed) return;
+    stopSectorArmyBoundaryEdit();
+    state.sectorArmyEditor.selectedId = nextId;
+    const item = sectorArmyItemByKey(`sector-army-${nextId}`);
+    if (item) selectMapItem(item);
   } else if (action === "validate") {
     state.sectorArmyEditor.validation = validateSectorArmyTerritory(selectedSectorArmyEditorTerritory());
     setStatus(state.sectorArmyEditor.validation.length ? "Grenze hat noch Hinweise." : "Grenze technisch gueltig.");
@@ -15932,6 +16832,10 @@ async function handleSectorArmyEditorAction(action, source) {
     state.sectorArmyEditor.mode = mode;
     state.sectorArmyEditor.modifyMode = mode === "vertex" || mode === "curve";
     setStatus(`Editor-Modus: ${mode}`);
+  } else if (action === "insert-point-mode") {
+    if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
+    state.sectorArmyEditor.insertPointMode = !state.sectorArmyEditor.insertPointMode;
+    setStatus(state.sectorArmyEditor.insertPointMode ? "Punktmodus aktiv: Klick auf eine Linie fuegt einen Punkt ein." : "Punktmodus aus.");
   } else if (action === "snap") {
     state.sectorArmyEditor.snapEnabled = !state.sectorArmyEditor.snapEnabled;
     setStatus(state.sectorArmyEditor.snapEnabled ? "Snap ist aktiv." : "Snap ist aus.");
@@ -15962,6 +16866,20 @@ async function handleSectorArmyEditorAction(action, source) {
   persistSession();
 }
 
+function commitSectorArmyDetailName(id, source) {
+  const numericId = Number(id);
+  if (!Number.isFinite(numericId)) return null;
+  const container = source?.closest?.(".sector-army-name-edit") || planetDetailRefs.body;
+  const input =
+    container?.querySelector?.(`[data-sector-detail-field="name"][data-sector-id="${numericId}"]`) ||
+    planetDetailRefs.body?.querySelector?.(`[data-sector-detail-field="name"][data-sector-id="${numericId}"]`);
+  const draft = updateSectorArmyNameDraft(numericId, input?.value || "");
+  if (!draft) return null;
+  renderAll();
+  persistSession();
+  return draft;
+}
+
 async function handleSectorArmyDetailAction(action, source) {
   const id = Number(source?.dataset?.sectorId || selectedDetailItem()?.army?.id || state.sectorArmyEditor.selectedId);
   if (!Number.isFinite(id)) return;
@@ -15973,7 +16891,127 @@ async function handleSectorArmyDetailAction(action, source) {
     await requestStartSectorArmyTableEdit(id);
   } else if (action === "stop-table-edit") {
     stopSectorArmyTableEdit();
+  } else if (action === "add-ship-class") {
+    addSectorArmyShipClass(id, source?.dataset?.sectorFaction);
+  } else if (action === "remove-ship-class") {
+    await removeSectorArmyShipClass(id, source?.dataset?.sectorFaction, source?.dataset?.sectorShipKey);
+  } else if (action === "save-name") {
+    commitSectorArmyDetailName(id, source);
+  } else if (action === "create-territory") {
+    const created = createSectorArmyDraft();
+    if (created) {
+      selectMapItem(created);
+      focusItem(created, false);
+      renderAll();
+      persistSession();
+      setStatus("Neue Sektorarmee angelegt.");
+    }
   }
+}
+
+function saveSectorArmyFleetRows(id, factionKey, rows) {
+  const army = sectorArmyById(id);
+  if (!army) return false;
+  const dataKey = sectorFleetDataKey(factionKey);
+  const table = sectorFleetAvailabilityDraft(rows);
+  const totals = sectorFleetAvailabilityTotals(rows);
+  pushSectorArmyEditorUndo(id);
+  updateSectorArmyDataDraft(id, {
+    fleetTables: {
+      ...(army.fleetTables || {}),
+      [dataKey]: table,
+    },
+    [dataKey]: {
+      ...(army[dataKey] || {}),
+      total: totals.total,
+      free: totals.free,
+    },
+  });
+  renderAll();
+  persistSession();
+  return true;
+}
+
+function addSectorArmyShipClass(id, factionKeyInput) {
+  if (!isSectorArmyTableEditActive(id)) {
+    setStatus("Schiffstabelle ist gesperrt. Starte die Tabellenbearbeitung zuerst im Infopanel.");
+    return;
+  }
+  const factionKey = sectorFleetDataKey(factionKeyInput);
+  const label = String(window.prompt?.("Name der neuen Schiffsklasse", "Neue Schiffsklasse") || "").trim();
+  if (!label) return;
+  const army = sectorArmyById(id);
+  if (!army) return;
+  const rows = sectorFleetAvailabilityRows(army, factionKey).map((row) => ({
+    ...row,
+    values: { ...(row.values || {}) },
+  }));
+  let shipKey = sectorShipKeyFromLabel(label);
+  while (rows.some((row) => row.shipKey === shipKey)) shipKey = `${shipKey}-${Date.now().toString(36).slice(-4)}`;
+  rows.push({
+    shipKey,
+    label,
+    totalBase: 0,
+    values: { free: 0, frontBound: 0, garrison: 0, repair: 0, locked: 0 },
+    total: 0,
+    isCustom: true,
+  });
+  if (saveSectorArmyFleetRows(id, factionKey, rows)) setStatus(`${label} hinzugefuegt.`);
+}
+
+async function removeSectorArmyShipClass(id, factionKeyInput, shipKeyInput) {
+  if (!isSectorArmyTableEditActive(id)) {
+    setStatus("Schiffstabelle ist gesperrt. Starte die Tabellenbearbeitung zuerst im Infopanel.");
+    return;
+  }
+  const factionKey = sectorFleetDataKey(factionKeyInput);
+  const shipKey = String(shipKeyInput || "").trim();
+  const army = sectorArmyById(id);
+  if (!army || !shipKey) return;
+  const rows = sectorFleetAvailabilityRows(army, factionKey).map((row) => ({
+    ...row,
+    values: { ...(row.values || {}) },
+  }));
+  const row = rows.find((entry) => entry.shipKey === shipKey && entry.isCustom);
+  if (!row) return;
+  if (row.total > 0) {
+    const confirmed = await showSectorArmyConfirmDialog({
+      title: "Schiffsklasse entfernen?",
+      message: `Diese Schiffsklasse enthaelt aktuell ${formatFleetNumber(row.total)} Einheiten. Wirklich entfernen?`,
+      confirmLabel: "Entfernen",
+    });
+    if (!confirmed) return;
+  }
+  if (saveSectorArmyFleetRows(id, factionKey, rows.filter((entry) => entry.shipKey !== shipKey))) {
+    setStatus(`${row.label} entfernt.`);
+  }
+}
+
+function commitSectorArmyShipClassLabel(input) {
+  const id = Number(input?.dataset?.sectorId);
+  if (!isSectorArmyTableEditActive(id)) {
+    setStatus("Schiffstabelle ist gesperrt. Starte die Tabellenbearbeitung zuerst im Infopanel.");
+    renderAll();
+    return;
+  }
+  const factionKey = sectorFleetDataKey(input.dataset.sectorFaction);
+  const shipKey = String(input.dataset.sectorShipKey || "").trim();
+  const label = String(input.value || "").trim();
+  if (!shipKey || !label) {
+    setStatus("Schiffsklassen brauchen einen Namen.");
+    renderAll();
+    return;
+  }
+  const army = sectorArmyById(id);
+  if (!army) return;
+  const rows = sectorFleetAvailabilityRows(army, factionKey).map((row) => ({
+    ...row,
+    values: { ...(row.values || {}) },
+  }));
+  const row = rows.find((entry) => entry.shipKey === shipKey && entry.isCustom);
+  if (!row) return;
+  row.label = label;
+  if (saveSectorArmyFleetRows(id, factionKey, rows)) setStatus("Schiffsklasse umbenannt.");
 }
 
 function commitSectorArmyShipInput(input) {
@@ -16002,23 +17040,9 @@ function commitSectorArmyShipInput(input) {
   if (!row) return;
   row.values[category] = value;
   row.total = SECTOR_SHIP_AVAILABILITY_KEYS.reduce((sum, key) => sum + normalizeSectorAvailabilityQuantity(row.values[key]), 0);
-  const table = sectorFleetAvailabilityDraft(rows);
-  const totals = sectorFleetAvailabilityTotals(rows);
-  const dataKey = sectorFleetDataKey(factionKey);
-  updateSectorArmyDataDraft(id, {
-    fleetTables: {
-      ...(army.fleetTables || {}),
-      [dataKey]: table,
-    },
-    [dataKey]: {
-      ...(army[dataKey] || {}),
-      total: totals.total,
-      free: totals.free,
-    },
-  });
-  setStatus(`${sectorFleetDisplayLabel(factionKey)}-Schiffstabelle aktualisiert.`);
-  renderAll();
-  persistSession();
+  if (saveSectorArmyFleetRows(id, factionKey, rows)) {
+    setStatus(`${sectorFleetDisplayLabel(factionKey)}-Schiffstabelle aktualisiert.`);
+  }
 }
 
 function renderAll() {
@@ -16140,7 +17164,8 @@ function bindEvents() {
     }
   });
   window.addEventListener("keydown", (event) => {
-    if (!state.sectorArmyEditor.enabled) return;
+    if (!isSectorArmyBoundaryEditActive(state.sectorArmyEditor.selectedId)) return;
+    if (state.sectorArmyEditor.mode !== "vertex") return;
     const tag = String(document.activeElement?.tagName || "").toLowerCase();
     if (tag === "input" || tag === "textarea" || tag === "select") return;
     if (event.key === "Delete" || event.key === "Backspace") {
@@ -16155,7 +17180,7 @@ function bindEvents() {
     button.addEventListener("click", () => toggleMapFilter(key));
   });
   if (sectorArmyFleetButton) {
-    sectorArmyFleetButton.addEventListener("click", () => {
+    sectorArmyFleetButton.addEventListener("click", async () => {
       if (state.mapMode === "underworld") {
         setMapFilter("sectorArmies", false);
         return;
@@ -16164,7 +17189,7 @@ function bindEvents() {
       if (!state.isMobileView) {
         setDesktopWindowVisible("mapTools", true, false);
       }
-      setStatus("Sektorarmeen & Flottenlage eingeblendet. Bearbeitung startet erst im Infopanel nach Warnhinweis.");
+      await requestStartSectorArmyBoundaryEdit(state.sectorArmyEditor.selectedId);
     });
   }
   if (sectorArmyEditorMount) {
@@ -16189,19 +17214,55 @@ function bindEvents() {
   if (planetDetailRefs.body) {
     planetDetailRefs.body.addEventListener("click", (event) => {
       const button = event.target.closest("[data-sector-detail-action]");
-      if (!button) return;
+      if (button) {
+        event.preventDefault();
+        void handleSectorArmyDetailAction(button.dataset.sectorDetailAction, button);
+        return;
+      }
+      const reserveButton = event.target.closest("[data-planet-reserve-action]");
+      if (!reserveButton) return;
       event.preventDefault();
-      void handleSectorArmyDetailAction(button.dataset.sectorDetailAction, button);
+      handlePlanetReserveAction(reserveButton.dataset.planetReserveAction);
     });
     planetDetailRefs.body.addEventListener("input", (event) => {
       const input = event.target?.closest?.("[data-sector-ship-input]");
-      if (!input) return;
-      validateSectorAvailabilityInput(input);
+      if (input) {
+        validateSectorAvailabilityInput(input);
+        return;
+      }
     });
     planetDetailRefs.body.addEventListener("change", (event) => {
+      const detailField = event.target?.closest?.("[data-sector-detail-field]");
+      if (detailField) {
+        const id = Number(detailField.dataset.sectorId || selectedDetailItem()?.army?.id || state.sectorArmyEditor.selectedId);
+        if (detailField.dataset.sectorDetailField === "name") {
+          commitSectorArmyDetailName(id, detailField);
+        } else if (detailField.dataset.sectorDetailField === "faction") {
+          updateSectorArmyFactionDraft(id, detailField.value);
+          renderAll();
+          persistSession();
+        }
+        return;
+      }
       const input = event.target?.closest?.("[data-sector-ship-input]");
-      if (!input) return;
-      commitSectorArmyShipInput(input);
+      if (input) {
+        commitSectorArmyShipInput(input);
+        return;
+      }
+      const reserveField = event.target?.closest?.("[data-planet-reserve-field]");
+      if (reserveField) {
+        commitPlanetReserveField(reserveField);
+        return;
+      }
+      const labelInput = event.target?.closest?.("[data-sector-ship-class-label]");
+      if (labelInput) commitSectorArmyShipClassLabel(labelInput);
+    });
+    planetDetailRefs.body.addEventListener("keydown", (event) => {
+      const detailField = event.target?.closest?.("[data-sector-detail-field]");
+      if (!detailField || detailField.dataset.sectorDetailField !== "name" || event.key !== "Enter") return;
+      event.preventDefault();
+      const id = Number(detailField.dataset.sectorId || selectedDetailItem()?.army?.id || state.sectorArmyEditor.selectedId);
+      commitSectorArmyDetailName(id, detailField);
     });
   }
   document.addEventListener("pointermove", updateSectorArmyEditorDrag);
@@ -16684,7 +17745,15 @@ function initViewer() {
       pinchToZoom: true,
       flickEnabled: true,
       clickToZoom: false,
-      dblClickToZoom: true,
+      dblClickToZoom: false,
+    },
+    gestureSettingsMouse: {
+      clickToZoom: false,
+      dblClickToZoom: false,
+    },
+    gestureSettingsPen: {
+      clickToZoom: false,
+      dblClickToZoom: false,
     },
   });
 
@@ -16727,6 +17796,10 @@ function initViewer() {
   state.viewer.addHandler("canvas-click", (event) => {
     if (!event.quick || isTouchGestureLocked()) return;
     const originalEvent = event.originalEvent;
+    if (isRecentSectorArmyLayerPointer(originalEvent)) {
+      event.preventDefaultAction = true;
+      return;
+    }
     const touchPoint = originalEvent?.changedTouches?.[0] || originalEvent?.touches?.[0] || null;
     const clientX = typeof originalEvent?.clientX === "number" ? originalEvent.clientX : touchPoint?.clientX;
     const clientY = typeof originalEvent?.clientY === "number" ? originalEvent.clientY : touchPoint?.clientY;
@@ -16748,6 +17821,11 @@ function initViewer() {
       return;
     }
 
+    if (isSectorArmyLayerItem(item)) {
+      selectMapItem(item);
+      return;
+    }
+
     focusItem(item);
   });
 
@@ -16757,9 +17835,16 @@ function initViewer() {
     state.imageWidth = Number(size?.x) || CALIBRATION_BASE_WIDTH;
     state.imageHeight = Number(size?.y) || CALIBRATION_BASE_HEIGHT;
     createOverlayPlane();
-    focusGrid(state.currentGrid);
-    renderAll();
-    setStatus("Viewer bereit. Grid waehlen oder Planeten und Hyperraumrouten erkunden.");
+    const focusedSectorOverview =
+      sectorArmyLayerEnabled() && !state.sectorArmyEditor.enabled && focusSectorArmyOverview(true);
+    if (!focusedSectorOverview) {
+      focusGrid(state.currentGrid);
+    } else {
+      if (gridInput) gridInput.value = state.currentGrid;
+      renderAll();
+      scheduleSectorArmyOverviewRefit([160, 700, 1400]);
+      setStatus("Sektorarmee-Uebersicht bereit.");
+    }
   });
   state.viewer.addHandler("animation", scheduleOverlayRender);
   state.viewer.addHandler("animation-finish", () => {

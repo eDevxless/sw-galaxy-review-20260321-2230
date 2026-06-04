@@ -4,13 +4,14 @@
   const sectorArmies = [
   {
     id: 1,
-    name: "Platinum Hammer",
+    name: "Azure Hammer",
     status: "republic-secured",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-01",
     display: {
       numberLabel: "1st",
-      title: "1. Sektorarmee — Platinum Hammer",
+      title: "1. Sektorarmee — Azure Hammer",
       dominanceHint: "Republik gesichert",
     },
     republic: {
@@ -38,13 +39,14 @@
   },
   {
     id: 2,
-    name: "Grey Motley",
+    name: "Green Mantle",
     status: "republic-secured",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-02",
     display: {
       numberLabel: "2nd",
-      title: "2. Sektorarmee — Grey Motley",
+      title: "2. Sektorarmee — Green Mantle",
       dominanceHint: "Republik gesichert",
     },
     republic: {
@@ -74,6 +76,7 @@
     id: 3,
     name: "Steel Blade",
     status: "republic-leaning",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-03",
     display: {
@@ -108,6 +111,7 @@
     id: 4,
     name: "White Cuirass",
     status: "contested",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-04",
     display: {
@@ -140,13 +144,14 @@
   },
   {
     id: 5,
-    name: "Diamond Hand",
+    name: "Shadow Hand",
     status: "republic-secured",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-05",
     display: {
       numberLabel: "5th",
-      title: "5. Sektorarmee — Diamond Hand",
+      title: "5. Sektorarmee — Shadow Hand",
       dominanceHint: "Republik gesichert",
     },
     republic: {
@@ -176,6 +181,7 @@
     id: 6,
     name: "Black Sword",
     status: "republic-leaning",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-06",
     display: {
@@ -208,13 +214,14 @@
   },
   {
     id: 7,
-    name: "Golden Nyss",
+    name: "Bronze Vise",
     status: "contested",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-07",
     display: {
       numberLabel: "7th",
-      title: "7. Sektorarmee — Golden Nyss",
+      title: "7. Sektorarmee - Bronze Vise",
       dominanceHint: "Umkämpft",
     },
     republic: {
@@ -244,6 +251,7 @@
     id: 8,
     name: "Bright Jewel",
     status: "republic-leaning",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-08",
     display: {
@@ -276,13 +284,14 @@
   },
   {
     id: 9,
-    name: "Brazen Petard",
+    name: "Shard Petard",
     status: "contested",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-09",
     display: {
       numberLabel: "9th",
-      title: "9. Sektorarmee — Brazen Petard",
+      title: "9. Sektorarmee - Shard Petard",
       dominanceHint: "Umkämpft",
     },
     republic: {
@@ -310,13 +319,14 @@
   },
   {
     id: 10,
-    name: "Arrow Dagger",
+    name: "Vulture Dagger",
     status: "contested",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-10",
     display: {
       numberLabel: "10th",
-      title: "10. Sektorarmee — Arrow Dagger",
+      title: "10. Sektorarmee - Vulture Dagger",
       dominanceHint: "Umkämpft",
     },
     republic: {
@@ -344,13 +354,14 @@
   },
   {
     id: 11,
-    name: "Blazing Claw",
+    name: "Raxus Claw",
     status: "cis-pressure",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-11",
     display: {
       numberLabel: "11th",
-      title: "11. Sektorarmee — Blazing Claw",
+      title: "11. Sektorarmee - Raxus Claw",
       dominanceHint: "KUS-Druckraum",
     },
     republic: {
@@ -378,13 +389,14 @@
   },
   {
     id: 12,
-    name: "Cerulean Spear",
+    name: "Tidebreaker Spear",
     status: "cis-pressure",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-12",
     display: {
       numberLabel: "12th",
-      title: "12. Sektorarmee — Cerulean Spear",
+      title: "12. Sektorarmee - Tidebreaker Spear",
       dominanceHint: "KUS-Druckraum",
     },
     republic: {
@@ -412,13 +424,14 @@
   },
   {
     id: 13,
-    name: "Iron Lance",
+    name: "Ion Lance",
     status: "cis-pressure",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-13",
     display: {
       numberLabel: "13th",
-      title: "13. Sektorarmee — Iron Lance",
+      title: "13. Sektorarmee - Ion Lance",
       dominanceHint: "KUS-Druckraum",
     },
     republic: {
@@ -446,13 +459,14 @@
   },
   {
     id: 14,
-    name: "Red Tails",
+    name: "Cobalt Talons",
     status: "cis-pressure",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-14",
     display: {
       numberLabel: "14th",
-      title: "14. Sektorarmee — Red Tails",
+      title: "14. Sektorarmee - Cobalt Talons",
       dominanceHint: "KUS-Druckraum",
     },
     republic: {
@@ -480,13 +494,14 @@
   },
   {
     id: 15,
-    name: "Hook Nebula",
+    name: "Nebula Hook",
     status: "contested",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-15",
     display: {
       numberLabel: "15th",
-      title: "15. Sektorarmee — Hook Nebula",
+      title: "15. Sektorarmee - Nebula Hook",
       dominanceHint: "Umkämpft",
     },
     republic: {
@@ -516,6 +531,7 @@
     id: 16,
     name: "Ivory Fang",
     status: "republic-leaning",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-16",
     display: {
@@ -548,13 +564,14 @@
   },
   {
     id: 17,
-    name: "Chrome Shield",
+    name: "Droid Aegis",
     status: "contested",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-17",
     display: {
       numberLabel: "17th",
-      title: "17. Sektorarmee — Chrome Shield",
+      title: "17. Sektorarmee - Droid Aegis",
       dominanceHint: "Umkämpft",
     },
     republic: {
@@ -582,13 +599,14 @@
   },
   {
     id: 18,
-    name: "Night Hammer",
+    name: "Umbra Hammer",
     status: "cis-pressure",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-18",
     display: {
       numberLabel: "18th",
-      title: "18. Sektorarmee — Night Hammer",
+      title: "18. Sektorarmee - Umbra Hammer",
       dominanceHint: "KUS-Druckraum",
     },
     republic: {
@@ -616,13 +634,14 @@
   },
   {
     id: 19,
-    name: "Dark Saber",
+    name: "Void Saber",
     status: "cis-pressure",
+    faction: "cis",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-19",
     display: {
       numberLabel: "19th",
-      title: "19. Sektorarmee — Dark Saber",
+      title: "19. Sektorarmee - Void Saber",
       dominanceHint: "KUS-Druckraum",
     },
     republic: {
@@ -650,13 +669,14 @@
   },
   {
     id: 20,
-    name: "Emerald Flame",
+    name: "Emerald Banner",
     status: "republic-secured",
+    faction: "republic",
     source: "initial-seed-from-sector-army-map",
     polygonKey: "sector-20",
     display: {
       numberLabel: "20th",
-      title: "20. Sektorarmee — Emerald Flame",
+      title: "20. Sektorarmee — Emerald Banner",
       dominanceHint: "Republik gesichert",
     },
     republic: {

@@ -1,771 +1,372 @@
-// Placeholder geometry for Sektorarmeen. Final borders must be traced in the admin editor.
+// Clone Wars sector army geometry traced from Clone_Wars_Sector_Armies.webp.
+// Coordinates stay normalized to the existing static galaxy map image. The raster
+// reference is only used as a drawing guide; it is not loaded as a map overlay.
 (function () {
+  const note =
+    "Nach Clone-Wars-Sector-Armies-Referenz als bearbeitbares Vektorpolygon auf die bestehende Karte uebertragen.";
+
   window.SW_SECTOR_ARMY_TERRITORIES = [
-  {
-    "id": 1,
-    "name": "Platinum Hammer",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.34,
-      0.23
-    ],
-    "polygon": [
-      [
-        0.3361,
-        0.1721
-      ],
-      [
-        0.4055,
-        0.1985
-      ],
-      [
-        0.4094,
-        0.2565
-      ],
-      [
-        0.3439,
-        0.2879
-      ],
-      [
-        0.2745,
-        0.2615
-      ],
-      [
-        0.2706,
-        0.2035
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 2,
-    "name": "Grey Motley",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.48,
-      0.22
-    ],
-    "polygon": [
-      [
-        0.487,
-        0.1562
-      ],
-      [
-        0.5586,
-        0.1925
-      ],
-      [
-        0.5516,
-        0.2563
-      ],
-      [
-        0.473,
-        0.2838
-      ],
-      [
-        0.4014,
-        0.2475
-      ],
-      [
-        0.4084,
-        0.1837
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 3,
-    "name": "Steel Blade",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.62,
-      0.24
-    ],
-    "polygon": [
-      [
-        0.6152,
-        0.1701
-      ],
-      [
-        0.7006,
-        0.202
-      ],
-      [
-        0.7054,
-        0.2719
-      ],
-      [
-        0.6248,
-        0.3099
-      ],
-      [
-        0.5394,
-        0.278
-      ],
-      [
-        0.5346,
-        0.2081
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 4,
-    "name": "White Cuirass",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.75,
-      0.28
-    ],
-    "polygon": [
-      [
-        0.7562,
-        0.2042
-      ],
-      [
-        0.8205,
-        0.2474
-      ],
-      [
-        0.8142,
-        0.3231
-      ],
-      [
-        0.7438,
-        0.3558
-      ],
-      [
-        0.6795,
-        0.3126
-      ],
-      [
-        0.6858,
-        0.2369
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 5,
-    "name": "Diamond Hand",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.27,
-      0.36
-    ],
-    "polygon": [
-      [
-        0.2657,
-        0.3021
-      ],
-      [
-        0.3431,
-        0.3285
-      ],
-      [
-        0.3474,
-        0.3865
-      ],
-      [
-        0.2743,
-        0.4179
-      ],
-      [
-        0.1969,
-        0.3915
-      ],
-      [
-        0.1926,
-        0.3335
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 6,
-    "name": "Black Sword",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.4,
-      0.36
-    ],
-    "polygon": [
-      [
-        0.4077,
-        0.2962
-      ],
-      [
-        0.4867,
-        0.3325
-      ],
-      [
-        0.479,
-        0.3963
-      ],
-      [
-        0.3923,
-        0.4238
-      ],
-      [
-        0.3133,
-        0.3875
-      ],
-      [
-        0.321,
-        0.3237
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 7,
-    "name": "Golden Nyss",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.54,
-      0.37
-    ],
-    "polygon": [
-      [
-        0.5361,
-        0.3001
-      ],
-      [
-        0.6055,
-        0.332
-      ],
-      [
-        0.6094,
-        0.4019
-      ],
-      [
-        0.5439,
-        0.4399
-      ],
-      [
-        0.4745,
-        0.408
-      ],
-      [
-        0.4706,
-        0.3381
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 8,
-    "name": "Bright Jewel",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.68,
-      0.39
-    ],
-    "polygon": [
-      [
-        0.687,
-        0.3142
-      ],
-      [
-        0.7586,
-        0.3574
-      ],
-      [
-        0.7516,
-        0.4331
-      ],
-      [
-        0.673,
-        0.4658
-      ],
-      [
-        0.6014,
-        0.4226
-      ],
-      [
-        0.6084,
-        0.3469
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 9,
-    "name": "Brazen Petard",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.81,
-      0.43
-    ],
-    "polygon": [
-      [
-        0.8052,
-        0.3721
-      ],
-      [
-        0.8906,
-        0.3985
-      ],
-      [
-        0.8954,
-        0.4565
-      ],
-      [
-        0.8148,
-        0.4879
-      ],
-      [
-        0.7294,
-        0.4615
-      ],
-      [
-        0.7246,
-        0.4035
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 10,
-    "name": "Arrow Dagger",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.23,
-      0.52
-    ],
-    "polygon": [
-      [
-        0.2362,
-        0.4562
-      ],
-      [
-        0.3005,
-        0.4925
-      ],
-      [
-        0.2942,
-        0.5563
-      ],
-      [
-        0.2238,
-        0.5838
-      ],
-      [
-        0.1595,
-        0.5475
-      ],
-      [
-        0.1658,
-        0.4837
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 11,
-    "name": "Blazing Claw",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.37,
-      0.52
-    ],
-    "polygon": [
-      [
-        0.3657,
-        0.4501
-      ],
-      [
-        0.4431,
-        0.482
-      ],
-      [
-        0.4474,
-        0.5519
-      ],
-      [
-        0.3743,
-        0.5899
-      ],
-      [
-        0.2969,
-        0.558
-      ],
-      [
-        0.2926,
-        0.4881
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 12,
-    "name": "Cerulean Spear",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.52,
-      0.53
-    ],
-    "polygon": [
-      [
-        0.5277,
-        0.4542
-      ],
-      [
-        0.6067,
-        0.4974
-      ],
-      [
-        0.599,
-        0.5731
-      ],
-      [
-        0.5123,
-        0.6058
-      ],
-      [
-        0.4333,
-        0.5626
-      ],
-      [
-        0.441,
-        0.4869
-      ]
-    ],
-    "anchorPlanets": [
-      "Saleucami",
-      "Boonta",
-      "Roche",
-      "Antilles",
-      "Muunilinst"
-    ],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 13,
-    "name": "Iron Lance",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.67,
-      0.55
-    ],
-    "polygon": [
-      [
-        0.6661,
-        0.4921
-      ],
-      [
-        0.7355,
-        0.5185
-      ],
-      [
-        0.7394,
-        0.5765
-      ],
-      [
-        0.6739,
-        0.6079
-      ],
-      [
-        0.6045,
-        0.5815
-      ],
-      [
-        0.6006,
-        0.5235
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 14,
-    "name": "Red Tails",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.8,
-      0.58
-    ],
-    "polygon": [
-      [
-        0.807,
-        0.5162
-      ],
-      [
-        0.8786,
-        0.5525
-      ],
-      [
-        0.8716,
-        0.6163
-      ],
-      [
-        0.793,
-        0.6438
-      ],
-      [
-        0.7214,
-        0.6075
-      ],
-      [
-        0.7284,
-        0.5437
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 15,
-    "name": "Hook Nebula",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.29,
-      0.68
-    ],
-    "polygon": [
-      [
-        0.2852,
-        0.6101
-      ],
-      [
-        0.3706,
-        0.642
-      ],
-      [
-        0.3754,
-        0.7119
-      ],
-      [
-        0.2948,
-        0.7499
-      ],
-      [
-        0.2094,
-        0.718
-      ],
-      [
-        0.2046,
-        0.6481
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 16,
-    "name": "Ivory Fang",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.44,
-      0.69
-    ],
-    "polygon": [
-      [
-        0.4462,
-        0.6142
-      ],
-      [
-        0.5105,
-        0.6574
-      ],
-      [
-        0.5042,
-        0.7331
-      ],
-      [
-        0.4338,
-        0.7658
-      ],
-      [
-        0.3695,
-        0.7226
-      ],
-      [
-        0.3758,
-        0.6469
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 17,
-    "name": "Chrome Shield",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.59,
-      0.7
-    ],
-    "polygon": [
-      [
-        0.5857,
-        0.6421
-      ],
-      [
-        0.6631,
-        0.6685
-      ],
-      [
-        0.6674,
-        0.7265
-      ],
-      [
-        0.5943,
-        0.7579
-      ],
-      [
-        0.5169,
-        0.7315
-      ],
-      [
-        0.5126,
-        0.6735
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 18,
-    "name": "Night Hammer",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.73,
-      0.72
-    ],
-    "polygon": [
-      [
-        0.7377,
-        0.6562
-      ],
-      [
-        0.8167,
-        0.6925
-      ],
-      [
-        0.809,
-        0.7563
-      ],
-      [
-        0.7223,
-        0.7838
-      ],
-      [
-        0.6433,
-        0.7475
-      ],
-      [
-        0.651,
-        0.6837
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 19,
-    "name": "Dark Saber",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.42,
-      0.84
-    ],
-    "polygon": [
-      [
-        0.4161,
-        0.7701
-      ],
-      [
-        0.4855,
-        0.802
-      ],
-      [
-        0.4894,
-        0.8719
-      ],
-      [
-        0.4239,
-        0.9099
-      ],
-      [
-        0.3545,
-        0.878
-      ],
-      [
-        0.3506,
-        0.8081
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  },
-  {
-    "id": 20,
-    "name": "Emerald Flame",
-    "status": "unbearbeitet",
-    "labelPosition": [
-      0.6,
-      0.84
-    ],
-    "polygon": [
-      [
-        0.607,
-        0.7642
-      ],
-      [
-        0.6786,
-        0.8074
-      ],
-      [
-        0.6716,
-        0.8831
-      ],
-      [
-        0.593,
-        0.9158
-      ],
-      [
-        0.5214,
-        0.8726
-      ],
-      [
-        0.5284,
-        0.7969
-      ]
-    ],
-    "anchorPlanets": [],
-    "locked": false,
-    "notes": "Demo-Platzhalter. Finale Sektorarmee-Grenzen im Admin-Editor auf der echten Karte nachziehen."
-  }
-];
+    {
+      id: 1,
+      name: "Azure Hammer",
+      labelPosition: [0.414, 0.419],
+      polygon: [
+        [0.355, 0.386],
+        [0.392, 0.364],
+        [0.438, 0.366],
+        [0.482, 0.392],
+        [0.493, 0.436],
+        [0.457, 0.466],
+        [0.407, 0.459],
+        [0.374, 0.438],
+        [0.345, 0.413],
+      ],
+      anchorPlanets: ["Coruscant", "Chandrila", "Anaxes", "Corellia"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 2,
+      name: "Green Mantle",
+      labelPosition: [0.522, 0.598],
+      polygon: [
+        [0.462, 0.556],
+        [0.514, 0.538],
+        [0.565, 0.552],
+        [0.594, 0.594],
+        [0.573, 0.652],
+        [0.518, 0.688],
+        [0.468, 0.648],
+        [0.451, 0.592],
+      ],
+      anchorPlanets: [],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 3,
+      name: "Steel Blade",
+      labelPosition: [0.525, 0.365],
+      polygon: [
+        [0.444, 0.318],
+        [0.536, 0.304],
+        [0.612, 0.334],
+        [0.648, 0.382],
+        [0.614, 0.434],
+        [0.528, 0.444],
+        [0.468, 0.410],
+        [0.430, 0.362],
+      ],
+      anchorPlanets: ["Brentaal IV", "Cato Neimoidia"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 4,
+      name: "White Cuirass",
+      labelPosition: [0.613, 0.496],
+      polygon: [
+        [0.512, 0.432],
+        [0.624, 0.414],
+        [0.707, 0.454],
+        [0.733, 0.522],
+        [0.705, 0.604],
+        [0.625, 0.626],
+        [0.540, 0.582],
+        [0.498, 0.508],
+      ],
+      anchorPlanets: ["Alderaan", "Onderon"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 5,
+      name: "Shadow Hand",
+      labelPosition: [0.381, 0.526],
+      polygon: [
+        [0.300, 0.468],
+        [0.350, 0.440],
+        [0.425, 0.450],
+        [0.485, 0.492],
+        [0.491, 0.566],
+        [0.449, 0.628],
+        [0.372, 0.642],
+        [0.311, 0.600],
+        [0.274, 0.536],
+      ],
+      anchorPlanets: ["Prakith", "Tython"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 6,
+      name: "Black Sword",
+      labelPosition: [0.272, 0.424],
+      polygon: [
+        [0.232, 0.340],
+        [0.302, 0.342],
+        [0.348, 0.392],
+        [0.346, 0.478],
+        [0.313, 0.538],
+        [0.258, 0.546],
+        [0.216, 0.498],
+        [0.196, 0.424],
+      ],
+      anchorPlanets: [],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 7,
+      name: "Bronze Vise",
+      labelPosition: [0.370, 0.335],
+      polygon: [
+        [0.260, 0.270],
+        [0.342, 0.250],
+        [0.432, 0.268],
+        [0.480, 0.318],
+        [0.460, 0.376],
+        [0.394, 0.405],
+        [0.314, 0.390],
+        [0.248, 0.340],
+      ],
+      anchorPlanets: ["Ord Mantell"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 8,
+      name: "Bright Jewel",
+      labelPosition: [0.262, 0.238],
+      polygon: [
+        [0.150, 0.215],
+        [0.205, 0.165],
+        [0.282, 0.125],
+        [0.360, 0.150],
+        [0.405, 0.218],
+        [0.385, 0.292],
+        [0.318, 0.328],
+        [0.232, 0.306],
+        [0.168, 0.260],
+      ],
+      anchorPlanets: ["Ilum"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 9,
+      name: "Shard Petard",
+      labelPosition: [0.480, 0.206],
+      polygon: [
+        [0.355, 0.115],
+        [0.448, 0.090],
+        [0.555, 0.112],
+        [0.630, 0.168],
+        [0.648, 0.250],
+        [0.594, 0.314],
+        [0.498, 0.330],
+        [0.410, 0.284],
+        [0.372, 0.210],
+      ],
+      anchorPlanets: ["Mandalore", "Dathomir", "Ithor"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 10,
+      name: "Vulture Dagger",
+      labelPosition: [0.606, 0.332],
+      polygon: [
+        [0.534, 0.250],
+        [0.635, 0.245],
+        [0.716, 0.292],
+        [0.726, 0.366],
+        [0.672, 0.425],
+        [0.584, 0.430],
+        [0.530, 0.378],
+        [0.490, 0.310],
+      ],
+      anchorPlanets: [],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 11,
+      name: "Raxus Claw",
+      labelPosition: [0.780, 0.236],
+      polygon: [
+        [0.674, 0.118],
+        [0.800, 0.105],
+        [0.888, 0.140],
+        [0.930, 0.214],
+        [0.912, 0.298],
+        [0.828, 0.356],
+        [0.728, 0.338],
+        [0.668, 0.260],
+      ],
+      anchorPlanets: ["Korriban", "Felucia", "Boz Pity"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 12,
+      name: "Tidebreaker Spear",
+      labelPosition: [0.765, 0.440],
+      polygon: [
+        [0.695, 0.348],
+        [0.812, 0.330],
+        [0.910, 0.396],
+        [0.902, 0.506],
+        [0.820, 0.582],
+        [0.720, 0.570],
+        [0.648, 0.506],
+        [0.645, 0.422],
+      ],
+      anchorPlanets: ["Saleucami"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 13,
+      name: "Ion Lance",
+      labelPosition: [0.727, 0.704],
+      polygon: [
+        [0.660, 0.585],
+        [0.784, 0.566],
+        [0.858, 0.628],
+        [0.868, 0.735],
+        [0.802, 0.805],
+        [0.698, 0.795],
+        [0.630, 0.704],
+        [0.612, 0.625],
+      ],
+      anchorPlanets: ["Bothawui", "Rodia"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 14,
+      name: "Cobalt Talons",
+      labelPosition: [0.865, 0.805],
+      polygon: [
+        [0.822, 0.648],
+        [0.914, 0.654],
+        [0.970, 0.742],
+        [0.962, 0.842],
+        [0.902, 0.912],
+        [0.810, 0.885],
+        [0.762, 0.792],
+        [0.780, 0.704],
+      ],
+      anchorPlanets: ["Ryloth", "Geonosis", "Tatooine"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 15,
+      name: "Nebula Hook",
+      labelPosition: [0.655, 0.865],
+      polygon: [
+        [0.565, 0.810],
+        [0.682, 0.780],
+        [0.788, 0.828],
+        [0.812, 0.914],
+        [0.752, 0.964],
+        [0.624, 0.965],
+        [0.540, 0.910],
+        [0.522, 0.846],
+      ],
+      anchorPlanets: ["Dagobah", "Utapau", "Svivren"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 16,
+      name: "Ivory Fang",
+      labelPosition: [0.506, 0.710],
+      polygon: [
+        [0.414, 0.624],
+        [0.514, 0.604],
+        [0.610, 0.650],
+        [0.640, 0.735],
+        [0.594, 0.814],
+        [0.490, 0.822],
+        [0.396, 0.760],
+        [0.364, 0.684],
+      ],
+      anchorPlanets: ["Charros"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 17,
+      name: "Droid Aegis",
+      labelPosition: [0.587, 0.805],
+      polygon: [
+        [0.480, 0.760],
+        [0.610, 0.748],
+        [0.718, 0.798],
+        [0.724, 0.884],
+        [0.664, 0.934],
+        [0.540, 0.928],
+        [0.456, 0.850],
+      ],
+      anchorPlanets: ["Naboo", "Kamino", "Malastare"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 18,
+      name: "Umbra Hammer",
+      labelPosition: [0.400, 0.895],
+      polygon: [
+        [0.330, 0.792],
+        [0.462, 0.782],
+        [0.540, 0.844],
+        [0.524, 0.962],
+        [0.460, 0.996],
+        [0.342, 0.980],
+        [0.270, 0.900],
+        [0.284, 0.820],
+      ],
+      anchorPlanets: ["Hoth", "Bespin", "Mustafar"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 19,
+      name: "Void Saber",
+      labelPosition: [0.245, 0.828],
+      polygon: [
+        [0.112, 0.770],
+        [0.252, 0.724],
+        [0.360, 0.774],
+        [0.370, 0.870],
+        [0.300, 0.956],
+        [0.176, 0.938],
+        [0.100, 0.850],
+      ],
+      anchorPlanets: ["Endor"],
+      locked: false,
+      notes: note,
+    },
+    {
+      id: 20,
+      name: "Emerald Banner",
+      labelPosition: [0.370, 0.638],
+      polygon: [
+        [0.282, 0.570],
+        [0.392, 0.552],
+        [0.474, 0.604],
+        [0.480, 0.688],
+        [0.414, 0.750],
+        [0.306, 0.734],
+        [0.230, 0.648],
+        [0.238, 0.594],
+      ],
+      anchorPlanets: [],
+      locked: false,
+      notes: note,
+    },
+  ];
 })();

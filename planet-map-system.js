@@ -4,7 +4,6 @@
   const PLANET_MAP_DB_VERSION = 1;
   const PLANET_MAP_STORE = "maps";
   const PLANET_MAP_FALLBACK_KEY = "sw-galaxy-planet-maps-fallback-v1";
-  const ADMIN_TOKEN_STORAGE_KEY = "swmap_admin_token";
   const CORUSCANT_CITY_MAP_PATH = "./coruscant-city-map/city-map.html";
   const ECUMENOPOLIS_CITY_MAP_PATH = "./coruscant-city-map/planet-city-map.html";
   const PLANET_MAP_FRAME_SIZE = 5000;
@@ -112,43 +111,12 @@
       .replace(/\s+/g, " ");
   }
 
-  function decodeBase64Url(value) {
-    const normalized = String(value || "").replace(/-/g, "+").replace(/_/g, "/");
-    const padding = "=".repeat((4 - (normalized.length % 4)) % 4);
-    return atob(normalized + padding);
-  }
-
-  function tokenLooksCurrent(token) {
-    const parts = String(token || "").split(".");
-    if (parts.length !== 2) return false;
-    try {
-      const payload = JSON.parse(decodeBase64Url(parts[0]));
-      const role = String(payload?.role || payload?.sub || "").toLowerCase();
-      if (role !== "admin") return false;
-      if (payload?.exp && Number(payload.exp) < Math.floor(Date.now() / 1000)) return false;
-      return true;
-    } catch (_error) {
-      return false;
-    }
-  }
-
-  function localAdminToken() {
-    try {
-      const token = sessionStorage.getItem(ADMIN_TOKEN_STORAGE_KEY) || "";
-      if (tokenLooksCurrent(token)) return token;
-      if (token) sessionStorage.removeItem(ADMIN_TOKEN_STORAGE_KEY);
-    } catch (_error) {
-      return "";
-    }
-    return "";
-  }
-
   function hasAdminMapAccess() {
-    return Boolean(window.MapAdminUi?.isAdmin?.() || localAdminToken());
+    return Boolean(window.MapAdminUi?.isAdmin?.());
   }
 
   function mapAccessVersion() {
-    return "readonly-map-access-1";
+    return "readonly-map-access-3";
   }
 
   function normalizePlanetGrid(value) {
@@ -1828,6 +1796,8 @@
     if (item?.species_population) params.set("species", item.species_population);
     const settlements = worldEditorSettlements(item);
     if (settlements.length) params.set("settlements", settlements.join("|"));
+    if (hasAdminMapAccess()) params.set("admin", "1");
+    else params.set("readonly", "1");
     params.set("returnTo", `${window.location.pathname}${window.location.search}${window.location.hash}`);
     return `${PLANET_WORLD_EDITOR_PATH}?${params.toString()}`;
   }
@@ -1842,12 +1812,14 @@
     const params = new URLSearchParams();
     if (isCoruscantCityMap(item)) {
       params.set("_v", mapAccessVersion());
-      if (!hasAdminMapAccess()) params.set("view", "public");
+      if (hasAdminMapAccess()) params.set("admin", "1");
+      else params.set("view", "public");
       return `${CORUSCANT_CITY_MAP_PATH}?${params.toString()}`;
     }
     const profile = cityPlanetProfile(item);
     params.set("_v", mapAccessVersion());
-    if (!hasAdminMapAccess()) params.set("view", "public");
+    if (hasAdminMapAccess()) params.set("admin", "1");
+    else params.set("view", "public");
     params.set("name", item?.name || item?.nameKey || "Ecumenopolis");
     params.set("seed", planetMapSeed(item));
     appendCityMapParam(params, "grid", item?.grid, 40);
