@@ -8230,10 +8230,39 @@ function resizeScreenOverlayCanvas() {
 
 function scheduleOverlayRender() {
   if (state.overlayRenderQueued) return;
+
   state.viewerBusy = true;
+
   if (state.overlaySettleTimer) {
     window.clearTimeout(state.overlaySettleTimer);
   }
+
+  state.overlaySettleTimer = window.setTimeout(() => {
+    state.viewerBusy = false;
+    renderOverlay();
+  }, state.isMobileView ? 150 : 90);
+
+  // Auf mobilen Geräten Overlay-Updates während Bewegung begrenzen.
+  if (state.isMobileView) {
+    const now = performance.now();
+    const last = scheduleOverlayRender.lastMobileRender || 0;
+
+    if (now - last < 33) {
+      return;
+    }
+
+    scheduleOverlayRender.lastMobileRender = now;
+  }
+
+  state.overlayRenderQueued = true;
+
+  requestAnimationFrame(() => {
+    state.overlayRenderQueued = false;
+
+    renderStaticCanvasOverlay();
+    renderDynamicOverlay();
+  });
+}
   state.overlayRenderQueued = true;
   requestAnimationFrame(() => {
     state.overlayRenderQueued = false;
@@ -8897,26 +8926,39 @@ function renderStaticCanvasOverlay() {
   // During touch pan/zoom, do not redraw the expensive faction gradients,
   // vector paths and labels. A lightweight planet-dot pass keeps the map
   // responsive; the complete overlay is rendered on animation-finish.
-  if (state.isMobileView && state.viewerBusy) {
-    visibleRenderableMapItems()
-      .filter((item) => {
-        if (!bounds) return true;
-        const { x, y } = itemImagePosition(item);
-        return x >= bounds.left && x <= bounds.right && y >= bounds.top && y <= bounds.bottom;
-      })
-      .forEach((item) => {
-        const screen = imagePxToScreen(item.x * state.imageWidth, item.y * state.imageHeight);
-        if (!screen) return;
-        const visual = planetDotVisual(item, metrics);
-        const radius = Math.max(1.4, Math.min(3.2, visual.radius * metrics.screenScale));
-        ctx.beginPath();
-        ctx.arc(screen.x, screen.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = visual.fill;
-        ctx.globalAlpha = visual.fillOpacity;
-        ctx.fill();
-      });
-    ctx.globalAlpha = 1;
-    return;
+if (state.isMobileView && state.viewerBusy) {
+  const items = visibleRenderableMapItems();
+
+  // Während des Wischens nur einfache Punkte zeichnen.
+  // Bei stark herausgezoomter Karte zusätzlich ausdünnen.
+  const skip = metrics.zoomFactor < 0.8 ? 3 : 1;
+
+  items.forEach((item, index) => {
+    if (index % skip !== 0) return;
+
+    const screen = imagePxToScreen(
+      item.x * state.imageWidth,
+      item.y * state.imageHeight
+    );
+
+    if (!screen) return;
+
+    const visual = planetDotVisual(item, metrics);
+    const radius = Math.max(
+      1.4,
+      Math.min(3.0, visual.radius * metrics.screenScale)
+    );
+
+    ctx.beginPath();
+    ctx.arc(screen.x, screen.y, radius, 0, Math.PI * 2);
+    ctx.fillStyle = visual.fill;
+    ctx.globalAlpha = visual.fillOpacity;
+    ctx.fill();
+  });
+
+  ctx.globalAlpha = 1;
+  return;
+}
   }
 
   const screenGuideWidth = Math.max(0.9, metrics.guideStroke * metrics.screenScale);
