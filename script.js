@@ -8207,11 +8207,17 @@ function ensureScreenOverlayCanvas() {
   state.screenOverlayCtx = canvas.getContext("2d");
 }
 
+function overlayCanvasPixelRatio() {
+  // Mobile browsers pay a large cost for high-DPR canvas redraws.
+  // The map remains visually sharp enough at 1x while panning/zooming.
+  return state.isMobileView ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+}
+
 function resizeScreenOverlayCanvas() {
   if (!state.screenOverlayCanvas) return;
   const width = Math.max(1, osdViewerEl.clientWidth || 1);
   const height = Math.max(1, osdViewerEl.clientHeight || 1);
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = overlayCanvasPixelRatio();
   const targetWidth = Math.round(width * dpr);
   const targetHeight = Math.round(height * dpr);
   if (state.screenOverlayCanvas.width !== targetWidth || state.screenOverlayCanvas.height !== targetHeight) {
@@ -8880,13 +8886,38 @@ function renderStaticCanvasOverlay() {
 
   resizeScreenOverlayCanvas();
   const ctx = state.screenOverlayCtx;
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = overlayCanvasPixelRatio();
   const width = state.screenOverlayCanvas.width / dpr;
   const height = state.screenOverlayCanvas.height / dpr;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, state.screenOverlayCanvas.width, state.screenOverlayCanvas.height);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, width, height);
+
+  // During touch pan/zoom, do not redraw the expensive faction gradients,
+  // vector paths and labels. A lightweight planet-dot pass keeps the map
+  // responsive; the complete overlay is rendered on animation-finish.
+  if (state.isMobileView && state.viewerBusy) {
+    visibleRenderableMapItems()
+      .filter((item) => {
+        if (!bounds) return true;
+        const { x, y } = itemImagePosition(item);
+        return x >= bounds.left && x <= bounds.right && y >= bounds.top && y <= bounds.bottom;
+      })
+      .forEach((item) => {
+        const screen = imagePxToScreen(item.x * state.imageWidth, item.y * state.imageHeight);
+        if (!screen) return;
+        const visual = planetDotVisual(item, metrics);
+        const radius = Math.max(1.4, Math.min(3.2, visual.radius * metrics.screenScale));
+        ctx.beginPath();
+        ctx.arc(screen.x, screen.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = visual.fill;
+        ctx.globalAlpha = visual.fillOpacity;
+        ctx.fill();
+      });
+    ctx.globalAlpha = 1;
+    return;
+  }
 
   const screenGuideWidth = Math.max(0.9, metrics.guideStroke * metrics.screenScale);
   const screenDotStroke = Math.max(0.75, metrics.dotStroke * metrics.screenScale);
@@ -10029,6 +10060,10 @@ function bindSectorArmyLayerInteractions(svg) {
 function renderDynamicOverlay() {
   if (!state.overlayDynamic) return;
   state.overlayDynamic.innerHTML = "";
+
+  // Avoid rebuilding the DOM overlay on every animation frame on touch
+  // devices. It will be rebuilt once the gesture/zoom animation finishes.
+  if (state.isMobileView && state.viewerBusy) return;
 
   const metrics = currentOverlayMetrics();
   const mobileSimplified = state.isMobileView && (state.viewerBusy || metrics.zoomFactor < 1.35);
