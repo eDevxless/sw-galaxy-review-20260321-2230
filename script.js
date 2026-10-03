@@ -8229,8 +8229,6 @@ function resizeScreenOverlayCanvas() {
 }
 
 function scheduleOverlayRender() {
-  if (state.overlayRenderQueued) return;
-
   state.viewerBusy = true;
 
   if (state.overlaySettleTimer) {
@@ -8242,12 +8240,14 @@ function scheduleOverlayRender() {
     renderOverlay();
   }, state.isMobileView ? 150 : 90);
 
+  if (state.overlayRenderQueued) return;
+
   // Auf mobilen Geräten Overlay-Updates während Bewegung begrenzen.
   if (state.isMobileView) {
     const now = performance.now();
     const last = scheduleOverlayRender.lastMobileRender || 0;
 
-    if (now - last < 33) {
+    if (now - last < 22) {
       return;
     }
 
@@ -8259,20 +8259,11 @@ function scheduleOverlayRender() {
   requestAnimationFrame(() => {
     state.overlayRenderQueued = false;
 
+    if (state.isMobileView) return;
+
     renderStaticCanvasOverlay();
     renderDynamicOverlay();
   });
-}
-  state.overlayRenderQueued = true;
-  requestAnimationFrame(() => {
-    state.overlayRenderQueued = false;
-    renderStaticCanvasOverlay();
-    renderDynamicOverlay();
-  });
-  state.overlaySettleTimer = window.setTimeout(() => {
-    state.viewerBusy = false;
-    renderOverlay();
-  }, state.isMobileView ? 150 : 90);
 }
 
 function sourceLabel(item) {
@@ -8923,10 +8914,8 @@ function renderStaticCanvasOverlay() {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, width, height);
 
-  // During touch pan/zoom, do not redraw the expensive faction gradients,
-  // vector paths and labels. A lightweight planet-dot pass keeps the map
-  // responsive; the complete overlay is rendered on animation-finish.
-if (state.isMobileView && state.viewerBusy) {
+  // Fallback for callers that still use the screen-space canvas path.
+  if (state.isMobileView && state.viewerBusy) {
   const items = visibleRenderableMapItems();
 
   // Während des Wischens nur einfache Punkte zeichnen.
@@ -8959,7 +8948,6 @@ if (state.isMobileView && state.viewerBusy) {
   ctx.globalAlpha = 1;
   return;
 }
-  }
 
   const screenGuideWidth = Math.max(0.9, metrics.guideStroke * metrics.screenScale);
   const screenDotStroke = Math.max(0.75, metrics.dotStroke * metrics.screenScale);
@@ -9208,10 +9196,13 @@ function renderStaticOverlay() {
   if (!state.overlaySvg || !state.imageWidth || !state.imageHeight) return;
   const metrics = currentOverlayMetrics();
   const labelBounds = viewportImageBounds(0);
+  const planetBounds = state.isMobileView
+    ? viewportImageBounds(Math.max(160, state.imageWidth * 0.03))
+    : null;
   const factionFragments = visibleFactionFragments(ensureFactionFragments());
   const overlayKey = `${state.staticOverlayVersion}|${mapFilterSignature()}|${metrics.signature}|${state.showRejected ? 1 : 0}|${state.currentGrid}|${overlayBoundsSignature(
     labelBounds
-  )}`;
+  )}|planets:${overlayBoundsSignature(planetBounds)}`;
   if (state.lastStaticOverlayKey === overlayKey) return;
   state.lastStaticOverlayKey = overlayKey;
 
@@ -9335,6 +9326,7 @@ function renderStaticOverlay() {
     .join("");
 
   const planetMarkup = visibleRenderableMapItems()
+    .filter((item) => itemInBounds(item, planetBounds))
     .sort((a, b) => itemSelectionWeight(b) - itemSelectionWeight(a))
     .map((item) => {
       const { x, y } = itemImagePosition(item);
@@ -10101,11 +10093,11 @@ function bindSectorArmyLayerInteractions(svg) {
 
 function renderDynamicOverlay() {
   if (!state.overlayDynamic) return;
-  state.overlayDynamic.innerHTML = "";
 
   // Avoid rebuilding the DOM overlay on every animation frame on touch
   // devices. It will be rebuilt once the gesture/zoom animation finishes.
   if (state.isMobileView && state.viewerBusy) return;
+  state.overlayDynamic.innerHTML = "";
 
   const metrics = currentOverlayMetrics();
   const mobileSimplified = state.isMobileView && (state.viewerBusy || metrics.zoomFactor < 1.35);
@@ -10273,10 +10265,18 @@ function makePin(item) {
 
 function renderOverlay() {
   if (!state.overlayPlane) return;
+  if (state.isMobileView) {
+    renderStaticOverlay();
+    renderDynamicOverlay();
+    updateFactionFragmentInteractionState();
+    return;
+  }
+
   if (state.overlaySvg && state.overlaySvg.childNodes.length) {
     state.overlaySvg.innerHTML = "";
     state.lastStaticOverlayKey = "";
   }
+
   renderStaticCanvasOverlay();
   renderDynamicOverlay();
   updateFactionFragmentInteractionState();
@@ -12627,11 +12627,12 @@ async function tryFetchJson(path) {
 }
 
 async function loadCoreJsonData() {
+  const loadVisualLayersImmediately = !state.isMobileView;
   const [calibrated, factions, vectorPaths, hyperspaceRoutes, gridGuides, gridMarkers, fleetShips] = await Promise.all([
     tryFetchJson("calibrated_planets.json"),
     tryFetchJson("planet_factions.json"),
-    tryFetchJson("rim_curves.json"),
-    tryFetchJson("hyperspace_routes.json"),
+    loadVisualLayersImmediately ? tryFetchJson("rim_curves.json") : Promise.resolve(null),
+    loadVisualLayersImmediately ? tryFetchJson("hyperspace_routes.json") : Promise.resolve(null),
     tryFetchJson("grid_guides.json"),
     tryFetchJson("grid_markers.json"),
     tryFetchJson("data/fleet_ships.json"),
@@ -12666,14 +12667,20 @@ async function loadCoreJsonData() {
 }
 
 async function loadDeferredVisualJsonData() {
-  if (state.hyperspaceRouteDefs.length) {
+  if (state.hyperspaceRouteDefs.length && state.vectorPaths.length) {
     return true;
   }
-  const hyperspaceRoutes = await tryFetchJson("hyperspace_routes.json");
+  const [vectorPaths, hyperspaceRoutes] = await Promise.all([
+    state.vectorPaths.length ? Promise.resolve(null) : tryFetchJson("rim_curves.json"),
+    state.hyperspaceRouteDefs.length ? Promise.resolve(null) : tryFetchJson("hyperspace_routes.json"),
+  ]);
+  if (vectorPaths && Array.isArray(vectorPaths.paths)) {
+    importVectorPathsPayload(vectorPaths, "rim_curves.json im Hintergrund geladen");
+  }
   if (hyperspaceRoutes && Array.isArray(hyperspaceRoutes.routes)) {
     importHyperspaceRoutesPayload(hyperspaceRoutes, "hyperspace_routes.json im Hintergrund geladen");
   }
-  return Boolean(hyperspaceRoutes && Array.isArray(hyperspaceRoutes.routes));
+  return state.hyperspaceRouteDefs.length > 0 && state.vectorPaths.length > 0;
 }
 
 async function loadDeferredProfileJsonData() {
@@ -17816,11 +17823,11 @@ function initViewer() {
     minZoomLevel: 0.6,
     maxZoomPixelRatio: state.isMobileView ? 2.2 : 1.8,
     blendTime: state.isMobileView ? 0.04 : 0.08,
-    animationTime: state.isMobileView ? 0.72 : 0.95,
-    springStiffness: state.isMobileView ? 9 : 7,
+    animationTime: state.isMobileView ? 0.08 : 0.95,
+    springStiffness: state.isMobileView ? 24 : 7,
     gestureSettingsTouch: {
       pinchToZoom: true,
-      flickEnabled: true,
+      flickEnabled: !state.isMobileView,
       clickToZoom: false,
       dblClickToZoom: false,
     },

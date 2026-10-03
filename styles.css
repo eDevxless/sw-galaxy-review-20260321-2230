@@ -3123,6 +3123,10 @@ body.desktop-window-dragging .window-drag-handle * {
   z-index: 1;
 }
 
+body.mobile-view .map-screen-overlay {
+  display: none;
+}
+
 .statusbar {
   position: absolute;
   left: auto;
