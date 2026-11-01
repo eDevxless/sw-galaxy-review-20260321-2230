@@ -22,6 +22,102 @@
   --three-transition-progress: 0;
 }
 
+/* Calm, compact planet information for the public baseline map. */
+body.map-base-only .detail-faction-row,
+body.map-base-only [data-window-key="fleet"],
+body.map-base-only [data-window-open="fleet"],
+body.map-base-only [data-mobile-open="fleet"],
+body.map-base-only #mapModeToggleButton {
+  display: none !important;
+}
+
+body.map-base-only .detail-body {
+  gap: 0.72rem;
+}
+
+body.map-base-only .detail-summary {
+  position: relative;
+  gap: 0.48rem;
+  padding: 0.9rem 0.92rem 0.92rem 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(132, 208, 238, 0.16);
+  border-radius: 8px;
+  background: rgba(12, 28, 43, 0.72);
+}
+
+body.map-base-only .detail-summary::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--accent);
+  opacity: 0.82;
+}
+
+body.map-base-only .detail-grid {
+  color: rgba(229, 185, 109, 0.88);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+body.map-base-only .detail-name {
+  font-size: 1.2rem;
+  line-height: 1.15;
+}
+
+body.map-base-only .detail-region {
+  border-radius: 5px;
+  padding: 0.2rem 0.48rem;
+  background: rgba(109, 227, 215, 0.1);
+}
+
+body.map-base-only .detail-desc {
+  max-height: 8.1em;
+  overflow: auto;
+  padding-right: 0.16rem;
+  color: rgba(237, 245, 255, 0.82);
+  font-size: 0.86rem;
+}
+
+body.map-base-only .detail-facts {
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(8, 19, 30, 0.44);
+}
+
+body.map-base-only .detail-facts div {
+  min-height: 3.55rem;
+  padding: 0.56rem 0.66rem;
+  border: 0;
+  border-radius: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: transparent;
+}
+
+body.map-base-only .detail-facts div:nth-child(even) {
+  border-right: 0;
+}
+
+body.map-base-only .detail-facts div:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+@media (max-width: 680px) {
+  body.map-base-only .detail-facts div,
+  body.map-base-only .detail-facts div:nth-child(even),
+  body.map-base-only .detail-facts div:nth-last-child(-n + 2) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  body.map-base-only .detail-facts div:last-child {
+    border-bottom: 0;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -3121,10 +3217,6 @@ body.desktop-window-dragging .window-drag-handle * {
   height: 100%;
   pointer-events: none;
   z-index: 1;
-}
-
-body.mobile-view .map-screen-overlay {
-  display: none;
 }
 
 .statusbar {

@@ -7,9 +7,6 @@ Administration/.env
 Administration/data/
 test_map.png
 
-# Local Netlify folder
+# Local deployment folders
 .netlify
-
-.vercel
-
 .vercel
