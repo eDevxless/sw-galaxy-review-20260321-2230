@@ -1,65 +1,36 @@
-const { createClient } = require("redis");
+const { list, put } = require("@vercel/blob");
 
-let client = null;
-let connecting = null;
+const STORE_PREFIX = "map-store/";
 
-function getRedisUrl() {
-  return (
-    process.env.REDIS_URL ||
-    process.env.KV_URL ||
-    process.env.UPSTASH_REDIS_URL ||
-    null
-  );
+function blobPrefix(key) {
+  return `${STORE_PREFIX}${encodeURIComponent(String(key))}-`;
 }
 
-async function getClient() {
-  const url = getRedisUrl();
-  if (!url) {
-    throw new Error(
-      "REDIS_URL not set. Connect a Redis database to this Vercel project."
-    );
-  }
-  if (client && client.isReady) return client;
-  if (!client) {
-    client = createClient({
-      url,
-      socket: {
-        connectTimeout: 8000,
-        reconnectStrategy: false,
-      },
-    });
-    client.on("error", (err) => {
-      // Only log; let calls fail loudly when used.
-      console.error("[redis] client error:", err?.message || err);
-    });
-  }
-  if (!client.isOpen) {
-    if (!connecting) {
-      connecting = client.connect().catch((err) => {
-        connecting = null;
-        throw err;
-      });
-    }
-    await connecting;
-    connecting = null;
-  }
-  return client;
+function blobPath(key) {
+  return `${blobPrefix(key)}${Date.now()}.json`;
+}
+
+async function latestBlob(key) {
+  const result = await list({ prefix: blobPrefix(key), limit: 1000 });
+  return (result.blobs || [])
+    .sort((left, right) => new Date(right.uploadedAt) - new Date(left.uploadedAt))[0] || null;
 }
 
 async function getJson(key) {
-  const c = await getClient();
-  const raw = await c.get(key);
-  if (!raw) return null;
-  try {
-    return JSON.parse(raw);
-  } catch (_e) {
-    return null;
-  }
+  const blob = await latestBlob(key);
+  if (!blob) return null;
+
+  const response = await fetch(blob.url, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Stored map data could not be read (${response.status}).`);
+  return response.json();
 }
 
 async function setJson(key, value) {
-  const c = await getClient();
-  await c.set(key, JSON.stringify(value));
+  await put(blobPath(key), JSON.stringify(value), {
+    access: "public",
+    contentType: "application/json; charset=utf-8",
+    addRandomSuffix: false,
+  });
 }
 
-module.exports = { getClient, getJson, setJson };
+module.exports = { getJson, setJson };
