@@ -4037,6 +4037,15 @@ body.mobile-view .map-screen-overlay {
   transition: fill-opacity 160ms ease;
 }
 
+.map-data-overlay .faction-fragment-label {
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 750;
+  letter-spacing: 0.025em;
+  opacity: 0.98;
+  pointer-events: none;
+  user-select: none;
+}
+
 .map-data-overlay .faction-fragment.is-hovered .faction-banner-outline,
 .map-data-overlay .faction-fragment.is-hovered .faction-banner-spoke {
   stroke: var(--banner-accent);

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "factions": [
+    { "id": "republic", "name": "Galaktische Republik", "color": "#d65353", "secondaryColor": "#ffcf78", "bannerUrl": "", "scope": "government", "visible": true, "locked": false },
+    { "id": "separatist", "name": "Konföderation Unabhängiger Systeme", "color": "#4d9de0", "secondaryColor": "#b5e6ff", "bannerUrl": "", "scope": "government", "visible": true, "locked": false },
+    { "id": "blacksun", "name": "Black Sun", "color": "#9858d6", "secondaryColor": "#e4c3ff", "bannerUrl": "", "scope": "underworld", "visible": true, "locked": false },
+    { "id": "hutt", "name": "Huttenkartelle", "color": "#c69b36", "secondaryColor": "#ffe5a4", "bannerUrl": "", "scope": "underworld", "visible": true, "locked": false },
+    { "id": "pyke", "name": "Pyke-Syndikat", "color": "#3c9d88", "secondaryColor": "#a1f0d6", "scope": "underworld", "bannerUrl": "", "visible": true, "locked": false },
+    { "id": "ohnaka", "name": "Ohnaka-Bande", "color": "#db7a44", "secondaryColor": "#ffd3b5", "scope": "underworld", "visible": true, "locked": false }
+  ],
+  "territories": [],
+  "territoryBootstrapFactions": [],
+  "images": [],
+  "layers": [
+    { "id": "territories", "type": "territories", "name": "Fraktionsgebiete", "visible": true, "locked": false, "opacity": 100, "order": 6 },
+    { "id": "banners", "type": "banners", "name": "Fraktionsbanner", "visible": true, "locked": false, "opacity": 100, "order": 5 },
+    { "id": "planets", "type": "planets", "name": "Planeten", "visible": true, "locked": true, "opacity": 100, "order": 4 },
+    { "id": "routes", "type": "routes", "name": "Hyperraumrouten", "visible": true, "locked": true, "opacity": 100, "order": 3 },
+    { "id": "rims", "type": "rims", "name": "Rims und Kartenvektoren", "visible": true, "locked": true, "opacity": 100, "order": 2 },
+    { "id": "background", "type": "background", "name": "Kartenhintergrund", "visible": true, "locked": true, "opacity": 100, "order": 1 }
+  ]
+}

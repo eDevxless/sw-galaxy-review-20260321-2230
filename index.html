@@ -27,8 +27,9 @@
   <meta name="theme-color" content="#0a1422" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.21.1/dist/maplibre-gl.css" />
-  <link rel="stylesheet" href="styles.css?v=sector-army-factions-8" />
+  <link rel="stylesheet" href="styles.css?v=sector-army-factions-9" />
   <link rel="stylesheet" href="admin.css?v=coruscant-city-map-14" />
+  <link rel="stylesheet" href="faction-territory-editor.css?v=1" />
 </head>
 
 <body class="intro-active">
@@ -646,6 +647,9 @@
             </div>
             <div class="viewer-tools-actions">
               <button type="button" id="sectorArmyFleetButton" class="accent-button">Sektorarmee bearbeiten</button>
+              <button type="button" id="factionTerritoryEditorButton" class="accent-button hidden" aria-haspopup="dialog">
+                Fraktionsgebiete bearbeiten
+              </button>
             </div>
 
             <div class="filter-toolbar" role="group" aria-label="Kartenfilter">
@@ -915,7 +919,8 @@
   <script defer src="data/sector-armies.js?v=5-faction-editor"></script>
   <script defer src="data/sector-army-territories.js?v=5-faction-editor"></script>
   <script defer src="admin.js?v=readonly-map-access-3"></script>
-  <script defer src="script.js?v=sector-army-factions-8"></script>
+  <script defer src="script.js?v=sector-army-factions-11"></script>
+  <script defer src="faction-territory-editor.js?v=3"></script>
   <script defer src="planet-map-system.js?v=readonly-map-access-3"></script>
 </body>
 

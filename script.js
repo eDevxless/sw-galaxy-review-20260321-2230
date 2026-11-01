@@ -1117,6 +1117,12 @@ const state = {
   planetFactions: new Map(),
   governmentPlanetFactions: new Map(),
   underworldPlanetFactions: new Map(),
+  territoryFactionMap: new Map(),
+  territoryFactionMeta: new Map(),
+  territoryFactionMetaReady: false,
+  territoryFactionRegions: [],
+  factionTerritoryEditorActive: false,
+  editorLayerVisibility: { planets: true, routes: true, rims: true, background: true },
   planetProfiles: new Map(),
   factionProfiles: new Map(),
   planetOverrides: {},
@@ -1335,7 +1341,8 @@ function normalizeFaction(value) {
   const faction = String(value || "")
     .trim()
     .toLowerCase();
-  return ALL_KNOWN_FACTIONS.has(faction) ? faction : "";
+  if (state.territoryFactionMetaReady) return state.territoryFactionMeta.has(faction) ? faction : "";
+  return ALL_KNOWN_FACTIONS.has(faction) || state.territoryFactionMeta.has(faction) ? faction : "";
 }
 
 function normalizeOverrideFaction(value) {
@@ -4050,7 +4057,7 @@ function mapFilterSummaryText(filters = state.filters) {
 
 function factionDisplayName(value) {
   const faction = normalizeFaction(value);
-  return faction ? FACTION_LABELS[faction] || faction : "Neutral";
+  return faction ? state.territoryFactionMeta.get(faction)?.name || FACTION_LABELS[faction] || faction : "Neutral";
 }
 
 function normalizeProfileSources(values) {
@@ -4157,7 +4164,27 @@ function chooseFactionMainPlanet(faction, preferredPlanet = "") {
 function planetFactionStyle(item) {
   if (!item || item.kind === "route") return null;
   const faction = normalizeFaction(item.faction);
-  return faction ? FACTION_VISUALS[faction] || null : null;
+  if (!faction) return null;
+  if (FACTION_VISUALS[faction]) return FACTION_VISUALS[faction];
+  const color = state.territoryFactionMeta.get(faction)?.color || "#b9c4d4";
+  return {
+    dotFill: color,
+    dotFillOpacity: 1,
+    dotStroke: "#f4f7ff",
+    dotStrokeOpacity: 0.76,
+    labelFill: color,
+    pinDotShadow: `${color}66`,
+    pinLabelColor: color,
+    pinLabelBorder: `${color}99`,
+    selectionRingColor: color,
+    selectionRingBg: `${color}33`,
+    selectionRingShadow: `${color}22`,
+    selectionDotFill: color,
+    selectionDotBorder: "#ffffff",
+    hoverFill: `${color}66`,
+    hoverBorder: "#ffffff",
+    hoverShadow: `${color}22`,
+  };
 }
 
 function setFactionCssVars(target, style) {
@@ -4182,8 +4209,11 @@ function setFactionCssVars(target, style) {
 
 function applyFactionRecord(record) {
   if (!record || !record.nameKey) return record;
+  const territoryAssignment = state.territoryFactionMap.get(record.nameKey);
   const explicitFaction = normalizeFaction(record.faction);
-  const mappedFaction = explicitFaction || state.planetFactions.get(record.nameKey) || "";
+  const mappedFaction = state.territoryFactionMap.has(record.nameKey)
+    ? normalizeFaction(territoryAssignment)
+    : explicitFaction || state.planetFactions.get(record.nameKey) || "";
   if (mappedFaction) {
     record.faction = mappedFaction;
   } else {
@@ -5658,6 +5688,7 @@ function itemHasGeneratedProfile(item) {
 
 function factionVisibleByFilters(source) {
   const faction = normalizeFaction(typeof source === "string" ? source : source?.faction);
+  if (state.territoryFactionMeta.get(faction)?.visible === false) return false;
   if (faction === "republic") return state.filters.republic;
   if (faction === "separatist") return state.filters.separatist;
   if (faction === "blacksun") return state.filters.blacksun;
@@ -5668,11 +5699,11 @@ function factionVisibleByFilters(source) {
 }
 
 function routeVisibleByFilters(_route) {
-  return state.filters.routes;
+  return state.filters.routes && state.editorLayerVisibility.routes;
 }
 
 function planetVisibleByFilters(item) {
-  if (!item || item.kind === "route" || item.kind === "faction") return false;
+  if (!state.editorLayerVisibility.planets || !item || item.kind === "route" || item.kind === "faction") return false;
   if (!factionVisibleByFilters(item)) return false;
   if (state.filters.profiledOnly && !itemHasGeneratedProfile(item)) return false;
   return true;
@@ -5699,13 +5730,14 @@ function visibleFactionItems() {
 }
 
 function visibleFactionFragments(fragments = ensureFactionFragments()) {
+  if (!state.editorLayerVisibility.planets) return [];
   return (Array.isArray(fragments) ? fragments : []).filter((fragment) => factionVisibleByFilters(fragment));
 }
 
 function visibleVectorPaths() {
   return state.vectorPaths.filter((path) => {
-    if (state.filters.routes) return true;
-    return !isMainHyperspaceRoutePath(path) && !isSideHyperspaceRoutePath(path);
+    const isRoute = isMainHyperspaceRoutePath(path) || isSideHyperspaceRoutePath(path);
+    return isRoute ? routeVisibleByFilters(path) : state.editorLayerVisibility.rims;
   });
 }
 
@@ -5923,7 +5955,20 @@ function sortedNumericQuantile(values, t) {
 }
 
 function factionFragmentVisual(faction) {
-  return FACTION_FRAGMENT_VISUALS[normalizeFaction(faction)] || FACTION_FRAGMENT_VISUALS.republic;
+  const key = normalizeFaction(faction);
+  const preset = FACTION_FRAGMENT_VISUALS[key];
+  if (preset) return preset;
+  const meta = state.territoryFactionMeta.get(key);
+  if (!meta) return FACTION_FRAGMENT_VISUALS.republic;
+  const color = /^#[0-9a-f]{6}$/i.test(String(meta.color || "")) ? meta.color : "#8f78d3";
+  const accent = /^#[0-9a-f]{6}$/i.test(String(meta.secondaryColor || "")) ? meta.secondaryColor : color;
+  return {
+    ambientHex: color,
+    coreHex: color,
+    glowHex: accent,
+    bannerHex: accent,
+    bannerOpacity: 0.16,
+  };
 }
 
 function clusterFactionPoints(points, linkDistancePx) {
@@ -6015,8 +6060,9 @@ function buildFactionFragmentProfile(faction, cluster, index) {
   const padding = clamp(minDim * (largeCluster ? 0.026 : cluster.length >= 45 ? 0.022 : 0.018), 90, 170);
   const majorExtent = sortedNumericQuantile(majorDistances, largeCluster ? 0.92 : 0.88);
   const minorExtent = sortedNumericQuantile(minorDistances, cluster.length >= 65 ? 0.9 : 0.86);
-  const isUnderworld = UNDERWORLD_FACTION_KEYS.includes(faction);
-  const isGovernment = GOVERNMENT_FACTION_KEYS.includes(faction);
+  const factionScope = state.territoryFactionMeta.get(faction)?.scope;
+  const isUnderworld = UNDERWORLD_FACTION_KEYS.includes(faction) || factionScope === "underworld";
+  const isGovernment = GOVERNMENT_FACTION_KEYS.includes(faction) || ["government", "both"].includes(factionScope);
   const coreRxCap = isUnderworld ? state.imageWidth * 0.11 : state.imageWidth * 0.34;
   const coreRyCap = isUnderworld ? state.imageHeight * 0.11 : state.imageHeight * 0.28;
   const ambientRxCap = isUnderworld ? state.imageWidth * 0.16 : state.imageWidth * 0.4;
@@ -6054,6 +6100,91 @@ function buildFactionFragmentProfile(faction, cluster, index) {
   };
 }
 
+function buildFactionTerritoryFragmentProfile(region, index) {
+  const faction = normalizeFaction(region?.factionId || region?.faction);
+  if (!faction || !state.imageWidth || !state.imageHeight) return null;
+  const points = (Array.isArray(region.points) ? region.points : [])
+    .map((point) => ({ x: Number(point?.x) * state.imageWidth, y: Number(point?.y) * state.imageHeight }))
+    .filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y));
+  if (points.length < 3) return null;
+
+  let twiceArea = 0;
+  let centroidX = 0;
+  let centroidY = 0;
+  points.forEach((point, pointIndex) => {
+    const next = points[(pointIndex + 1) % points.length];
+    const cross = point.x * next.y - next.x * point.y;
+    twiceArea += cross;
+    centroidX += (point.x + next.x) * cross;
+    centroidY += (point.y + next.y) * cross;
+  });
+  if (Math.abs(twiceArea) > 1e-6) {
+    centroidX /= 3 * twiceArea;
+    centroidY /= 3 * twiceArea;
+  } else {
+    centroidX = points.reduce((sum, point) => sum + point.x, 0) / points.length;
+    centroidY = points.reduce((sum, point) => sum + point.y, 0) / points.length;
+  }
+
+  let covXX = 0;
+  let covYY = 0;
+  let covXY = 0;
+  points.forEach((point) => {
+    const dx = point.x - centroidX;
+    const dy = point.y - centroidY;
+    covXX += dx * dx;
+    covYY += dy * dy;
+    covXY += dx * dy;
+  });
+  const angleRad = 0.5 * Math.atan2(2 * covXY, covXX - covYY);
+  const cosAngle = Math.cos(angleRad);
+  const sinAngle = Math.sin(angleRad);
+  let majorExtent = 0;
+  let minorExtent = 0;
+  points.forEach((point) => {
+    const dx = point.x - centroidX;
+    const dy = point.y - centroidY;
+    majorExtent = Math.max(majorExtent, Math.abs(dx * cosAngle + dy * sinAngle));
+    minorExtent = Math.max(minorExtent, Math.abs(-dx * sinAngle + dy * cosAngle));
+  });
+  const factionScope = state.territoryFactionMeta.get(faction)?.scope;
+  const isUnderworld = UNDERWORLD_FACTION_KEYS.includes(faction) || factionScope === "underworld";
+  const isGovernment = GOVERNMENT_FACTION_KEYS.includes(faction) || ["government", "both"].includes(factionScope);
+  const minDim = Math.min(state.imageWidth, state.imageHeight);
+  const padding = clamp(minDim * 0.018, 90, 170);
+  const coreRxCap = isUnderworld ? state.imageWidth * 0.11 : state.imageWidth * 0.34;
+  const coreRyCap = isUnderworld ? state.imageHeight * 0.11 : state.imageHeight * 0.28;
+  const ambientRxCap = isUnderworld ? state.imageWidth * 0.16 : state.imageWidth * 0.4;
+  const ambientRyCap = isUnderworld ? state.imageHeight * 0.16 : state.imageHeight * 0.34;
+  const coreRx = clamp(majorExtent + padding, 130, coreRxCap);
+  const coreRy = clamp(minorExtent + padding * 0.82, 110, coreRyCap);
+  const ambientRx = clamp(coreRx * 1.24, coreRx + 60, ambientRxCap);
+  const ambientRy = clamp(coreRy * 1.22, coreRy + 52, ambientRyCap);
+  const largeCluster = Number(region.planetCount) >= GOVERNMENT_CORE_CLUSTER_MIN_PLANETS;
+  const bannerSize = clamp(Math.min(coreRx, coreRy) * (isGovernment ? (largeCluster ? 0.86 : 1.55) : 1.22), 110, isUnderworld ? 360 : 520);
+  const outerRadius = Math.hypot(ambientRx, ambientRy);
+  return {
+    id: `fragment-${faction}-territory-${index + 1}`,
+    faction,
+    count: Math.max(1, Number(region.planetCount) || 0),
+    cx: centroidX,
+    cy: centroidY,
+    angleRad,
+    angleDeg: (angleRad * 180) / Math.PI,
+    coreRx,
+    coreRy,
+    ambientRx,
+    ambientRy,
+    bannerSize,
+    bounds: {
+      left: centroidX - outerRadius,
+      top: centroidY - outerRadius,
+      right: centroidX + outerRadius,
+      bottom: centroidY + outerRadius,
+    },
+  };
+}
+
 function ensureFactionFragments() {
   if (!state.imageWidth || !state.imageHeight) return [];
   const cacheKey = `${state.imageWidth}x${state.imageHeight}|${state.staticOverlayVersion}|${state.planetFactions.size}`;
@@ -6062,12 +6193,16 @@ function ensureFactionFragments() {
   }
 
   // Nur Fraktionen die zum aktuellen Modus gehoeren bekommen Fragments.
-  // So kann kein Republik-Banner im Underworld auftauchen, auch wenn ein
-  // Item-Record noch stale faction-Daten haette.
-  const pointsByFaction =
-    state.mapMode === "underworld"
-      ? { blacksun: [], hutt: [], pyke: [], ohnaka: [] }
-      : { republic: [], separatist: [] };
+  // Benutzerdefinierte Fraktionen werden eingeschlossen, sobald ihre Gebiete
+  // Planeten zuordnen; so erhalten ihre Regionen denselben radialen Lichtschleier.
+  const modeFactions = state.mapMode === "underworld"
+    ? [...UNDERWORLD_FACTION_KEYS]
+    : [...GOVERNMENT_FACTION_KEYS];
+  const customFactions = [...state.territoryFactionMeta.entries()]
+    .filter(([faction, meta]) => !ALL_KNOWN_FACTIONS.has(faction) &&
+      (meta.scope === "both" || meta.scope === state.mapMode))
+    .map(([faction]) => faction);
+  const pointsByFaction = Object.fromEntries([...new Set([...modeFactions, ...customFactions])].map((faction) => [faction, []]));
 
   allRenderableMapItems().forEach((item) => {
     const faction = normalizeFaction(item?.faction);
@@ -6081,21 +6216,35 @@ function ensureFactionFragments() {
     });
   });
 
+  const scopedCustomRegions = state.territoryFactionRegions.filter((region) => {
+    const faction = normalizeFaction(region?.factionId || region?.faction);
+    return faction && !ALL_KNOWN_FACTIONS.has(faction) && Boolean(pointsByFaction[faction]);
+  });
+  const regionBackedFactions = new Set(scopedCustomRegions.map((region) => normalizeFaction(region.factionId || region.faction)));
+  const territoryFragments = scopedCustomRegions
+    .filter((region) => region.visible !== false && state.territoryFactionMeta.get(normalizeFaction(region.factionId || region.faction))?.visible !== false)
+    .map((region, index) => buildFactionTerritoryFragmentProfile(region, index))
+    .filter(Boolean);
+
   const baseLink = Math.min(state.imageWidth, state.imageHeight) * FACTION_FRAGMENT_LINK_DISTANCE_RATIO;
-  const fragments = Object.entries(pointsByFaction)
+  const pointFragments = Object.entries(pointsByFaction)
     .flatMap(([faction, points]) => {
       if (!points.length) return [];
-      const isUnderworld = UNDERWORLD_FACTION_KEYS.includes(faction);
+      const isUnderworld = UNDERWORLD_FACTION_KEYS.includes(faction) || state.territoryFactionMeta.get(faction)?.scope === "underworld";
       const linkDistance = isUnderworld ? baseLink * 2.6 : baseLink;
-      const minPlanets = isUnderworld
-        ? 2
-        : FACTION_FRAGMENT_MIN_PLANETS_BY_FACTION[faction] || FACTION_FRAGMENT_MIN_PLANETS;
+      const isCustomFaction = !ALL_KNOWN_FACTIONS.has(faction);
+      const minPlanets = isCustomFaction
+        ? 1
+        : isUnderworld
+          ? 2
+          : FACTION_FRAGMENT_MIN_PLANETS_BY_FACTION[faction] || FACTION_FRAGMENT_MIN_PLANETS;
       return clusterFactionPoints(points, linkDistance)
         .filter((cluster) => cluster.length >= minPlanets)
         .map((cluster, index) => buildFactionFragmentProfile(faction, cluster, index))
         .filter(Boolean);
     })
-    .sort((left, right) => right.count - left.count);
+    .filter((fragment) => !regionBackedFactions.has(fragment.faction));
+  const fragments = [...pointFragments, ...territoryFragments].sort((left, right) => right.count - left.count);
 
   // Anker-Banner: garantiert dass an konfigurierten Hauptplaneten /
   // Extra-Ankern (z.B. Coruscant + Mustafar fuer Black Sun) immer ein
@@ -6345,9 +6494,13 @@ function drawFactionBannerCanvas(ctx, fragment) {
 }
 
 function buildFactionFragmentSvgDefs() {
+  const visuals = new Map(Object.entries(FACTION_FRAGMENT_VISUALS));
+  state.territoryFactionMeta.forEach((_meta, faction) => {
+    if (!visuals.has(faction)) visuals.set(faction, factionFragmentVisual(faction));
+  });
   return `
     <defs>
-      ${Object.entries(FACTION_FRAGMENT_VISUALS)
+      ${Array.from(visuals.entries())
       .map(
         ([faction, visual]) => `
             <radialGradient id="fragment-${faction}-ambient" cx="50%" cy="50%" r="50%">
@@ -6505,14 +6658,24 @@ function buildFactionBannerSvg(fragment) {
   if (fragment?.faction === "separatist") {
     return buildSeparatistBannerSvg(fragment.bannerSize, color);
   }
-  return buildRepublicBannerSvg(fragment.bannerSize, color);
+  if (fragment?.faction === "republic") return buildRepublicBannerSvg(fragment.bannerSize, color);
+  return "";
 }
 
-function buildFactionFragmentSvgMarkup(fragments) {
+function buildFactionFragmentSvgMarkup(fragments, metrics) {
   if (!Array.isArray(fragments) || !fragments.length) return "";
+  const screenScale = Math.max(0.001, metrics?.screenScale || 1);
+  const labelFontSize = clamp((metrics?.screenPlanetLabelSize || 10) * 1.15 / screenScale, 6, 140);
   return fragments
     .map((fragment) => {
       const visual = factionFragmentVisual(fragment.faction);
+      const meta = state.territoryFactionMeta.get(fragment.faction);
+      const name = String(meta?.name || FACTION_LABELS[fragment.faction] || fragment.faction);
+      const labelColor = meta?.color || visual.glowHex;
+      const labelWidth = Math.max(80, fragment.ambientRx * 1.5);
+      const estimatedLabelWidth = name.length * labelFontSize * 0.62;
+      const hasBanner = Boolean(FACTION_LOGO_URLS[fragment.faction]) || ["republic", "separatist"].includes(fragment.faction);
+      const labelY = hasBanner ? fragment.bannerSize * 0.62 : 0;
       const factionKey = `faction:${fragment.faction}`;
       return `
         <g
@@ -6530,6 +6693,19 @@ function buildFactionFragmentSvgMarkup(fragments) {
           </g>
           <g transform="translate(${fragment.cx.toFixed(2)} ${fragment.cy.toFixed(2)})">
             ${buildFactionBannerSvg(fragment)}
+            <text
+              class="faction-fragment-label"
+              x="0"
+              y="${labelY.toFixed(2)}"
+              font-size="${labelFontSize.toFixed(2)}"
+              fill="${labelColor}"
+              stroke="rgba(4, 10, 17, 0.94)"
+              stroke-width="${clamp(labelFontSize * 0.18, 2, 10).toFixed(2)}"
+              paint-order="stroke"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              ${estimatedLabelWidth > labelWidth ? `textLength="${labelWidth.toFixed(2)}" lengthAdjust="spacingAndGlyphs"` : ""}
+            >${escapeHtml(name)}</text>
           </g>
         </g>
       `;
@@ -6550,8 +6726,10 @@ function updateFactionFragmentInteractionState() {
 
 function factionFitsCurrentMode(faction) {
   if (!faction) return false;
-  if (state.mapMode === "underworld") return UNDERWORLD_FACTION_KEYS.includes(faction);
-  return GOVERNMENT_FACTION_KEYS.includes(faction);
+  if (state.mapMode === "underworld") {
+    return UNDERWORLD_FACTION_KEYS.includes(faction) || ["underworld", "both"].includes(state.territoryFactionMeta.get(faction)?.scope);
+  }
+  return GOVERNMENT_FACTION_KEYS.includes(faction) || ["government", "both"].includes(state.territoryFactionMeta.get(faction)?.scope);
 }
 
 function applyPlanetProfileRecord(record) {
@@ -6565,7 +6743,9 @@ function applyPlanetProfileRecord(record) {
     // record.faction kommt aus state.planetFactions (Mode-aware) — die hat
     // immer Vorrang. Profile-Faktion wird nur uebernommen wenn sie zur
     // aktuellen Karte passt (im Underworld-Mode keine Government-Faktionen).
-    faction: record.faction || fallbackFaction,
+    faction: state.territoryFactionMap.has(record.nameKey)
+      ? record.faction || ""
+      : record.faction || fallbackFaction,
     climate: profile.climate || record.climate || "",
     terrain: profile.terrain || record.terrain || "",
     species_population: profile.species_population || record.species_population || "",
@@ -6653,7 +6833,7 @@ function ensureFactionItems() {
       {
         kind: "faction",
         faction: fragment.faction,
-        name: profile?.name || factionDisplayName(fragment.faction),
+        name: state.territoryFactionMeta.get(fragment.faction)?.name || profile?.name || factionDisplayName(fragment.faction),
         nameKey: key,
         region: "Fraktion",
         desc: profile?.summary || "",
@@ -8982,6 +9162,28 @@ function renderStaticCanvasOverlay() {
         cy: center.y,
         bannerSize: fragment.bannerSize * scale,
       });
+      const meta = state.territoryFactionMeta.get(fragment.faction);
+      const name = String(meta?.name || FACTION_LABELS[fragment.faction] || fragment.faction);
+      const hasBanner = Boolean(FACTION_LOGO_URLS[fragment.faction]) || ["republic", "separatist"].includes(fragment.faction);
+      const labelY = center.y + (hasBanner ? fragment.bannerSize * scale * 0.62 : 0);
+      const labelFontSize = clamp(metrics.screenPlanetLabelSize * 1.15, 10, 18);
+      const labelMaxWidth = Math.max(60, fragment.ambientRx * scale * 1.5);
+      ctx.save();
+      ctx.font = `700 ${labelFontSize}px "Segoe UI", sans-serif`;
+      const measuredLabelWidth = ctx.measureText(name).width;
+      ctx.restore();
+      const fittedFontSize = measuredLabelWidth > labelMaxWidth
+        ? Math.max(8, labelFontSize * labelMaxWidth / measuredLabelWidth)
+        : labelFontSize;
+      drawCanvasText(ctx, name, center.x, labelY, {
+        fontSize: fittedFontSize,
+        align: "center",
+        baseline: "middle",
+        fill: meta?.color || factionFragmentVisual(fragment.faction).glowHex,
+        stroke: "rgba(4, 10, 17, 0.94)",
+        strokeWidth: Math.max(2, fittedFontSize * 0.18),
+        weight: 750,
+      });
     });
 
   state.gridGuides.forEach((guide) => {
@@ -9267,7 +9469,7 @@ function renderStaticOverlay() {
     )
     .join("");
 
-  const factionMarkup = buildFactionFragmentSvgMarkup(factionFragments);
+  const factionMarkup = buildFactionFragmentSvgMarkup(factionFragments, metrics);
 
   const rimMarkup = visibleVectorPaths()
     .map((path, index) => {
@@ -12353,6 +12555,7 @@ function setMapMode(mode) {
 
 function performMapModeSwitch(next) {
   state.mapMode = next;
+  window.dispatchEvent(new CustomEvent("swmap-mode-changed", { detail: { mode: next } }));
   if (next === "underworld") {
     state.filters = {
       ...state.filters,
@@ -12866,6 +13069,111 @@ window.MapAdminApi.clearLocalOverride = clearLocalPlanetOverride;
 window.MapAdminApi.applyAll = applyAllPlanetOverrides;
 window.MapAdminApi.getOverrides = () => state.planetOverrides;
 window.MapAdminApi.getMapMode = () => state.mapMode;
+window.MapAdminApi.getViewer = () => state.viewer;
+window.MapAdminApi.setFactionTerritoryEditorActive = (active) => {
+  state.factionTerritoryEditorActive = Boolean(active);
+};
+window.MapAdminApi.getImageSize = () => ({ width: state.imageWidth, height: state.imageHeight });
+window.MapAdminApi.screenToImage = (clientX, clientY) => {
+  const tiledImage = getTiledImage();
+  if (!state.viewer || !tiledImage) return null;
+  const bounds = state.viewer.element.getBoundingClientRect();
+  const viewportPoint = state.viewer.viewport.pointFromPixel(
+    new OpenSeadragon.Point(Number(clientX) - bounds.left, Number(clientY) - bounds.top),
+    true
+  );
+  const imagePoint = tiledImage.viewportToImageCoordinates(viewportPoint);
+  return { x: imagePoint.x / state.imageWidth, y: imagePoint.y / state.imageHeight };
+};
+window.MapAdminApi.getScreenScale = () => {
+  const tiledImage = getTiledImage();
+  if (!state.viewer || !tiledImage) return 1;
+  const origin = tiledImage.imageToViewportCoordinates(0, 0);
+  const next = tiledImage.imageToViewportCoordinates(1, 0);
+  const a = state.viewer.viewport.pixelFromPoint(origin, true);
+  const b = state.viewer.viewport.pixelFromPoint(next, true);
+  return Math.hypot(b.x - a.x, b.y - a.y) || 1;
+};
+window.MapAdminApi.getMapItems = () => allRenderableMapItems().map((item) => ({
+  name: item.name,
+  nameKey: item.nameKey,
+  kind: item.kind,
+  x: Number(item.x),
+  y: Number(item.y),
+  faction: item.faction || "",
+}));
+window.MapAdminApi.getFactionFragments = () => ensureFactionFragments().map((fragment) => ({
+  ...fragment,
+  bounds: fragment.bounds ? { ...fragment.bounds } : null,
+}));
+window.MapAdminApi.registerTerritoryFactions = (factions) => {
+  const meta = new Map();
+  (Array.isArray(factions) ? factions : []).forEach((entry) => {
+    const id = String(entry?.id || "").trim().toLowerCase();
+    if (!/^[a-z0-9][a-z0-9_-]{1,63}$/.test(id)) return;
+    meta.set(id, {
+      name: String(entry?.name || id).trim(),
+      color: /^#[0-9a-f]{6}$/i.test(String(entry?.color || "")) ? String(entry.color) : "#b9c4d4",
+      secondaryColor: /^#[0-9a-f]{6}$/i.test(String(entry?.secondaryColor || "")) ? String(entry.secondaryColor) : "",
+      scope: ["government", "underworld", "both"].includes(entry?.scope) ? entry.scope : "both",
+      visible: entry?.visible !== false,
+    });
+  });
+  const signature = (values) => JSON.stringify([...values.entries()].sort(([left], [right]) => left.localeCompare(right)));
+  const changed = signature(state.territoryFactionMeta) !== signature(meta);
+  state.territoryFactionMeta = meta;
+  state.territoryFactionMetaReady = true;
+  state.factionFragments = [];
+  state.factionFragmentKey = "";
+  state.factionItems = new Map();
+  state.factionItemsKey = "";
+  if (changed) {
+    invalidateStaticOverlay();
+    if (state.viewer) renderAll();
+  }
+};
+window.MapAdminApi.setTerritoryFactionMap = (assignments, regions = []) => {
+  const nextAssignments = assignments instanceof Map ? new Map(assignments) : new Map();
+  const nextRegions = Array.isArray(regions) ? regions : [];
+  const assignmentsChanged = !(
+    nextAssignments.size === state.territoryFactionMap.size &&
+    [...nextAssignments].every(([key, value]) => state.territoryFactionMap.has(key) && state.territoryFactionMap.get(key) === value)
+  );
+  const regionsChanged = JSON.stringify(nextRegions) !== JSON.stringify(state.territoryFactionRegions);
+  if (!assignmentsChanged && !regionsChanged) return false;
+  state.territoryFactionMap = nextAssignments;
+  state.territoryFactionRegions = nextRegions;
+  if (assignmentsChanged) {
+    [state.knownByKey, state.savedByKey, state.reviewByKey, state.gridMarkers].forEach((collection) => {
+      collection.forEach((item, key) => {
+        const cleared = { ...item };
+        delete cleared.faction;
+        collection.set(key, applyPlanetEnrichments(cleared));
+      });
+    });
+  }
+  state.factionFragments = [];
+  state.factionFragmentKey = "";
+  state.factionItems = new Map();
+  state.factionItemsKey = "";
+  state.staticOverlayVersion += 1;
+  invalidateStaticOverlay();
+  renderAll();
+  return true;
+};
+window.MapAdminApi.getEditorLayerVisibility = () => ({ ...state.editorLayerVisibility });
+window.MapAdminApi.setEditorLayerVisibility = (key, visible) => {
+  if (!(key in state.editorLayerVisibility)) return false;
+  const next = Boolean(visible);
+  if (state.editorLayerVisibility[key] === next) return false;
+  state.editorLayerVisibility[key] = next;
+  if (key === "background") osdViewerEl.style.background = next ? "" : "transparent";
+  state.staticOverlayVersion += 1;
+  invalidateStaticOverlay();
+  renderAll();
+  return true;
+};
+window.MapAdminApi.refresh = () => renderAll();
 
 function ensurePlanetProfilesLoaded() {
   if (state.planetProfiles.size) {
@@ -17134,6 +17442,7 @@ function renderAll() {
   renderOverlay();
   renderViewMode();
   renderDesktopWindowVisibility();
+  window.dispatchEvent(new CustomEvent("swmap-rendered"));
 }
 
 function bindEvents() {
@@ -17880,6 +18189,10 @@ function initViewer() {
   state.viewer.addHandler("canvas-click", (event) => {
     if (!event.quick || isTouchGestureLocked()) return;
     const originalEvent = event.originalEvent;
+    if (state.factionTerritoryEditorActive) {
+      event.preventDefaultAction = true;
+      return;
+    }
     if (isRecentSectorArmyLayerPointer(originalEvent)) {
       event.preventDefaultAction = true;
       return;
@@ -17918,6 +18231,9 @@ function initViewer() {
     const size = tiledImage.getContentSize();
     state.imageWidth = Number(size?.x) || CALIBRATION_BASE_WIDTH;
     state.imageHeight = Number(size?.y) || CALIBRATION_BASE_HEIGHT;
+    window.dispatchEvent(new CustomEvent("swmap-viewer-open", {
+      detail: { width: state.imageWidth, height: state.imageHeight },
+    }));
     createOverlayPlane();
     const focusedSectorOverview =
       sectorArmyLayerEnabled() && !state.sectorArmyEditor.enabled && focusSectorArmyOverview(true);

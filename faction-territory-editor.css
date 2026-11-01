@@ -1,0 +1,186 @@
+#factionTerritoryEditorButton { margin-inline-start: 8px; }
+
+.faction-editor-shell {
+  position: fixed;
+  z-index: 20000;
+  inset: 0;
+  display: none;
+  grid-template-rows: 54px minmax(0, 1fr) 25px;
+  color: #e8edf5;
+  background: #121820;
+  font: 13px/1.35 Inter, "Segoe UI", system-ui, sans-serif;
+}
+
+.faction-editor-shell.is-open { display: grid; }
+.faction-editor-shell * { box-sizing: border-box; }
+.faction-editor-shell button,
+.faction-editor-shell input,
+.faction-editor-shell select { font: inherit; }
+
+.faction-editor-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 0 14px;
+  background: #202832;
+  border-bottom: 1px solid #39434e;
+}
+
+.faction-editor-brand { display: flex; align-items: center; gap: 9px; min-width: 180px; margin-right: 8px; }
+.faction-editor-mark { display: grid; place-items: center; width: 28px; height: 28px; color: #b9dbff; background: #263e56; border: 1px solid #42607d; border-radius: 7px; font-weight: 800; }
+.faction-editor-title { min-width: 0; font-weight: 750; letter-spacing: .015em; }
+.faction-editor-top-actions { display: flex; align-items: center; gap: 5px; }
+.faction-editor-top-spacer { flex: 1; }
+.faction-editor-save-state { min-width: 90px; color: #aab7c5; font-size: 12px; text-align: right; }
+.faction-editor-save-state.is-dirty { color: #f2c976; }
+.faction-editor-save-state.is-error { color: #ff9999; }
+
+.faction-editor-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 31px;
+  padding: 5px 9px;
+  color: #dce5ef;
+  background: #303b47;
+  border: 1px solid #465463;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.faction-editor-button:hover { background: #3d4a57; border-color: #5a6e80; }
+.faction-editor-button:disabled { opacity: .45; cursor: not-allowed; }
+.faction-editor-button.is-active { color: #e5f4ff; background: #245477; border-color: #3980ad; }
+.faction-editor-button.is-primary { color: #fff; background: #276f9d; border-color: #3988b7; font-weight: 700; }
+.faction-editor-button.is-danger { color: #ffc2c2; }
+.faction-editor-button.is-quiet { background: transparent; border-color: transparent; }
+.faction-editor-button.icon-only { width: 32px; padding: 0; font-size: 15px; }
+
+.faction-editor-main {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) minmax(248px, 290px);
+  min-height: 0;
+}
+
+.faction-editor-toolbar {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 5px;
+  background: #202832;
+  border-right: 1px solid #39434e;
+}
+.faction-editor-tool {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  color: #b7c2ce;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.faction-editor-tool:hover { color: #fff; background: #313c47; }
+.faction-editor-tool.is-active { color: #d8efff; background: #254c68; border-color: #3f7ca1; box-shadow: inset 2px 0 #72c6ff; }
+.faction-editor-tool[title]:hover::after { position: absolute; z-index: 9; left: 43px; top: 5px; content: attr(title); padding: 5px 8px; color: #fff; background: #111820; border: 1px solid #485562; border-radius: 4px; white-space: nowrap; pointer-events: none; }
+.faction-editor-tool-divider { width: 25px; height: 1px; margin: 4px 0; background: #414b56; }
+
+.faction-editor-canvas-host {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #05090e;
+  touch-action: none;
+}
+.faction-editor-canvas-host > .viewer-frame { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; }
+.faction-editor-canvas-host .statusbar { display: none; }
+.faction-editor-canvas-host .osd-viewer { background-color: #05090e; }
+.faction-editor-topbar .faction-editor-zoom { min-width: 58px; color: #b8c4d0; font-variant-numeric: tabular-nums; text-align: center; }
+.faction-editor-statusbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 10px; color: #aab7c5; background: #202832; border-top: 1px solid #39434e; font-size: 11px; }
+.faction-editor-statusbar span:last-child { text-align: right; }
+
+.faction-editor-sidebar {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: #202832;
+  border-left: 1px solid #39434e;
+  overflow: auto;
+}
+.faction-editor-panel { flex: 0 0 auto; border-bottom: 1px solid #39434e; }
+.faction-editor-panel-head { display: flex; align-items: center; justify-content: space-between; min-height: 36px; padding: 0 11px; color: #d5dde6; font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.faction-editor-panel-toggle { flex: 1; min-width: 0; padding: 0; color: inherit; background: transparent; border: 0; text-align: left; font: inherit; text-transform: inherit; cursor: pointer; }
+.faction-editor-panel-toggle::before { display: inline-block; width: 14px; content: "▾"; color: #8796a5; }
+.faction-editor-panel-toggle[aria-expanded="false"]::before { content: "▸"; }
+.faction-editor-panel-actions { display: flex; gap: 3px; }
+.faction-editor-panel-content { padding: 0 10px 10px; }
+.faction-editor-panel-content[hidden] { display: none; }
+.faction-editor-list { display: grid; gap: 3px; max-height: 190px; overflow: auto; }
+.faction-editor-list-row { display: flex; align-items: center; gap: 7px; min-width: 0; padding: 5px 6px; color: #d6dee7; background: #27313b; border: 1px solid transparent; border-radius: 4px; cursor: pointer; }
+.faction-editor-list-row:hover { background: #303b46; }
+.faction-editor-list-row.is-selected { background: #2b4357; border-color: #497b9d; }
+.faction-editor-list-row span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.faction-editor-swatch { flex: 0 0 auto; width: 13px; height: 13px; border: 1px solid #ffffff55; border-radius: 3px; }
+.faction-editor-row-end { margin-left: auto; color: #90a0b1; font-size: 11px; }
+.faction-editor-form { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 9px; }
+.faction-editor-field { display: grid; gap: 4px; min-width: 0; color: #9eacba; font-size: 11px; font-weight: 650; }
+.faction-editor-field.is-wide { grid-column: 1 / -1; }
+.faction-editor-field input:not([type=color]), .faction-editor-field select { width: 100%; min-width: 0; height: 30px; padding: 0 7px; color: #e4ebf2; background: #151c23; border: 1px solid #46515d; border-radius: 4px; outline-color: #58a7d7; }
+.faction-editor-field input[type=color] { width: 100%; height: 30px; padding: 2px; background: #151c23; border: 1px solid #46515d; border-radius: 4px; }
+.faction-editor-field input[type=range] { width: 100%; accent-color: #67b4e4; }
+.faction-editor-check { display: flex; align-items: center; gap: 6px; color: #bec8d2; font-size: 11px; }
+.faction-editor-check input { accent-color: #53a3d5; }
+.faction-editor-layer { display: grid; grid-template-columns: 17px minmax(0,1fr) 25px 25px 25px 25px; align-items: center; gap: 3px; min-height: 33px; color: #c9d2db; border-bottom: 1px solid #313b45; }
+.faction-editor-layer:last-child { border-bottom: 0; }
+.faction-editor-layer label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.faction-editor-layer button { width: 25px; height: 25px; padding: 0; color: #aab7c3; background: transparent; border: 0; border-radius: 4px; cursor: pointer; }
+.faction-editor-layer button:hover { color: #fff; background: #35414c; }
+.faction-editor-layer input[type=checkbox] { accent-color: #54a5d8; }
+.faction-editor-layer-opacity { grid-column: 1 / -1; width: 100%; margin: 0 0 4px; accent-color: #54a5d8; }
+.faction-editor-muted { color: #8796a5; font-size: 11px; }
+.faction-editor-empty { padding: 9px 3px; color: #8796a5; font-size: 12px; }
+.faction-editor-property-actions { display: flex; flex-wrap: wrap; gap: 5px; padding-top: 9px; }
+.faction-editor-inline { display: flex; align-items: center; gap: 6px; }
+.faction-editor-inline input { flex: 1; }
+.faction-editor-toast { position: absolute; z-index: 10; left: 50%; bottom: 40px; max-width: min(480px, 80vw); padding: 8px 12px; color: #fff; background: #1c2d3b; border: 1px solid #47718d; border-radius: 6px; box-shadow: 0 6px 20px #0008; transform: translateX(-50%); pointer-events: none; }
+.faction-editor-toast.is-error { background: #492c30; border-color: #a95964; }
+
+.faction-territory-map-overlay { z-index: 7; pointer-events: none; }
+.faction-territory-image-overlay { z-index: 6; pointer-events: none; }
+.faction-territory-controls-overlay { z-index: 9; pointer-events: none; }
+.faction-territory-map-svg, .faction-territory-image-svg { display: block; overflow: visible; width: 100%; height: 100%; }
+.faction-territory-controls-svg { display: block; overflow: visible; width: 100%; height: 100%; pointer-events: none; }
+.faction-territory-map-svg path, .faction-territory-image-svg path, .faction-territory-image-svg image { vector-effect: non-scaling-stroke; }
+.faction-territory-editor-shell { user-select: none; }
+.faction-territory-editor-shell .faction-editor-object { cursor: pointer; }
+.faction-territory-editor-shell .faction-editor-object:hover { filter: brightness(1.12); }
+.faction-territory-controls-svg .faction-editor-object { pointer-events: all; }
+.faction-editor-sidebar input, .faction-editor-sidebar select { user-select: text; }
+
+@media (max-width: 900px) {
+  .faction-editor-main { grid-template-columns: 43px minmax(0, 1fr) minmax(220px, 250px); }
+  .faction-editor-brand { min-width: 0; }
+  .faction-editor-title { max-width: 145px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+@media (max-width: 680px) {
+  .faction-editor-shell { grid-template-rows: 50px minmax(0, 1fr) 24px; }
+  .faction-editor-main { grid-template-columns: 42px minmax(0, 1fr); }
+  .faction-editor-sidebar { position: absolute; top: 50px; right: 0; bottom: 24px; width: min(270px, calc(100vw - 52px)); box-shadow: -12px 0 30px #0008; transform: translateX(100%); transition: transform 180ms ease; }
+  .faction-editor-sidebar.is-open { transform: translateX(0); }
+  .faction-editor-topbar { gap: 5px; padding: 0 7px; }
+  .faction-editor-brand { gap: 6px; margin-right: 0; }
+  .faction-editor-mark { width: 25px; height: 25px; }
+  .faction-editor-title { max-width: 120px; font-size: 12px; }
+  .faction-editor-top-actions { gap: 2px; }
+  .faction-editor-button { min-height: 29px; padding: 4px 6px; }
+  .faction-editor-save-state { min-width: 45px; font-size: 10px; }
+  .faction-editor-zoom { display: none; }
+}
