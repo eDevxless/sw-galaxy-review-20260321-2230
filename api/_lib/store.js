@@ -1,4 +1,4 @@
-const { list, put } = require("@vercel/blob");
+const { get, list, put } = require("@vercel/blob");
 
 const STORE_PREFIX = "map-store/";
 
@@ -20,14 +20,16 @@ async function getJson(key) {
   const blob = await latestBlob(key);
   if (!blob) return null;
 
-  const response = await fetch(blob.url, { cache: "no-store" });
-  if (!response.ok) throw new Error(`Stored map data could not be read (${response.status}).`);
-  return response.json();
+  const result = await get(blob.pathname, { access: "private", useCache: false });
+  if (!result || !result.stream) return null;
+  const chunks = [];
+  for await (const chunk of result.stream) chunks.push(Buffer.from(chunk));
+  return JSON.parse(Buffer.concat(chunks).toString("utf8"));
 }
 
 async function setJson(key, value) {
   await put(blobPath(key), JSON.stringify(value), {
-    access: "public",
+    access: "private",
     contentType: "application/json; charset=utf-8",
     addRandomSuffix: false,
   });
