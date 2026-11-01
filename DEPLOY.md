@@ -1,5 +1,11 @@
 Deploy checklist and commands
 
+Production source
+
+- The production project is connected to `https://github.com/eDevxless/sw-galaxy-review-20260321-2230`.
+- Changes merged into the `main` branch are the source of truth for production deployments.
+- Official site: `https://star-wars-galaxy-map-alpha.vercel.app`.
+
 Local preview (uses http-server via npx):
 
 ```bash
