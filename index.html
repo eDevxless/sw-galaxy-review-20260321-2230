@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="Star Wars Galaxy Map" />
   <meta property="og:title" content="Star Wars Galaxy Map" />
   <meta property="og:description"
-    content="Interaktive Star-Wars-Galaxiekarte mit Planetenpunkten, Hyperraumrouten und Fraktionen. Suche, Reiserechner und 3D-Ansicht inklusive." />
+    content="Interaktive Star-Wars-Galaxiekarte mit Planetenpunkten, Hyperraumrouten, Suche, Reiserechner und 3D-Ansicht." />
   <meta property="og:url" content="https://star-wars-galaxy-map-alpha.vercel.app/" />
   <meta property="og:image" content="https://star-wars-galaxy-map-alpha.vercel.app/assets/og-preview.jpg" />
   <meta property="og:image:width" content="900" />
@@ -22,12 +22,12 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Star Wars Galaxy Map" />
   <meta name="twitter:description"
-    content="Interaktive Star-Wars-Galaxiekarte mit Planetenpunkten, Hyperraumrouten und Fraktionen." />
+    content="Interaktive Star-Wars-Galaxiekarte mit Planetenpunkten und Hyperraumrouten." />
   <meta name="twitter:image" content="https://star-wars-galaxy-map-alpha.vercel.app/assets/og-preview.jpg" />
   <meta name="theme-color" content="#0a1422" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.21.1/dist/maplibre-gl.css" />
-  <link rel="stylesheet" href="styles.css?v=sector-army-factions-8" />
+  <link rel="stylesheet" href="styles.css?v=base-map-clean-1" />
   <link rel="stylesheet" href="admin.css?v=coruscant-city-map-14" />
 </head>
 
@@ -552,16 +552,7 @@
               Einen Planeten oder eine Hyperraumroute auf der Karte oder in der Liste auswählen.
             </div>
             <div id="planetDetailBody" class="detail-body hidden">
-              <div id="planetDetailMedia" class="detail-media hidden">
-                <div class="detail-media-card">
-                  <div class="detail-media-title">Orbit-Ansicht</div>
-                  <div id="planetDetailOrbitSlot" class="detail-media-slot"></div>
-                </div>
-                <div class="detail-media-card">
-                  <div class="detail-media-title">Planetenkarte</div>
-                  <div id="planetDetailMapSlot" class="detail-media-slot"></div>
-                </div>
-              </div>
+              <div id="planetDetailMedia" class="detail-media hidden" aria-hidden="true"></div>
               <div class="detail-summary">
                 <div class="detail-grid" id="planetDetailGrid"></div>
                 <div class="detail-name" id="planetDetailName"></div>
@@ -573,7 +564,7 @@
                 <button type="button" id="planetDetailSetTravelTargetButton" class="ghost-button">Als Ziel</button>
               </div>
               <dl id="planetDetailFacts" class="detail-facts">
-                <div>
+                <div class="detail-faction-row">
                   <dt id="planetDetailFactionLabel">Fraktion</dt>
                   <dd id="planetDetailFaction"></dd>
                 </div>
@@ -642,29 +633,13 @@
 
           <div id="mapToolsPanelBody" class="panel-body">
             <div class="viewer-tools-intro">
-              Fraktionen, Hyperraumrouten und Planeten mit Profil koennen hier direkt ein- oder ausgeblendet werden.
-            </div>
-            <div class="viewer-tools-actions">
-              <button type="button" id="sectorArmyFleetButton" class="accent-button">Sektorarmee bearbeiten</button>
+              Hyperraumrouten und Planeten mit Profil koennen hier direkt ein- oder ausgeblendet werden.
             </div>
 
             <div class="filter-toolbar" role="group" aria-label="Kartenfilter">
-              <button type="button" class="filter-chip" data-filter-key="republic" aria-pressed="true">Republik</button>
-              <button type="button" class="filter-chip" data-filter-key="separatist"
-                aria-pressed="true">Separatisten</button>
-              <button type="button" class="filter-chip filter-chip-hidden" data-filter-key="blacksun"
-                aria-pressed="true">Black Sun</button>
-              <button type="button" class="filter-chip filter-chip-hidden" data-filter-key="hutt"
-                aria-pressed="true">Hutten</button>
-              <button type="button" class="filter-chip filter-chip-hidden" data-filter-key="pyke"
-                aria-pressed="true">Pyke</button>
-              <button type="button" class="filter-chip filter-chip-hidden" data-filter-key="ohnaka"
-                aria-pressed="true">Hondo Ohnaka</button>
               <button type="button" class="filter-chip" data-filter-key="routes" aria-pressed="true">Routen</button>
               <button type="button" class="filter-chip" data-filter-key="profiledOnly" aria-pressed="false">Nur mit
                 Profil</button>
-              <button type="button" class="filter-chip military" data-filter-key="sectorArmies"
-                aria-pressed="false">Sektorarmeen</button>
             </div>
 
             <div class="legend-grid" aria-label="Kartenlegende">
@@ -677,22 +652,6 @@
               </article>
 
               <article class="legend-item">
-                <span class="legend-swatch republic" aria-hidden="true"></span>
-                <div class="legend-copy">
-                  <strong>Republik</strong>
-                  <span>Banner der Republik; waehlt die Fraktion ueber den aeusseren Kreis.</span>
-                </div>
-              </article>
-
-              <article class="legend-item">
-                <span class="legend-swatch separatist" aria-hidden="true"></span>
-                <div class="legend-copy">
-                  <strong>Separatisten</strong>
-                  <span>Banner der KUS; waehlt die Fraktion ueber die aeussere Hexagon-Kante.</span>
-                </div>
-              </article>
-
-              <article class="legend-item">
                 <span class="legend-swatch route" aria-hidden="true"></span>
                 <div class="legend-copy">
                   <strong>Hyperraumroute</strong>
@@ -700,27 +659,10 @@
                 </div>
               </article>
 
-              <article class="legend-item">
-                <span class="legend-swatch selection" aria-hidden="true"></span>
-                <div class="legend-copy">
-                  <strong>Fraktion</strong>
-                  <span>Aktive Fraktion wird auf der Karte mit Ring und Label markiert.</span>
-                </div>
-              </article>
-
-              <article class="legend-item">
-                <span class="legend-swatch sector-army" aria-hidden="true"></span>
-                <div class="legend-copy">
-                  <strong>Sektorarmee</strong>
-                  <span>Sektorarmeegebiete mit Reserve- und Detailansicht.</span>
-                </div>
-              </article>
             </div>
 
-            <div id="sectorArmyEditorMount" class="sector-army-editor-mount hidden"></div>
-
             <div class="viewer-tools-note">
-              Tipp: Die Suche oben respektiert die aktiven Filter und zeigt Planeten, Fraktionen und Routen.
+              Tipp: Die Suche oben respektiert die aktiven Filter und zeigt Planeten und Routen.
             </div>
           </div>
         </section>
@@ -733,7 +675,7 @@
             <div class="three-transition-vignette" aria-hidden="true"></div>
           </div>
           <div id="threeViewerHint" class="three-viewer-hint hidden">
-            3D-Modus: Ziehen dreht die Galaxie, Mausrad zoomt zur Mausposition, Klick waehlt Planeten, Fraktionen und
+            3D-Modus: Ziehen dreht die Galaxie, Mausrad zoomt zur Mausposition, Klick waehlt Planeten und
             Routen.
           </div>
           <div id="threeHoverLabel" class="three-hover-label hidden" aria-hidden="true"></div>
@@ -912,11 +854,7 @@
   <script defer src="three-loader.js"></script>
   <script defer src="config.js"></script>
   <script defer src="planets.js"></script>
-  <script defer src="data/sector-armies.js?v=5-faction-editor"></script>
-  <script defer src="data/sector-army-territories.js?v=5-faction-editor"></script>
-  <script defer src="admin.js?v=readonly-map-access-3"></script>
-  <script defer src="script.js?v=sector-army-factions-8"></script>
-  <script defer src="planet-map-system.js?v=readonly-map-access-3"></script>
+  <script defer src="script.js?v=base-map-clean-2"></script>
 </body>
 
 </html>

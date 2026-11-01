@@ -1,5 +1,8 @@
 const GRID_LETTERS = "ABCDEFGHIJKLMNOPQRSTUV";
 const GRID_ROWS = 22;
+// Public baseline: planets and routes only. Legacy factions and sector armies
+// are deliberately kept out of both the data pipeline and map rendering.
+const MAP_BASE_ONLY = true;
 const SESSION_STORAGE_KEY = "sw-galaxy-map-session-v2";
 const FLEET_STORAGE_KEY = "sw-galaxy-map-fleets-v1";
 const FLEET_AUTH_STORAGE_KEY = "sw-galaxy-map-fleet-auth-v1";
@@ -1831,6 +1834,7 @@ function sectorArmyItem(army, territory) {
 }
 
 function sectorArmyItems() {
+  if (MAP_BASE_ONLY) return [];
   const territoryById = new Map(sectorArmyTerritories().map((entry) => [Number(entry.id), entry]));
   const counters = {};
   return rawSectorArmies()
@@ -1874,6 +1878,7 @@ function strategicFleetAssetItemByKey(key) {
 }
 
 function sectorArmyLayerEnabled() {
+  if (MAP_BASE_ONLY) return false;
   if (state.mapMode === "underworld") return false;
   return Boolean(state.filters.sectorArmies || state.sectorArmyEditor.enabled);
 }
@@ -4155,6 +4160,7 @@ function chooseFactionMainPlanet(faction, preferredPlanet = "") {
 }
 
 function planetFactionStyle(item) {
+  if (MAP_BASE_ONLY) return null;
   if (!item || item.kind === "route") return null;
   const faction = normalizeFaction(item.faction);
   return faction ? FACTION_VISUALS[faction] || null : null;
@@ -4182,6 +4188,10 @@ function setFactionCssVars(target, style) {
 
 function applyFactionRecord(record) {
   if (!record || !record.nameKey) return record;
+  if (MAP_BASE_ONLY) {
+    delete record.faction;
+    return record;
+  }
   const explicitFaction = normalizeFaction(record.faction);
   const mappedFaction = explicitFaction || state.planetFactions.get(record.nameKey) || "";
   if (mappedFaction) {
@@ -6055,6 +6065,11 @@ function buildFactionFragmentProfile(faction, cluster, index) {
 }
 
 function ensureFactionFragments() {
+  if (MAP_BASE_ONLY) {
+    state.factionFragments = [];
+    state.factionFragmentKey = "base-map";
+    return state.factionFragments;
+  }
   if (!state.imageWidth || !state.imageHeight) return [];
   const cacheKey = `${state.imageWidth}x${state.imageHeight}|${state.staticOverlayVersion}|${state.planetFactions.size}`;
   if (state.factionFragmentKey === cacheKey) {
@@ -6639,6 +6654,11 @@ function applyPlanetEnrichments(record) {
 }
 
 function ensureFactionItems() {
+  if (MAP_BASE_ONLY) {
+    state.factionItems = new Map();
+    state.factionItemsKey = "base-map";
+    return state.factionItems;
+  }
   if (!state.imageWidth || !state.imageHeight) return state.factionItems;
   const fragments = ensureFactionFragments();
   const cacheKey = `${state.factionFragmentKey}|${state.factionProfiles.size}|${state.planetFactions.size}`;
@@ -8207,17 +8227,11 @@ function ensureScreenOverlayCanvas() {
   state.screenOverlayCtx = canvas.getContext("2d");
 }
 
-function overlayCanvasPixelRatio() {
-  // Mobile browsers pay a large cost for high-DPR canvas redraws.
-  // The map remains visually sharp enough at 1x while panning/zooming.
-  return state.isMobileView ? 1 : Math.min(window.devicePixelRatio || 1, 2);
-}
-
 function resizeScreenOverlayCanvas() {
   if (!state.screenOverlayCanvas) return;
   const width = Math.max(1, osdViewerEl.clientWidth || 1);
   const height = Math.max(1, osdViewerEl.clientHeight || 1);
-  const dpr = overlayCanvasPixelRatio();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const targetWidth = Math.round(width * dpr);
   const targetHeight = Math.round(height * dpr);
   if (state.screenOverlayCanvas.width !== targetWidth || state.screenOverlayCanvas.height !== targetHeight) {
@@ -8229,41 +8243,21 @@ function resizeScreenOverlayCanvas() {
 }
 
 function scheduleOverlayRender() {
+  if (state.overlayRenderQueued) return;
   state.viewerBusy = true;
-
   if (state.overlaySettleTimer) {
     window.clearTimeout(state.overlaySettleTimer);
   }
-
+  state.overlayRenderQueued = true;
+  requestAnimationFrame(() => {
+    state.overlayRenderQueued = false;
+    renderStaticCanvasOverlay();
+    renderDynamicOverlay();
+  });
   state.overlaySettleTimer = window.setTimeout(() => {
     state.viewerBusy = false;
     renderOverlay();
   }, state.isMobileView ? 150 : 90);
-
-  if (state.overlayRenderQueued) return;
-
-  // Auf mobilen Geräten Overlay-Updates während Bewegung begrenzen.
-  if (state.isMobileView) {
-    const now = performance.now();
-    const last = scheduleOverlayRender.lastMobileRender || 0;
-
-    if (now - last < 22) {
-      return;
-    }
-
-    scheduleOverlayRender.lastMobileRender = now;
-  }
-
-  state.overlayRenderQueued = true;
-
-  requestAnimationFrame(() => {
-    state.overlayRenderQueued = false;
-
-    if (state.isMobileView) return;
-
-    renderStaticCanvasOverlay();
-    renderDynamicOverlay();
-  });
 }
 
 function sourceLabel(item) {
@@ -8906,48 +8900,13 @@ function renderStaticCanvasOverlay() {
 
   resizeScreenOverlayCanvas();
   const ctx = state.screenOverlayCtx;
-  const dpr = overlayCanvasPixelRatio();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const width = state.screenOverlayCanvas.width / dpr;
   const height = state.screenOverlayCanvas.height / dpr;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, state.screenOverlayCanvas.width, state.screenOverlayCanvas.height);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, width, height);
-
-  // Fallback for callers that still use the screen-space canvas path.
-  if (state.isMobileView && state.viewerBusy) {
-  const items = visibleRenderableMapItems();
-
-  // Während des Wischens nur einfache Punkte zeichnen.
-  // Bei stark herausgezoomter Karte zusätzlich ausdünnen.
-  const skip = metrics.zoomFactor < 0.8 ? 3 : 1;
-
-  items.forEach((item, index) => {
-    if (index % skip !== 0) return;
-
-    const screen = imagePxToScreen(
-      item.x * state.imageWidth,
-      item.y * state.imageHeight
-    );
-
-    if (!screen) return;
-
-    const visual = planetDotVisual(item, metrics);
-    const radius = Math.max(
-      1.4,
-      Math.min(3.0, visual.radius * metrics.screenScale)
-    );
-
-    ctx.beginPath();
-    ctx.arc(screen.x, screen.y, radius, 0, Math.PI * 2);
-    ctx.fillStyle = visual.fill;
-    ctx.globalAlpha = visual.fillOpacity;
-    ctx.fill();
-  });
-
-  ctx.globalAlpha = 1;
-  return;
-}
 
   const screenGuideWidth = Math.max(0.9, metrics.guideStroke * metrics.screenScale);
   const screenDotStroke = Math.max(0.75, metrics.dotStroke * metrics.screenScale);
@@ -9196,13 +9155,10 @@ function renderStaticOverlay() {
   if (!state.overlaySvg || !state.imageWidth || !state.imageHeight) return;
   const metrics = currentOverlayMetrics();
   const labelBounds = viewportImageBounds(0);
-  const planetBounds = state.isMobileView
-    ? viewportImageBounds(Math.max(160, state.imageWidth * 0.03))
-    : null;
   const factionFragments = visibleFactionFragments(ensureFactionFragments());
   const overlayKey = `${state.staticOverlayVersion}|${mapFilterSignature()}|${metrics.signature}|${state.showRejected ? 1 : 0}|${state.currentGrid}|${overlayBoundsSignature(
     labelBounds
-  )}|planets:${overlayBoundsSignature(planetBounds)}`;
+  )}`;
   if (state.lastStaticOverlayKey === overlayKey) return;
   state.lastStaticOverlayKey = overlayKey;
 
@@ -9326,7 +9282,6 @@ function renderStaticOverlay() {
     .join("");
 
   const planetMarkup = visibleRenderableMapItems()
-    .filter((item) => itemInBounds(item, planetBounds))
     .sort((a, b) => itemSelectionWeight(b) - itemSelectionWeight(a))
     .map((item) => {
       const { x, y } = itemImagePosition(item);
@@ -9701,6 +9656,7 @@ function makeSectorArmyTooltipMarkup(item, metrics) {
 }
 
 function makeSectorArmyLayer(metrics) {
+  if (MAP_BASE_ONLY) return null;
   if (!sectorArmyLayerEnabled() || !state.imageWidth || !state.imageHeight) return null;
   const hovered = hoveredItem();
   const selected = selectedDetailItem();
@@ -10093,29 +10049,27 @@ function bindSectorArmyLayerInteractions(svg) {
 
 function renderDynamicOverlay() {
   if (!state.overlayDynamic) return;
-
-  // Avoid rebuilding the DOM overlay on every animation frame on touch
-  // devices. It will be rebuilt once the gesture/zoom animation finishes.
-  if (state.isMobileView && state.viewerBusy) return;
   state.overlayDynamic.innerHTML = "";
 
   const metrics = currentOverlayMetrics();
-  const mobileSimplified = state.isMobileView && (state.viewerBusy || metrics.zoomFactor < 1.35);
-  const gridRadius = mobileSimplified ? 0 : 1;
-  const neighborLabels = gridNeighbors(state.currentGrid, gridRadius);
+  if (!MAP_BASE_ONLY) {
+    const mobileSimplified = state.isMobileView && (state.viewerBusy || metrics.zoomFactor < 1.35);
+    const gridRadius = mobileSimplified ? 0 : 1;
+    const neighborLabels = gridNeighbors(state.currentGrid, gridRadius);
 
-  neighborLabels.forEach((label) => {
-    const tone = label === state.currentGrid ? "current" : "neighbor";
-    const box = makeGridBox(label, tone);
-    if (!box) return;
-    if (mobileSimplified && tone !== "current") {
-      box.classList.add("quiet");
-    }
-    if (mobileSimplified && tone === "current") {
-      box.classList.add("focus-only");
-    }
-    state.overlayDynamic.appendChild(box);
-  });
+    neighborLabels.forEach((label) => {
+      const tone = label === state.currentGrid ? "current" : "neighbor";
+      const box = makeGridBox(label, tone);
+      if (!box) return;
+      if (mobileSimplified && tone !== "current") {
+        box.classList.add("quiet");
+      }
+      if (mobileSimplified && tone === "current") {
+        box.classList.add("focus-only");
+      }
+      state.overlayDynamic.appendChild(box);
+    });
+  }
 
   const item = selectedDetailItem();
   const routeHighlights = [];
@@ -10265,18 +10219,10 @@ function makePin(item) {
 
 function renderOverlay() {
   if (!state.overlayPlane) return;
-  if (state.isMobileView) {
-    renderStaticOverlay();
-    renderDynamicOverlay();
-    updateFactionFragmentInteractionState();
-    return;
-  }
-
   if (state.overlaySvg && state.overlaySvg.childNodes.length) {
     state.overlaySvg.innerHTML = "";
     state.lastStaticOverlayKey = "";
   }
-
   renderStaticCanvasOverlay();
   renderDynamicOverlay();
   updateFactionFragmentInteractionState();
@@ -11461,6 +11407,10 @@ function detailMediaImageSrc(value) {
 }
 
 function renderDetailMedia(refs, item) {
+  if (MAP_BASE_ONLY) {
+    refs.media?.classList.add("hidden");
+    return;
+  }
   const isPlanet = item?.kind !== "route" && item?.kind !== "faction" && !isSectorArmyLayerItem(item);
   refs.media.classList.toggle("hidden", !isPlanet);
   if (!isPlanet) {
@@ -11688,7 +11638,7 @@ function renderPlanetDetail(refs, item) {
     source: "Quelle",
     wiki: "Wiki",
   });
-  setDetailFactVisibility(refs);
+  setDetailFactVisibility(refs, MAP_BASE_ONLY ? ["position", "source", "wiki"] : undefined);
   refs.facts?.classList.remove("hidden");
   refs.grid.textContent = positionText;
   refs.name.textContent = item.name;
@@ -12277,6 +12227,17 @@ function importCalibratedPayload(payload, sourceLabelText) {
 }
 
 function importPlanetFactionsPayload(payload, sourceLabelText) {
+  if (MAP_BASE_ONLY) {
+    state.governmentPlanetFactions = new Map();
+    state.underworldPlanetFactions = new Map();
+    state.planetFactions = new Map();
+    [state.knownByKey, state.savedByKey, state.reviewByKey, state.gridMarkers].forEach((collection) => {
+      collection.forEach((item, key) => collection.set(key, applyPlanetEnrichments({ ...item })));
+    });
+    invalidateStaticOverlay();
+    renderAll();
+    return;
+  }
   importPlanetAliasesFromFactionPayload(payload);
   const factions = new Map();
   Object.entries(payload?.factions || {}).forEach(([name, value]) => {
@@ -12500,6 +12461,7 @@ function importFleetShipsPayload(payload, sourceLabelText) {
 }
 
 async function loadUnderworldFactionsJson() {
+  if (MAP_BASE_ONLY) return;
   const data = await tryFetchJson("underworld_factions.json");
   if (data && data.factions) {
     importUnderworldFactionsPayload(data, "underworld_factions.json automatisch geladen");
@@ -12627,15 +12589,14 @@ async function tryFetchJson(path) {
 }
 
 async function loadCoreJsonData() {
-  const loadVisualLayersImmediately = !state.isMobileView;
   const [calibrated, factions, vectorPaths, hyperspaceRoutes, gridGuides, gridMarkers, fleetShips] = await Promise.all([
     tryFetchJson("calibrated_planets.json"),
-    tryFetchJson("planet_factions.json"),
-    loadVisualLayersImmediately ? tryFetchJson("rim_curves.json") : Promise.resolve(null),
-    loadVisualLayersImmediately ? tryFetchJson("hyperspace_routes.json") : Promise.resolve(null),
+    MAP_BASE_ONLY ? Promise.resolve(null) : tryFetchJson("planet_factions.json"),
+    tryFetchJson("rim_curves.json"),
+    tryFetchJson("hyperspace_routes.json"),
     tryFetchJson("grid_guides.json"),
     tryFetchJson("grid_markers.json"),
-    tryFetchJson("data/fleet_ships.json"),
+    MAP_BASE_ONLY ? Promise.resolve(null) : tryFetchJson("data/fleet_ships.json"),
   ]);
 
   if (calibrated) {
@@ -12659,28 +12620,24 @@ async function loadCoreJsonData() {
   if (fleetShips && Array.isArray(fleetShips.ships)) {
     importFleetShipsPayload(fleetShips, "fleet_ships.json automatisch geladen");
   }
-  if (!state.factionProfiles.size) {
+  if (!MAP_BASE_ONLY && !state.factionProfiles.size) {
     importPlanetProfilesPayload({ factions: DEFAULT_FACTION_PROFILES, profiles: {} }, "Standard-Fraktionsprofile geladen");
   }
-  loadPlanetOverrides();
-  loadUnderworldFactionsJson();
+  if (!MAP_BASE_ONLY) {
+    loadPlanetOverrides();
+    loadUnderworldFactionsJson();
+  }
 }
 
 async function loadDeferredVisualJsonData() {
-  if (state.hyperspaceRouteDefs.length && state.vectorPaths.length) {
+  if (state.hyperspaceRouteDefs.length) {
     return true;
   }
-  const [vectorPaths, hyperspaceRoutes] = await Promise.all([
-    state.vectorPaths.length ? Promise.resolve(null) : tryFetchJson("rim_curves.json"),
-    state.hyperspaceRouteDefs.length ? Promise.resolve(null) : tryFetchJson("hyperspace_routes.json"),
-  ]);
-  if (vectorPaths && Array.isArray(vectorPaths.paths)) {
-    importVectorPathsPayload(vectorPaths, "rim_curves.json im Hintergrund geladen");
-  }
+  const hyperspaceRoutes = await tryFetchJson("hyperspace_routes.json");
   if (hyperspaceRoutes && Array.isArray(hyperspaceRoutes.routes)) {
     importHyperspaceRoutesPayload(hyperspaceRoutes, "hyperspace_routes.json im Hintergrund geladen");
   }
-  return state.hyperspaceRouteDefs.length > 0 && state.vectorPaths.length > 0;
+  return Boolean(hyperspaceRoutes && Array.isArray(hyperspaceRoutes.routes));
 }
 
 async function loadDeferredProfileJsonData() {
@@ -12791,6 +12748,11 @@ function saveLocalPlanetOverrides() {
 }
 
 async function loadPlanetOverrides() {
+  if (MAP_BASE_ONLY) {
+    state.planetOverrides = {};
+    state.planetOverridesLoaded = true;
+    return;
+  }
   const localOverrides = loadLocalPlanetOverrides();
   try {
     // Avoid noisy 404s on a local static server that doesn't expose the API.
@@ -17823,11 +17785,11 @@ function initViewer() {
     minZoomLevel: 0.6,
     maxZoomPixelRatio: state.isMobileView ? 2.2 : 1.8,
     blendTime: state.isMobileView ? 0.04 : 0.08,
-    animationTime: state.isMobileView ? 0.08 : 0.95,
-    springStiffness: state.isMobileView ? 24 : 7,
+    animationTime: state.isMobileView ? 0.72 : 0.95,
+    springStiffness: state.isMobileView ? 9 : 7,
     gestureSettingsTouch: {
       pinchToZoom: true,
-      flickEnabled: !state.isMobileView,
+      flickEnabled: true,
       clickToZoom: false,
       dblClickToZoom: false,
     },
@@ -17942,10 +17904,13 @@ function initViewer() {
 }
 
 async function init() {
+  document.body.classList.toggle("map-base-only", MAP_BASE_ONLY);
   buildKnownIndex();
-  loadSessionFromStorage();
-  loadFleetStoreFromStorage();
-  loadFleetAuthFromStorage();
+  if (!MAP_BASE_ONLY) {
+    loadSessionFromStorage();
+    loadFleetStoreFromStorage();
+    loadFleetAuthFromStorage();
+  }
   loadNewsReadState();
   // Always start in 2D; 3D stays an explicit user action after the intro.
   state.viewMode = "2d";
@@ -17961,14 +17926,18 @@ async function init() {
   applyDesktopWindowLayout(false);
   initViewer();
   await loadCoreJsonData();
-  void loadNewsItems();
-  if (state.fleetAuth?.token) {
+  if (!MAP_BASE_ONLY) void loadNewsItems();
+  if (!MAP_BASE_ONLY && state.fleetAuth?.token) {
     void loadFleetCloudStore({ silent: true });
   }
   renderAll();
   markLandingIntroReady();
-  void scheduleProgressiveStartupLoads();
-  if (state.filters.profiledOnly) {
+  if (!MAP_BASE_ONLY) {
+    void scheduleProgressiveStartupLoads();
+  } else {
+    setStatus("Karte bereit.");
+  }
+  if (!MAP_BASE_ONLY && state.filters.profiledOnly) {
     void ensurePlanetProfilesLoaded();
   }
 }
