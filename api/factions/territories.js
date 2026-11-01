@@ -5,6 +5,9 @@ const DEFAULT_DATA = require("../../faction-territories.json");
 const KEY = "faction-territories-v1";
 const HEX_COLOR = /^#[0-9a-f]{6}$/i;
 const MAX_PAYLOAD_CHARS = 5_000_000;
+const MAX_FACTIONS = 100;
+const MAX_TERRITORIES = 1_000;
+const MAX_IMAGES = 250;
 
 function cleanText(value, fallback = "", max = 160) {
   return String(value == null ? "" : value).trim().slice(0, max) || fallback;
@@ -33,7 +36,9 @@ function normalizeNode(value) {
 
 function normalizeData(raw) {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw new Error("Ungültiges Gebietsdokument.");
-  const factions = (Array.isArray(raw.factions) ? raw.factions : []).slice(0, 32).map((entry, index) => {
+  const rawFactions = Array.isArray(raw.factions) ? raw.factions : [];
+  if (rawFactions.length > MAX_FACTIONS) throw new Error(`Maximal ${MAX_FACTIONS} Fraktionen sind möglich.`);
+  const factions = rawFactions.map((entry, index) => {
     const id = cleanText(entry?.id, `faction-${index + 1}`, 64);
     if (!/^[a-z0-9][a-z0-9_-]{1,63}$/.test(id)) throw new Error(`Ungültige Fraktionskennung: ${id}.`);
     const color = String(entry?.color || "").toLowerCase();
@@ -52,7 +57,9 @@ function normalizeData(raw) {
     };
   });
   const factionIds = new Set(factions.map((entry) => entry.id));
-  const territories = (Array.isArray(raw.territories) ? raw.territories : []).slice(0, 500).map((entry, index) => {
+  const rawTerritories = Array.isArray(raw.territories) ? raw.territories : [];
+  if (rawTerritories.length > MAX_TERRITORIES) throw new Error(`Maximal ${MAX_TERRITORIES} Gebiete sind möglich.`);
+  const territories = rawTerritories.map((entry, index) => {
     const points = (Array.isArray(entry?.points) ? entry.points : []).slice(0, 2000).map(normalizeNode);
     if (points.length < 3) throw new Error(`Gebiet ${index + 1} benötigt mindestens drei Ankerpunkte.`);
     const factionId = cleanText(entry?.factionId);
@@ -77,7 +84,9 @@ function normalizeData(raw) {
       zIndex: Math.max(-10000, Math.min(10000, Number(entry?.zIndex ?? index) || 0)),
     };
   });
-  const images = (Array.isArray(raw.images) ? raw.images : []).slice(0, 100).map((entry, index) => {
+  const rawImages = Array.isArray(raw.images) ? raw.images : [];
+  if (rawImages.length > MAX_IMAGES) throw new Error(`Maximal ${MAX_IMAGES} Fraktionsgrafiken sind möglich.`);
+  const images = rawImages.map((entry, index) => {
     const factionId = cleanText(entry?.factionId);
     if (factionId && !factionIds.has(factionId)) throw new Error(`Ungültige Fraktion für Grafik ${index + 1}.`);
     const x = Number(entry?.x);
@@ -121,7 +130,7 @@ function normalizeData(raw) {
     order: Math.max(-10000, Math.min(10000, Number(entry?.order ?? index) || 0)),
   }));
   const territoryBootstrapFactions = Array.isArray(raw.territoryBootstrapFactions)
-    ? [...new Set(raw.territoryBootstrapFactions.map((id) => String(id || "").trim().toLowerCase()).filter((id) => factionIds.has(id)))].slice(0, 32)
+    ? [...new Set(raw.territoryBootstrapFactions.map((id) => String(id || "").trim().toLowerCase()).filter((id) => factionIds.has(id)))].slice(0, MAX_FACTIONS)
     : [];
   return { version: 1, factions, territories, images, layers, territoryBootstrapFactions };
 }
