@@ -163,6 +163,7 @@ module.exports = async function handler(req, res) {
     res.setHeader("Cache-Control", "no-store");
     res.status(200).json({ ok: true, data });
   } catch (error) {
-    res.status(503).json({ error: "Territorien-Speicher nicht verfügbar. REDIS_URL muss eingerichtet sein." });
+    console.error("[faction-territories] save failed:", error?.message || error);
+    res.status(503).json({ error: `Territorien-Speicher nicht verfügbar: ${String(error?.message || error)}` });
   }
 };
