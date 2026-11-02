@@ -20,6 +20,14 @@
   --desktop-topbar-h: 64px;
   --intro-progress: 0;
   --three-transition-progress: 0;
+  --ui-surface: rgba(10, 14, 19, 0.94);
+  --ui-surface-raised: rgba(16, 22, 29, 0.97);
+  --ui-line: rgba(197, 211, 222, 0.15);
+  --ui-line-strong: rgba(197, 211, 222, 0.28);
+  --ui-text: #e7edf1;
+  --ui-muted: #9aa7b1;
+  --ui-active: #d7b26c;
+  --ui-radius: 6px;
 }
 
 /* Calm, compact planet information for the public baseline map. */
@@ -6359,5 +6367,264 @@ body.desktop-window-dragging .window-drag-handle * {
 
   body.mobile-view .detail-facts {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Cartographic interface pass: quiet surfaces, restrained controls, map first. */
+body {
+  color: var(--ui-text);
+  background: #050708;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+}
+
+.topbar {
+  width: min(380px, calc(100vw - (var(--desktop-overlay-gap) * 2)));
+  min-height: 0;
+  padding: 0.5rem;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+#searchInput,
+#fleetProfileNameInput,
+#fleetUsernameInput,
+#fleetPasswordInput,
+#fleetAdminUserSelect,
+#fleetNameInput,
+#fleetFactionInput,
+#fleetShipSearchInput,
+#fleetShipFactionFilter,
+#fleetShipQuantityInput,
+#newsTitleInput,
+#newsBodyInput,
+#newsImageUrlInput {
+  border-color: var(--ui-line);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.035);
+  color: var(--ui-text);
+}
+
+#searchInput {
+  height: 38px;
+  padding-left: 2.3rem;
+  font-size: 0.86rem;
+  background-position: 0.82rem center;
+}
+
+#searchInput:focus,
+#gridInput:focus,
+#travelStartInput:focus,
+#travelTargetInput:focus,
+#travelHyperdriveInput:focus,
+#travelFleetSelect:focus,
+#fleetProfileSelect:focus,
+#fleetProfileNameInput:focus,
+#fleetUsernameInput:focus,
+#fleetPasswordInput:focus,
+#fleetAdminUserSelect:focus,
+#fleetNameInput:focus,
+#fleetFactionInput:focus,
+#fleetShipSearchInput:focus,
+#fleetShipFactionFilter:focus,
+#fleetShipQuantityInput:focus,
+#newsTitleInput:focus,
+#newsBodyInput:focus,
+#newsImageUrlInput:focus {
+  border-color: rgba(215, 178, 108, 0.8);
+  background: rgba(215, 178, 108, 0.06);
+  box-shadow: 0 0 0 2px rgba(215, 178, 108, 0.12);
+}
+
+.desktop-panel-dock {
+  width: 184px;
+  gap: 0;
+  padding: 0.34rem;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.desktop-panel-launcher {
+  gap: 0.6rem;
+  min-height: 34px;
+  padding: 0.5rem 0.58rem;
+  border-radius: 4px;
+  color: var(--ui-text);
+  font-size: 0.82rem;
+  font-weight: 560;
+  letter-spacing: 0;
+}
+
+.desktop-panel-launcher::before {
+  display: none;
+}
+
+.menu-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--ui-muted);
+  stroke-width: 1.7;
+}
+
+.desktop-panel-launcher:hover {
+  transform: none;
+  border-color: transparent;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.desktop-panel-launcher.is-active {
+  border-color: rgba(215, 178, 108, 0.28);
+  background: rgba(215, 178, 108, 0.12);
+  box-shadow: inset 2px 0 0 var(--ui-active);
+}
+
+.desktop-panel-launcher.is-active::before {
+  box-shadow: none;
+  transform: none;
+}
+
+.menu-badge {
+  min-width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 3px;
+  background: #b85d50;
+  box-shadow: none;
+  font-size: 0.66rem;
+}
+
+.grid-controls button,
+.ghost-button,
+.accent-button,
+.danger-button,
+.view-mode-fab,
+.map-mode-fab {
+  border-radius: 4px;
+  border-color: var(--ui-line);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.grid-controls button:hover,
+.ghost-button:hover,
+.accent-button:hover,
+.danger-button:hover,
+.view-mode-fab:hover,
+.map-mode-fab:hover {
+  transform: none;
+  border-color: var(--ui-line-strong);
+  background: var(--ui-surface-raised);
+}
+
+.accent-button,
+.map-mode-fab[aria-pressed="true"] {
+  border-color: rgba(215, 178, 108, 0.5);
+  background: rgba(215, 178, 108, 0.14);
+  color: #f1ddb2;
+}
+
+.view-mode-fab {
+  width: 48px;
+  height: 42px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.map-mode-fab {
+  left: calc(var(--desktop-overlay-gap) + 56px);
+  height: 42px;
+  padding: 0 0.78rem;
+  border-radius: 4px;
+  color: var(--ui-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.panel-card,
+.desktop-floating-window,
+.search-dropdown,
+.statusbar {
+  border-color: var(--ui-line);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.statusbar {
+  width: min(330px, calc(100vw - (var(--desktop-overlay-gap) * 2)));
+  padding: 0.52rem 0.68rem;
+  color: var(--ui-muted);
+  font-size: 0.74rem;
+  border-left: 2px solid rgba(215, 178, 108, 0.65);
+}
+
+.map-data-overlay .faction-fragment-label {
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  font-weight: 650;
+  letter-spacing: 0.015em;
+}
+
+@media (max-width: 680px) {
+  .topbar {
+    width: calc(100vw - 138px);
+    padding: 0.42rem;
+    border-radius: var(--ui-radius);
+  }
+
+  body.mobile-view .mobile-menu-sheet {
+    border: 1px solid var(--ui-line);
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    background: var(--ui-surface);
+    box-shadow: 0 -12px 28px rgba(0, 0, 0, 0.34);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  body.mobile-view .mobile-menu-tile {
+    min-height: 74px;
+    padding: 0.74rem 0.72rem 0.72rem 3.1rem;
+    border: 1px solid var(--ui-line);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--ui-text);
+    box-shadow: none;
+  }
+
+  body.mobile-view .mobile-menu-tile::before {
+    top: 50%;
+    left: 0.72rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 3px;
+    background: rgba(215, 178, 108, 0.16) !important;
+    box-shadow: none !important;
+    transform: translateY(-50%);
+  }
+
+  body.mobile-view .mobile-menu-tile .menu-icon {
+    top: 50%;
+    left: 1.04rem;
+    width: 1rem;
+    height: 1rem;
+    color: var(--ui-muted);
+    filter: none;
+    transform: translateY(-50%);
+  }
+
+  body.mobile-view .mobile-menu-tile:active {
+    background: rgba(215, 178, 108, 0.12);
   }
 }

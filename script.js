@@ -6626,15 +6626,15 @@ function buildFactionFragmentSvgMarkup(fragments, metrics) {
       const fill = fragment.region?.fillColor || meta?.color || visual.coreHex;
       const stroke = fragment.region?.strokeColor || meta?.color || visual.glowHex;
       const fillOpacity = territoryFillOpacity(fragment.region);
-      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 1.15, 5.5);
+      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 0.85, 3.5);
       return `
         <g
           class="faction-fragment ${fragment.faction}"
           data-faction-key="${factionKey}"
           style="--banner-glow: ${visual.glowHex}; --banner-accent: ${visual.glowHex};"
         >
-          <path d="${regionPath}" fill="${fill}" fill-opacity="${fillOpacity.toFixed(3)}" stroke="rgba(2, 7, 12, 0.78)" stroke-width="${(strokeWidth + 2.2).toFixed(2)}" stroke-linejoin="round" />
-          <path d="${regionPath}" fill="none" stroke="${stroke}" stroke-opacity="0.88" stroke-width="${strokeWidth.toFixed(2)}" stroke-linejoin="round" />
+          <path d="${regionPath}" fill="${fill}" fill-opacity="${fillOpacity.toFixed(3)}" stroke="rgba(2, 7, 12, 0.58)" stroke-width="${(strokeWidth + 1.05).toFixed(2)}" stroke-linejoin="round" stroke-linecap="round" />
+          <path d="${regionPath}" fill="none" stroke="${stroke}" stroke-opacity="0.62" stroke-width="${strokeWidth.toFixed(2)}" stroke-linejoin="round" stroke-linecap="round" />
           <g transform="translate(${fragment.cx.toFixed(2)} ${fragment.cy.toFixed(2)})">
             ${buildFactionBannerSvg(fragment)}
             ${showLabel ? `<text
@@ -8913,7 +8913,7 @@ function gridGuideSegments(guide) {
 
 function territoryFillOpacity(region) {
   // A matte territory must be legible on the dark map without drowning routes.
-  return clamp(Number(region?.fillOpacity ?? 0.34), 0.28, 0.48);
+  return clamp(Number(region?.fillOpacity ?? 0.32), 0.25, 0.42);
 }
 
 function drawCanvasBezierPath(ctx, path) {
@@ -9013,7 +9013,7 @@ function renderStaticCanvasOverlay() {
       const fill = fragment.region?.fillColor || meta?.color || visual.coreHex;
       const stroke = fragment.region?.strokeColor || meta?.color || visual.glowHex;
       const fillOpacity = territoryFillOpacity(fragment.region);
-      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 1.15, 5.5) * scale;
+      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 0.85, 3.5) * scale;
       ctx.save();
       drawCanvasBezierPath(ctx, fragment.region);
       ctx.fillStyle = fill;
@@ -9021,12 +9021,13 @@ function renderStaticCanvasOverlay() {
       ctx.fill();
       ctx.globalAlpha = 1;
       ctx.lineJoin = "round";
-      ctx.lineWidth = strokeWidth + Math.max(1.2, 1.8 * scale);
-      ctx.strokeStyle = "rgba(2, 7, 12, 0.78)";
+      ctx.lineCap = "round";
+      ctx.lineWidth = strokeWidth + Math.max(0.8, 1.05 * scale);
+      ctx.strokeStyle = "rgba(2, 7, 12, 0.58)";
       ctx.stroke();
       ctx.lineWidth = strokeWidth;
       ctx.strokeStyle = stroke;
-      ctx.globalAlpha = 0.88;
+      ctx.globalAlpha = 0.62;
       ctx.stroke();
       ctx.restore();
       drawFactionBannerCanvas(ctx, {

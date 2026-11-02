@@ -9,6 +9,7 @@ test_map.png
 brief-mobile*.png
 territory-*.png
 mobile-*-check.png
+redesign-*.png
 
 # Local deployment folders
 .netlify
