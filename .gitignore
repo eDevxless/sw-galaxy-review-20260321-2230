@@ -7,7 +7,7 @@ Administration/.env
 Administration/data/
 test_map.png
 brief-mobile*.png
-territory-*-verified.png
+territory-*.png
 mobile-*-check.png
 
 # Local deployment folders
