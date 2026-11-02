@@ -6110,7 +6110,10 @@ function buildFactionTerritoryFragmentProfile(region, index) {
   const faction = normalizeFaction(region?.factionId || region?.faction);
   if (!faction || !state.imageWidth || !state.imageHeight) return null;
   const points = (Array.isArray(region.points) ? region.points : [])
-    .map((point) => ({ x: Number(point?.x) * state.imageWidth, y: Number(point?.y) * state.imageHeight }))
+    .map((point) => {
+      const anchor = point?.anchor || point;
+      return { x: Number(anchor?.x) * state.imageWidth, y: Number(anchor?.y) * state.imageHeight };
+    })
     .filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y));
   if (points.length < 3) return null;
 
@@ -6209,7 +6212,7 @@ function ensureFactionFragments() {
     return faction && factionFitsCurrentMode(faction);
   });
   const territoryFragments = scopedCustomRegions
-    .filter((region) => region.visible !== false && state.territoryFactionMeta.get(normalizeFaction(region.factionId || region.faction))?.visible !== false)
+    .filter((region) => region.closed !== false && region.visible !== false && state.territoryFactionMeta.get(normalizeFaction(region.factionId || region.faction))?.visible !== false)
     .map((region, index) => buildFactionTerritoryFragmentProfile(region, index))
     .filter(Boolean);
   // A territory is authored as a Bezier path. Never reconstruct one from a
@@ -6622,8 +6625,8 @@ function buildFactionFragmentSvgMarkup(fragments, metrics) {
       const regionPath = svgPathFromVectorPath(fragment.region);
       const fill = fragment.region?.fillColor || meta?.color || visual.coreHex;
       const stroke = fragment.region?.strokeColor || meta?.color || visual.glowHex;
-      const fillOpacity = clamp(Number(fragment.region?.fillOpacity ?? 0.18), 0.05, 0.22);
-      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 0.65, 4.5);
+      const fillOpacity = territoryFillOpacity(fragment.region);
+      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 1.15, 5.5);
       return `
         <g
           class="faction-fragment ${fragment.faction}"
@@ -8110,6 +8113,18 @@ function shouldShowAllPlanetLabels(metrics) {
 
 function visiblePlanetLabelItems(bounds, metrics = currentOverlayMetrics()) {
   const showAllVisibleLabels = shouldShowAllPlanetLabels(metrics);
+  const selectedKey = String(state.selectedDetailKey || "");
+  const searchedKey = String(state.searchPulseKey || "");
+  const overviewZoom = state.isMobileView ? 3.4 : 2.8;
+  if (metrics.zoomFactor < overviewZoom) {
+    // Keep an active selection discoverable, but leave the overview map free
+    // of permanent planet labels.
+    return visibleRenderableMapItems()
+      .filter((item) => item.nameKey === selectedKey || item.nameKey === searchedKey)
+      .filter((item) => item.kind !== "review" && itemInBounds(item, bounds))
+      .map((item) => buildPlanetLabelEntry(item, metrics))
+      .filter(Boolean);
+  }
   const candidates = visibleRenderableMapItems()
     .filter((item) => item.kind !== "review")
     .filter((item) => showAllVisibleLabels || (PLANET_LABEL_PRIORITIES[item.nameKey] || 0) > 0)
@@ -8890,65 +8905,15 @@ function vectorPathLabelData(path, metrics) {
 }
 
 function gridGuideSegments(guide) {
-  if (!guide) return [];
-  const segments = [];
-  if (guide.kind === "line-grid") {
-    const vertical = guide.vertical_line || {};
-    const horizontal = guide.horizontal_line || {};
-    const spacingX = Number(guide.spacing_x_px || 0);
-    const spacingY = Number(guide.spacing_y_px || 0);
-    const copiesX = Number(guide.copies_x || 0);
-    const copiesY = Number(guide.copies_y || 0);
-    for (let index = 0; index <= copiesX; index += 1) {
-      segments.push({
-        axis: "vertical",
-        index,
-        start: [
-          Number((vertical.start_px || [0, 0])[0]) + index * spacingX,
-          Number((vertical.start_px || [0, 0])[1]),
-        ],
-        end: [
-          Number((vertical.end_px || [0, 0])[0]) + index * spacingX,
-          Number((vertical.end_px || [0, 0])[1]),
-        ],
-      });
-    }
-    for (let index = 0; index <= copiesY; index += 1) {
-      segments.push({
-        axis: "horizontal",
-        index,
-        start: [
-          Number((horizontal.start_px || [0, 0])[0]),
-          Number((horizontal.start_px || [0, 0])[1]) + index * spacingY,
-        ],
-        end: [
-          Number((horizontal.end_px || [0, 0])[0]),
-          Number((horizontal.end_px || [0, 0])[1]) + index * spacingY,
-        ],
-      });
-    }
-  }
-  // The global reference grid remains useful at the map edges.  In the busy
-  // Core, however, its cells obscure routes and planets, so omit only that
-  // central window while leaving the surrounding grid intact.
-  const core = { left: state.imageWidth * 0.29, right: state.imageWidth * 0.71, top: state.imageHeight * 0.27, bottom: state.imageHeight * 0.71 };
-  return segments.flatMap((segment) => {
-    const [x1, y1] = segment.start;
-    const [x2, y2] = segment.end;
-    if (segment.axis === "vertical" && x1 > core.left && x1 < core.right) {
-      return [
-        { ...segment, end: [x2, core.top] },
-        { ...segment, start: [x1, core.bottom] },
-      ];
-    }
-    if (segment.axis === "horizontal" && y1 > core.top && y1 < core.bottom) {
-      return [
-        { ...segment, end: [core.left, y2] },
-        { ...segment, start: [core.right, y1] },
-      ];
-    }
-    return [segment];
-  });
+  // The coordinate grid is retained in the data for navigation/export, but
+  // intentionally has no visual renderer on the public or admin map.
+  void guide;
+  return [];
+}
+
+function territoryFillOpacity(region) {
+  // A matte territory must be legible on the dark map without drowning routes.
+  return clamp(Number(region?.fillOpacity ?? 0.34), 0.28, 0.48);
 }
 
 function drawCanvasBezierPath(ctx, path) {
@@ -9047,8 +9012,8 @@ function renderStaticCanvasOverlay() {
       const visual = factionFragmentVisual(fragment.faction);
       const fill = fragment.region?.fillColor || meta?.color || visual.coreHex;
       const stroke = fragment.region?.strokeColor || meta?.color || visual.glowHex;
-      const fillOpacity = clamp(Number(fragment.region?.fillOpacity ?? 0.18), 0.05, 0.22);
-      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 0.65, 4.5) * scale;
+      const fillOpacity = territoryFillOpacity(fragment.region);
+      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 1.15, 5.5) * scale;
       ctx.save();
       drawCanvasBezierPath(ctx, fragment.region);
       ctx.fillStyle = fill;

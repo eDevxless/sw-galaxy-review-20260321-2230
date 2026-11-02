@@ -374,7 +374,13 @@
     const territoryRegions = territories.map(({ entry, samples }) => ({
       id: entry.id,
       factionId: entry.factionId,
-      points: samples,
+      // Keep the authored Bézier nodes for rendering. `samples` are only for
+      // exact point-in-territory assignment and would be far too expensive to
+      // redraw as thousands of tiny curve segments on mobile.
+      points: entry.points,
+      // Samples describe a closed editor territory. Preserve that fact for
+      // the public renderer so SVG and canvas can fill the actual polygon.
+      closed: true,
       visible: entry.visible,
       planetCount: territoryPlanetCounts.get(entry.id) || 0,
     }));
@@ -487,8 +493,6 @@
             <div class="faction-editor-panel-head"><button class="faction-editor-panel-toggle" type="button" data-panel-toggle="view" aria-expanded="true">Ansicht</button></div>
             <div class="faction-editor-panel-content" data-panel-content="view">
               <label class="faction-editor-check"><input type="checkbox" data-option="snap"> An Planeten und Knoten einrasten</label>
-              <label class="faction-editor-check"><input type="checkbox" data-option="grid"> Raster anzeigen</label>
-              <label class="faction-editor-check"><input type="checkbox" data-option="guides"> Hilfslinien anzeigen</label>
             </div>
           </section>
         </aside>
@@ -821,18 +825,6 @@
     if (!state.active || !state.objectSvg) return;
     const scale = Math.max(overlayScale(), 0.00001);
     const controls = [];
-    if ($('[data-option="grid"]', state.shell)?.checked) {
-      for (let step = 1; step < 20; step += 1) {
-        const x = state.width * step / 20;
-        const y = state.height * step / 20;
-        controls.push(makeSvgElement("line", { x1: x, y1: 0, x2: x, y2: state.height, stroke: "#c5d7e622", "stroke-width": 1 / scale, "pointer-events": "none" }));
-        controls.push(makeSvgElement("line", { x1: 0, y1: y, x2: state.width, y2: y, stroke: "#c5d7e622", "stroke-width": 1 / scale, "pointer-events": "none" }));
-      }
-    }
-    if ($('[data-option="guides"]', state.shell)?.checked) {
-      controls.push(makeSvgElement("line", { x1: state.width / 2, y1: 0, x2: state.width / 2, y2: state.height, stroke: "#85cdf355", "stroke-width": 1 / scale, "stroke-dasharray": `${5 / scale} ${5 / scale}`, "pointer-events": "none" }));
-      controls.push(makeSvgElement("line", { x1: 0, y1: state.height / 2, x2: state.width, y2: state.height / 2, stroke: "#85cdf355", "stroke-width": 1 / scale, "stroke-dasharray": `${5 / scale} ${5 / scale}`, "pointer-events": "none" }));
-    }
     if (state.tool === "pen" && state.drawingPoints.length) {
       const draftPoints = state.drawingPoints.concat(state.drawPreview ? [{ anchor: state.drawPreview, in: null, out: null }] : []);
       const draftPath = pathData(draftPoints, false);
