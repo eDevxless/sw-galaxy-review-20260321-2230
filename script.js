@@ -4831,7 +4831,7 @@ function loadThreeModuleIfNeeded() {
 }
 
 function landingIntroPromptVerb() {
-  return state.isMobileView ? "wischen" : "scrollen";
+  return "lädt";
 }
 
 function renderLandingIntroCopy() {
@@ -5032,9 +5032,10 @@ function markLandingIntroReady() {
     state.intro.readyAt = performance.now();
   }
   renderLandingIntroCopy();
-  if (state.intro.targetProgress >= LANDING_INTRO_COMPLETE_PROGRESS) {
-    startLandingIntroLoop();
-  }
+  // The intro is a loading state, not an extra interaction step.  Waiting for
+  // a swipe used to leave mobile users on an apparently empty page.
+  state.intro.targetProgress = 1;
+  startLandingIntroLoop();
 }
 
 function completeLandingIntro() {
@@ -6181,6 +6182,7 @@ function buildFactionTerritoryFragmentProfile(region, index) {
     ambientRx,
     ambientRy,
     bannerSize,
+    region,
     bounds: {
       left: centroidX - outerRadius,
       top: centroidY - outerRadius,
@@ -6202,88 +6204,17 @@ function ensureFactionFragments() {
     return state.factionFragments;
   }
 
-  // Nur Fraktionen die zum aktuellen Modus gehoeren bekommen Fragments.
-  // Benutzerdefinierte Fraktionen werden eingeschlossen, sobald ihre Gebiete
-  // Planeten zuordnen; so erhalten ihre Regionen denselben radialen Lichtschleier.
-  const modeFactions = state.mapMode === "underworld"
-    ? [...UNDERWORLD_FACTION_KEYS]
-    : [...GOVERNMENT_FACTION_KEYS];
-  const customFactions = [...state.territoryFactionMeta.entries()]
-    .filter(([faction, meta]) => !ALL_KNOWN_FACTIONS.has(faction) &&
-      (meta.scope === "both" || meta.scope === state.mapMode))
-    .map(([faction]) => faction);
-  const pointsByFaction = Object.fromEntries([...new Set([...modeFactions, ...customFactions])].map((faction) => [faction, []]));
-
-  allRenderableMapItems().forEach((item) => {
-    const faction = normalizeFaction(item?.faction);
-    if (!faction || item?.kind === "review" || item?.kind === "route") return;
-    if (!pointsByFaction[faction]) return;
-    const position = itemImagePosition(item);
-    pointsByFaction[faction].push({
-      key: item.nameKey,
-      x: position.x,
-      y: position.y,
-    });
-  });
-
   const scopedCustomRegions = state.territoryFactionRegions.filter((region) => {
     const faction = normalizeFaction(region?.factionId || region?.faction);
-    return faction && !ALL_KNOWN_FACTIONS.has(faction) && Boolean(pointsByFaction[faction]);
+    return faction && factionFitsCurrentMode(faction);
   });
-  const regionBackedFactions = new Set(scopedCustomRegions.map((region) => normalizeFaction(region.factionId || region.faction)));
   const territoryFragments = scopedCustomRegions
     .filter((region) => region.visible !== false && state.territoryFactionMeta.get(normalizeFaction(region.factionId || region.faction))?.visible !== false)
     .map((region, index) => buildFactionTerritoryFragmentProfile(region, index))
     .filter(Boolean);
-
-  const baseLink = Math.min(state.imageWidth, state.imageHeight) * FACTION_FRAGMENT_LINK_DISTANCE_RATIO;
-  const pointFragments = Object.entries(pointsByFaction)
-    .flatMap(([faction, points]) => {
-      if (!points.length) return [];
-      const isUnderworld = UNDERWORLD_FACTION_KEYS.includes(faction) || state.territoryFactionMeta.get(faction)?.scope === "underworld";
-      const linkDistance = isUnderworld ? baseLink * 2.6 : baseLink;
-      const isCustomFaction = !ALL_KNOWN_FACTIONS.has(faction);
-      const minPlanets = isCustomFaction
-        ? 1
-        : isUnderworld
-          ? 2
-          : FACTION_FRAGMENT_MIN_PLANETS_BY_FACTION[faction] || FACTION_FRAGMENT_MIN_PLANETS;
-      return clusterFactionPoints(points, linkDistance)
-        .filter((cluster) => cluster.length >= minPlanets)
-        .map((cluster, index) => buildFactionFragmentProfile(faction, cluster, index))
-        .filter(Boolean);
-    })
-    .filter((fragment) => !regionBackedFactions.has(fragment.faction));
-  const fragments = [...pointFragments, ...territoryFragments].sort((left, right) => right.count - left.count);
-
-  // Anker-Banner: garantiert dass an konfigurierten Hauptplaneten /
-  // Extra-Ankern (z.B. Coruscant + Mustafar fuer Black Sun) immer ein
-  // Banner sitzt, auch wenn diese Welten geographisch isoliert sind.
-  if (state.mapMode === "underworld") {
-    UNDERWORLD_FACTION_KEYS.forEach((faction) => {
-      const anchorNames = [
-        FACTION_MAIN_PLANETS[faction],
-        ...(FACTION_EXTRA_ANCHORS[faction] || []),
-      ].filter(Boolean);
-      anchorNames.forEach((name) => {
-        const key = normalizeNameKey(name);
-        const point = (pointsByFaction[faction] || []).find((p) => p.key === key);
-        if (!point) return;
-        const alreadyCovered = fragments.some((f) => {
-          if (f.faction !== faction) return false;
-          return (
-            f.bounds.left <= point.x &&
-            point.x <= f.bounds.right &&
-            f.bounds.top <= point.y &&
-            point.y <= f.bounds.bottom
-          );
-        });
-        if (alreadyCovered) return;
-        const anchor = buildFactionFragmentProfile(faction, [point], fragments.length);
-        if (anchor) fragments.push(anchor);
-      });
-    });
-  }
+  // A territory is authored as a Bezier path. Never reconstruct one from a
+  // planet cluster: that created the oversized oval halos beyond neutral space.
+  const fragments = territoryFragments.sort((left, right) => right.count - left.count);
 
   state.factionFragments = fragments;
   state.factionFragmentKey = cacheKey;
@@ -6686,24 +6617,24 @@ function buildFactionFragmentSvgMarkup(fragments, metrics) {
       const estimatedLabelWidth = name.length * labelFontSize * 0.62;
       const hasBanner = Boolean(FACTION_LOGO_URLS[fragment.faction]) || ["republic", "separatist"].includes(fragment.faction);
       const labelY = hasBanner ? fragment.bannerSize * 0.62 : 0;
+      const showLabel = metrics.zoomFactor >= (state.isMobileView ? 2.3 : 1.55);
       const factionKey = `faction:${fragment.faction}`;
+      const regionPath = svgPathFromVectorPath(fragment.region);
+      const fill = fragment.region?.fillColor || meta?.color || visual.coreHex;
+      const stroke = fragment.region?.strokeColor || meta?.color || visual.glowHex;
+      const fillOpacity = clamp(Number(fragment.region?.fillOpacity ?? 0.18), 0.05, 0.22);
+      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 0.65, 4.5);
       return `
         <g
           class="faction-fragment ${fragment.faction}"
           data-faction-key="${factionKey}"
           style="--banner-glow: ${visual.glowHex}; --banner-accent: ${visual.glowHex};"
         >
-          <g transform="translate(${fragment.cx.toFixed(2)} ${fragment.cy.toFixed(2)}) rotate(${fragment.angleDeg.toFixed(2)})">
-            <ellipse cx="0" cy="0" rx="${fragment.ambientRx.toFixed(2)}" ry="${fragment.ambientRy.toFixed(
-        2
-      )}" fill="url(#fragment-${fragment.faction}-ambient)" />
-            <ellipse cx="0" cy="0" rx="${fragment.coreRx.toFixed(2)}" ry="${fragment.coreRy.toFixed(
-        2
-      )}" fill="url(#fragment-${fragment.faction}-core)" />
-          </g>
+          <path d="${regionPath}" fill="${fill}" fill-opacity="${fillOpacity.toFixed(3)}" stroke="rgba(2, 7, 12, 0.78)" stroke-width="${(strokeWidth + 2.2).toFixed(2)}" stroke-linejoin="round" />
+          <path d="${regionPath}" fill="none" stroke="${stroke}" stroke-opacity="0.88" stroke-width="${strokeWidth.toFixed(2)}" stroke-linejoin="round" />
           <g transform="translate(${fragment.cx.toFixed(2)} ${fragment.cy.toFixed(2)})">
             ${buildFactionBannerSvg(fragment)}
-            <text
+            ${showLabel ? `<text
               class="faction-fragment-label"
               x="0"
               y="${labelY.toFixed(2)}"
@@ -6715,7 +6646,7 @@ function buildFactionFragmentSvgMarkup(fragments, metrics) {
               text-anchor="middle"
               dominant-baseline="middle"
               ${estimatedLabelWidth > labelWidth ? `textLength="${labelWidth.toFixed(2)}" lengthAdjust="spacingAndGlyphs"` : ""}
-            >${escapeHtml(name)}</text>
+            >${escapeHtml(name)}</text>` : ""}
           </g>
         </g>
       `;
@@ -8997,7 +8928,27 @@ function gridGuideSegments(guide) {
       });
     }
   }
-  return segments;
+  // The global reference grid remains useful at the map edges.  In the busy
+  // Core, however, its cells obscure routes and planets, so omit only that
+  // central window while leaving the surrounding grid intact.
+  const core = { left: state.imageWidth * 0.29, right: state.imageWidth * 0.71, top: state.imageHeight * 0.27, bottom: state.imageHeight * 0.71 };
+  return segments.flatMap((segment) => {
+    const [x1, y1] = segment.start;
+    const [x2, y2] = segment.end;
+    if (segment.axis === "vertical" && x1 > core.left && x1 < core.right) {
+      return [
+        { ...segment, end: [x2, core.top] },
+        { ...segment, start: [x1, core.bottom] },
+      ];
+    }
+    if (segment.axis === "horizontal" && y1 > core.top && y1 < core.bottom) {
+      return [
+        { ...segment, end: [core.left, y2] },
+        { ...segment, start: [core.right, y1] },
+      ];
+    }
+    return [segment];
+  });
 }
 
 function drawCanvasBezierPath(ctx, path) {
@@ -9092,31 +9043,33 @@ function renderStaticCanvasOverlay() {
       const center = imagePxToScreen(fragment.cx, fragment.cy);
       if (!center) return;
       const scale = metrics.screenScale;
-      drawGradientEllipse(
-        ctx,
-        center.x,
-        center.y,
-        fragment.ambientRx * scale,
-        fragment.ambientRy * scale,
-        fragment.angleRad,
-        buildFactionGradientStops(fragment.faction, "ambient")
-      );
-      drawGradientEllipse(
-        ctx,
-        center.x,
-        center.y,
-        fragment.coreRx * scale,
-        fragment.coreRy * scale,
-        fragment.angleRad,
-        buildFactionGradientStops(fragment.faction, "core")
-      );
+      const meta = state.territoryFactionMeta.get(fragment.faction);
+      const visual = factionFragmentVisual(fragment.faction);
+      const fill = fragment.region?.fillColor || meta?.color || visual.coreHex;
+      const stroke = fragment.region?.strokeColor || meta?.color || visual.glowHex;
+      const fillOpacity = clamp(Number(fragment.region?.fillOpacity ?? 0.18), 0.05, 0.22);
+      const strokeWidth = clamp(Number(fragment.region?.strokeWidth ?? 2), 0.65, 4.5) * scale;
+      ctx.save();
+      drawCanvasBezierPath(ctx, fragment.region);
+      ctx.fillStyle = fill;
+      ctx.globalAlpha = fillOpacity;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.lineJoin = "round";
+      ctx.lineWidth = strokeWidth + Math.max(1.2, 1.8 * scale);
+      ctx.strokeStyle = "rgba(2, 7, 12, 0.78)";
+      ctx.stroke();
+      ctx.lineWidth = strokeWidth;
+      ctx.strokeStyle = stroke;
+      ctx.globalAlpha = 0.88;
+      ctx.stroke();
+      ctx.restore();
       drawFactionBannerCanvas(ctx, {
         ...fragment,
         cx: center.x,
         cy: center.y,
         bannerSize: fragment.bannerSize * scale,
       });
-      const meta = state.territoryFactionMeta.get(fragment.faction);
       const name = String(meta?.name || FACTION_LABELS[fragment.faction] || fragment.faction);
       const hasBanner = Boolean(FACTION_LOGO_URLS[fragment.faction]) || ["republic", "separatist"].includes(fragment.faction);
       const labelY = center.y + (hasBanner ? fragment.bannerSize * scale * 0.62 : 0);
@@ -9129,15 +9082,17 @@ function renderStaticCanvasOverlay() {
       const fittedFontSize = measuredLabelWidth > labelMaxWidth
         ? Math.max(8, labelFontSize * labelMaxWidth / measuredLabelWidth)
         : labelFontSize;
-      drawCanvasText(ctx, name, center.x, labelY, {
-        fontSize: fittedFontSize,
-        align: "center",
-        baseline: "middle",
-        fill: meta?.color || factionFragmentVisual(fragment.faction).glowHex,
-        stroke: "rgba(4, 10, 17, 0.94)",
-        strokeWidth: Math.max(2, fittedFontSize * 0.18),
-        weight: 750,
-      });
+      if (metrics.zoomFactor >= (state.isMobileView ? 2.3 : 1.55)) {
+        drawCanvasText(ctx, name, center.x, labelY, {
+          fontSize: fittedFontSize,
+          align: "center",
+          baseline: "middle",
+          fill: meta?.color || factionFragmentVisual(fragment.faction).glowHex,
+          stroke: "rgba(4, 10, 17, 0.94)",
+          strokeWidth: Math.max(2, fittedFontSize * 0.18),
+          weight: 750,
+        });
+      }
     });
 
   state.gridGuides.forEach((guide) => {
@@ -10249,24 +10204,9 @@ function renderDynamicOverlay() {
   state.overlayDynamic.innerHTML = "";
 
   const metrics = currentOverlayMetrics();
-  if (!MAP_BASE_ONLY) {
-    const mobileSimplified = state.isMobileView && (state.viewerBusy || metrics.zoomFactor < 1.35);
-    const gridRadius = mobileSimplified ? 0 : 1;
-    const neighborLabels = gridNeighbors(state.currentGrid, gridRadius);
-
-    neighborLabels.forEach((label) => {
-      const tone = label === state.currentGrid ? "current" : "neighbor";
-      const box = makeGridBox(label, tone);
-      if (!box) return;
-      if (mobileSimplified && tone !== "current") {
-        box.classList.add("quiet");
-      }
-      if (mobileSimplified && tone === "current") {
-        box.classList.add("focus-only");
-      }
-      state.overlayDynamic.appendChild(box);
-    });
-  }
+  // Grid boxes are navigation aids, not map data.  They covered the Core with
+  // dashed rounded rectangles and hid routes, so only the restrained global
+  // guide lines remain visible.
 
   const item = selectedDetailItem();
   const routeHighlights = [];

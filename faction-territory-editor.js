@@ -1015,6 +1015,7 @@
     renderMapLayers();
     renderSidebar();
     markDirty();
+    updateSaveState();
   }
 
   function redo() {
@@ -1027,6 +1028,7 @@
     renderMapLayers();
     renderSidebar();
     markDirty();
+    updateSaveState();
   }
 
   function markDirty() {
@@ -1048,6 +1050,18 @@
     label.classList.toggle("is-error", Boolean(error));
     const saveButton = $("[data-action=save]", state.shell);
     if (saveButton) saveButton.disabled = state.saving || !isAdmin();
+    const undoButton = $("[data-action=undo]", state.shell);
+    const redoButton = $("[data-action=redo]", state.shell);
+    if (undoButton) {
+      undoButton.disabled = !isAdmin() || state.history.undo.length === 0;
+      undoButton.setAttribute("aria-disabled", String(undoButton.disabled));
+      undoButton.title = undoButton.disabled ? "Keine Aktion zum Rückgängigmachen" : "Rückgängig (Strg/Cmd+Z)";
+    }
+    if (redoButton) {
+      redoButton.disabled = !isAdmin() || state.history.redo.length === 0;
+      redoButton.setAttribute("aria-disabled", String(redoButton.disabled));
+      redoButton.title = redoButton.disabled ? "Keine Aktion zum Wiederherstellen" : "Wiederherstellen (Strg/Cmd+Umschalt+Z)";
+    }
     if (error) label.title = error;
   }
 
